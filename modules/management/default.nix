@@ -1,5 +1,6 @@
 {
   imports = [
-    ./base.nix
+    ./nginx.nix
+    ./website.nix
   ];
 }
