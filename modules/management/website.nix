@@ -12,7 +12,7 @@
             tryFiles = "$uri /$1/index.html =404";
           };
           "robot.txt" = {
-            root = ../../resources/;
+            root = ../../resources/.;
           };
         };
       };
