@@ -1,5 +1,4 @@
 { pkgs, config, ... }: {
-
   services.nginx = {
     enable = true;
     virtualHosts = {
@@ -7,12 +6,12 @@
         enableACME = true;
         forceSSL = true;
         locations = {
+	      "=/robots.txt" = {
+            return = "200 \"User-agent: *\\nDisallow: /\\n\"";
+          };
           "/" = {
             root = "${pkgs.dd-ix-website}/bin/";
             tryFiles = "$uri /$1/index.html =404";
-          };
-          "robot.txt" = {
-            root = ../../resources/.;
           };
         };
       };

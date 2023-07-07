@@ -17,7 +17,7 @@
   boot.supportedFilesystems = [ "zfs" ];
 
   networking.hostId = "eeb0e9de";
-  networking.hostName = "MNO001";
+  networking.hostName = "mno001";
 
   services.zfs.autoSnapshot.enable = true;
   services.zfs.autoScrub.enable = true;
