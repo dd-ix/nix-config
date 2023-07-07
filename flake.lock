@@ -6,11 +6,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1688768842,
-        "narHash": "sha256-8DIN2oJYZf/ukClwVhzze/I9Cw9oL5FzL2qRFjgo1h4=",
+        "lastModified": 1688770584,
+        "narHash": "sha256-XclYBfaaesXumsDLnPOzw3XKFtOPWum8U6H58sVJWMI=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "27a7569df51c09155c4473fc9c04b71911a7e4af",
+        "rev": "127cb2aedb199977c09acb638c7b8d6f0d4fe034",
         "type": "github"
       },
       "original": {
