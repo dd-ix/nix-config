@@ -1,34 +1,72 @@
 { pkgs, ... }:
 let
-  bond_name = "bond0";
+  bond_name = "bond";
 in
 {
 
-  # LACP on first two ports
-  networking.bonds."${bond_name}" = {
-    interfaces = [ "eno2" "eno3" ];
-    driverOptions = {
-      mode = "802.3ad";
-      lacp_rate = "fast";
-    };
+  networking = {
+    enableIPv6 = true;
+    useDHCP = false;
+
+    useNetworkd = true;
+    wireguard.enable = true;
   };
 
-  # Static IP Address
-  networking.interfaces."${bond_name}" = {
-    useDHCP = false;
-    ipv4.addresses = [
-      {
-        address = "212.111.245.178";
-        prefixLength = 29;
-      }
+  services.resolved = {
+    enable = true;
+    fallbackDns = [
+      "212.111.228.53" # IBH 1
+      "193.36.123.53" # IBH 2
+      "9.9.9.9" # QUAD 9
     ];
   };
 
-  # Default Gateway
-  networking.defaultGateway.address = "212.111.245.177";
+  systemd.network = {
+    enable = true;
 
-  # nameservers
-  networking.nameservers = [ "212.111.228.53" "193.36.123.53" ];
+    netdevs."10-${bond_name}" = {
+      netDevConfig = {
+        Name = "${bond_name}";
+        Kind = "bond";
+      };
+      bondConfig = {
+        Mode = "802.3ad"; # LACP 
+        MIIMonitorSec = "250ms";
+        LACPTransmitRate = "fast";
+      };
+    };
+
+    networks."10-${bond_name}" = {
+      matchConfig.Name = "${bond_name}";
+
+      address = [ "212.111.245.178/29" ];
+      routes = [
+        {
+          routeConfig.Gateway = "212.111.245.177";
+        }
+      ];
+
+      networkConfig = {
+        BindCarrier = [ "eno2" "eno3" ];
+        DHCP = "no";
+      };
+    };
+
+    networks."10-eno2-${bond_name}" = {
+      matchConfig.Name = "eno2";
+      networkConfig = {
+        Bond = "${bond_name}"; # Enslaving to bond 
+      };
+    };
+
+    networks."10-eno3-${bond_name}" = {
+      matchConfig.Name = "eno3";
+      networkConfig = {
+        Bond = "${bond_name}"; # Enslaving to bond
+      };
+    };
+
+  };
 
   # enabling and configuring firewall
   networking.firewall = {
