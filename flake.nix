@@ -6,19 +6,25 @@
 
     dd-ix-website = {
       url = "github:dd-ix/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, dd-ix-website }: {
-    packages.x86_64-linux.rpi-manager = nixpkgs.legacyPackages.x86_64-linux.callPackage ./pkgs/ixp-manager.nix { };
-
+  outputs = inputs@{ self, nixpkgs, dd-ix-website, sops-nix }: {
     nixosConfigurations =
       let
         overlays = [
           dd-ix-website.overlays.default
         ];
 
-        nixos-modules = [ ];
+        nixos-modules = [
+          sops-nix.nixosModules.default
+        ];
 
       in
       {
