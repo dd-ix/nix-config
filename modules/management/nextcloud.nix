@@ -1,7 +1,8 @@
-{ config, pkgs, ... }: 
+{ config, pkgs, ... }:
 let
   domain = "cloud.dd-ix.net";
-in {
+in
+{
   sops.secrets.nextcloud_db_pass.owner = "nextcloud";
   sops.secrets.nextcloud_admin_pass.owner = "nextcloud";
 
@@ -22,7 +23,7 @@ in {
     enable = true;
     hostName = domain;
     https = true;
-    package = pkgs.nextcloud25;
+    package = pkgs.nextcloud26;
     config = {
       dbtype = "pgsql";
       dbname = "nextcloud";
