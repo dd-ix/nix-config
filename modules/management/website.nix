@@ -6,7 +6,7 @@
         enableACME = true;
         forceSSL = true;
         locations = {
-	      "=/robots.txt" = {
+          "=/robots.txt" = {
             return = "200 \"User-agent: *\\nDisallow: /\\n\"";
           };
           "/" = {
