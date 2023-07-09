@@ -61,6 +61,13 @@ in
       };
     };
   };
+  
+  users.users.keycloak = {
+    isSystemUser = true;
+    name = "keycloak";
+    extraGroups = [ "keycloak" ];
+    group = "keycloak";
+  };
 
   systemd.services.keycloak-pgsetup = {
     description = "Prepare keycloak postgres database";
