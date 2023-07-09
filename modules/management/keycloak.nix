@@ -43,7 +43,7 @@ in
         http-host = "127.0.0.1";
         hostname = "keycloak.${config.deployment-dd-ix.domain}";
       };
-      initialAdminPassword = config.sops.secrets.keycloak_admin_pw.path;
+      initialAdminPassword = "InitialKeycloakPassword";
     };
 
     nginx = {
