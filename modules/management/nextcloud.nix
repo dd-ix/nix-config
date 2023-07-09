@@ -33,7 +33,9 @@ in
       adminuser = "admin";
       adminpassFile = "${config.sops.secrets.nextcloud_admin_pass.path}";
     };
-    extraOptions = { allow_local_remote_servers = true };
+    extraOptions = { 
+      allow_local_remote_servers = true;
+    };
     extraAppsEnable = true;
   };
 
