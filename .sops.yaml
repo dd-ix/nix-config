@@ -1,0 +1,16 @@
+keys:
+  - &admin_tassilo 91EBE87016391323642A6803B966009D57E69CC6
+  - &admin_melody 778755C4893709525F6E62BCC2A819CA37DE8B61
+
+  # test key
+  - &test age1925katzy5gws3f9hnvnlwspu6trxf488arwt6ayw3urg2mgumqhszxnmqh
+  - &mno001 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
+creation_rules:
+  - path_regex: secrets/management/[^/]+\.yaml$
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        age:
+        - *mno001
+  
