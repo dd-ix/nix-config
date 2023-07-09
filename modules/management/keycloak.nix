@@ -62,6 +62,7 @@ in
     };
   };
   
+  users.groups.keycloak = {};
   users.users.keycloak = {
     isSystemUser = true;
     name = "keycloak";
