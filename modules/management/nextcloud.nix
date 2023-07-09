@@ -32,6 +32,8 @@ in {
       adminuser = "admin";
       adminpassFile = "${config.sops.secrets.nextcloud_admin_pass.path}";
     };
+    extraOptions = { allow_local_remote_servers = true };
+    extraAppsEnable = true;
   };
 
   services.nginx.virtualHosts."cloud.dd-ix.net".forceSSL = true;
