@@ -8,6 +8,7 @@ in
 
   sops.secrets = {
     postgres_keycloak.owner = config.systemd.services.keycloak.serviceConfig.User;
+    keycloak_admin_pw.owner = config.systemd.services.keycloak.serviceConfig.User;
   };
 
   services = {
@@ -42,6 +43,7 @@ in
         http-host = "127.0.0.1";
         hostname = "keycloak.${config.deployment-dd-ix.domain}";
       };
+      initialAdminPassword = config.sops.secrets.keycloak_admin_pw.path;
     };
 
     nginx = {
