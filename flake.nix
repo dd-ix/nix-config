@@ -9,21 +9,35 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    presence = {
+      url = "github:dd-ix/presence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    foundation = {
+      url = "github:dd-ix/foundation";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, dd-ix-website, sops-nix }: {
+  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, sops-nix }: {
     nixosConfigurations =
       let
         overlays = [
           dd-ix-website.overlays.default
+          presence.overlays.default
+          foundation.overlays.default
         ];
 
         nixos-modules = [
           sops-nix.nixosModules.default
+          presence.nixosModules.default
+          foundation.nixosModules.default
         ];
 
       in
