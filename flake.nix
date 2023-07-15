@@ -19,19 +19,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    website-content = {
+      url = "github:dd-ix/website-content";
+      flake = false;
+    };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, sops-nix }: {
+  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, website-content, sops-nix }: {
     nixosConfigurations =
       let
         overlays = [
           dd-ix-website.overlays.default
           presence.overlays.default
           foundation.overlays.default
+          (final: prev: {
+            inherit (self.packages.${prev.system})
+            website-content;
+          })
         ];
 
         nixos-modules = [
