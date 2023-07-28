@@ -30,11 +30,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1690568999,
-        "narHash": "sha256-6KZ9sI/8h3xU7IBKeKMu3gdfBG/Q19H38/ajKdONFLI=",
+        "lastModified": 1690569158,
+        "narHash": "sha256-HKqJLs5gq2yWWK/Rq392bMp/99iXJrMdec8Yu5jOzTM=",
         "owner": "dd-ix",
         "repo": "foundation",
-        "rev": "14ccaf8d48e289a162a2b52960541e26a4c931b4",
+        "rev": "2745f5bbc517688aa28a00029e2b429658718826",
         "type": "github"
       },
       "original": {
