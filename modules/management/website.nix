@@ -36,7 +36,7 @@
         host = "127.0.0.1";
         port = 9123;
       };
+      url = "https://content.${config.deployment-dd-ix.domain}/";
     };
-    url = "https://content.${config.deployment-dd-ix.domain}/";
   };
 }
