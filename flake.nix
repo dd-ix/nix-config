@@ -38,8 +38,7 @@
           presence.overlays.default
           foundation.overlays.default
           (final: prev: {
-            inherit (self.packages.${prev.system})
-            website-content;
+            website-content = website-content;
           })
         ];
 
