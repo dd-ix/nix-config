@@ -37,5 +37,6 @@
         port = 9123;
       };
     };
+    url = "https://content.${config.deployment-dd-ix.domain}/";
   };
 }
