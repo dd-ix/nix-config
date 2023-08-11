@@ -29,6 +29,7 @@ in
 
   };
 
+  services.nginx.virtualHosts."netbox.dd-ix.net".locations."/static/".alias = "${config.services.netbox.dataDir}/static/";
   services.nginx.virtualHosts."netbox.dd-ix.net".locations."/".proxyPass = "http://127.0.0.1:9502";
   services.nginx.virtualHosts."netbox.dd-ix.net".forceSSL = true;
   services.nginx.virtualHosts."netbox.dd-ix.net".enableACME = true;
