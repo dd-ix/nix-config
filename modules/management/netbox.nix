@@ -7,32 +7,52 @@ in
   sops.secrets.netbox_secret_key_file.owner = "netbox";
 
 
-  services.postgresql = {
-    enable = true;
-    ensureUsers = [
-      {
-        name = "netbox";
-        ensurePermissions = {
-          "DATABASE netbox" = "ALL PRIVILEGES";
+  services = {
+    postgresql = {
+      enable = true;
+      ensureUsers = [
+        {
+          name = "netbox";
+          ensurePermissions = {
+            "DATABASE netbox" = "ALL PRIVILEGES";
+          };
+        }
+      ];
+      ensureDatabases = [ "netbox" ];
+    };
+
+    netbox = {
+      enable = true;
+      package = pkgs.netbox;
+      port = 9502;
+      listenAddress = "127.0.0.1";
+      secretKeyFile = "${config.sops.secrets.netbox_secret_key_file.path}";
+    };
+
+    nginx = {
+      enable = true;
+      virtualHosts."netbox.dd-ix.net" = {
+        locations = {
+          "/static/".alias = "${config.services.netbox.dataDir}/static/";
+          "/".proxyPass = "http://127.0.0.1:9502";
         };
-      }
-    ];
-    ensureDatabases = [ "netbox" ];
+        forceSSL = true;
+        enableACME = true;
+      };
+    };
   };
 
-  services.netbox = {
-    enable = true;
-    package = pkgs.netbox;
-    port = 9502;
-    listenAddress = "127.0.0.1";
-    secretKeyFile = "${config.sops.secrets.netbox_secret_key_file.path}";
+  systemd.permission-netbox-setup = {
+    description = "change permissions of /var/lib/netbox/static";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "netbox.service" ];
+    serviceConfig.Type = "oneshot";
 
+    path = [ pkgs.sudo ];
+    script = ''
+      chown -R nginx /var/lib/netbox/static/
+    '';
   };
-
-  services.nginx.virtualHosts."netbox.dd-ix.net".locations."/static/".alias = "${config.services.netbox.dataDir}/static/";
-  services.nginx.virtualHosts."netbox.dd-ix.net".locations."/".proxyPass = "http://127.0.0.1:9502";
-  services.nginx.virtualHosts."netbox.dd-ix.net".forceSSL = true;
-  services.nginx.virtualHosts."netbox.dd-ix.net".enableACME = true;
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
