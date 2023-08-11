@@ -4,5 +4,6 @@
     ./website.nix
     ./nextcloud.nix
     ./keycloak.nix
+    ./netbox.nix
   ];
 }
