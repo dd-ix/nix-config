@@ -42,7 +42,7 @@ in
     };
   };
 
-  systemd.permission-netbox-setup = {
+  systemd.units.permission-netbox-setup = {
     description = "change permissions of /var/lib/netbox/static";
     wantedBy = [ "multi-user.target" ];
     after = [ "netbox.service" ];
