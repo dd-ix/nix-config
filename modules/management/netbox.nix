@@ -39,20 +39,22 @@ in
         forceSSL = true;
         enableACME = true;
       };
+        user = "netbox";
     };
   };
 
-  systemd.services.permission-netbox-setup = {
-    description = "change permissions of /var/lib/netbox/static";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "netbox.service" ];
-    serviceConfig.Type = "oneshot";
+ # systemd.services.permission-netbox-setup = {
+ #   enable = true;
+ #   description = "change permissions of /var/lib/netbox/static";
+ #   wantedBy = [ "multi-user.target" ];
+ #   after = [ "netbox.service" ];
+ #   serviceConfig.Type = "oneshot";
 
-    path = [ pkgs.sudo ];
-    script = ''
-      chown -R nginx /var/lib/netbox/static/
-    '';
-  };
+ #   path = [ pkgs.sudo ];
+ #   script = ''
+ #     chown -R nginx /var/lib/netbox/static/
+ #   '';
+ # };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
