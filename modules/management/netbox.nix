@@ -5,7 +5,7 @@ in
 {
   sops.secrets.netbox_db_pass.owner = "netbox";
   sops.secrets.netbox_secret_key_file.owner = "netbox";
-  sops.secrets.netbox_social_auth_secret.owner = "netbox";
+  sops.secrets.keycloak_social_auth_secret.owner = "netbox";
 
   services = {
     postgresql = {
