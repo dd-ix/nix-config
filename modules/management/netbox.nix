@@ -31,7 +31,6 @@ in
         # https://stackoverflow.com/questions/53550321/keycloak-gatekeeper-aud-claim-and-client-id-do-not-match
         REMOTE_AUTH_BACKEND = "social_core.backends.keycloak.KeycloakOAuth2";
         SOCIAL_AUTH_KEYCLOAK_KEY = "netbox";
-        SOCIAL_AUTH_KEYCLOAK_SECRET = "open(\"${config.sops.secrets.keycloak_social_auth_secret.path}\").read().split(\"\n\")[0]";
         SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxeOlZAP0/GDzHW29AVq9svu7CMnqqm2JJmAheFZboBGYhGr5obusczoblHdUhv0O5HOzHY8x+vMyQ7RTbCH2j7ezY2b96kUwcSdNbXIQGMpxSM44m2XGr/FaPl1qqDm5NIyNUo0mTPO62Z5hQ1Uocup9Bs29w521QepR15JuzMBc1NeIo2tQ0oid/nhqfacUPsJRyLqWbpy1Jcpvo8sf///uWlVpg64au6Fum4zJiIhj0/JHMdMJU+z7V5BcxIdcY+i8WXdn7YQZ1sFwcuO4jAO+Wb4ZL7JzBqbxdZQeUPZU8flfPqXQwBibi8bwbF6pQWdV49EKOxgvn+zI8+GEvwIDAQAB";
         SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/auth";
         SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/token";
@@ -39,6 +38,8 @@ in
         SOCIAL_AUTH_JSONFIELD_ENABLED = true;
         SOCIAL_AUTH_VERIFY_SSL = false;
       };
+
+      keycloakClientSecret = "${config.sops.secrets.keycloak_social_auth_secret.path}";
     };
 
     nginx = {
