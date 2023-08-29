@@ -37,6 +37,8 @@ in
         SOCIAL_AUTH_KEYCLOAK_ID_KEY = "email";
         SOCIAL_AUTH_JSONFIELD_ENABLED = true;
         SOCIAL_AUTH_VERIFY_SSL = false;
+        SOCIAL_AUTH_OIDC_SCOPE = ["groups"];
+        #REMOTE_AUTH_DEFAULT_GROUPS = ['DCIM_Auditors']
       };
 
       keycloakClientSecret = "${config.sops.secrets.keycloak_social_auth_secret.path}";
