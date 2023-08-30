@@ -55,6 +55,7 @@ in
     openssh.authorizedKeys.keyFiles = [
       ../../keys/ssh/tassilo
       ../../keys/ssh/melody
+      ../../keys/ssh/fiasko
     ];
   };
   services.openssh = {
