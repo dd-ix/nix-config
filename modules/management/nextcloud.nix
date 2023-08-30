@@ -23,7 +23,7 @@ in
     enable = true;
     hostName = domain;
     https = true;
-    package = pkgs.nextcloud26;
+    package = pkgs.nextcloud27;
     config = {
       dbtype = "pgsql";
       dbname = "nextcloud";
