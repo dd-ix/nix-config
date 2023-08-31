@@ -5,5 +5,6 @@
     ./nextcloud.nix
     ./keycloak.nix
     ./netbox.nix
+    ./listmonk.nix
   ];
 }
