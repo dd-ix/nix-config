@@ -13,6 +13,7 @@
       secretFile = config.sops.secrets.listmonk.path;
       database = {
         createLocally = true;
+        mutableSettings = false;
         settings = {
           smtp = [
             {
@@ -20,6 +21,9 @@
               host = "smtp.migadu.com";
               port = 465;
               tls_type = "TLS";
+              idle_timeout = "1s";
+              wait_timeout = "1s";
+              email_headers = [ ];
             }
           ];
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
