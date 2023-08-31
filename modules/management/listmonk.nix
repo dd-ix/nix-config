@@ -1,18 +1,22 @@
 { pkgs, config, ... }: {
+
+  sops.secrets.listmonk.owner = "netbox";
   services = {
     listmonk = {
       enable = true;
       settings = {
         app = {
           address = "127.0.0.1:9820";
+          admin_username = "admin";
         };
       };
+      secretFile = config.sops.secrets.listmonk.path;
       database = {
         createLocally = true;
         settings = {
           smtp = [
             {
-              enable = true;
+              enabled = true;
               host = "127.0.0.1";
               port = 9821;
               tls_type = "TLS";
