@@ -17,8 +17,8 @@
           smtp = [
             {
               enabled = true;
-              host = "127.0.0.1";
-              port = 9821;
+              host = "smtp.migadu.com";
+              port = 465;
               tls_type = "TLS";
             }
           ];
