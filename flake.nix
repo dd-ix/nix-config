@@ -2,7 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:revol-xut/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:revol-xut/nixpkgs/listmonk-patch-tassilo";
 
     dd-ix-website = {
       url = "github:dd-ix/website";

@@ -87,16 +87,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1692466622,
-        "narHash": "sha256-/n3/f5k98jW4kj2sBh5LjwBioKLpSZcsok9IaPejOGg=",
+        "lastModified": 1693511832,
+        "narHash": "sha256-ZobyUBxM5P87kduPpMsHcrS4p7o/qIvmJT6MQmQBsHQ=",
         "owner": "revol-xut",
         "repo": "nixpkgs",
-        "rev": "dbfbf6a3ac6252c9cc218a38a03d4bc5d7b60a39",
+        "rev": "ace30fec0f3397b6e501bf81b159eed9d71fdd3d",
         "type": "github"
       },
       "original": {
         "owner": "revol-xut",
-        "ref": "nixos-23.05",
+        "ref": "listmonk-patch-tassilo",
         "repo": "nixpkgs",
         "type": "github"
       }
