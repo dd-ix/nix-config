@@ -5,6 +5,10 @@
       "${config.deployment-dd-ix.domain}" = {
         enableACME = true;
         forceSSL = true;
+
+        basicAuth =  {
+          "dd-ix" = "web-dd-ix";
+        };
         locations = {
           "=/robots.txt" = {
             return = "200 \"User-agent: *\\nDisallow: /\\n\"";
