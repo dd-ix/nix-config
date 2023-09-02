@@ -7,7 +7,6 @@
       "${config.deployment-dd-ix.domain}" = {
         enableACME = true;
         forceSSL = true;
-
         basicAuthFile = config.sops.secrets.basic_auth.path;
         locations = {
           "=/robots.txt" = {
