@@ -1,13 +1,13 @@
 { pkgs, config, ... }: {
 
-  sops.secrets.basic_auth.owner = "nginx";
+  sops.secrets."nginx.htpasswd".owner = "netbox";
   services.nginx = {
     enable = true;
     virtualHosts = {
       "${config.deployment-dd-ix.domain}" = {
         enableACME = true;
         forceSSL = true;
-        basicAuthFile = config.sops.secrets.basic_auth.path;
+        basicAuthFile = config.sops.secrets."nginx.htpasswd".path;
         locations = {
           "=/robots.txt" = {
             return = "200 \"User-agent: *\\nDisallow: /\\n\"";
