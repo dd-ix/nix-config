@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }
+{ pkgs, config, lib, ... }: {
 
 services.vaultwarden.enable = true;
 
@@ -17,4 +17,5 @@ services.nginx = {
         proxyWebsockets = true;
       };
     };
-};
+  }; 
+}
