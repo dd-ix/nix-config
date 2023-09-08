@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }: {
 
   sops.secrets.postgres_vaultwarden.owner = config.services.postgresql.superUser;
+  sops.secrets.vaultwarden_env_file.owner = config.systemd.services.vaultwarden.User;
 
   services = {
     postgresql = {
@@ -20,11 +21,12 @@
       config = {
         ROCKET_ADDRESS = "127.0.0.1";
         ROCKET_PORT = 8222;
-        DOMAIN = "https://vaultwarden.dd-ix.net";
+        DOMAIN = "https://vaultwarden.dd-ix.net:443";
         SIGNUPS_ALLOWED = false;
+	WEBSOCKET_ENABLED=true;
       };
       dbBackend = "postgresql";
-      environmentFile = /var/lib/vaultwarden.env;
+      environmentFile = config.sops.secrets.vaultwarden_env_file.path;
     };
 
     nginx = {
@@ -33,12 +35,25 @@
       # Use recommended settings
       recommendedGzipSettings = true;
 
-      virtualHosts."vautwarden.dd-ix.net" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8222";
-          proxyWebsockets = true;
+      virtualHosts."vaultwarden.dd-ix.net" = {
+       http2 = true;
+       forceSSL = true;
+       enableACME = true;
+       #root = "/srv/www/vault.lissner.net";
+       extraConfig = ''
+          client_max_body_size 64M;
+          # if ($deny) { return 503; }
+       '';
+       locations = {
+          "/notifications/hub/negotiate" = {
+            proxyPass = "http://127.0.0.1:8222";
+            proxyWebsockets = true;
+          };
+          "/notifications/hub" = {
+            proxyPass = "http://127.0.0.1:3012";
+            proxyWebsockets = true;
+          };
+          "/".proxyPass = "http://127.0.0.1:8222";
         };
       };
     };
@@ -52,7 +67,7 @@
     path = [ pkgs.sudo config.services.postgresql.package ];
     script = ''
       # create postgres user with the specified password
-      sudo -u ${config.services.postgresql.superUser} psql -c "ALTER ROLE vaultwarden WITH PASSWORD '$(cat ${config.sops.secrets.postgres_vaultwarden.path})"
+      sudo -u ${config.services.postgresql.superUser} psql -c "ALTER ROLE vaultwarden WITH PASSWORD '$(cat ${config.sops.secrets.postgres_vaultwarden.path})'"
     '';
   };
 }
