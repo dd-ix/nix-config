@@ -1,6 +1,7 @@
 { pkgs, config, ... }: {
 
   sops.secrets."nginx.htpasswd".owner = "netbox";
+  sops.secrets.listmonk_admin.owner = config.dd-ix.foundation.user;
   services.nginx = {
     enable = true;
     virtualHosts = {
@@ -38,6 +39,13 @@
       http = {
         host = "127.0.0.1";
         port = 9123;
+      };
+      listmonk = {
+        host = "http://127.0.0.1";
+        port = 9820;
+        user = config.services.listmonk.settings.app.admin_username;
+        passwordFile = config.sops.secrets.listmonk_admin.path;
+        allowed_lists = [8 9];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
     };
