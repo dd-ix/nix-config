@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: {
 
   sops.secrets.postgres_vaultwarden.owner = config.services.postgresql.superUser;
-  sops.secrets.vaultwarden_env_file.owner = config.systemd.services.vaultwarden.User;
+  sops.secrets.vaultwarden_env_file.owner = "vaultwarden";
 
   services = {
     postgresql = {
@@ -24,6 +24,11 @@
         DOMAIN = "https://vaultwarden.dd-ix.net:443";
         SIGNUPS_ALLOWED = false;
 	WEBSOCKET_ENABLED=true;
+	SMTP_HOST="smtp.migadu.com";
+  	SMTP_FROM="vaultwarden@dd-ix.net";
+  	SMTP_PORT=587;
+  	SMTP_SECURITY="starttls";
+  	SMTP_USERNAME="vaultwarden@dd-ix.net";
       };
       dbBackend = "postgresql";
       environmentFile = config.sops.secrets.vaultwarden_env_file.path;
