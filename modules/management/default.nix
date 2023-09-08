@@ -6,5 +6,6 @@
     ./keycloak.nix
     ./netbox.nix
     ./listmonk.nix
+    ./vaultwarden.nix
   ];
 }
