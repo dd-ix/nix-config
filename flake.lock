@@ -163,11 +163,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1694336488,
-        "narHash": "sha256-DB6dKY6zViyBZLZ1xff12fCRmq1ozfvE/aVX7lwQyOk=",
+        "lastModified": 1694341156,
+        "narHash": "sha256-hVmJUrV905FTDWDXoPsvo+/OBGt+8Dgmki/2nm6HyFc=",
         "owner": "dd-ix",
         "repo": "presence",
-        "rev": "632dbddd30b5d4ea8e388e8a3080b1bea8706bb1",
+        "rev": "9962211ae3be9a393d5c4d244e788cd606318cb6",
         "type": "github"
       },
       "original": {
