@@ -45,7 +45,7 @@
         port = 9820;
         user = config.services.listmonk.settings.app.admin_username;
         passwordFile = config.sops.secrets.listmonk_admin.path;
-        allowed_lists = [8 9];
+        allowed_lists = [ 9 ];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
     };
