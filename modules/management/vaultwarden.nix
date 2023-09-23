@@ -23,12 +23,12 @@
         ROCKET_PORT = 8222;
         DOMAIN = "https://vaultwarden.dd-ix.net:443";
         SIGNUPS_ALLOWED = false;
-	WEBSOCKET_ENABLED=true;
-	SMTP_HOST="smtp.migadu.com";
-  	SMTP_FROM="vaultwarden@dd-ix.net";
-  	SMTP_PORT=587;
-  	SMTP_SECURITY="starttls";
-  	SMTP_USERNAME="vaultwarden@dd-ix.net";
+        WEBSOCKET_ENABLED = true;
+        SMTP_HOST = "smtp.migadu.com";
+        SMTP_FROM = "vaultwarden@dd-ix.net";
+        SMTP_PORT = 587;
+        SMTP_SECURITY = "starttls";
+        SMTP_USERNAME = "vaultwarden@dd-ix.net";
       };
       dbBackend = "postgresql";
       environmentFile = config.sops.secrets.vaultwarden_env_file.path;
@@ -41,15 +41,15 @@
       recommendedGzipSettings = true;
 
       virtualHosts."vaultwarden.dd-ix.net" = {
-       http2 = true;
-       forceSSL = true;
-       enableACME = true;
-       #root = "/srv/www/vault.lissner.net";
-       extraConfig = ''
+        http2 = true;
+        forceSSL = true;
+        enableACME = true;
+        #root = "/srv/www/vault.lissner.net";
+        extraConfig = ''
           client_max_body_size 64M;
           # if ($deny) { return 503; }
-       '';
-       locations = {
+        '';
+        locations = {
           "/notifications/hub/negotiate" = {
             proxyPass = "http://127.0.0.1:8222";
             proxyWebsockets = true;
