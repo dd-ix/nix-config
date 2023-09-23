@@ -20,7 +20,7 @@
         user = "bookstack";
         host = "localhost";
         name = "bookstack";
-        passwordFile = "${config.sops.secrets.postgres_bookstack.path}";
+        passwordFile = config.sops.secrets.postgres_bookstack.path;
       };
       appKeyFile = config.sops.secrets.bookstack_appkey.path;
       config = {
@@ -28,7 +28,7 @@
         AUTH_AUTO_INITIATE = true;
         OIDC_NAME = ''"DD-IX Bookstack"'';
         OIDC_CLIENT_ID = "bookstack";
-        OIDC_CLIENT_SECRET._secret = config.secrets.bookstack_oidc_secret.path;
+        OIDC_CLIENT_SECRET._secret = config.sops.secrets.bookstack_oidc_secret.path;
         OIDC_ISSUER = "https://keycloak.dd-ix.net/";
         OIDC_AUTH_ENDPOINT = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/auth";
         OIDC_TOKEN_ENDPOINT = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/token";
