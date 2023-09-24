@@ -23,7 +23,7 @@
         user = "bookstack";
         host = "localhost";
         name = "bookstack";
-        passwordFile = config.sops.secrets.postgres_bookstack.path;
+        createLocally = true;
       };
 
       appKeyFile = config.sops.secrets.bookstack_appkey.path;
