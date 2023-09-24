@@ -13,8 +13,11 @@
         from = "wiki@dd-ix.net";
       };
 
-      nginx.enableACME = true;
-      nginx.forceSSL = true;
+      nginx = {
+        enableACME = true;
+        forceSSL = true;
+      };
+
       # Bookstack requires mariadb or mysql :<
       database = {
         user = "bookstack";
@@ -22,6 +25,7 @@
         name = "bookstack";
         passwordFile = config.sops.secrets.postgres_bookstack.path;
       };
+
       appKeyFile = config.sops.secrets.bookstack_appkey.path;
       config = {
         AUTH_METHOD = "oidc";
@@ -33,10 +37,10 @@
         OIDC_AUTH_ENDPOINT = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/auth";
         OIDC_TOKEN_ENDPOINT = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/token";
         OIDC_ISSUER_DISCOVER = true;
-        OIDC_USER_TO_GROUPS=true;
-        OIDC_GROUPS_CLAIM="groups";
-        OIDC_ADDITIONAL_SCOPES="groups";
-        OIDC_REMOVE_FROM_GROUPS=true;
+        OIDC_USER_TO_GROUPS = true;
+        OIDC_GROUPS_CLAIM = "groups";
+        OIDC_ADDITIONAL_SCOPES = "groups";
+        OIDC_REMOVE_FROM_GROUPS = true;
 
         # does not work yet, requires newer bookstash version
         # OIDC_USER_TO_GROUPS = true;
