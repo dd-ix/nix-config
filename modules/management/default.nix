@@ -7,5 +7,6 @@
     ./netbox.nix
     ./listmonk.nix
     ./vaultwarden.nix
+    ./bookstack.nix
   ];
 }
