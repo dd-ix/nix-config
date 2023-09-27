@@ -19,6 +19,7 @@ in
   };
 
   # networking.useNetworkd = true;
+  networking.resolvconf.useLocalResolver = false;
 
   console = {
     font = "Lat2-Terminus16";
