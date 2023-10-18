@@ -31,7 +31,7 @@ in
         master = true;
         file = "${file_dir}/120.36.193.in-addr.arpa";
         slaves = ibh_ans_ip;
-        allowQuery = ibh_ans_ip + [ "127.0.0.0/8" "::1/128" ];
+        allowQuery = ibh_ans_ip ++ [ "127.0.0.0/8" "::1/128" ];
       };
 
       # reverse zone for IX IPv6
@@ -39,7 +39,7 @@ in
         master = true;
         file = "${file_dir}/8.1.d.d.9.1.0.0.8.f.7.0.1.0.0.2.ip6.arpa";
         slaves = ibh_ans_ip;
-        allowQuery = ibh_ans_ip + [ "127.0.0.0/8" "::1/128" ];
+        allowQuery = ibh_ans_ip ++ [ "127.0.0.0/8" "::1/128" ];
       };
     };
 
