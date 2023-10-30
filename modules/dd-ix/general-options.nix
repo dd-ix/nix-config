@@ -9,7 +9,7 @@ with lib; {
 
     deployment-dd-ix.domain = mkOption {
       type = types.str;
-      default = "tlm.solutions";
+      default = "dd-ix.net";
       description = "domain the server is running on";
     };
   };

@@ -57,6 +57,7 @@ in
       ../../keys/ssh/tassilo
       ../../keys/ssh/melody
       ../../keys/ssh/fiasko
+      ../../keys/ssh/marcel
     ];
   };
   services.openssh = {
