@@ -184,11 +184,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1698786008,
-        "narHash": "sha256-i+uSuPsX0xZt1IWbmCI9wJfi48iCzX5taet1l6dGMOg=",
+        "lastModified": 1698787620,
+        "narHash": "sha256-YGnxO0EZGzy+Wp8bpDmeTW1X3Zi8QCdn7wdPmvV0v80=",
         "owner": "dd-ix",
         "repo": "presence",
-        "rev": "d769654936a1d4d150983f00c575d0c8abbedf6f",
+        "rev": "69ca88a32cf7487902894ee0d618b51261787976",
         "type": "github"
       },
       "original": {
