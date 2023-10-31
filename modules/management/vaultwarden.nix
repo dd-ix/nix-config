@@ -21,7 +21,7 @@
       config = {
         ROCKET_ADDRESS = "127.0.0.1";
         ROCKET_PORT = 8222;
-        DOMAIN = "https://vaultwarden.dd-ix.net:443";
+        DOMAIN = "https://vault.${config.deployment-dd-ix.domain}:443";
         SIGNUPS_ALLOWED = false;
         WEBSOCKET_ENABLED = true;
         SMTP_HOST = "smtp.migadu.com";
@@ -40,7 +40,7 @@
       # Use recommended settings
       recommendedGzipSettings = true;
 
-      virtualHosts."vaultwarden.dd-ix.net" = {
+      virtualHosts."vault.${config.deployment-dd-ix.domain}" = {
         http2 = true;
         forceSSL = true;
         enableACME = true;
@@ -60,6 +60,13 @@
           };
           "/".proxyPass = "http://127.0.0.1:8222";
         };
+      };
+      virtualHosts."vaultwarden.${config.deployment-dd-ix.domain}" = {
+        locations = {
+          "/".return = "301 https://vault.${config.deployment-dd-ix.domain}$request_uri";
+        };
+        forceSSL = true;
+        enableACME = true;
       };
     };
   };
