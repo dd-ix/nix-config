@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:revol-xut/nixpkgs/listmonk-patch-tassilo";
 
-    dd-ix-website = {
-      url = "github:dd-ix/website";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     presence = {
       url = "github:dd-ix/presence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,11 +30,10 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, website-content, sops-nix, keycloak-theme}: {
+  outputs = inputs@{ self, nixpkgs, foundation, presence, website-content, sops-nix, keycloak-theme}: {
     nixosConfigurations =
       let
         overlays = [
-          dd-ix-website.overlays.default
           presence.overlays.default
           foundation.overlays.default
           (final: prev: {
