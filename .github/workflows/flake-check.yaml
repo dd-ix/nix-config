@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v17
-      - run: nix flake --option allow-import-from-derivation 1 check
+      - run: nix flake check
