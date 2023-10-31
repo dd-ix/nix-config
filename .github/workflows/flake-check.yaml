@@ -2,7 +2,7 @@ name: "flake check"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     tags: [ '*' ]
   pull_request:
 
