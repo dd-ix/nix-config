@@ -30,7 +30,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, foundation, presence, website-content, sops-nix, keycloak-theme}: {
+  outputs = inputs@{ self, nixpkgs, foundation, presence, website-content, sops-nix, keycloak-theme }: {
     nixosConfigurations =
       let
         overlays = [
