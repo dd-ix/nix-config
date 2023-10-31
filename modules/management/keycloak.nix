@@ -58,8 +58,8 @@ in
               proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}";
               proxyWebsockets = true;
             };
-	  }
-	}
+	  };
+	};
         "keycloak.${config.deployment-dd-ix.domain}" = {
           enableACME = true;
           forceSSL = true;
