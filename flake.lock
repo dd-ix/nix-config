@@ -66,11 +66,11 @@
     "keycloak-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1697573276,
-        "narHash": "sha256-EKSWawCARv0vKOwe6BdUKPm/dY+1QOg6u+jWixGsHRA=",
+        "lastModified": 1698778509,
+        "narHash": "sha256-7NdwhzGd2hJQ9uTcnzwFjSBdId8vawQZ+H1tOSD4tQ8=",
         "owner": "dd-ix",
         "repo": "keycloak-theme",
-        "rev": "7a307a9a9eed037391673f1ac652d483ed015c5f",
+        "rev": "00a585a77831f2df07b6c2a229d5edbd6fa502ce",
         "type": "github"
       },
       "original": {
@@ -155,11 +155,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1693511832,
-        "narHash": "sha256-ZobyUBxM5P87kduPpMsHcrS4p7o/qIvmJT6MQmQBsHQ=",
+        "lastModified": 1698779250,
+        "narHash": "sha256-5PFepTFzcZUcCJz5VK2QPCopV4p2mqjlhZJrpMfDS7U=",
         "owner": "revol-xut",
         "repo": "nixpkgs",
-        "rev": "ace30fec0f3397b6e501bf81b159eed9d71fdd3d",
+        "rev": "ea3164937c5db6cb29fa5b882de2f7a0ac640124",
         "type": "github"
       },
       "original": {
