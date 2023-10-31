@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  domain = "netbox.dd-ix.net";
-in
 {
   sops.secrets.netbox_db_pass.owner = "netbox";
   sops.secrets.netbox_secret_key_file.owner = "netbox";
@@ -41,8 +38,8 @@ in
 
         SOCIAL_AUTH_KEYCLOAK_KEY = "netbox";
         SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxeOlZAP0/GDzHW29AVq9svu7CMnqqm2JJmAheFZboBGYhGr5obusczoblHdUhv0O5HOzHY8x+vMyQ7RTbCH2j7ezY2b96kUwcSdNbXIQGMpxSM44m2XGr/FaPl1qqDm5NIyNUo0mTPO62Z5hQ1Uocup9Bs29w521QepR15JuzMBc1NeIo2tQ0oid/nhqfacUPsJRyLqWbpy1Jcpvo8sf///uWlVpg64au6Fum4zJiIhj0/JHMdMJU+z7V5BcxIdcY+i8WXdn7YQZ1sFwcuO4jAO+Wb4ZL7JzBqbxdZQeUPZU8flfPqXQwBibi8bwbF6pQWdV49EKOxgvn+zI8+GEvwIDAQAB";
-        SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/auth";
-        SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL = "https://keycloak.dd-ix.net/realms/DD-IX/protocol/openid-connect/token";
+        SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL = "https://auth.${config.deployment-dd-ix.domain}/realms/DD-IX/protocol/openid-connect/auth";
+        SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL = "https://auth.${config.deployment-dd-ix.domain}/realms/DD-IX/protocol/openid-connect/token";
         SOCIAL_AUTH_KEYCLOAK_ID_KEY = "email";
         SOCIAL_AUTH_JSONFIELD_ENABLED = true;
         SOCIAL_AUTH_VERIFY_SSL = false;
@@ -54,10 +51,17 @@ in
 
     nginx = {
       enable = true;
-      virtualHosts."netbox.dd-ix.net" = {
+      virtualHosts."dcim.${config.deployment-dd-ix.domain}" = {
         locations = {
           "/static/".alias = "${config.services.netbox.dataDir}/static/";
           "/".proxyPass = "http://127.0.0.1:9502";
+        };
+        forceSSL = true;
+        enableACME = true;
+      };
+      virtualHosts."netbox.${config.deployment-dd-ix.domain}" = {
+        locations = {
+          "/".return = "301 https://dcim.${config.deployment-dd-ix.domain}$request_uri";
         };
         forceSSL = true;
         enableACME = true;

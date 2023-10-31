@@ -33,7 +33,7 @@
     };
     nginx = {
       enable = true;
-      virtualHosts."lists.dd-ix.net" = {
+      virtualHosts."lists.${config.deployment-dd-ix.domain}" = {
         locations =
           let
             cfg = config.services.listmonk.settings;

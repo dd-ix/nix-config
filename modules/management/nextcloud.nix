@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  domain = "cloud.dd-ix.net";
+  domain = "cloud.${config.deployment-dd-ix.domain}";
 in
 {
   sops.secrets.nextcloud_db_pass.owner = "nextcloud";
@@ -39,8 +39,8 @@ in
     extraAppsEnable = true;
   };
 
-  services.nginx.virtualHosts."cloud.dd-ix.net".forceSSL = true;
-  services.nginx.virtualHosts."cloud.dd-ix.net".enableACME = true;
+  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}".forceSSL = true;
+  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}".enableACME = true;
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
