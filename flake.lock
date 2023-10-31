@@ -155,11 +155,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1698779250,
-        "narHash": "sha256-5PFepTFzcZUcCJz5VK2QPCopV4p2mqjlhZJrpMfDS7U=",
+        "lastModified": 1698779829,
+        "narHash": "sha256-X4+qXKijT5a6DfBI67V4l8i4h2CH0ipb92LOPJ41sM0=",
         "owner": "revol-xut",
         "repo": "nixpkgs",
-        "rev": "ea3164937c5db6cb29fa5b882de2f7a0ac640124",
+        "rev": "aebf8d563bb5e87d773944868f09676138308714",
         "type": "github"
       },
       "original": {

@@ -39,8 +39,10 @@ in
     extraAppsEnable = true;
   };
 
-  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}".forceSSL = true;
-  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}".enableACME = true;
+  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
+    forceSSL = true;
+    enableACME = true;
+  };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
