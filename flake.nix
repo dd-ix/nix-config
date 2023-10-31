@@ -28,9 +28,14 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    keycloak-theme = {
+      url = "github:dd-ix/keycloak-theme";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, website-content, sops-nix }: {
+  outputs = inputs@{ self, nixpkgs, dd-ix-website, foundation, presence, website-content, sops-nix, keycloak-theme}: {
     nixosConfigurations =
       let
         overlays = [
@@ -39,6 +44,7 @@
           foundation.overlays.default
           (final: prev: {
             website-content = website-content;
+            keycloak-theme = keycloak-theme;
           })
         ];
 
@@ -47,7 +53,6 @@
           presence.nixosModules.default
           foundation.nixosModules.default
         ];
-
       in
       {
         mno001 = nixpkgs.lib.nixosSystem {

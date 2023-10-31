@@ -43,6 +43,9 @@ in
         http-host = "127.0.0.1";
         hostname = "keycloak.${config.deployment-dd-ix.domain}";
       };
+      themes = {
+        dd-ix = pkgs.keycloak-theme;
+      };
       initialAdminPassword = "InitialKeycloakPassword";
     };
 

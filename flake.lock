@@ -63,6 +63,22 @@
         "type": "github"
       }
     },
+    "keycloak-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1697573276,
+        "narHash": "sha256-EKSWawCARv0vKOwe6BdUKPm/dY+1QOg6u+jWixGsHRA=",
+        "owner": "dd-ix",
+        "repo": "keycloak-theme",
+        "rev": "7a307a9a9eed037391673f1ac652d483ed015c5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dd-ix",
+        "repo": "keycloak-theme",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -180,6 +196,7 @@
       "inputs": {
         "dd-ix-website": "dd-ix-website",
         "foundation": "foundation",
+        "keycloak-theme": "keycloak-theme",
         "nixpkgs": "nixpkgs_2",
         "presence": "presence",
         "sops-nix": "sops-nix",
