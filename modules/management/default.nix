@@ -9,5 +9,6 @@
     ./bind9.nix
     ./vaultwarden.nix
     ./bookstack.nix
+    ./zammad.nix
   ];
 }
