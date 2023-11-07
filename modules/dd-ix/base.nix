@@ -56,6 +56,7 @@ in
       ../../keys/ssh/melody
       ../../keys/ssh/fiasko
       ../../keys/ssh/marcel
+      ../../keys/ssh/adb
     ];
   };
   services.openssh = {
