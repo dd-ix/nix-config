@@ -8,7 +8,7 @@
         enableACME = true;
         forceSSL = true;
         locations = {
-          "/".return = "301 https.//${config.deployment-dd-ix.domain}$request_uri";
+          "/".return = "301 https://${config.deployment-dd-ix.domain}$request_uri";
         };
       };
       "${config.deployment-dd-ix.domain}" = {
