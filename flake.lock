@@ -84,11 +84,11 @@
     "keycloak-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1698778509,
-        "narHash": "sha256-7NdwhzGd2hJQ9uTcnzwFjSBdId8vawQZ+H1tOSD4tQ8=",
+        "lastModified": 1699444997,
+        "narHash": "sha256-l6KLgXjulfWh9I1zxlB0W5DNtx/drGUQiCJz1CqBsmw=",
         "owner": "dd-ix",
         "repo": "keycloak-theme",
-        "rev": "00a585a77831f2df07b6c2a229d5edbd6fa502ce",
+        "rev": "3ea40c36845f9aff1d0e11eb6529f051e00ba799",
         "type": "github"
       },
       "original": {
@@ -136,11 +136,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1698544399,
-        "narHash": "sha256-vhRmPyEyoPkrXF2iykBsWHA05MIaOSmMRLMF7Hul6+s=",
+        "lastModified": 1699110214,
+        "narHash": "sha256-L2TU4RgtiqF69W8Gacg2jEkEYJrW+Kp0Mp4plwQh5b8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d87c5d8c41c9b3b39592563242f3a448b5cc4bc9",
+        "rev": "78f3a4ae19f0e99d5323dd2e3853916b8ee4afee",
         "type": "github"
       },
       "original": {
@@ -232,11 +232,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1698548647,
-        "narHash": "sha256-7c03OjBGqnwDW0FBaBc+NjfEBxMkza+dxZGJPyIzfFE=",
+        "lastModified": 1699311858,
+        "narHash": "sha256-W/sQrghPAn5J9d+9kMnHqi4NPVWVpy0V/qzQeZfS/dM=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "632c3161a6cc24142c8e3f5529f5d81042571165",
+        "rev": "664187539871f63857bda2d498f452792457b998",
         "type": "github"
       },
       "original": {
