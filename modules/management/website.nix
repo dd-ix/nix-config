@@ -2,8 +2,15 @@
 
   sops.secrets.listmonk_admin.owner = config.dd-ix.foundation.user;
   services.nginx = {
-    enable = true;
+   enable = true;
     virtualHosts = {
+      "www.${config.deployment-dd-ix.domain}" = {
+        enableACME = true;
+        forceSSL = true;
+        locations = {
+          "/".return = "301 https://${config.deployment-dd-ix.domain}$request_uri";
+        };
+      };
       "${config.deployment-dd-ix.domain}" = {
         enableACME = true;
         forceSSL = true;
