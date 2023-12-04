@@ -28,6 +28,7 @@ in
       port = http_port;
       websocketPort = ws_port;
       database = {
+        createLocally = false;
         type = "PostgreSQL";
         host = "/run/postgresql";
         name = database_name;
@@ -45,12 +46,12 @@ in
           forceSSL = true;
           locations = {
             "/" = {
-              proxyPass = "http://127.0.0.1:${toString config.services.zammad.port.http_port}";
+              proxyPass = "http://127.0.0.1:${toString config.services.zammad.port}";
               proxyWebsockets = true;
             };
           };
         };
-      }:
+      };
     };
   };
 
