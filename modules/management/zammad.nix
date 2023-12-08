@@ -6,34 +6,20 @@ let
   ws_port = 3001;
 in
 {
-  sops.secrets.zammad_db_pass.owner = username;
+  sops.secrets.zammad_secret.owner = username;
 
   services = {
-    postgresql = {
-      enable = true;
-      ensureDatabases = [ database_name ];
-      ensureUsers = [
-        {
-          name = username;
-          ensurePermissions = {
-            "DATABASE ${database_name}" = "ALL PRIVILEGES";
-          };
-        }
-      ];
-    };
-
     zammad = {
       enable = true;
       package = pkgs.zammad;
       port = http_port;
       websocketPort = ws_port;
+      secretKeyBaseFile = config.sops.secrets.zammad_secret.path;
       database = {
-        createLocally = false;
+        createLocally = true;
         type = "PostgreSQL";
-        host = "/run/postgresql";
         name = database_name;
         user = username;
-        passwordFile = config.sops.secrets.zammad_db_pass.path;
       };
     };
 
@@ -47,6 +33,9 @@ in
           locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:${toString config.services.zammad.port}";
+            };
+            "/ws" = {
+              proxyPass = "http://127.0.0.1:${toString config.services.zammad.websocketPort}";
               proxyWebsockets = true;
             };
           };
@@ -54,6 +43,4 @@ in
       };
     };
   };
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
