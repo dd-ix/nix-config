@@ -27,7 +27,7 @@ in
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "project.${config.deployment-dd-ix.domain}" = {
+        "orga.${config.deployment-dd-ix.domain}" = {
           enableACME = true;
           forceSSL = true;
           locations = {
