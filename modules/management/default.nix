@@ -10,5 +10,6 @@
     ./vaultwarden.nix
     ./bookstack.nix
     ./zammad.nix
+    ./mail
   ];
 }
