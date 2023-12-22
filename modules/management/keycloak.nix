@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   database_name = "keycloak";
+  username = "keycloak";
   http_port = 5000;
 in
 {
@@ -16,8 +17,10 @@ in
       ensureDatabases = [ database_name ];
       ensureUsers = [
         {
-          name = database_name;
-          ensureDBOwnership = true;
+          name = username;
+          ensurePermissions = {
+            "DATABASE ${database_name}" = "ALL PRIVILEGES";
+          };
         }
       ];
     };
@@ -30,7 +33,7 @@ in
         host = "127.0.0.1";
         port = config.services.postgresql.port;
         name = database_name;
-        username = database_name;
+        username = username;
         passwordFile = config.sops.secrets.postgres_keycloak.path;
         useSSL = false;
       };
@@ -93,7 +96,7 @@ in
 
     path = [ pkgs.sudo config.services.postgresql.package ];
     script = ''
-      sudo -u ${config.services.postgresql.superUser} psql -c "ALTER ROLE ${database_name} WITH PASSWORD '$(cat ${config.sops.secrets.postgres_keycloak.path})'"
+      sudo -u ${config.services.postgresql.superUser} psql -c "ALTER ROLE ${username} WITH PASSWORD '$(cat ${config.sops.secrets.postgres_keycloak.path})'"
     '';
   };
 }

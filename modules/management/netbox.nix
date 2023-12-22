@@ -10,7 +10,9 @@
       ensureUsers = [
         {
           name = "netbox";
-          ensureDBOwnership = true;
+          ensurePermissions = {
+            "DATABASE netbox" = "ALL PRIVILEGES";
+          };
         }
       ];
       ensureDatabases = [ "netbox" ];

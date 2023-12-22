@@ -11,7 +11,9 @@ in
     ensureUsers = [
       {
         name = "nextcloud";
-        ensureDBOwnership = true;
+        ensurePermissions = {
+          "DATABASE nextcloud" = "ALL PRIVILEGES";
+        };
       }
     ];
     ensureDatabases = [ "nextcloud" ];

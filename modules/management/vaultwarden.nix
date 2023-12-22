@@ -9,7 +9,9 @@
       ensureUsers = [
         {
           name = "vaultwarden";
-          ensureDBOwnership = true;
+          ensurePermissions = {
+            "DATABASE vaultwarden" = "ALL PRIVILEGES";
+          };
         }
       ];
       ensureDatabases = [ "vaultwarden" ];
