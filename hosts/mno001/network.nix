@@ -5,7 +5,7 @@ let
   second_device_name = "enp144s0d1"; # second port that should be part of the LAG
 in
 {
- networking = {
+  networking = {
     enableIPv6 = true;
     useDHCP = false;
 

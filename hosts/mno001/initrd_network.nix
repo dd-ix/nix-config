@@ -1,4 +1,4 @@
-{pkgs, config, ...}: {
+{ pkgs, config, ... }: {
   #boot.initrd.network.enable = true;
   #boot.initrd.network.postCommands = ''
   #  # TODO automatically import pools / prompt user and continue boot
