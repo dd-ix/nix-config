@@ -1,10 +1,13 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   sops.secrets.listmonk.owner = "netbox";
-  sops.secrets.listmonk_postgresql.owner = "postgresql";
+  sops.secrets.listmonk_postgresql.owner = "postgres";
+  systemd.services.listmonk.preStart = ''
+    ${pkgs.listmonk}/bin/listmonk --config /nix/store/cjcm9lx15lsqd47ij75gnq4fiwqf4wda-listmonk.toml --idempotent --upgrade --yes
+  '';
 
   services = {
-    postgresql.ensureUsers.listmonk.ensurePasswordFile = config.sops.secrets.listmonk_postgresql.path;
+    postgresql.ensureUsers = [{ name = "listmonk"; ensurePasswordFile = config.sops.secrets.listmonk_postgresql.path; }];
 
     listmonk = {
       enable = true;
