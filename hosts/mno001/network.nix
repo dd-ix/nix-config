@@ -29,7 +29,7 @@ in
     enable = true;
 
     netdevs."10-${bond_device_name}" = {
-      netDevConfig = {
+      netdevConfig = {
         Name = "${bond_device_name}";
         Kind = "bond";
       };
@@ -40,30 +40,39 @@ in
       };
     };
 
-    #netdevs."20-${bond_device_name}-vlan" = {
-    #  netDevConfig = {
-    #    Name = "${bond_device_name}-vlan";
-    #    Kind = "vlan";
-    #  };
-    #  vlanConfig = {
-    #    Id = 100;
-    #  };
-    #};
+    netdevs."20-uplink" = {
+      netdevConfig = {
+        Name = "uplink";
+        Kind = "vlan";
+      };
+      vlanConfig = {
+        Id = 100;
+      };
+    };
 
     networks."10-${bond_device_name}" = {
       matchConfig.Name = "${bond_device_name}";
 
+      vlan = [ "uplink" ];
+
+      networkConfig = {
+        DHCP = "no";
+      };
+    };
+
+    networks."10-uplink" = {
+      matchConfig.Name = "uplink";
+
       address = [ "212.111.245.178/29" ];
       routes = [
         {
-          routeConfig.Gateway = "212.111.245.177";
+          routeConfig.Gateway = "212.111.245.176";
         }
       ];
 
-      vlan = [ 100 ];
+      vlan = [ "uplink" ];
 
       networkConfig = {
-        BindCarrier = [ "${first_device_name}" "${second_device_name}" ];
         DHCP = "no";
       };
     };
@@ -81,7 +90,6 @@ in
         Bond = "${bond_device_name}"; # Enslaving to bond
       };
     };
-
   };
 
   # enabling and configuring firewall
