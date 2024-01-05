@@ -2,7 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:revol-xut/nixpkgs/listmonk-patch-tassilo";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     presence = {
       url = "github:dd-ix/presence";
@@ -22,6 +22,7 @@
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
     keycloak-theme = {
