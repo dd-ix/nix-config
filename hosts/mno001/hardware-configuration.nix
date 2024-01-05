@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "megaraid_sas" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
@@ -14,22 +15,26 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool/root/nixos";
+    {
+      device = "rpool/root/nixos";
       fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "rpool/root/nixos/nix";
+    {
+      device = "rpool/root/nixos/nix";
       fsType = "zfs";
     };
 
   fileSystems."/var/lib" =
-    { device = "rpool/data";
+    {
+      device = "rpool/data";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F124-300A";
+    {
+      device = "/dev/disk/by-uuid/F124-300A";
       fsType = "vfat";
     };
 

@@ -57,6 +57,7 @@
             ./hosts/mno001/configuration.nix
             ./modules/management
             ./modules/dd-ix
+            ./modules/postgresql.nix
             {
               nixpkgs.overlays = overlays;
               deployment-dd-ix = {

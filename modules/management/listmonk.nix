@@ -1,7 +1,11 @@
-{ pkgs, config, ... }: {
-
+{ config, ... }:
+{
   sops.secrets.listmonk.owner = "netbox";
+  sops.secrets.listmonk_postgresql.owner = "postgresql";
+
   services = {
+    postgresql.ensureUsers.listmonk.ensurePasswordFile = config.sops.secrets.listmonk_postgresql.path;
+
     listmonk = {
       enable = true;
       settings = {
@@ -31,6 +35,7 @@
         };
       };
     };
+
     nginx = {
       enable = true;
       virtualHosts."lists.${config.deployment-dd-ix.domain}" = {
