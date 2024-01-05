@@ -2,7 +2,7 @@
 let
   bond_device_name = "bond"; # name of the bond interface
   first_device_name = "enp144s0"; # first port that should be part of the LAG
-  second_device_name = "enp1440d1"; # second port that should be part of the LAG
+  second_device_name = "enp144s0d1"; # second port that should be part of the LAG
 in
 {
  networking = {
@@ -40,6 +40,16 @@ in
       };
     };
 
+    #netdevs."20-${bond_device_name}-vlan" = {
+    #  netDevConfig = {
+    #    Name = "${bond_device_name}-vlan";
+    #    Kind = "vlan";
+    #  };
+    #  vlanConfig = {
+    #    Id = 100;
+    #  };
+    #};
+
     networks."10-${bond_device_name}" = {
       matchConfig.Name = "${bond_device_name}";
 
@@ -49,6 +59,8 @@ in
           routeConfig.Gateway = "212.111.245.177";
         }
       ];
+
+      vlan = [ 100 ];
 
       networkConfig = {
         BindCarrier = [ "${first_device_name}" "${second_device_name}" ];
