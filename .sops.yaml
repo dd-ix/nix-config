@@ -3,6 +3,7 @@ keys:
   - &admin_melody 778755C4893709525F6E62BCC2A819CA37DE8B61
   - &admin_fiasko BCD42664340540E058422472AF9E0821C4A08B44
   - &admin_adb 6F9E5DCB111D958035A7B0084653A66E940BBA1A
+  - &admin_marcel 46D4682470DBE26790DF9433446F3B093DF81C6A
 
   # test key
   - &test age1925katzy5gws3f9hnvnlwspu6trxf488arwt6ayw3urg2mgumqhszxnmqh
@@ -15,6 +16,7 @@ creation_rules:
         - *admin_melody
         - *admin_fiasko
         - *admin_adb
+        - *admin_marcel
         age:
         - *mno001
   
