@@ -23,7 +23,7 @@ $ORIGIN dd-ix.net. ; base domain-name
 @    600  IN  A  212.111.245.178
 rpx  600  IN  A  212.111.245.178
 
-ns   600  IN  A  212.111.245.178
+ns   600  IN  A  212.111.245.179
 
 ;; CNAME Records
 www      IN  CNAME  rpx

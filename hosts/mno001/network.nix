@@ -63,7 +63,7 @@ in
     networks."10-uplink" = {
       matchConfig.Name = "uplink";
 
-      address = [ "212.111.245.178/29" ];
+      address = [ "212.111.245.178/29" "212.111.245.179/29" ];
       routes = [
         {
           routeConfig.Gateway = "212.111.245.176";
