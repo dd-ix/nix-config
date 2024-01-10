@@ -26,7 +26,7 @@ in
 
   services.bind = {
     enable = true;
-    listenOn = [ "212.111.245.179" ];
+    listenOn = [ "127.0.0.1" "::1" "212.111.245.179" ];
 
     zones = {
       "dd-ix.net" = {
