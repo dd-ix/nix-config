@@ -1,0 +1,52 @@
+; Check me with (abs. path required....)
+; named-checkzone dd-ix.net /.../resources/dd-ix.net.zone
+
+$TTL    1h         ; default TTL for zone
+
+dd-ix.net.  SOA  ns.dd-ix.net  noc.dd-ix.net.  (
+        2024011100  ;Serial
+        7200        ;Refresh
+        3600        ;Retry
+        1209600     ;Expire
+        3600        ;Negative response caching TTL
+)
+
+  86400  NS   ans-01.ibh.de.
+  86400  NS   ans-02.ibh.net.
+  86400  NS   ans-03.ibh.de.
+  86400  NS   ans-04.ibh.services.
+  86400  NS   ans-05.ibh.net.
+
+  600    A    212.111.245.178
+         TXT  "v=spf1 include:spf.migadu.com -all"
+         TXT  "hosted-email-verify=ddocclet"
+
+         MX  20  aspmx2.migadu.com.
+         MX  10  aspmx1.migadu.com.
+
+rpx.dd-ix.net.  600  A  212.111.245.178
+ns.dd-ix.net.   600  A  212.111.245.179
+
+www.dd-ix.net.      CNAME  rpx.dd-ix.net.
+content.dd-ix.net.  CNAME  rpx.dd-ix.net.
+auth.dd-ix.net.     CNAME  rpx.dd-ix.net.
+cloud.dd-ix.net.    CNAME  rpx.dd-ix.net.
+wiki.dd-ix.net.     CNAME  rpx.dd-ix.net.
+dcim.dd-ix.net.     CNAME  rpx.dd-ix.net.
+lists.dd-ix.net.    CNAME  rpx.dd-ix.net.
+vault.dd-ix.net.    CNAME  rpx.dd-ix.net.
+
+;; BACKUP only: TODO remove
+*.dd-ix.net.        CNAME  dd-ix.net.
+
+autoconfig.dd-ix.net.       CNAME  autoconfig.migadu.com.
+key1._domainkey.dd-ix.net.  CNAME  key1.dd-ix.net._domainkey.migadu.com.
+key2._domainkey.dd-ix.net.  CNAME  key2.dd-ix.net._domainkey.migadu.com.
+key3._domainkey.dd-ix.net.  CNAME  key3.dd-ix.net._domainkey.migadu.com.
+
+_autodiscover._tcp.dd-ix.net.  SRV  0  1  443 autodiscover.migadu.com.
+_imaps._tcp.dd-ix.net.         SRV  0  1  993 imap.migadu.com.
+_pop3s._tcp.dd-ix.net.         SRV  0  1  995 pop.migadu.com.
+_submissions._tcp.dd-ix.net.   SRV  0  1  465 smtp.migadu.com.
+
+_dmarc.dd-ix.net.  TXT  "v=DMARC1; p=quarantine;"
