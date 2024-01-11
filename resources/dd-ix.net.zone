@@ -2,59 +2,51 @@
 ; named-checkzone dd-ix.net /.../resources/dd-ix.net.zone
 
 $TTL    1h         ; default TTL for zone
-$ORIGIN dd-ix.net. ; base domain-name
 
-@  3600  IN  SOA  ns.dd-ix.net  noc.dd-ix.net.  (
-        2020080302  ;Serial
+dd-ix.net.  SOA  ns.dd-ix.net  noc.dd-ix.net.  (
+        2024011100  ;Serial
         7200        ;Refresh
         3600        ;Retry
         1209600     ;Expire
         3600        ;Negative response caching TTL
 )
 
-;; NS Records
-@  86400   IN  NS  ans-01.ibh.de.
-@  86400   IN  NS  ans-02.ibh.net.
-@  86400   IN  NS  ans-03.ibh.de.
-@  86400   IN  NS  ans-04.ibh.services.
-@  86400   IN  NS  ans-05.ibh.net.
+  86400  NS   ans-01.ibh.de.
+  86400  NS   ans-02.ibh.net.
+  86400  NS   ans-03.ibh.de.
+  86400  NS   ans-04.ibh.services.
+  86400  NS   ans-05.ibh.net.
 
-;; A Records
-@    600  IN  A  212.111.245.178
-rpx  600  IN  A  212.111.245.178
+  600    A    212.111.245.178
+         TXT  "v=spf1 include:spf.migadu.com -all"
+         TXT  "hosted-email-verify=ddocclet"
 
-ns   600  IN  A  212.111.245.179
+         MX  20  aspmx2.migadu.com.
+         MX  10  aspmx1.migadu.com.
 
-;; CNAME Records
-www      IN  CNAME  rpx
-content  IN  CNAME  rpx
+rpx.dd-ix.net.  600  A  212.111.245.178
+ns.dd-ix.net.   600  A  212.111.245.179
 
-auth     IN  CNAME  rpx
-cloud    IN  CNAME  rpx
-wiki     IN  CNAME  rpx
-dcim     IN  CNAME  rpx
-lists    IN  CNAME  rpx
-vault    IN  CNAME  rpx
+www.dd-ix.net.      CNAME  rpx.dd-ix.net.
+content.dd-ix.net.  CNAME  rpx.dd-ix.net.
+auth.dd-ix.net.     CNAME  rpx.dd-ix.net.
+cloud.dd-ix.net.    CNAME  rpx.dd-ix.net.
+wiki.dd-ix.net.     CNAME  rpx.dd-ix.net.
+dcim.dd-ix.net.     CNAME  rpx.dd-ix.net.
+lists.dd-ix.net.    CNAME  rpx.dd-ix.net.
+vault.dd-ix.net.    CNAME  rpx.dd-ix.net.
 
-;; BACKUP
-*        IN  CNAME  @
+;; BACKUP only: TODO remove
+*.dd-ix.net.        CNAME  dd-ix.net.
 
-autoconfig       IN  CNAME  autoconfig.migadu.com.
-key1._domainkey  IN  CNAME  key1.dd-ix.net._domainkey.migadu.com.
-key2._domainkey  IN  CNAME  key2.dd-ix.net._domainkey.migadu.com.
-key3._domainkey  IN  CNAME  key3.dd-ix.net._domainkey.migadu.com.
+autoconfig.dd-ix.net.       CNAME  autoconfig.migadu.com.
+key1._domainkey.dd-ix.net.  CNAME  key1.dd-ix.net._domainkey.migadu.com.
+key2._domainkey.dd-ix.net.  CNAME  key2.dd-ix.net._domainkey.migadu.com.
+key3._domainkey.dd-ix.net.  CNAME  key3.dd-ix.net._domainkey.migadu.com.
 
-;; MX Records
-@  IN  MX  20  aspmx2.migadu.com.
-@  IN  MX  10  aspmx1.migadu.com.
+_autodiscover._tcp.dd-ix.net.  SRV  0  1  443 autodiscover.migadu.com.
+_imaps._tcp.dd-ix.net.         SRV  0  1  993 imap.migadu.com.
+_pop3s._tcp.dd-ix.net.         SRV  0  1  995 pop.migadu.com.
+_submissions._tcp.dd-ix.net.   SRV  0  1  465 smtp.migadu.com.
 
-;; SRV Records
-_autodiscover._tcp  IN  SRV  0  1  443 autodiscover.migadu.com.
-_imaps._tcp         IN  SRV  0  1  993 imap.migadu.com.
-_pop3s._tcp         IN  SRV  0  1  995 pop.migadu.com.
-_submissions._tcp   IN  SRV  0  1  465 smtp.migadu.com.
-
-;; TXT Records
-@       IN  TXT  "v=spf1 include:spf.migadu.com -all"
-@       IN  TXT  "hosted-email-verify=ddocclet"
-_dmarc  IN  TXT  "v=DMARC1; p=quarantine;"
+_dmarc.dd-ix.net.  TXT  "v=DMARC1; p=quarantine;"
