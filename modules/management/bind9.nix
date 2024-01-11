@@ -31,14 +31,14 @@ in
     zones = {
       "dd-ix.net" = {
         master = true;
-        file = self + "/resource/dd-ix.net.zone";
+        file = self + "/resources/dd-ix.net.zone";
         slaves = ibh_ans_ip;
       };
 
       # ipv6 pa
       "0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa" = {
         master = true;
-        file = self + "/resource/0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.zone";
+        file = self + "/resources/0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.zone";
         slaves = ibh_ans_ip;
       };
     };

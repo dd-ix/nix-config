@@ -41,7 +41,7 @@ in
         hostname = "auth.${config.deployment-dd-ix.domain}";
       };
       themes = {
-        dd-ix = pkgs.keycloak-theme;
+        #dd-ix = pkgs.keycloak-theme;
       };
       initialAdminPassword = "InitialKeycloakPassword";
     };

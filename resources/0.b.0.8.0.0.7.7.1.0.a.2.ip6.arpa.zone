@@ -3,8 +3,8 @@
 
 $TTL    1h         ; default TTL for zone
 
-0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.  SOA  ns.dd-ix.net  noc.dd-ix.net.  (
-        2024011100  ;Serial
+0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.  SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
+        2024011101  ;Serial
         7200        ;Refresh
         3600        ;Retry
         1209600     ;Expire
