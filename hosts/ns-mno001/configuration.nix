@@ -23,7 +23,7 @@ in
         socket = "store.socket";
       }
       {
-        source = "/var/lib/microvms/ns-nmo001/var/log";
+        source = "/var/lib/microvms/ns-mno001/var/log";
         mountPoint = "/var/log";
         tag = "var";
         proto = "virtiofs";
@@ -40,8 +40,8 @@ in
         { addressConfig.Address = "2a01:7700:80b0:6000::53/64"; }
       ];
       routes = [
-        { routeConfig.Gateway = "212.111.245.177/29"; }
-        { routeConfig.Gateway = "fe80::defa/64"; }
+        { routeConfig.Gateway = "212.111.245.177"; }
+        { routeConfig.Gateway = "fe80::defa"; }
       ];
       linkConfig.RequiredForOnline = "routable";
     };
