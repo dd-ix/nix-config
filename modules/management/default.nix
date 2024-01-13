@@ -6,7 +6,6 @@
     ./keycloak.nix
     ./netbox.nix
     ./listmonk.nix
-    ./bind9.nix
     ./vaultwarden.nix
     ./bookstack.nix
     ./zammad.nix

@@ -72,6 +72,15 @@
             }
           ] ++ nixos-modules;
         };
+        ns-mno001 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            microvm.nixosModules.microvm
+            ./hosts/ns-mno001/default.nix
+            ./modules/dd-ix
+          ];
+        };
       };
   };
 }
