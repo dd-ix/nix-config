@@ -41,6 +41,16 @@ in
         };
       };
 
+      "20-svc-management" = {
+        netdevConfig = {
+          Name = "svc-management";
+          Kind = "vlan";
+        };
+        vlanConfig = {
+          Id = 102;
+        };
+      };
+
       "20-uplink" = {
         netdevConfig = {
           Name = "uplink";
@@ -61,11 +71,16 @@ in
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "uplink" ];
+        vlan = [ "uplink" "scv-management" ];
 
         networkConfig = {
           DHCP = "no";
         };
+      };
+
+      "10-svc-management" = {
+        matchConfig.Name = "svc-management";
+        address = [ "2a01:7700:80b0:7000::1/64" ];
       };
 
       "10-uplink" = {
