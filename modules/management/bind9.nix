@@ -26,7 +26,9 @@ in
 
   services.bind = {
     enable = true;
-    listenOn = [ "127.0.0.1" "::1" "212.111.245.179" ];
+
+    # cannot talk to root ns (firewall)
+    forward = "only";
 
     zones = {
       "dd-ix.net" = {
