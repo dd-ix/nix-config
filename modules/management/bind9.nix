@@ -27,6 +27,9 @@ in
   services.bind = {
     enable = true;
 
+    # cannot talk to root ns (firewall)
+    forward = "only";
+
     zones = {
       "dd-ix.net" = {
         master = true;
