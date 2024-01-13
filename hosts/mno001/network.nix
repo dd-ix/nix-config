@@ -89,7 +89,7 @@ in
       };
     };
 
-    networks."11-microvm-inet" = {
+    networks."30-microvm-inet" = {
       matchConfig.Name = "vm-inet-*";
       vlan = [ "uplink" ];
     };
