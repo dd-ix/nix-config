@@ -19,7 +19,7 @@ in
     "10-lan" = {
       matchConfig.MACAddress = mac;
       addresses = [
-        { addressConfig.Address = "212.111.245.178/29"; }
+        { addressConfig.Address = "212.111.245.179/29"; }
         { addressConfig.Address = "2a01:7700:80b0:6000::53/64"; }
       ];
       routes = [
