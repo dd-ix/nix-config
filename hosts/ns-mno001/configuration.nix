@@ -14,13 +14,22 @@ in
       mac = mac;
     }];
 
-    shares = [{
-      source = "/nix/store";
-      mountPoint = "/nix/.ro-store";
-      tag = "store";
-      proto = "virtiofs";
-      socket = "store.socket";
-    }];
+    shares = [
+      {
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+        tag = "store";
+        proto = "virtiofs";
+        socket = "store.socket";
+      }
+      {
+        source = "/var/lib/microvms/ns-nmo001/var/log";
+        mountPoint = "/var/log";
+        tag = "var";
+        proto = "virtiofs";
+        socket = "var.socket";
+      }
+    ];
   };
 
   systemd.network.networks = {
