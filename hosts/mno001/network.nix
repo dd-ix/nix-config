@@ -63,11 +63,9 @@ in
     networks."10-uplink" = {
       matchConfig.Name = "uplink";
 
-      address = [ "212.111.245.178/29" "212.111.245.179/29" ];
+      address = [ "212.111.245.178/29" ];
       routes = [
-        {
-          routeConfig.Gateway = "212.111.245.177";
-        }
+        { routeConfig.Gateway = "212.111.245.177"; }
       ];
 
       vlan = [ "uplink" ];
@@ -89,6 +87,11 @@ in
       networkConfig = {
         Bond = "${bond_device_name}"; # Enslaving to bond
       };
+    };
+
+    networks."11-microvm-inet" = {
+      matchConfig.Name = "vm-inet-*";
+      vlan = [ "uplink" ];
     };
   };
 

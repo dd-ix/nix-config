@@ -4,6 +4,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     presence = {
       url = "github:dd-ix/presence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,19 +30,13 @@
       flake = false;
     };
 
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-    };
-
     keycloak-theme = {
       url = "github:dd-ix/keycloak-theme";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, foundation, presence, website-content, sops-nix, keycloak-theme }: {
+  outputs = inputs@{ self, nixpkgs, sops-nix, microvm, foundation, presence, website-content, keycloak-theme }: {
     nixosConfigurations =
       let
         overlays = [
@@ -45,6 +50,7 @@
 
         nixos-modules = [
           sops-nix.nixosModules.default
+          microvm.nixosModules.host
           presence.nixosModules.default
           foundation.nixosModules.default
         ];
@@ -65,6 +71,15 @@
               };
             }
           ] ++ nixos-modules;
+        };
+        ns-mno001 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            microvm.nixosModules.microvm
+            ./hosts/ns-mno001/default.nix
+            ./modules/dd-ix
+          ];
         };
       };
   };

@@ -54,9 +54,6 @@ in
 
       # track stats on zones
       zone-statistics yes;
-
-      # send notifies from correct source addr
-      notify-source 212.111.245.179;
     '';
   };
 }
