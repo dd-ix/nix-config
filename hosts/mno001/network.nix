@@ -66,7 +66,7 @@ in
       address = [ "212.111.245.178/29" "212.111.245.179/29" ];
       routes = [
         {
-          routeConfig.Gateway = "212.111.245.176";
+          routeConfig.Gateway = "212.111.245.177";
         }
       ];
 
