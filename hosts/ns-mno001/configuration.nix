@@ -13,6 +13,14 @@ in
       id = "vm-inet-ns";
       mac = mac;
     }];
+
+    microvm.shares = [{
+      source = "/nix/store";
+      mountPoint = "/nix/.ro-store";
+      tag = "store";
+      proto = "virtiofs";
+      socket = "store.socket";
+    }];
   };
 
   systemd.network.networks = {
