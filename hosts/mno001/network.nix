@@ -114,7 +114,7 @@ in
 
       "30-microvm-inet" = {
         matchConfig.Name = "vm-inet-*";
-        networkConfig.Bridge = "microvm";
+        networkConfig.Bridge = "microvm-inet";
       };
     };
   };
