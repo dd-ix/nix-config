@@ -28,70 +28,79 @@ in
   systemd.network = {
     enable = true;
 
-    netdevs."10-${bond_device_name}" = {
-      netdevConfig = {
-        Name = "${bond_device_name}";
-        Kind = "bond";
+    netdevs = {
+      "10-${bond_device_name}" = {
+        netdevConfig = {
+          Name = "${bond_device_name}";
+          Kind = "bond";
+        };
+        bondConfig = {
+          Mode = "802.3ad"; # LACP 
+          MIIMonitorSec = "250ms";
+          LACPTransmitRate = "fast";
+        };
       };
-      bondConfig = {
-        Mode = "802.3ad"; # LACP 
-        MIIMonitorSec = "250ms";
-        LACPTransmitRate = "fast";
+
+      "20-uplink" = {
+        netdevConfig = {
+          Name = "uplink";
+          Kind = "vlan";
+        };
+        vlanConfig = {
+          Id = 100;
+        };
       };
-    };
 
-    netdevs."20-uplink" = {
-      netdevConfig = {
-        Name = "uplink";
-        Kind = "vlan";
-      };
-      vlanConfig = {
-        Id = 100;
-      };
-    };
-
-    networks."10-${bond_device_name}" = {
-      matchConfig.Name = "${bond_device_name}";
-
-      vlan = [ "uplink" ];
-
-      networkConfig = {
-        DHCP = "no";
+      "30-microvm-inet".netdevConfig = {
+        Kind = "bridge";
+        Name = "microvm-inet";
       };
     };
 
-    networks."10-uplink" = {
-      matchConfig.Name = "uplink";
+    networks = {
+      "10-${bond_device_name}" = {
+        matchConfig.Name = "${bond_device_name}";
 
-      address = [ "212.111.245.178/29" ];
-      routes = [
-        { routeConfig.Gateway = "212.111.245.177"; }
-      ];
+        vlan = [ "uplink" ];
 
-      vlan = [ "uplink" ];
-
-      networkConfig = {
-        DHCP = "no";
+        networkConfig = {
+          DHCP = "no";
+        };
       };
-    };
 
-    networks."10-${first_device_name}-${bond_device_name}" = {
-      matchConfig.Name = "${first_device_name}";
-      networkConfig = {
-        Bond = "${bond_device_name}"; # Enslaving to bond 
+      "10-uplink" = {
+        matchConfig.Name = "uplink";
+
+        address = [ "212.111.245.178/29" ];
+        routes = [
+          { routeConfig.Gateway = "212.111.245.177"; }
+        ];
+
+        vlan = [ "uplink" ];
+
+        networkConfig = {
+          DHCP = "no";
+        };
       };
-    };
 
-    networks."10-${second_device_name}-${bond_device_name}" = {
-      matchConfig.Name = "${second_device_name}";
-      networkConfig = {
-        Bond = "${bond_device_name}"; # Enslaving to bond
+      "10-${first_device_name}-${bond_device_name}" = {
+        matchConfig.Name = "${first_device_name}";
+        networkConfig = {
+          Bond = "${bond_device_name}"; # Enslaving to bond 
+        };
       };
-    };
 
-    networks."30-microvm-inet" = {
-      matchConfig.Name = "vm-inet-*";
-      vlan = [ "uplink" ];
+      "10-${second_device_name}-${bond_device_name}" = {
+        matchConfig.Name = "${second_device_name}";
+        networkConfig = {
+          Bond = "${bond_device_name}"; # Enslaving to bond
+        };
+      };
+
+      "30-microvm-inet" = {
+        matchConfig.Name = "vm-inet-*";
+        networkConfig.Bridge = "microvm";
+      };
     };
   };
 
