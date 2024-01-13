@@ -14,7 +14,7 @@ in
       mac = mac;
     }];
 
-    microvm.shares = [{
+    shares = [{
       source = "/nix/store";
       mountPoint = "/nix/.ro-store";
       tag = "store";
