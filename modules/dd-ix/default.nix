@@ -1,7 +1,8 @@
+{ ... }:
 {
-  imports =
-    [
-      ./base.nix
-      ./general-options.nix
-    ];
+  imports = [
+    ./base.nix
+    ./general-options.nix
+    ./dns.nix
+  ];
 }

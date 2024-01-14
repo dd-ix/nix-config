@@ -11,18 +11,6 @@ in
 
     useNetworkd = true;
     wireguard.enable = true;
-
-    nameservers = [
-      "212.111.228.53" # IBH 1
-      "193.36.123.53" # IBH 2
-    ];
-  };
-
-  services.resolved = {
-    enable = true;
-    fallbackDns = [
-      "9.9.9.9" # QUAD 9
-    ];
   };
 
   systemd.network = {
