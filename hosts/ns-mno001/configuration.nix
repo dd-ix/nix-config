@@ -23,18 +23,18 @@ in
         socket = "store.socket";
       }
       {
-        source = "/var/lib/microvms/ns-mno001/etc/ssh";
-        mountPoint = "/etc/ssh";
-        tag = "etc-ssh";
+        source = "/var/lib/microvms/ns-mno001/etc";
+        mountPoint = "/etc";
+        tag = "etc";
         proto = "virtiofs";
-        socket = "etc-ssh.socket";
+        socket = "etc.socket";
       }
       {
-        source = "/var/lib/microvms/ns-mno001/var/log";
-        mountPoint = "/var/log";
-        tag = "var-log";
+        source = "/var/lib/microvms/ns-mno001/var";
+        mountPoint = "/var";
+        tag = "var";
         proto = "virtiofs";
-        socket = "var-log.socket";
+        socket = "var.socket";
       }
     ];
   };
