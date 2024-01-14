@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024011400  ; Serial
+              2024011401  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -55,6 +55,9 @@ dcim     CNAME  rpx
 lists    CNAME  rpx
 vault    CNAME  rpx
 
+
+;; Management
+sw-c2-svc1  AAAA  2a01:7700:80b0:7000::2:1
 
 ;; Migadu Mail Setup
 autoconfig          CNAME  autoconfig.migadu.com.
