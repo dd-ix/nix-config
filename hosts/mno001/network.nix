@@ -114,7 +114,7 @@ in
       };
 
       "10-svc-internet" = {
-        matchConfig.Name = "10-svc-internet";
+        matchConfig.Name = "svc-internet";
 
         address = [ "212.111.245.178/29" ];
         routes = [
@@ -145,7 +145,7 @@ in
       "10-svc-management" = {
         matchConfig.Name = "svc-management";
         address = [ "2a01:7700:80b0:7000::1/64" ];
-        #routes = [ { routeConfig.Gateway = "fe80::defa"; } ];
+        routes = [ { routeConfig.Gateway = "fe80::defa"; } ];
       };
     };
   };
