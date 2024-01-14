@@ -91,7 +91,7 @@ in
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "svc-internet" "svc-services" "svc-management" ];
+        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
