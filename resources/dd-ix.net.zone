@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024011301  ; Serial
+              2024011400  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -32,7 +32,10 @@ $TTL    1h         ; default TTL for zone
 ;; Hosts
 fw01     A      212.111.245.177
          AAAA   2a01:7700:80b0:6000::defa
-mno01    A      212.111.245.178
+mno01    AAAA   2a01:7700:80b0:7000::1
+
+;; til rename is done
+mno001   CNAME mno01
 
 
 ;; Services
