@@ -91,11 +91,7 @@ in
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "uplink" "svc-management" ];
-
-        networkConfig = {
-          DHCP = "no";
-        };
+        vlan = [ "svc-internet" "svc-services" "svc-management" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
