@@ -41,11 +41,9 @@ in
         };
       };
 
-      # 20-${bond_device_name}.100
-      "20-uplink" = {
+      "20-${bond_device_name}.100" = {
         netdevConfig = {
-          # ${bond_device_name}.100
-          Name = "uplink";
+          Name = "${bond_device_name}.100";
           Kind = "vlan";
         };
         vlanConfig = {
@@ -114,23 +112,18 @@ in
         };
       };
 
-      #"10-${bond_device_name}.100" = {
-      #  matchConfig.Name = "${bond_device_name}.100";
-      #  networkConfig.Bridge = "svc-internet";
-      #};
+      "10-${bond_device_name}.100" = {
+        matchConfig.Name = "${bond_device_name}.100";
+        networkConfig.Bridge = "svc-internet";
+      };
 
-      #10-svc-internet
-      "10-uplink" = {
-        #10-svc-internet
-        matchConfig.Name = "uplink";
+      "10-svc-internet" = {
+        matchConfig.Name = "10-svc-internet";
 
         address = [ "212.111.245.178/29" ];
         routes = [
           { routeConfig.Gateway = "212.111.245.177"; }
         ];
-
-        # remove
-        vlan = [ "uplink" ];
       };
 
       "30-microvm-svc-internet" = {
