@@ -37,6 +37,9 @@ a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v102.dd-ix.net.
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  mno01.dd-ix.net.
 1.0.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  sw-c2-svc1.dd-ix.net.
 
+;; PTR SVC VPN
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.e  PTR  fw-wg.dd-ix.net.
+
 ;; PTR IBH Uplink
 1.0.0.0.f.f.f.f.f.f.f.f.f.f.f.f.f.f.f.f  PTR  rtr-c2-pop1-e4-1.ibh.net.
 2.0.0.0.f.f.f.f.f.f.f.f.f.f.f.f.f.f.f.f  PTR  fw-v99.dd-ix.net.
