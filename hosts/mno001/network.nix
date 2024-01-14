@@ -41,10 +41,10 @@ in
         };
       };
 
-      # 20-svc-internet
+      # 20-${bond_device_name}.100
       "20-uplink" = {
         netdevConfig = {
-          # svc-internet
+          # ${bond_device_name}.100
           Name = "uplink";
           Kind = "vlan";
         };
@@ -53,14 +53,14 @@ in
         };
       };
 
-      "20-br-svc-internet".netdevConfig = {
-        Name = "br-svc-internet";
+      "20-svc-internet".netdevConfig = {
+        Name = "svc-internet";
         Kind = "bridge";
       };
 
-      "20-svc-services" = {
+      "20-${bond_device_name}.101" = {
         netdevConfig = {
-          Name = "svc-services";
+          Name = "${bond_device_name}.101";
           Kind = "vlan";
         };
         vlanConfig = {
@@ -68,14 +68,14 @@ in
         };
       };
 
-      "20-br-svc-services".netdevConfig = {
-        Name = "br-svc-services";
+      "20-svc-services".netdevConfig = {
+        Name = "svc-services";
         Kind = "bridge";
       };
 
-      "20-svc-management" = {
+      "20-${bond_device_name}.102" = {
         netdevConfig = {
-          Name = "svc-management";
+          Name = "${bond_device_name}.102";
           Kind = "vlan";
         };
         vlanConfig = {
@@ -83,8 +83,8 @@ in
         };
       };
 
-      "20-br-svc-management".netdevConfig = {
-        Name = "br-svc-management";
+      "20-svc-management".netdevConfig = {
+        Name = "svc-management";
         Kind = "bridge";
       };
     };
@@ -114,14 +114,14 @@ in
         };
       };
 
-      #"10-svc-internet" = {
-      #  matchConfig.Name = "svc-internet";
-      #  networkConfig.Bridge = "br-svc-internet";
+      #"10-${bond_device_name}.100" = {
+      #  matchConfig.Name = "${bond_device_name}.100";
+      #  networkConfig.Bridge = "svc-internet";
       #};
 
-      #10-br-svc-internet
+      #10-svc-internet
       "10-uplink" = {
-        #10-br-svc-internet
+        #10-svc-internet
         matchConfig.Name = "uplink";
 
         address = [ "212.111.245.178/29" ];
@@ -131,35 +131,30 @@ in
 
         # remove
         vlan = [ "uplink" ];
-
-        # remove (is default)
-        networkConfig = {
-          DHCP = "no";
-        };
       };
 
-      "30-microvm-br-svc-internet" = {
+      "30-microvm-svc-internet" = {
         matchConfig.Name = "vm-inet-*";
-        networkConfig.Bridge = "br-svc-internet";
+        networkConfig.Bridge = "svc-internet";
       };
 
-      "10-svc-services" = {
-        matchConfig.Name = "svc-services";
-        networkConfig.Bridge = "br-svc-services";
+      "10-${bond_device_name}.101" = {
+        matchConfig.Name = "${bond_device_name}.101";
+        networkConfig.Bridge = "svc-services";
       };
 
-      "30-microvm-br-svc-services" = {
+      "30-microvm-svc-services" = {
         matchConfig.Name = "vm-srv-*";
-        networkConfig.Bridge = "br-svc-services";
+        networkConfig.Bridge = "svc-services";
+      };
+
+      "10-${bond_device_name}.102" = {
+        matchConfig.Name = "${bond_device_name}.102";
+        networkConfig.Bridge = "svc-management";
       };
 
       "10-svc-management" = {
         matchConfig.Name = "svc-management";
-        networkConfig.Bridge = "br-svc-management";
-      };
-
-      "10-br-svc-management" = {
-        matchConfig.Name = "br-svc-management";
         address = [ "2a01:7700:80b0:7000::1/64" ];
         #routes = [ { routeConfig.Gateway = "fe80::defa"; } ];
       };
