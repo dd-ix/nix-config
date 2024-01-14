@@ -25,16 +25,16 @@ in
       {
         source = "/var/lib/microvms/ns-mno001/etc/ssh";
         mountPoint = "/etc/ssh";
-        tag = "var";
+        tag = "etc-ssh";
         proto = "virtiofs";
-        socket = "var.socket";
+        socket = "etc-ssh.socket";
       }
       {
         source = "/var/lib/microvms/ns-mno001/var/log";
         mountPoint = "/var/log";
-        tag = "var";
+        tag = "var-log";
         proto = "virtiofs";
-        socket = "var.socket";
+        socket = "var-log.socket";
       }
     ];
   };
