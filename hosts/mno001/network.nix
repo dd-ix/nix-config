@@ -37,7 +37,7 @@ in
         bondConfig = {
           Mode = "802.3ad"; # LACP 
           MIIMonitorSec = "250ms";
-          LACPTransmitRate = "fast"; 
+          LACPTransmitRate = "fast";
         };
       };
 
