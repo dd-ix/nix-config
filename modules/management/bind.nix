@@ -37,6 +37,13 @@ in
         slaves = ibh_ans_ip;
       };
 
+      # ipv4 pa
+      "176.245.111.212.in-addr.arpa" = {
+        master = true;
+        file = self + "/resources/176.245.111.212.in-addr.arpa";
+        slaves = ibh_ans_ip;
+      };
+
       # ipv6 pa
       "0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa" = {
         master = true;
