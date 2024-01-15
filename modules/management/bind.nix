@@ -40,7 +40,7 @@ in
       # ipv4 pa
       "176.245.111.212.in-addr.arpa" = {
         master = true;
-        file = self + "/resources/176.245.111.212.in-addr.arpa";
+        file = self + "/resources/176.245.111.212.in-addr.zone";
         slaves = ibh_ans_ip;
       };
 
