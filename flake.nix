@@ -79,6 +79,7 @@
             microvm.nixosModules.microvm
             ./hosts/ns-mno001/default.nix
             ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
           ];
         };
       };

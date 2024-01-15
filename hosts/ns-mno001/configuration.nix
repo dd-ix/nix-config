@@ -1,57 +1,17 @@
 { ... }:
-let
-  mac = "a2:18:9f:dc:4d:16";
-in
 {
-  microvm = {
-    hypervisor = "cloud-hypervisor";
+  dd-ix.microvm = {
+    enable = true;
+
     mem = 2048;
     vcpu = 2;
 
-    interfaces = [{
-      type = "tap";
-      id = "vm-inet-ns";
-      mac = mac;
-    }];
+    hostName = "ns";
+    mac = "a2:18:9f:dc:4d:16";
+    vlan = "inet";
 
-    shares = [
-      {
-        source = "/nix/store";
-        mountPoint = "/nix/.ro-store";
-        tag = "store";
-        proto = "virtiofs";
-        socket = "store.socket";
-      }
-      {
-        source = "/var/lib/microvms/ns-mno001/etc";
-        mountPoint = "/etc";
-        tag = "etc";
-        proto = "virtiofs";
-        socket = "etc.socket";
-      }
-      {
-        source = "/var/lib/microvms/ns-mno001/var";
-        mountPoint = "/var";
-        tag = "var";
-        proto = "virtiofs";
-        socket = "var.socket";
-      }
-    ];
-  };
-
-  systemd.network.networks = {
-    "10-lan" = {
-      matchConfig.MACAddress = mac;
-      addresses = [
-        { addressConfig.Address = "212.111.245.179/29"; }
-        { addressConfig.Address = "2a01:7700:80b0:6000::53/64"; }
-      ];
-      routes = [
-        { routeConfig.Gateway = "212.111.245.177"; }
-        { routeConfig.Gateway = "fe80::defa"; }
-      ];
-      linkConfig.RequiredForOnline = "routable";
-    };
+    addr = "2a01:7700:80b0:6000::53/64";
+    v4Addr = "212.111.245.179/29";
   };
 
   system.stateVersion = "23.11";
