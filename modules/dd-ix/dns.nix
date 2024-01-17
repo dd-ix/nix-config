@@ -9,7 +9,10 @@
     "193.36.123.53"
   ];
 
-  services.resolved.extraConfig = ''
-    FallbackDNS=
-  '';
+  services.resolved = {
+    dnssec = "true";
+    extraConfig = ''
+      FallbackDNS=
+    '';
+  };
 }
