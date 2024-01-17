@@ -20,7 +20,7 @@ in
         type = lib.types.str; #lib.types.oneOf [ "inet" "srv" ];
       };
 
-      addr = lib.mkOption {
+      v6Addr = lib.mkOption {
         type = lib.types.str;
       };
 
@@ -76,7 +76,7 @@ in
     systemd.network.networks = {
       "10-lan" = {
         matchConfig.MACAddress = cfg.mac;
-        addresses = [{ addressConfig.Address = cfg.addr; }]
+        addresses = [{ addressConfig.Address = cfg.v6Addr; }]
           ++ (lib.optional (cfg.v4Addr != null) { addressConfig.Address = cfg.v4Addr; });
         routes = [{ routeConfig.Gateway = "fe80::defa"; }]
           ++ (lib.optional (cfg.v4Addr != null) { routeConfig.Gateway = "212.111.245.177"; });
