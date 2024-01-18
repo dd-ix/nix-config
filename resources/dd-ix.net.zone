@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024011401  ; Serial
+              2024011800  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -24,6 +24,7 @@ $TTL    1h         ; default TTL for zone
 
          TXT  "v=spf1 include:spf.migadu.com -all"
          TXT  "hosted-email-verify=ddocclet"
+         TXT  "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
          MX  20  aspmx2.migadu.com.
          MX  10  aspmx1.migadu.com.
