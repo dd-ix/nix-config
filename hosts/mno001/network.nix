@@ -135,6 +135,15 @@ in
         address = [ "2a01:7700:80b0:7000::1/64" ];
         routes = [{ routeConfig.Gateway = "fe80::defa"; }];
       };
+
+      "40-bring-up-bridges" = {
+        matchConfig.Name = "svc-*";
+        networkConfig = {
+          DHCP = "no";
+          LinkLocalAddressing = "no";
+          KeepConfiguration = "yes";
+        };
+      };
     };
   };
 
