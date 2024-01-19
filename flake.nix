@@ -34,9 +34,14 @@
       url = "github:dd-ix/keycloak-theme";
       flake = false;
     };
+
+    ixp-manager = {
+      url = "github:dd-ix/ixp-manager.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, sops-nix, microvm, foundation, presence, website-content, keycloak-theme }: {
+  outputs = inputs@{ self, nixpkgs, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager }: {
     nixosConfigurations =
       let
         overlays = [
@@ -78,6 +83,18 @@
           modules = [
             microvm.nixosModules.microvm
             ./hosts/ns-mno001/default.nix
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        portal-mno001 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            microvm.nixosModules.microvm
+            ixp-manager.nixosModules.default
+            { nixpkgs.overlays = [ ixp-manager.overlays.default ]; }
+            ./hosts/portal-mno001/default.nix
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
