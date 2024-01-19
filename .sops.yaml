@@ -8,8 +8,9 @@ keys:
   # test key
   - &test age1925katzy5gws3f9hnvnlwspu6trxf488arwt6ayw3urg2mgumqhszxnmqh
   - &mno001 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
+  - &portal-mno001 age1cp089j9mnluv56rnfmh0w04r8mrees4vvpejh7mk9vanljh69y8qmrha0y
 creation_rules:
-  - path_regex: secrets/management/[^/]+\.yaml$
+  - path_regex: secrets/management/secrets.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
@@ -19,4 +20,13 @@ creation_rules:
         - *admin_marcel
         age:
         - *mno001
-  
+  - path_regex: secrets/management/portal.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        age:
+        - *portal-mno001

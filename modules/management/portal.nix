@@ -13,7 +13,7 @@
   services.ixp-manager = {
     enable = true;
     hostname = "portal.dd-ix.net";
-    environmentFile = config.sops.secrets."env_file".path;
+    #environmentFile = config.sops.secrets."env_file".path;
     createDatabaseLocally = true;
     init = {
       adminUserName = "admin";
@@ -31,6 +31,7 @@
     settings = {
       APP_URL = "https://portal.dd-ix.net";
       APP_CHIPHER = "aes-256-gcm";
+      DB_PASSWORD = "test";
     };
   };
 }
