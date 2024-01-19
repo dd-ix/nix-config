@@ -92,6 +92,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
             { nixpkgs.overlays = [ ixp-manager.overlays.default ]; }
             ./hosts/portal-mno001/default.nix
