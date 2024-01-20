@@ -16,17 +16,23 @@
     #environmentFile = config.sops.secrets."env_file".path;
     createDatabaseLocally = true;
     init = {
-      adminUserName = "admin";
-      adminEmail = "noc@dd-ix.net";
-      adminPasswordFile = config.sops.secrets."admin_password".path;
-      adminDisplayName = "Admin";
-      ixpName = "Dresden Internet Exchange";
-      ixpShortName = "DD-IX";
-      ixpASN = 57328;
-      ixpPeeringEmail = "peering@dd-ix.net";
-      ixpNocPhone = "+49 351 41898230";
-      ixpNocEmail = "noc@dd-ix.net";
-      ixpWebsite = "https://dd-ix.net";
+      admin = {
+        userName = "admin";
+        email = "noc@dd-ix.net";
+        passwordFile = config.sops.secrets."admin_password".path;
+        displayName = "Admin";
+      };
+      ixp = {
+        name = "Dresden Internet Exchange";
+        shortName = "DD-IX";
+        asn = 57328;
+        peeringEmail = "peering@dd-ix.net";
+        noc = {
+          phone = "+49 351 41898230";
+          email = "noc@dd-ix.net";
+        };
+        website = "https://dd-ix.net";
+      };
     };
     settings = {
       APP_URL = "https://portal.dd-ix.net";

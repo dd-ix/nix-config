@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
     ./configuration.nix
-    ../../modules/management/portal.nix
+    ../../modules/management/ixp-manager.nix
   ];
 }
