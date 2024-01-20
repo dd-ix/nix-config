@@ -13,5 +13,7 @@
     v6Addr = "2a01:7700:80b0:6001::1/64";
   };
 
+  networking.firewall.allowedTCPPorts = [ 80 ]; 
+
   system.stateVersion = "23.11";
 }
