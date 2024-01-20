@@ -8,7 +8,7 @@ keys:
   # test key
   - &test age1925katzy5gws3f9hnvnlwspu6trxf488arwt6ayw3urg2mgumqhszxnmqh
   - &mno001 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
-  - &portal-mno001 age1cp089j9mnluv56rnfmh0w04r8mrees4vvpejh7mk9vanljh69y8qmrha0y
+  - &portal-mno001 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
 creation_rules:
   - path_regex: secrets/management/secrets.yaml
     key_groups:
