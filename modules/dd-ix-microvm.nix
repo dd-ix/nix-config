@@ -86,8 +86,8 @@ in
             address = cfg.mac;
           };
         }];
-        routing.routes = [{ to = "::/0"; via = "fe80::defa"; }]
-          ++ (lib.optional (cfg.v4Addr != null) { to = "0.0.0.0/0"; via = "212.111.245.177"; });
+        routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::defa"; }]
+          ++ (lib.optional (cfg.v4Addr != null) { to = "0.0.0.0/0"; dev = "eth0"; via = "212.111.245.177"; });
       };
     };
   };
