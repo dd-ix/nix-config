@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024011800  ; Serial
+              2024012100  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -22,7 +22,7 @@ $TTL    1h         ; default TTL for zone
          CAA  0 issuewild "letsencrypt.org"
          CAA  0 iodef "mailto:noc@dd-ix.net"
 
-         TXT  "v=spf1 include:spf.migadu.com -all"
+         TXT  "v=spf1 include:spf.migadu.com a:mta.dd-ix.net -all"
          TXT  "hosted-email-verify=ddocclet"
          TXT  "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
@@ -42,7 +42,9 @@ mno001   CNAME mno01
 ;; Services
 rpx      A      212.111.245.178
 ns       A      212.111.245.179
-         AAAA   2a01:7700:80b0:6000::53 
+         AAAA   2a01:7700:80b0:6000::53
+mta      A      212.111.245.180
+         AAAA   2a01:7700:80b0:6000::25
 wg       CNAME  fw01
 
 
