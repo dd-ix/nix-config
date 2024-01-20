@@ -73,14 +73,21 @@ in
       domain = "dd-ix.net";
     };
 
-    systemd.network.networks = {
-      "10-lan" = {
-        matchConfig.MACAddress = cfg.mac;
-        addresses = [{ addressConfig.Address = cfg.v6Addr; }]
-          ++ (lib.optional (cfg.v4Addr != null) { addressConfig.Address = cfg.v4Addr; });
-        routes = [{ routeConfig.Gateway = "fe80::defa"; }]
-          ++ (lib.optional (cfg.v4Addr != null) { routeConfig.Gateway = "212.111.245.177"; });
-        linkConfig.RequiredForOnline = "routable";
+    networking.ifstate = {
+      enable = true;
+      settings = {
+        interfaces = [{
+          name = "eth0";
+          addresses = [ cfg.v6Addr ]
+            ++ (lib.optional (cfg.v4Addr != null) cfg.v4Addr);
+          link = {
+            state = "up";
+            kind = "physical";
+            address = cfg.mac;
+          };
+        }];
+        routing.routes = [{ to = "::/0"; via = "fe80::defa"; }]
+          ++ (lib.optional (cfg.v4Addr != null) { to = "0.0.0.0/0"; via = "212.111.245.177"; });
       };
     };
   };

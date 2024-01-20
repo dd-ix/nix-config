@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
+    ifstate = {
+      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +46,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager }: {
     nixosConfigurations =
       let
         overlays = [
@@ -81,6 +86,8 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             ./hosts/ns-mno001/default.nix
             ./modules/dd-ix
@@ -91,6 +98,8 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default

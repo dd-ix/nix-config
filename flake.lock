@@ -41,6 +41,24 @@
         "systems": "systems_3"
       },
       "locked": {
+        "lastModified": 1705309234,
+        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_4": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
         "lastModified": 1701680307,
         "narHash": "sha256-kAuep2h5ajznlPMD9rnQyffWG8EM/C73lejGofXvdM8=",
         "owner": "numtide",
@@ -54,9 +72,9 @@
         "type": "github"
       }
     },
-    "flake-utils_4": {
+    "flake-utils_5": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -93,9 +111,30 @@
         "type": "github"
       }
     },
-    "ixp-manager": {
+    "ifstate": {
       "inputs": {
         "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705561212,
+        "narHash": "sha256-NNN/KFLH9gv4aebmSVdnrC7hu7/aIi77bMHF+5yBSa0=",
+        "ref": "refs/heads/main",
+        "rev": "690684f5f8854b1ad29b20ea565979a9f12e1ebf",
+        "revCount": 8,
+        "type": "git",
+        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
+      }
+    },
+    "ixp-manager": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -132,7 +171,7 @@
     },
     "microvm": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -195,7 +234,7 @@
     },
     "presence": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -218,6 +257,7 @@
     "root": {
       "inputs": {
         "foundation": "foundation",
+        "ifstate": "ifstate",
         "ixp-manager": "ixp-manager",
         "keycloak-theme": "keycloak-theme",
         "microvm": "microvm",
@@ -312,6 +352,21 @@
       }
     },
     "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
