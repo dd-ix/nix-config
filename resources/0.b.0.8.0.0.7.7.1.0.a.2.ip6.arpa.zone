@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @    SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-        2024011402  ; Serial
+        2024011800  ; Serial
         7200        ; Refresh
         3600        ; Retry
         1209600     ; Expire
@@ -30,6 +30,7 @@ a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  gw-v601.dd-ix.net.
 ;; PTR SVC Public Services
 a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  gw-v100.dd-ix.net.
 a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  gw-v101.dd-ix.net.
+5.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  mta.dd-ix.net.
 3.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  ns.dd-ix.net.
 
 ;; PTR SVC Management Services

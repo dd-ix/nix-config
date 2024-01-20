@@ -94,6 +94,18 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        mta-mno001 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            ./hosts/mta-mno001/default.nix
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
         portal-mno001 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
