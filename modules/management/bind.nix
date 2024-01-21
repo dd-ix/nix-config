@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, config, ... }:
 let
   # IBH authorative nameservers
   # (IPv4 only as mno01 does not have IPv6, yet)
@@ -24,6 +24,11 @@ in
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
+  sops.secrets."rfc2136_key" = {
+    sopsFile = self + "/secrets/management/rfc2136.yaml";
+    owner = "named";
+  };
+
   services.bind = {
     enable = true;
 
@@ -35,6 +40,18 @@ in
         master = true;
         file = self + "/resources/dd-ix.net.zone";
         slaves = ibh_ans_ip;
+      };
+
+      "_acme-dns.dd-ix.net" = {
+        master = true;
+        file = self + "/resoueces/_acme-dns.dd-ix.ner";
+        slaves = ibh_ans_ip;
+
+        extraConfig = ''
+          update-policy {
+            grant rfc2136_key name _acme-dns.dd-ix.net. TXT;
+          };
+        '';
       };
 
       # ipv4 pa
@@ -53,6 +70,8 @@ in
     };
 
     extraOptions = ''
+      include ${config.sops.secrets.rfc2136_key.path};
+    
       # this is hidden primary only, no recursive lookups allowed
       recursion no;
 

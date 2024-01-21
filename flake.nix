@@ -90,6 +90,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             ./hosts/svc-ns01
+            sops-nix.nixosModules.default
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
