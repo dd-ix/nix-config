@@ -8,6 +8,15 @@ let
     "212.111.245.178"
     "2a01:7700:80b0:7000::1"
   ];
+
+  # enable virtual aliases for those domains
+  virtual_alias_domains = "cloud.dd-ix.net";
+
+  # virtual alias map for $virtual_alias_domains
+  virtual_alias_map = 
+    ''
+      noreply@cloud.dd-ix.net        noc@dd-ix.net
+    '';
 in
 {
   networking.firewall.allowedTCPPorts = [ 25 ];
@@ -18,7 +27,7 @@ in
       hostname = "${domain}";
         domain = "${domain}";
       origin = "${domain}";
-      destination = [ ];
+      virtual = virtual_alias_map;
       networks = mynetworks;
       postmasterAlias = "noc@dd-ix.net";
       rootAlias = "noc@dd-ix.net";
@@ -42,6 +51,7 @@ in
           "permit_mynetworks"
           "reject_unauth_destination"
         ];
+        "virtual_alias_domains" = virtual_alias_domains;
       };
     };
   };
