@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024012102  ; Serial
+              2024012103  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -50,14 +50,14 @@ wg       CNAME  fw01
 
 
 ;; Reverse Proxy Aliases
-www      CNAME  rpx
-content  CNAME  rpx
-auth     CNAME  rpx
-cloud    CNAME  rpx
-wiki     CNAME  rpx
-dcim     CNAME  rpx
-lists    CNAME  rpx
-vault    CNAME  rpx
+www            CNAME  rpx
+content        CNAME  rpx
+keycloak.auth  CNAME  rpx
+cloud          CNAME  rpx
+wiki           CNAME  rpx
+dcim           CNAME  rpx
+lists          CNAME  rpx
+vault          CNAME  rpx
 
 
 ;; Management

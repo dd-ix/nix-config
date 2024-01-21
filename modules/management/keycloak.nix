@@ -38,7 +38,7 @@ in
         proxy = "edge"; # Enables communication through HTTP between the proxy and Keycloak.
         http-port = http_port;
         http-host = "127.0.0.1";
-        hostname = "auth.${config.deployment-dd-ix.domain}";
+        hostname = "keycloak.auth.${config.deployment-dd-ix.domain}";
       };
       themes = {
         #dd-ix = pkgs.keycloak-theme;
@@ -50,12 +50,12 @@ in
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "auth.${config.deployment-dd-ix.domain}" = {
+        "keycloak.auth.${config.deployment-dd-ix.domain}" = {
           enableACME = true;
           forceSSL = true;
           locations = {
             "= /" = {
-              return = "302 https://auth.${config.deployment-dd-ix.domain}/realms/DD-IX/account/";
+              return = "302 https://keycloak.auth.${config.deployment-dd-ix.domain}/realms/DD-IX/account/";
             };
             "/" = {
               proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}";
@@ -69,10 +69,10 @@ in
           forceSSL = true;
           locations = {
             "/" = {
-              return = "302 https://auth.${config.deployment-dd-ix.domain}$request_uri";
+              return = "302 https://keycloak.auth.${config.deployment-dd-ix.domain}$request_uri";
             };
           };
-        };
+        };        
       };
     };
   };
