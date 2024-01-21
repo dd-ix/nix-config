@@ -22,17 +22,6 @@
         createLocally = true;
         mutableSettings = false;
         settings = {
-          smtp = [
-            {
-              enabled = true;
-              host = "mta.dd-ix.net";
-              port = 25;
-              tls_type = "none";
-              idle_timeout = "5s";
-              wait_timeout = "5s";
-              email_headers = [ ];
-            }
-          ];
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
           "app.notify_emails" = [ "admin@dd-ix.net" ];
         };
