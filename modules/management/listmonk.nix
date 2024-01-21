@@ -27,10 +27,16 @@
               enabled = true;
               host = "mta.dd-ix.net";
               port = 25;
+              uuid = "3c860444-42f3-425a-8ce7-36aebb7add95";
               tls_type = "none";
-              idle_timeout = "5s";
+              username = "";
+              idle_timeout = "15s";
               wait_timeout = "5s";
+              auth_protocol = "none";
               email_headers = [ ];
+              hello_hostname = "";
+              max_msg_retries = 2;
+              tls_skip_verify = false;
             }
           ];
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
