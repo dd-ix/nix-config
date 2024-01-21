@@ -25,11 +25,11 @@
           smtp = [
             {
               enabled = true;
-              host = "smtp.migadu.com";
-              port = 465;
-              tls_type = "TLS";
-              idle_timeout = "1s";
-              wait_timeout = "1s";
+              host = "mta.dd-ix.net";
+              port = 25;
+              tls_type = "none";
+              idle_timeout = "5s";
+              wait_timeout = "5s";
               email_headers = [ ];
             }
           ];
