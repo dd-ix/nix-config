@@ -9,8 +9,10 @@
       hostname = "wiki.${config.deployment-dd-ix.domain}";
       appURL = "https://wiki.${config.deployment-dd-ix.domain}";
       mail = {
-        user = "wiki@dd-ix.net";
-        from = "wiki@dd-ix.net";
+        from = "noreply@wiki.dd-ix.net";
+        fromName = "DD-IX-Wiki";
+        host = "mta.dd-ix.net";
+        port = 25;
       };
 
       nginx = {

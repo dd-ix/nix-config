@@ -17,6 +17,7 @@ let
     ''
       noreply@cloud.dd-ix.net        noc@dd-ix.net
       bounce@lists.dd-ix.net         lists@dd-ix.net
+      noreply@wiki.dd-ix.net        noc@dd-ix.net
     '';
 in
 {
