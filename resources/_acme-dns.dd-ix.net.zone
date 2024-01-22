@@ -15,7 +15,3 @@ $TTL    1h         ; default TTL for zone
          NS   ans-03.ibh.de.
          NS   ans-04.ibh.services.
          NS   ans-05.ibh.net.
-
-         CAA  0 issue "letsencrypt.org"
-         CAA  0 issuewild "letsencrypt.org"
-         CAA  0 iodef "mailto:noc@dd-ix.net"

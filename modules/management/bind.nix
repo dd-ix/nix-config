@@ -44,7 +44,7 @@ in
 
       "_acme-dns.dd-ix.net" = {
         master = true;
-        file = self + "/resoueces/_acme-dns.dd-ix.ner";
+        file = self + "/resoueces/_acme-dns.dd-ix.net.zone";
         slaves = ibh_ans_ip;
 
         extraConfig = ''
