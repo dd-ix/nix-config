@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, options, ... }:
 let
   domain = "cloud.${config.deployment-dd-ix.domain}";
 in
@@ -34,6 +34,12 @@ in
     };
     extraOptions = {
       allow_local_remote_servers = true;
+    };
+    phpOptions = {
+      "opcache.jit" = "tracing";
+      "opcache.jit_buffer_size" = "100M";
+      # recommended by nextcloud admin overview
+      "opcache.interned_strings_buffer" = "16";
     };
     extraAppsEnable = true;
   };
