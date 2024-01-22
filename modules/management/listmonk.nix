@@ -39,6 +39,23 @@
               tls_skip_verify = false;
             }
           ];
+          "bounces.mailboxes" = [
+            {
+              # ToDo: enable
+              enabled = false;
+              host = "pop.migadu.com";
+              port = 995;
+              type = "pop";
+              uuid = "7de1af4b-a7c5-4952-8568-e5ab85dbce18";
+              auth_protocol = "userpass";
+              username = "bounce.lists@dd-ix.net"
+              # ToDo: set password from sop
+              password = "TBD";
+              tls_enabled = true;
+              scan_interval = "15m";
+              tls_skip_verify = false;
+            }
+          ]
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
           "app.notify_emails" = [ "admin@dd-ix.net" ];
         };
