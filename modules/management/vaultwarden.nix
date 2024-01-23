@@ -22,11 +22,16 @@
         DOMAIN = "https://vault.${config.deployment-dd-ix.domain}:443";
         SIGNUPS_ALLOWED = false;
         WEBSOCKET_ENABLED = true;
-        SMTP_HOST = "smtp.migadu.com";
-        SMTP_FROM = "vaultwarden@dd-ix.net";
-        SMTP_PORT = 587;
-        SMTP_SECURITY = "starttls";
-        SMTP_USERNAME = "vaultwarden@dd-ix.net";
+        PUSH_ENABLED=false;
+        EMAIL_CHANGE_ALLOWED=false;
+        # update on demand
+        ORG_CREATION_USERS="thomas.liske@dd-ix.net";
+        PASSWORD_HINTS_ALLOWED=false;
+        SMTP_HOST = "mta.dd-ix.net";
+        SMTP_PORT = 25;
+        SMTP_FROM = "noreply@vault.dd-ix.net";
+        SMTP_FROM_NAME = "DD-IX Vault";
+        SMTP_SECURITY = "off";
       };
       dbBackend = "postgresql";
       environmentFile = config.sops.secrets.vaultwarden_env_file.path;
