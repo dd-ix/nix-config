@@ -1,11 +1,24 @@
 { config, pkgs, ... }:
+let
+  updateBounceSettings = pkgs.writeShellScriptBin "update-database-config.sh" ''
+    ${pkgs.postgresql}/bin/psql \
+      -d listmonk \
+      -c "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
+  '';
+in
 {
   sops.secrets.listmonk.owner = "netbox";
+  sops.secrets.listmonk_bounce_migadu.owner = "netbox";
   sops.secrets.listmonk_postgresql.owner = "postgres";
-  systemd.services.listmonk.preStart = ''
-    ${pkgs.listmonk}/bin/listmonk --config /nix/store/cjcm9lx15lsqd47ij75gnq4fiwqf4wda-listmonk.toml --idempotent --upgrade --yes
-  '';
-
+  systemd.services.listmonk = {
+    preStart = ''
+      ${pkgs.listmonk}/bin/listmonk --config /nix/store/cjcm9lx15lsqd47ij75gnq4fiwqf4wda-listmonk.toml --idempotent --upgrade --yes
+    '';
+    serviceConfig = {
+      ExecStartPre = [ "${updateBounceSettings}/bin/update-database-config.sh" ];
+      LoadCredential = "migadu_bounce:${config.sops.secrets.listmonk_bounce_migadu.path}";
+    };
+  };
   services = {
     postgresql.ensureUsers = [{ name = "listmonk"; ensurePasswordFile = config.sops.secrets.listmonk_postgresql.path; }];
 
@@ -39,23 +52,6 @@
               tls_skip_verify = false;
             }
           ];
-          "bounces.mailboxes" = [
-            {
-              # ToDo: enable
-              enabled = false;
-              host = "pop.migadu.com";
-              port = 995;
-              type = "pop";
-              uuid = "7de1af4b-a7c5-4952-8568-e5ab85dbce18";
-              auth_protocol = "userpass";
-              username = "bounce.lists@dd-ix.net"
-              # ToDo: set password from sop
-              password = "TBD";
-              tls_enabled = true;
-              scan_interval = "15m";
-              tls_skip_verify = false;
-            }
-          ]
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
           "app.notify_emails" = [ "admin@dd-ix.net" ];
         };
