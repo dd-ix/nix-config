@@ -10,14 +10,15 @@ let
   ];
 
   # enable virtual aliases for those domains
-  virtual_alias_domains = "cloud.dd-ix.net lists.dd-ix.net";
+  virtual_alias_domains = "cloud.dd-ix.net lists.dd-ix.net vault.dd-ix.net";
 
   # virtual alias map for $virtual_alias_domains
   virtual_alias_map = 
     ''
       noreply@cloud.dd-ix.net        noc@dd-ix.net
       bounce@lists.dd-ix.net         lists@dd-ix.net
-      noreply@wiki.dd-ix.net        noc@dd-ix.net
+      noreply@vault.dd-ix.net        noc@dd-ix.net
+      noreply@wiki.dd-ix.net         noc@dd-ix.net
     '';
 in
 {
