@@ -22,11 +22,11 @@
         DOMAIN = "https://vault.${config.deployment-dd-ix.domain}:443";
         SIGNUPS_ALLOWED = false;
         WEBSOCKET_ENABLED = true;
-        PUSH_ENABLED=false;
-        EMAIL_CHANGE_ALLOWED=false;
+        PUSH_ENABLED = false;
+        EMAIL_CHANGE_ALLOWED = false;
         # update on demand
-        ORG_CREATION_USERS="thomas.liske@dd-ix.net";
-        PASSWORD_HINTS_ALLOWED=false;
+        ORG_CREATION_USERS = "thomas.liske@dd-ix.net";
+        PASSWORD_HINTS_ALLOWED = false;
         SMTP_HOST = "mta.dd-ix.net";
         SMTP_PORT = 25;
         SMTP_FROM = "noreply@vault.dd-ix.net";

@@ -13,7 +13,7 @@ let
   virtual_alias_domains = "cloud.dd-ix.net lists.dd-ix.net vault.dd-ix.net";
 
   # virtual alias map for $virtual_alias_domains
-  virtual_alias_map = 
+  virtual_alias_map =
     ''
       noreply@cloud.dd-ix.net        noc@dd-ix.net
       bounce@lists.dd-ix.net         lists@dd-ix.net
@@ -28,7 +28,7 @@ in
     postfix = {
       enable = true;
       hostname = "${domain}";
-        domain = "${domain}";
+      domain = "${domain}";
       origin = "${domain}";
       virtual = virtual_alias_map;
       networks = mynetworks;

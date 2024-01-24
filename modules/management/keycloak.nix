@@ -72,7 +72,7 @@ in
               return = "302 https://keycloak.auth.${config.deployment-dd-ix.domain}$request_uri";
             };
           };
-        };        
+        };
       };
     };
   };
