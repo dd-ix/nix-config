@@ -48,6 +48,10 @@ in
   services.bind = {
     enable = true;
 
+    extraConfig = ''
+      include "${config.sops.secrets.rfc2136_key_portal.path}";
+    '';
+
     # cannot talk to root ns (firewall)
     forward = "only";
 
@@ -85,9 +89,7 @@ in
       };
     };
 
-    extraOptions = ''
-      include "${config.sops.secrets.rfc2136_key_portal.path}";
-    
+    extraOptions = ''    
       # this is hidden primary only, no recursive lookups allowed
       recursion no;
 
