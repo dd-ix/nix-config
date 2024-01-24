@@ -29,6 +29,13 @@ $TTL    1h         ; default TTL for zone
          MX  20  aspmx2.migadu.com.
          MX  10  aspmx1.migadu.com.
 
+;; Delegations
+_acme-dns  NS  ans-01.ibh.de.
+           NS  ans-02.ibh.net.
+           NS  ans-03.ibh.de.
+           NS  ans-04.ibh.services.
+           NS  ans-05.ibh.net.
+
 
 ;; Hosts
 svc-fw01      A     212.111.245.177

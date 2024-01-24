@@ -1,5 +1,6 @@
-{ self, ... }:
+{ self, config, ... }:
 let
+  bindUser = "named";
   # IBH authorative nameservers
   # (IPv4 only as mno01 does not have IPv6, yet)
   ibh_ans_ip = [
@@ -24,6 +25,26 @@ in
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
+  sops.secrets."rfc2136_key_portal" = {
+    sopsFile = self + "/secrets/management/rfc2136/bind.yaml";
+    owner = bindUser;
+  };
+
+  systemd.services."bind-create-acme-zone" = {
+    before = [ "bind.service" ];
+    script = ''
+      set -eu
+      if ! test -f /var/lib/bind/_acme-dns.dd-ix.net.zone; then
+        mkdir -p /var/lib/bind/
+        cp ${self}/resources/_acme-dns.dd-ix.net.zone /var/lib/bind/_acme-dns.dd-ix.net.zone
+      fi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "named";
+    };
+  };
+
   services.bind = {
     enable = true;
 
@@ -35,6 +56,18 @@ in
         master = true;
         file = self + "/resources/dd-ix.net.zone";
         slaves = ibh_ans_ip;
+      };
+
+      "_acme-dns.dd-ix.net" = {
+        master = true;
+        file = "/var/lib/bind/_acme-dns.dd-ix.net.zone";
+        slaves = ibh_ans_ip;
+
+        extraConfig = ''
+          update-policy {
+            grant rfc2136_key_portal name portal._acme-dns.dd-ix.net. TXT;
+          };
+        '';
       };
 
       # ipv4 pa
@@ -53,6 +86,8 @@ in
     };
 
     extraOptions = ''
+      include ${config.sops.secrets.rfc2136_key_portal.path};
+    
       # this is hidden primary only, no recursive lookups allowed
       recursion no;
 

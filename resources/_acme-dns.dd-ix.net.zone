@@ -1,0 +1,17 @@
+; Check me with (abs. path required....)
+; named-checkzone dd-ix.net /.../resources/dd-ix.net.zone
+
+$TTL    1h         ; default TTL for zone
+
+@        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
+              2024011800  ; Serial
+              7200        ; Refresh
+              3600        ; Retry
+              1209600     ; Expire
+              3600 )      ; Negative response caching TTL
+
+         NS   ans-01.ibh.de.
+         NS   ans-02.ibh.net.
+         NS   ans-03.ibh.de.
+         NS   ans-04.ibh.services.
+         NS   ans-05.ibh.net.
