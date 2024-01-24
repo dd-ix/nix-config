@@ -30,7 +30,7 @@ in
     owner = bindUser;
   };
 
-  systemd.services."hello-world" = {
+  systemd.services."bind-create-acme-zone" = {
     before = [ "bind.service" ];
     script = ''
       set -eu
