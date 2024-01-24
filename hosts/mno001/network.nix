@@ -111,7 +111,7 @@ in
       };
 
       "30-microvm-svc-internet" = {
-        matchConfig.Name = "vm-inet-*";
+        matchConfig.Name = "i-*";
         networkConfig.Bridge = "svc-internet";
       };
 
@@ -121,7 +121,7 @@ in
       };
 
       "30-microvm-svc-services" = {
-        matchConfig.Name = "vm-svc-*";
+        matchConfig.Name = "s-*";
         networkConfig.Bridge = "svc-services";
       };
 

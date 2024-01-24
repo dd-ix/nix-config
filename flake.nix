@@ -82,31 +82,31 @@
             }
           ] ++ nixos-modules;
         };
-        ns-mno001 = nixpkgs.lib.nixosSystem {
+        svc-ns01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
-            ./hosts/ns-mno001/default.nix
+            ./hosts/svc-ns01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
         };
-        mta-mno001 = nixpkgs.lib.nixosSystem {
+        svc-mta01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
-            ./hosts/mta-mno001/default.nix
+            ./hosts/svc-mta01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
         };
-        portal-mno001 = nixpkgs.lib.nixosSystem {
+        svc-portal01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
@@ -116,7 +116,7 @@
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
             { nixpkgs.overlays = [ ixp-manager.overlays.default ]; }
-            ./hosts/portal-mno001/default.nix
+            ./hosts/svc-portal01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];

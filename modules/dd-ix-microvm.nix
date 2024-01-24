@@ -17,7 +17,7 @@ in
       };
 
       vlan = lib.mkOption {
-        type = lib.types.str; #lib.types.oneOf [ "inet" "srv" ];
+        type = lib.types.str; #lib.types.oneOf [ "i" "s" ];
       };
 
       v6Addr = lib.mkOption {
@@ -39,7 +39,7 @@ in
 
       interfaces = [{
         type = "tap";
-        id = "vm-${cfg.vlan}-${cfg.hostName}";
+        id = "${cfg.vlan}-${cfg.hostName}";
         mac = cfg.mac;
       }];
 

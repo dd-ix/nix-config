@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024012200  ; Serial
+              2024012400  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -31,22 +31,27 @@ $TTL    1h         ; default TTL for zone
 
 
 ;; Hosts
-svc-fw01 A      212.111.245.177
-         AAAA   2a01:7700:80b0:6000::defa
-mno01    AAAA   2a01:7700:80b0:7000::1
+svc-fw01      A     212.111.245.177
+              AAAA  2a01:7700:80b0:6000::defa
+svc-hv01      AAAA  2a01:7700:80b0:7000::1
+svc-rpx01     A     212.111.245.178
+svc-ns01      A     212.111.245.179
+              AAAA  2a01:7700:80b0:6000::53
+svc-mta01     A     212.111.245.180
+              AAAA  2a01:7700:80b0:6000::25
+svc-portal01  A     2a01:7700:80b0:6001::1
+
 
 ;; til rename is done
-mno001   CNAME mno01
+mno001  CNAME svc-hv01
+mno01   CNAME svc-hv01
 
 
 ;; Services
-rpx      A      212.111.245.178
-         TXT  "v=spf1 a:mta.dd-ix.net -all"
-ns       A      212.111.245.179
-         AAAA   2a01:7700:80b0:6000::53
-mta      A      212.111.245.180
-         AAAA   2a01:7700:80b0:6000::25
-wg       CNAME  svc-fw01
+rpx  TXT    "v=spf1 a:mta.dd-ix.net -all"
+ns   CNAME  svc-ns01
+mta  CNAME  svc-mta01
+wg   CNAME  svc-fw01
 
 
 ;; Reverse Proxy Aliases
@@ -58,7 +63,7 @@ wiki           CNAME  rpx
 dcim           CNAME  rpx
 lists          CNAME  rpx
 vault          CNAME  rpx
-
+portal         CNAME  rpx
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
