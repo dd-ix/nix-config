@@ -29,6 +29,21 @@ in
     owner = "named";
   };
 
+  systemd.services."hello-world" = {
+    before = [ "bind.service" ];
+    script = ''
+      set -eu
+      if ! test -f /var/lib/bind/_acme-dns.dd-ix.net.zone; then
+        mkdir -p /var/lib/bind/
+        cp ${self}/resources/_acme-dns.dd-ix.net.zone /var/lib/bind/_acme-dns.dd-ix.net.zone
+      fi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = config.services.bind.user;
+    };
+  };
+
   services.bind = {
     enable = true;
 
@@ -44,7 +59,7 @@ in
 
       "_acme-dns.dd-ix.net" = {
         master = true;
-        file = self + "/resoueces/_acme-dns.dd-ix.net.zone";
+        file = "/var/lib/bind/_acme-dns.dd-ix.net.zone";
         slaves = ibh_ans_ip;
 
         extraConfig = ''
