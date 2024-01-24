@@ -86,7 +86,7 @@ in
     };
 
     extraOptions = ''
-      include ${config.sops.secrets.rfc2136_key_portal.path};
+      include "${config.sops.secrets.rfc2136_key_portal.path}";
     
       # this is hidden primary only, no recursive lookups allowed
       recursion no;
