@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024012400  ; Serial
+              2024012401  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -48,22 +48,22 @@ mno01   CNAME svc-hv01
 
 
 ;; Services
-rpx  TXT    "v=spf1 a:mta.dd-ix.net -all"
-ns   CNAME  svc-ns01
-mta  CNAME  svc-mta01
-wg   CNAME  svc-fw01
+svc-rpx01  TXT    "v=spf1 a:mta.dd-ix.net -all"
+ns         CNAME  svc-ns01
+mta        CNAME  svc-mta01
+wg         CNAME  svc-fw01
 
 
 ;; Reverse Proxy Aliases
-www            CNAME  rpx
-content        CNAME  rpx
-keycloak.auth  CNAME  rpx
-cloud          CNAME  rpx
-wiki           CNAME  rpx
-dcim           CNAME  rpx
-lists          CNAME  rpx
-vault          CNAME  rpx
-portal         CNAME  rpx
+www            CNAME  svc-rpx01
+content        CNAME  svc-rpx01
+keycloak.auth  CNAME  svc-rpx01
+cloud          CNAME  svc-rpx01
+wiki           CNAME  svc-rpx01
+dcim           CNAME  svc-rpx01
+lists          CNAME  svc-rpx01
+vault          CNAME  svc-rpx01
+portal         CNAME  svc-rpx01
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
