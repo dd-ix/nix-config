@@ -52,14 +52,14 @@ in
           socket = "store.socket";
         }
         {
-          source = "/var/lib/microvms/${cfg.hostName}-mno001/etc";
+          source = "/var/lib/microvms/${cfg.hostName}/etc";
           mountPoint = "/etc";
           tag = "etc";
           proto = "virtiofs";
           socket = "etc.socket";
         }
         {
-          source = "/var/lib/microvms/${cfg.hostName}-mno001/var";
+          source = "/var/lib/microvms/${cfg.hostName}/var";
           mountPoint = "/var";
           tag = "var";
           proto = "virtiofs";
