@@ -32,6 +32,7 @@ in
 
   systemd.services."bind-create-acme-zone" = {
     before = [ "bind.service" ];
+    after = [ "network.target" ];
     script = ''
       set -eu
       if ! test -f /var/lib/bind/_acme-dns.dd-ix.net.zone; then
