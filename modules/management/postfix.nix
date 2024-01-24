@@ -1,6 +1,6 @@
 { self, ... }:
 let
-  domain = "mta.dd-ix.net";
+  domain = "svc-mta01.dd-ix.net";
 
   # allow relay from
   mynetworks = [

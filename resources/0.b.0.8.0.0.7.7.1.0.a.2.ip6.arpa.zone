@@ -29,16 +29,16 @@ a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  gw-v601.dd-ix.net.
 
 ;; PTR SVC Internet Services
 a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  gw-v100.dd-ix.net.
-5.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  mta.dd-ix.net.
-3.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  ns.dd-ix.net.
+5.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  svc-mta01.dd-ix.net.
+3.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  svc-ns01.dd-ix.net.
 
 ;; PTR SVC Public Services
 a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  gw-v101.dd-ix.net.
-1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  portal.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  svc-portal01.dd-ix.net.
 
 ;; PTR SVC Management Services
 a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v102.dd-ix.net.
-1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  mno001.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  svc-hv01.dd-ix.net.
 1.0.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  sw-c2-svc1.dd-ix.net.
 
 ;; PTR SVC VPN

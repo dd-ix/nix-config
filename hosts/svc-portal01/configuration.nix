@@ -6,7 +6,7 @@
     mem = 2048;
     vcpu = 2;
 
-    hostName = "portal";
+    hostName = "svc-portal01";
     mac = "e2:b4:cb:12:f4:c1";
     vlan = "svc";
 

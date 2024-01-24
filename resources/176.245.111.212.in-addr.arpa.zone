@@ -20,8 +20,8 @@ $TTL    1h         ; default TTL for zone
 
 ;; PTR SVC Public Services
 177  PTR  gw-v100.dd-ix.net.
-178  PTR  rpx.dd-ix.net.
-179  PTR  ns.dd-ix.net.
-180  PTR  mta.dd-ix.net.
+178  PTR  svc-rpx01.dd-ix.net.
+179  PTR  svc-ns01.dd-ix.net.
+180  PTR  svc-mta01.dd-ix.net.
 
 182  PTR  nat.dd-ix.net.
