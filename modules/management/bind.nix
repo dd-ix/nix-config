@@ -65,7 +65,7 @@ in
 
         extraConfig = ''
           update-policy {
-            grant rfc2136_key_portal name _acme-dns.dd-ix.net. TXT;
+            grant rfc2136_key_portal name portal._acme-dns.dd-ix.net. TXT;
           };
         '';
       };
