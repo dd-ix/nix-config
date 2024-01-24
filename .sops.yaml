@@ -31,7 +31,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *portal-mno001
-  - path_regex: secrets/management/rfc2136.yaml
+  - path_regex: secrets/management/rfc2136/bind.yaml
     key_groups:
       - pgp:
         - *admin_tassilo

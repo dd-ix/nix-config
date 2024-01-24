@@ -1,5 +1,6 @@
 { self, config, ... }:
 let
+  bindUser = "named";
   # IBH authorative nameservers
   # (IPv4 only as mno01 does not have IPv6, yet)
   ibh_ans_ip = [
@@ -24,9 +25,9 @@ in
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  sops.secrets."rfc2136_key" = {
-    sopsFile = self + "/secrets/management/rfc2136.yaml";
-    owner = "named";
+  sops.secrets."rfc2136_key_portal" = {
+    sopsFile = self + "/secrets/management/rfc2136/bind.yaml";
+    owner = bindUser;
   };
 
   systemd.services."hello-world" = {
@@ -40,7 +41,7 @@ in
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = config.services.bind.user;
+      User = "named";
     };
   };
 
@@ -64,7 +65,7 @@ in
 
         extraConfig = ''
           update-policy {
-            grant rfc2136_key name _acme-dns.dd-ix.net. TXT;
+            grant rfc2136_key_portal name _acme-dns.dd-ix.net. TXT;
           };
         '';
       };
@@ -85,7 +86,7 @@ in
     };
 
     extraOptions = ''
-      include ${config.sops.secrets.rfc2136_key.path};
+      include ${config.sops.secrets.rfc2136_key_portal.path};
     
       # this is hidden primary only, no recursive lookups allowed
       recursion no;
