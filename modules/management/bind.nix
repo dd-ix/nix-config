@@ -25,7 +25,7 @@ in
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  sops.secrets."rfc2136_key_portal" = {
+  sops.secrets."portal.dd-ix.net" = {
     sopsFile = self + "/secrets/management/rfc2136/bind.yaml";
     owner = bindUser;
   };
@@ -53,7 +53,7 @@ in
     enable = true;
 
     extraConfig = ''
-      include "${config.sops.secrets.rfc2136_key_portal.path}";
+      include "${config.sops.secrets."portal.dd-ix.net".path}";
     '';
 
     # cannot talk to root ns (firewall)
@@ -73,7 +73,7 @@ in
 
         extraConfig = ''
           update-policy {
-            grant rfc2136_key_portal name portal.acme-dns.dd-ix.net. TXT;
+            grant portal.dd-ix.net name portal.acme-dns.dd-ix.net. TXT;
           };
         '';
       };

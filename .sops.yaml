@@ -41,3 +41,14 @@ creation_rules:
         - *admin_marcel
         age:
         - *ns-mno001
+  - path_regex: secrets/management/rfc2136/portal.dd-ix.net.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        age:
+        - *portal-mno001
+ 
