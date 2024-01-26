@@ -36,9 +36,9 @@ in
     wantedBy = [ "bind.service" ];
     script = ''
       set -eu
-      if ! test -f /var/lib/bind/_acme-dns.dd-ix.net.zone; then
+      if ! test -f /var/lib/bind/acme-dns.dd-ix.net.zone; then
         mkdir -p /var/lib/bind/
-        cp ${self}/resources/_acme-dns.dd-ix.net.zone /var/lib/bind/_acme-dns.dd-ix.net.zone
+        cp ${self}/resources/acme-dns.dd-ix.net.zone /var/lib/bind/acme-dns.dd-ix.net.zone
       fi
       chown -R named:named /var/lib/bind
     '';
@@ -66,14 +66,14 @@ in
         slaves = ibh_ans_ip;
       };
 
-      "_acme-dns.dd-ix.net" = {
+      "acme-dns.dd-ix.net" = {
         master = true;
-        file = "/var/lib/bind/_acme-dns.dd-ix.net.zone";
+        file = "/var/lib/bind/acme-dns.dd-ix.net.zone";
         slaves = ibh_ans_ip;
 
         extraConfig = ''
           update-policy {
-            grant rfc2136_key_portal name portal._acme-dns.dd-ix.net. TXT;
+            grant rfc2136_key_portal name portal.acme-dns.dd-ix.net. TXT;
           };
         '';
       };
