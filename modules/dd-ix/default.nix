@@ -5,5 +5,6 @@
     ./general-options.nix
     ./dns.nix
     ./time.nix
+    ./acme.nix
   ];
 }

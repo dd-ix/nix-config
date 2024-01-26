@@ -101,6 +101,7 @@
           modules = [
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            sops-nix.nixosModules.default
             microvm.nixosModules.microvm
             ./hosts/svc-mta01
             ./modules/dd-ix

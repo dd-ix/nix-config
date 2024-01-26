@@ -3,7 +3,7 @@ let
   cfg = config.dd-ix.acme;
 in
 {
-  options = {
+  options.dd-ix.acme = {
     enable = lib.mkEnableOption (lib.mkDoc "Whether to enable dd-ix acme settings.");
 
     domain = lib.mkOption {
@@ -11,8 +11,8 @@ in
     };
   };
 
-  config = lib.mkif cfg.enable {
-    sops.secrets."rfc2136_${cfg.domain}_key" = {
+  config = lib.mkIf cfg.enable {
+    sops.secrets."rfc2136_${cfg.domain}" = {
       sopsFile = self + "/secrets/management/rfc2136/${cfg.domain}.yaml";
       owner = "root";
     };
@@ -23,7 +23,7 @@ in
 
       certs."${cfg.domain}" = {
         dnsProvider = "rfc2136";
-        credentialsFile = config.sops.secrets."rfc2136_${cfg.domain}_key".path;
+        credentialsFile = config.sops.secrets."rfc2136_${cfg.domain}".path;
       };
     };
   };
