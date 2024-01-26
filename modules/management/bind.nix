@@ -33,16 +33,19 @@ in
   systemd.services."bind-create-acme-zone" = {
     before = [ "bind.service" ];
     after = [ "network.target" ];
+    wantedBy = [ "bind.service" ];
     script = ''
       set -eu
       if ! test -f /var/lib/bind/_acme-dns.dd-ix.net.zone; then
         mkdir -p /var/lib/bind/
         cp ${self}/resources/_acme-dns.dd-ix.net.zone /var/lib/bind/_acme-dns.dd-ix.net.zone
       fi
+      chown -R named:named /var/lib/bind
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "named";
+      User = "root";
+      RemainAfterExit = true;
     };
   };
 
