@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024012801  ; Serial
+              2024012802  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -40,13 +40,13 @@ acme-dns  NS  ans-01.ibh.de.
 ;; Hosts
 svc-fw01      A     212.111.245.177
               AAAA  2a01:7700:80b0:6000::defa
-svc-hv01      AAAA  2a01:7700:80b0:7000::1
+svc-hv01      AAAA  2a01:7700:80b0:7000::2
 svc-rpx01     A     212.111.245.178
 svc-ns01      A     212.111.245.179
               AAAA  2a01:7700:80b0:6000::53
 svc-mta01     A     212.111.245.180
               AAAA  2a01:7700:80b0:6000::25
-svc-portal01  AAAA  2a01:7700:80b0:6001::1
+svc-portal01  AAAA  2a01:7700:80b0:6001::2
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
 
 ;; til rename is done
