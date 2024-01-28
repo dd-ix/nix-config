@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @    SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-        2024012801  ; Serial
+        2024012802  ; Serial
         7200        ; Refresh
         3600        ; Retry
         1209600     ; Expire
@@ -22,27 +22,27 @@ $TTL    1h         ; default TTL for zone
 ;a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.3
 
 ;; PTR IXP Internal Services
-a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  gw-v601.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  gw-v601.dd-ix.net.
 
 ;; PTR IXP EVPN Underlay
-;a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.5
+;1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.5
 
 ;; PTR SVC Internet Services
-a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  gw-v100.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  gw-v100.dd-ix.net.
 5.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  svc-mta01.dd-ix.net.
 3.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6  PTR  svc-ns01.dd-ix.net.
 
 ;; PTR SVC Public Services
-a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  gw-v101.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  gw-v101.dd-ix.net.
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  svc-portal01.dd-ix.net.
 
 ;; PTR SVC Management Services
-a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v102.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v102.dd-ix.net.
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  svc-hv01.dd-ix.net.
 1.0.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  sw-c2-svc1.dd-ix.net.
 
 ;; PTR SVC Lab Services
-a.f.e.d.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v103.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.7  PTR  gw-v103.dd-ix.net.
 2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.7  PTR  svc-clab01.dd-ix.net.
 
 ;; PTR SVC VPN
