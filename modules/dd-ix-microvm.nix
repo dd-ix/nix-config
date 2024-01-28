@@ -34,8 +34,8 @@ in
   config = lib.mkIf cfg.enable {
     microvm = {
       hypervisor = "cloud-hypervisor";
-      mem = 2048;
-      vcpu = 2;
+      vcpu = cfg.vcpu;
+      mem = cfg.mem;
 
       interfaces = [{
         type = "tap";
