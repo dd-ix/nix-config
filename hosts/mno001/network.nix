@@ -148,7 +148,7 @@ in
       "10-svc-management" = {
         matchConfig.Name = "svc-management";
         address = [ "2a01:7700:80b0:7000::1/64" ];
-        routes = [{ routeConfig.Gateway = "fe80::defa"; }];
+        routes = [{ routeConfig.Gateway = "fe80::1"; }];
       };
 
       "10-${bond_device_name}.103" = {
