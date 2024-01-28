@@ -73,6 +73,21 @@ in
         Name = "svc-management";
         Kind = "bridge";
       };
+
+      "20-${bond_device_name}.103" = {
+        netdevConfig = {
+          Name = "${bond_device_name}.103";
+          Kind = "vlan";
+        };
+        vlanConfig = {
+          Id = 103;
+        };
+      };
+
+      "20-svc-lab".netdevConfig = {
+        Name = "svc-lab";
+        Kind = "bridge";
+      };
     };
 
     networks = {
@@ -134,6 +149,16 @@ in
         matchConfig.Name = "svc-management";
         address = [ "2a01:7700:80b0:7000::1/64" ];
         routes = [{ routeConfig.Gateway = "fe80::defa"; }];
+      };
+
+      "10-${bond_device_name}.103" = {
+        matchConfig.Name = "${bond_device_name}.103";
+        networkConfig.Bridge = "svc-lab";
+      };
+
+      "30-microvm-svc-lab" = {
+        matchConfig.Name = "l-*";
+        networkConfig.Bridge = "svc-lab";
       };
 
       "40-bring-up-bridges" = {

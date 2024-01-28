@@ -17,7 +17,7 @@ in
       };
 
       vlan = lib.mkOption {
-        type = lib.types.str; #lib.types.oneOf [ "i" "s" ];
+        type = lib.types.str; #lib.types.oneOf [ "i" "s" "l" ];
       };
 
       v6Addr = lib.mkOption {
