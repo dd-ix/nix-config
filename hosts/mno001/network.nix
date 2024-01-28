@@ -94,7 +94,7 @@ in
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" ];
+        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
