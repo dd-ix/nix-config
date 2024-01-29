@@ -6,5 +6,6 @@
     ./dns.nix
     ./time.nix
     ./acme.nix
+    ./fpx.nix
   ];
 }

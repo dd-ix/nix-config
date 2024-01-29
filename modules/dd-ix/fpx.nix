@@ -5,7 +5,7 @@ in
 {
   options.dd-ix.fpx = lib.mkEnableOption (lib.mdDoc "dd-ix fpx");
 
-  config = lib.mkif cfg {
+  config = lib.mkIf cfg {
     networking.proxy.default = "http://svc-fpx01.dd-ix.net:8080";
   };
 }
