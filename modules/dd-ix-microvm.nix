@@ -87,7 +87,11 @@ in
           };
         }];
         routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
-          ++ (lib.optional (cfg.v4Addr != null) { to = "0.0.0.0/0"; dev = "eth0"; via = "212.111.245.177"; });
+          ++ (lib.optional (cfg.v4Addr != null) {
+          to = "0.0.0.0/0";
+          dev = "eth0";
+          via = if cfg.vlan == "s" then "10.96.1.1" else "212.111.245.177";
+        });
       };
     };
   };
