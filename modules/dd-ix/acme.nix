@@ -26,5 +26,10 @@ in
         credentialsFile = config.sops.secrets."rfc2136_${cfg.domain}".path;
       };
     };
+
+    systemd.services."acme-${cfg.domain}".environment = lib.mkIf config.dd-ix.useFpx {
+      http_proxy = config.networking.proxy.httpProxy;
+      https_proxy = config.networking.proxy.httpsProxy;
+    };
   };
 }
