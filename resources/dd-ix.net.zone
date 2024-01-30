@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024012901  ; Serial
+              2024013000  ; Serial
               7200        ; Refresh
               3600        ; Retry
               1209600     ; Expire
@@ -72,6 +72,9 @@ dcim           CNAME  svc-rpx01
 lists          CNAME  svc-rpx01
 vault          CNAME  svc-rpx01
 portal         CNAME  svc-rpx01
+
+;; ACME
+_acme-challenge.portal  CNAME  portal.acme-dns.dd-ix.net
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
