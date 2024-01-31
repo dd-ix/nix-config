@@ -3,33 +3,55 @@ let
   cfg = config.dd-ix.acme;
 in
 {
-  options.dd-ix.acme = {
-    enable = lib.mkEnableOption (lib.mkDoc "Whether to enable dd-ix acme settings.");
-
-    domain = lib.mkOption {
-      type = lib.types.str;
-    };
+  options.dd-ix.acme = lib.mkOption {
+    type = lib.types.listOf (lib.types.submodule {
+      options = {
+        name = lib.mkOption {
+          type = lib.types.str;
+        };
+        group = lib.mkOption {
+          type = lib.types.str;
+        };
+      };
+    });
+    default = [ ];
   };
 
-  config = lib.mkIf cfg.enable {
-    sops.secrets."rfc2136_${cfg.domain}" = {
-      sopsFile = self + "/secrets/management/rfc2136/${cfg.domain}.yaml";
-      owner = "root";
-    };
-
+  config = lib.mkIf ((lib.length cfg) != 0) {
     security.acme = {
       acceptTerms = true;
       defaults.email = "noc@dd-ix.net";
-
-      certs."${cfg.domain}" = {
-        dnsProvider = "rfc2136";
-        credentialsFile = config.sops.secrets."rfc2136_${cfg.domain}".path;
-      };
     };
 
-    systemd.services."acme-${cfg.domain}".environment = lib.mkIf config.dd-ix.useFpx {
-      http_proxy = config.networking.proxy.httpProxy;
-      https_proxy = config.networking.proxy.httpsProxy;
-    };
+    sops.secrets = lib.listToAttrs (map
+      (domain: {
+        name = "rfc2136_${domain.name}";
+        value = {
+          sopsFile = self + "/secrets/management/rfc2136/${domain.name}.yaml";
+          owner = "root";
+        };
+      })
+      cfg);
+
+    security.acme.certs = lib.listToAttrs (map
+      (domain: {
+        name = "${domain.name}";
+        value = {
+          dnsProvider = "rfc2136";
+          group = domain.group;
+          credentialsFile = config.sops.secrets."rfc2136_${domain.name}".path;
+        };
+      })
+      cfg);
+
+    systemd.services = lib.listToAttrs (map
+      (domain: {
+        name = "acme-${domain.name}";
+        value.environment = lib.mkIf config.dd-ix.useFpx {
+          http_proxy = config.networking.proxy.httpProxy;
+          https_proxy = config.networking.proxy.httpsProxy;
+        };
+      })
+      cfg);
   };
 }

@@ -28,8 +28,15 @@ in
       recommendedProxySettings = true;
       virtualHosts = {
         "orga.${config.deployment-dd-ix.domain}" = {
-          enableACME = true;
-          forceSSL = true;
+          listen = [{
+            addr = "[::]";
+            proxyProtocol = true;
+            ssl = true;
+          }];
+
+          onlySSL = true;
+          useACMEHost = "orga.${config.deployment-dd-ix.domain}";
+
           locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:${toString config.services.zammad.port}";

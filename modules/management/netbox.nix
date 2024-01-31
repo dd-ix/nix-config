@@ -50,19 +50,19 @@
     nginx = {
       enable = true;
       virtualHosts."dcim.${config.deployment-dd-ix.domain}" = {
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "dcim.${config.deployment-dd-ix.domain}";
+
         locations = {
           "/static/".alias = "${config.services.netbox.dataDir}/static/";
           "/".proxyPass = "http://127.0.0.1:9502";
         };
-        forceSSL = true;
-        enableACME = true;
-      };
-      virtualHosts."netbox.${config.deployment-dd-ix.domain}" = {
-        locations = {
-          "/".return = "301 https://dcim.${config.deployment-dd-ix.domain}$request_uri";
-        };
-        forceSSL = true;
-        enableACME = true;
       };
       user = "netbox";
     };

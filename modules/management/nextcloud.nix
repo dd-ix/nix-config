@@ -45,8 +45,14 @@ in
   };
 
   services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
-    forceSSL = true;
-    enableACME = true;
+    listen = [{
+      addr = "[::]";
+      proxyProtocol = true;
+      ssl = true;
+    }];
+
+    onlySSL = true;
+    useACMEHost = "cloud.${config.deployment-dd-ix.domain}";
   };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];

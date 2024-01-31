@@ -7,5 +7,6 @@
     ./time.nix
     ./acme.nix
     ./fpx.nix
+    ./rpx.nix
   ];
 }

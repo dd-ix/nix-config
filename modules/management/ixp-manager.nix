@@ -15,6 +15,18 @@
     hostname = "portal.dd-ix.net";
     #environmentFile = config.sops.secrets."env_file".path;
     createDatabaseLocally = true;
+
+    nginx = {
+      listen = [{
+        addr = "[::]";
+        proxyProtocol = true;
+        ssl = true;
+      }];
+
+      onlySSL = true;
+      useACMEHost = "portal.${config.deployment-dd-ix.domain}";
+    };
+
     init = {
       admin = {
         userName = "admin";

@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, lib, config, ... }:
 let
   bindUser = "named";
   # IBH authorative nameservers
@@ -21,14 +21,28 @@ let
     "2a01:4f9:c012:61fd::1"
   ];
 in
-{
-  networking.firewall.allowedTCPPorts = [ 53 ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
 
-  sops.secrets."portal.dd-ix.net" = {
-    sopsFile = self + "/secrets/management/rfc2136/bind.yaml";
-    owner = bindUser;
+let
+  systems = lib.attrValues self.nixosConfigurations;
+  acmeSystems = lib.filter (system: (lib.length system.config.dd-ix.acme) != 0) systems;
+  acmeDomains = lib.flatten (map (system: system.config.dd-ix.acme) acmeSystems);
+  domains = map (domain: domain.name) acmeDomains;
+in
+{
+  networking.firewall = {
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 ];
   };
+
+  sops.secrets = lib.listToAttrs (map
+    (domain: {
+      name = "rfc2136_${domain}";
+      value = {
+        sopsFile = self + "/secrets/management/rfc2136/bind.yaml";
+        owner = bindUser;
+      };
+    })
+    domains);
 
   systemd.services."bind-create-acme-zone" = {
     before = [ "bind.service" ];
@@ -52,9 +66,11 @@ in
   services.bind = {
     enable = true;
 
-    extraConfig = ''
-      include "${config.sops.secrets."portal.dd-ix.net".path}";
-    '';
+    extraConfig = lib.strings.concatStrings (map
+      (domain:
+        "include \"${config.sops.secrets."rfc2136_${domain}".path}\";"
+      )
+      domains);
 
     # cannot talk to root ns (firewall)
     forward = "only";
@@ -71,11 +87,19 @@ in
         file = "/var/lib/bind/acme-dns.dd-ix.net.zone";
         slaves = ibh_ans_ip;
 
-        extraConfig = ''
-          update-policy {
-            grant portal.dd-ix.net name portal.acme-dns.dd-ix.net. TXT;
-          };
-        '';
+        extraConfig =
+          let
+            grants = lib.strings.concatStrings (map
+              (domain:
+                "grant rfc2136_${domain} name ${lib.replaceStrings ["dd-ix.net"] ["acme-dns.dd-ix.net"] domain}. TXT;"
+              )
+              domains);
+          in
+          ''
+            update-policy {
+              ${grants}
+            };
+          '';
       };
 
       # ipv4 pa

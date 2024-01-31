@@ -1,19 +1,33 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
 
   sops.secrets.listmonk_admin.owner = config.dd-ix.foundation.user;
   services.nginx = {
     enable = true;
     virtualHosts = {
       "www.${config.deployment-dd-ix.domain}" = {
-        enableACME = true;
-        forceSSL = true;
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "www.${config.deployment-dd-ix.domain}";
+
         locations = {
           "/".return = "301 https://${config.deployment-dd-ix.domain}$request_uri";
         };
       };
       "${config.deployment-dd-ix.domain}" = {
-        enableACME = true;
-        forceSSL = true;
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = config.deployment-dd-ix.domain;
+
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:4000/";
@@ -21,8 +35,15 @@
         };
       };
       "content.${config.deployment-dd-ix.domain}" = {
-        enableACME = true;
-        forceSSL = true;
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "content.${config.deployment-dd-ix.domain}";
+
         locations = {
           "/" = {
             proxyPass = "http://${config.dd-ix.foundation.http.host}:${toString config.dd-ix.foundation.http.port}/";
