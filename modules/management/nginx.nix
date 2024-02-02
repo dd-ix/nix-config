@@ -19,6 +19,10 @@ let
 
     # STS
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # real ip
+    set_real_ip_from 2a01:7700:80b0:6000::443;
+    real_ip_header proxy_protocol;
   '';
 in
 {
