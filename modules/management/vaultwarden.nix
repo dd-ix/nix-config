@@ -44,14 +44,15 @@
       recommendedGzipSettings = true;
 
       virtualHosts."vault.${config.deployment-dd-ix.domain}" = {
-        http2 = true;
-        forceSSL = true;
-        enableACME = true;
-        #root = "/srv/www/vault.lissner.net";
-        extraConfig = ''
-          client_max_body_size 64M;
-          # if ($deny) { return 503; }
-        '';
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "vault.${config.deployment-dd-ix.domain}";
+
         locations = {
           "/notifications/hub/negotiate" = {
             proxyPass = "http://127.0.0.1:8222";
@@ -63,13 +64,6 @@
           };
           "/".proxyPass = "http://127.0.0.1:8222";
         };
-      };
-      virtualHosts."vaultwarden.${config.deployment-dd-ix.domain}" = {
-        locations = {
-          "/".return = "301 https://vault.${config.deployment-dd-ix.domain}$request_uri";
-        };
-        forceSSL = true;
-        enableACME = true;
       };
     };
   };

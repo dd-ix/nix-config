@@ -61,6 +61,15 @@ in
     nginx = {
       enable = true;
       virtualHosts."lists.${config.deployment-dd-ix.domain}" = {
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "lists.${config.deployment-dd-ix.domain}";
+
         locations =
           let
             cfg = config.services.listmonk.settings;
@@ -68,8 +77,6 @@ in
           {
             "/".proxyPass = "http://${cfg.app.address}";
           };
-        forceSSL = true;
-        enableACME = true;
       };
     };
   };

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, pkgs, ... }: {
   sops.secrets.bookstack_appkey.owner = config.services.bookstack.user;
   sops.secrets.postgres_bookstack.owner = config.services.bookstack.user;
   sops.secrets.bookstack_oidc_secret.owner = config.services.bookstack.user;
@@ -16,8 +16,14 @@
       };
 
       nginx = {
-        enableACME = true;
-        forceSSL = true;
+        listen = [{
+          addr = "[::]";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "wiki.${config.deployment-dd-ix.domain}";
       };
 
       # Bookstack requires mariadb or mysql :<

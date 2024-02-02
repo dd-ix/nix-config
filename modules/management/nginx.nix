@@ -24,8 +24,6 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "admin@dd-ix.net";
   services.nginx = {
     recommendedTlsSettings = true;
     recommendedOptimisation = true;

@@ -1,4 +1,7 @@
 { ... }:
+let
+  addr = "2a01:7700:80b0:6001::2";
+in
 {
   dd-ix = {
     useFpx = true;
@@ -13,12 +16,17 @@
       mac = "e2:b4:cb:12:f4:c1";
       vlan = "s";
 
-      v6Addr = "2a01:7700:80b0:6001::2/64";
+      v6Addr = "${addr}/64";
     };
 
-    acme = {
-      enable = true;
-      domain = "portal.dd-ix.net";
+    acme = [{
+      name = "portal.dd-ix.net";
+      group = "nginx";
+    }];
+
+    rpx = {
+      domains = [ "portal.dd-ix.net" ];
+      addr = "[${addr}]:443";
     };
   };
 

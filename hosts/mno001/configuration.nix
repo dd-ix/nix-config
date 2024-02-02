@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ self, pkgs, ... }:
 
 {
   imports = [
@@ -6,6 +6,35 @@
     ./network.nix
     ./initrd_network.nix
   ];
+
+  dd-ix =
+    let
+      domains = [
+        "dd-ix.net"
+        "www.dd-ix.net"
+        "content.dd-ix.net"
+        "keycloak.auth.dd-ix.net"
+        "cloud.dd-ix.net"
+        "wiki.dd-ix.net"
+        "dcim.dd-ix.net"
+        "lists.dd-ix.net"
+        "vault.dd-ix.net"
+        "orga.dd-ix.net"
+      ];
+    in
+    {
+      rpx = {
+        inherit domains;
+        addr = "[2a01:7700:80b0:7000::2]:443";
+      };
+
+      acme = map
+        (domain: {
+          name = domain;
+          group = "nginx";
+        })
+        domains;
+    };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

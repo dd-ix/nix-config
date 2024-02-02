@@ -51,8 +51,15 @@ in
       recommendedProxySettings = true;
       virtualHosts = {
         "keycloak.auth.${config.deployment-dd-ix.domain}" = {
-          enableACME = true;
-          forceSSL = true;
+          listen = [{
+            addr = "[::]";
+            proxyProtocol = true;
+            ssl = true;
+          }];
+
+          onlySSL = true;
+          useACMEHost = "keycloak.auth.${config.deployment-dd-ix.domain}";
+
           locations = {
             "= /" = {
               return = "302 https://keycloak.auth.${config.deployment-dd-ix.domain}/realms/DD-IX/account/";
@@ -60,16 +67,6 @@ in
             "/" = {
               proxyPass = "http://127.0.0.1:${toString config.services.keycloak.settings.http-port}";
               proxyWebsockets = true;
-            };
-          };
-        };
-
-        "keycloak.${config.deployment-dd-ix.domain}" = {
-          enableACME = true;
-          forceSSL = true;
-          locations = {
-            "/" = {
-              return = "302 https://keycloak.auth.${config.deployment-dd-ix.domain}$request_uri";
             };
           };
         };

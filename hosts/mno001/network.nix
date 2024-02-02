@@ -116,15 +116,6 @@ in
         networkConfig.Bridge = "svc-internet";
       };
 
-      "10-svc-internet" = {
-        matchConfig.Name = "svc-internet";
-
-        address = [ "212.111.245.178/29" ];
-        routes = [
-          { routeConfig.Gateway = "212.111.245.177"; }
-        ];
-      };
-
       "30-microvm-svc-internet" = {
         matchConfig.Name = "i-*";
         networkConfig.Bridge = "svc-internet";
