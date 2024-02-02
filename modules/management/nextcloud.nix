@@ -46,7 +46,7 @@ in
 
   services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
     listen = [{
-      addr = "[::]";
+      addr = "[::]:443";
       proxyProtocol = true;
       ssl = true;
     }];

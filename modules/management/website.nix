@@ -6,7 +6,7 @@
     virtualHosts = {
       "www.${config.deployment-dd-ix.domain}" = {
         listen = [{
-          addr = "[::]";
+          addr = "[::]:443";
           proxyProtocol = true;
           ssl = true;
         }];
@@ -20,7 +20,7 @@
       };
       "${config.deployment-dd-ix.domain}" = {
         listen = [{
-          addr = "[::]";
+          addr = "[::]:443";
           proxyProtocol = true;
           ssl = true;
         }];
@@ -36,7 +36,7 @@
       };
       "content.${config.deployment-dd-ix.domain}" = {
         listen = [{
-          addr = "[::]";
+          addr = "[::]:443";
           proxyProtocol = true;
           ssl = true;
         }];

@@ -23,6 +23,8 @@
       ];
     in
     {
+      useFpx = true;
+
       rpx = {
         inherit domains;
         addr = "[2a01:7700:80b0:7000::2]:443";
@@ -35,6 +37,8 @@
         })
         domains;
     };
+
+  networking.firewall.allowedTCPPorts = [ 443 ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

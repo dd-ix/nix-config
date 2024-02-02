@@ -62,7 +62,7 @@ in
       enable = true;
       virtualHosts."lists.${config.deployment-dd-ix.domain}" = {
         listen = [{
-          addr = "[::]";
+          addr = "[::]:443";
           proxyProtocol = true;
           ssl = true;
         }];

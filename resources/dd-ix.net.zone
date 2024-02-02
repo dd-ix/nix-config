@@ -3,28 +3,29 @@
 
 $TTL    1h         ; default TTL for zone
 
-@        SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-              2024013100  ; Serial
-              7200        ; Refresh
-              3600        ; Retry
-              1209600     ; Expire
-              3600 )      ; Negative response caching TTL
+@        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
+               2024020202  ; Serial
+               7200        ; Refresh
+               3600        ; Retry
+               1209600     ; Expire
+               3600 )      ; Negative response caching TTL
 
-         NS   ans-01.ibh.de.
-         NS   ans-02.ibh.net.
-         NS   ans-03.ibh.de.
-         NS   ans-04.ibh.services.
-         NS   ans-05.ibh.net.
+         NS    ans-01.ibh.de.
+         NS    ans-02.ibh.net.
+         NS    ans-03.ibh.de.
+         NS    ans-04.ibh.services.
+         NS    ans-05.ibh.net.
 
-         A    212.111.245.178
+         A     212.111.245.178
+         AAAA  2a01:7700:80b0:6000::443
 
          CAA  0 issue "letsencrypt.org"
          CAA  0 issuewild "letsencrypt.org"
          CAA  0 iodef "mailto:noc@dd-ix.net"
 
-         TXT  "v=spf1 include:spf.migadu.com -all"
-         TXT  "hosted-email-verify=ddocclet"
-         TXT  "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
+         TXT   "v=spf1 include:spf.migadu.com -all"
+         TXT   "hosted-email-verify=ddocclet"
+         TXT   "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
          MX  20  aspmx2.migadu.com.
          MX  10  aspmx1.migadu.com.
@@ -43,6 +44,7 @@ svc-fw01      A     212.111.245.177
 svc-hv01      AAAA  2a01:7700:80b0:7000::2
 svc-rpx01     A     212.111.245.178
               AAAA  2a01:7700:80b0:6000::443
+              TXT   "v=spf1 a:mta.dd-ix.net -all"
 svc-ns01      A     212.111.245.179
               AAAA  2a01:7700:80b0:6000::53
 svc-mta01     A     212.111.245.180
@@ -57,7 +59,6 @@ mno01   CNAME svc-hv01
 
 
 ;; Services
-rpx  TXT    "v=spf1 a:mta.dd-ix.net -all"
 rpx  CNAME  svc-rpx01
 ns   CNAME  svc-ns01
 mta  CNAME  svc-mta01
@@ -76,7 +77,16 @@ portal         CNAME  rpx
 orga           CNAME  rpx
 
 ;; ACME
-_acme-challenge.portal  CNAME  portal.acme-dns
+_acme-challenge.www            CNAME  www.acme-dns
+_acme-challenge.content        CNAME  content.acme-dns
+_acme-challenge.keycloak.auth  CNAME  keycloak.auth.acme-dns
+_acme-challenge.cloud          CNAME  cloud.acme-dns
+_acme-challenge.wiki           CNAME  wiki.acme-dns
+_acme-challenge.dcim           CNAME  dcim.acme-dns
+_acme-challenge.lists          CNAME  lists.acme-dns
+_acme-challenge.vault          CNAME  vault.acme-dns
+_acme-challenge.portal         CNAME  portal.acme-dns
+_acme-challenge.orga           CNAME  orga.acme-dns
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1

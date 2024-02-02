@@ -14,6 +14,8 @@
     v4Addr = "212.111.245.178/29";
   };
 
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
   services.nginx = {
     enable = true;
 
@@ -29,7 +31,7 @@
       in
       ''
         map $ssl_preread_server_name $targetBackend {
-          ${lib.strings.concatStrings mappings}
+          ${lib.strings.concatStringsSep "\n" mappings}
         }
 
         server {

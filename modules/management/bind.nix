@@ -66,7 +66,7 @@ in
   services.bind = {
     enable = true;
 
-    extraConfig = lib.strings.concatStrings (map
+    extraConfig = lib.strings.concatStringsSep "\n" (map
       (domain:
         "include \"${config.sops.secrets."rfc2136_${domain}".path}\";"
       )
@@ -89,7 +89,7 @@ in
 
         extraConfig =
           let
-            grants = lib.strings.concatStrings (map
+            grants = lib.strings.concatStringsSep "\n" (map
               (domain:
                 "grant rfc2136_${domain} name ${lib.replaceStrings ["dd-ix.net"] ["acme-dns.dd-ix.net"] domain}. TXT;"
               )
