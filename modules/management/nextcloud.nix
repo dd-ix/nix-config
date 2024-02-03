@@ -32,6 +32,17 @@ in
     };
     extraOptions = {
       allow_local_remote_servers = true;
+      hide_login_form = true;
+      mail_domain = "cloud.dd-ix.net";
+      mail_from_address = "noreply";
+      mail_smtpmode = "smtp";
+      mail_smtphost = "mta.dd-ix.net";
+      mail_smtpport = 25;
+      mail_smtpsecure = ""; # ssl
+      updatechecker = false;
+      has_internet_connection = false;
+      defaultapp = "files";
+      appstoreenabled = false;
     };
     phpOptions = {
       "opcache.jit" = "tracing";
