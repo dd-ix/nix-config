@@ -39,6 +39,7 @@ $TTL    1h         ; default TTL for zone
 3.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  svc-fpx01.dd-ix.net.
 4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  svc-auth01.dd-ix.net.
 5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  svc-pg01.dd-ix.net.
+6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.6  PTR  svc-cloud01.dd-ix.net.
 
 ;; PTR SVC Management Services
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.7  PTR  gw-v102.dd-ix.net.

@@ -1,20 +1,15 @@
-{ config, pkgs, options, ... }:
+{ self, config, pkgs, ... }:
 let
   domain = "cloud.${config.deployment-dd-ix.domain}";
 in
 {
-  sops.secrets.nextcloud_db_pass.owner = "nextcloud";
-  sops.secrets.nextcloud_admin_pass.owner = "nextcloud";
-
-  services.postgresql = {
-    enable = true;
-    ensureUsers = [
-      {
-        name = "nextcloud";
-        ensureDBOwnership = true;
-      }
-    ];
-    ensureDatabases = [ "nextcloud" ];
+  sops.secrets."cloud_admin_pw" = {
+    sopsFile = self + "/secrets/management/cloud.yaml";
+    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+  };
+  sops.secrets."cloud_db_pw" = {
+    sopsFile = self + "/secrets/management/cloud.yaml";
+    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
   };
 
   services.nextcloud = {
@@ -26,11 +21,11 @@ in
     config = {
       dbtype = "pgsql";
       dbname = "nextcloud";
-      dbhost = "/run/postgresql";
-      dbpassFile = "${config.sops.secrets.nextcloud_db_pass.path}";
+      dbhost = "svc-pg01.dd-ix.net";
+      dbpassFile = "${config.sops.secrets."cloud_db_pw".path}";
       overwriteProtocol = "https";
       adminuser = "admin";
-      adminpassFile = "${config.sops.secrets.nextcloud_admin_pass.path}";
+      adminpassFile = "${config.sops.secrets."cloud_admin_pw".path}";
     };
     extraOptions = {
       allow_local_remote_servers = true;
@@ -40,6 +35,9 @@ in
       "opcache.jit_buffer_size" = "100M";
       # recommended by nextcloud admin overview
       "opcache.interned_strings_buffer" = "16";
+    };
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc;
     };
     extraAppsEnable = true;
   };
@@ -54,6 +52,4 @@ in
     onlySSL = true;
     useACMEHost = "cloud.${config.deployment-dd-ix.domain}";
   };
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

@@ -14,7 +14,6 @@
         "www.dd-ix.net"
         "content.dd-ix.net"
         "keycloak.auth.dd-ix.net"
-        "cloud.dd-ix.net"
         "wiki.dd-ix.net"
         "dcim.dd-ix.net"
         "lists.dd-ix.net"

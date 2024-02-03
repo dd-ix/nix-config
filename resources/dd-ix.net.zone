@@ -54,6 +54,7 @@ svc-fpx01     AAAA  2a01:7700:80b0:6001::3
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
 svc-auth01    AAAA  2a01:7700:80b0:6001::4
 svc-pg01      AAAA  2a01:7700:80b0:6001::5
+svc-cloud01      AAAA  2a01:7700:80b0:6001::6
 
 ;; til rename is done
 mno001  CNAME svc-hv01
