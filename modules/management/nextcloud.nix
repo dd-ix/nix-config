@@ -7,10 +7,13 @@ in
     sopsFile = self + "/secrets/management/cloud.yaml";
     owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
   };
+
   sops.secrets."cloud_db_pw" = {
     sopsFile = self + "/secrets/management/cloud.yaml";
     owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
   };
+
+  systemd.services.nextcloud-setup.after = [ "network.target" ];
 
   services.nextcloud = {
     enable = true;
