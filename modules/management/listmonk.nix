@@ -7,8 +7,8 @@ let
   '';
 in
 {
-  sops.secrets.listmonk.owner = "netbox";
-  sops.secrets.listmonk_bounce_migadu.owner = "netbox";
+  sops.secrets.listmonk.owner = "nginx";
+  sops.secrets.listmonk_bounce_migadu.owner = "nginx";
   sops.secrets.listmonk_postgresql.owner = "postgres";
   systemd.services.listmonk = {
     preStart = ''
