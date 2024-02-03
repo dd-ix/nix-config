@@ -13,7 +13,7 @@ let
     else base.withPackages (_: cfg.extraPlugins);
 
   startPostgres = pkgs.writeShellScript "postgres.sh" ''
-    ${postgresql}/bin/postgres \
+    exec ${postgresql}/bin/postgres \
       -c ssl_cert_file=''${CREDENTIALS_DIRECTORY}/fullchain.pem \
       -c ssl_key_file=''${CREDENTIALS_DIRECTORY}/key.pem
   '';
