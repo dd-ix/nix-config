@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020301  ; Serial
+               2024020302  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -56,6 +56,7 @@ svc-auth01    AAAA  2a01:7700:80b0:6001::4
 svc-pg01      AAAA  2a01:7700:80b0:6001::5
 svc-cloud01   AAAA  2a01:7700:80b0:6001::6
 svc-dcim01    AAAA  2a01:7700:80b0:6001::7
+svc-lists01   AAAA  2a01:7700:80b0:6001::8
 
 ;; til rename is done
 mno001  CNAME svc-hv01
@@ -82,6 +83,7 @@ orga           CNAME  rpx
 auth           CNAME  rpx
 
 ;; ACME
+_acme-challenge                CNAME  acme-dns
 _acme-challenge.www            CNAME  www.acme-dns
 _acme-challenge.content        CNAME  content.acme-dns
 _acme-challenge.keycloak.auth  CNAME  keycloak.auth.acme-dns

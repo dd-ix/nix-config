@@ -1,27 +1,33 @@
-{ config, pkgs, ... }:
+{ self, config, pkgs, ... }:
 let
   updateBounceSettings = pkgs.writeShellScriptBin "update-database-config.sh" ''
-    ${pkgs.postgresql}/bin/psql \
-      -d listmonk \
-      -c "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
+    export PGPASSWORD=''${LISTMONK_db__password}
+      ${pkgs.postgresql}/bin/psql \
+    --host svc-pg01.dd-ix.net \
+    --user listmonk \
+    -d listmonk \
+    -c "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
   '';
 in
 {
-  sops.secrets.listmonk.owner = "nginx";
-  sops.secrets.listmonk_bounce_migadu.owner = "nginx";
-  sops.secrets.listmonk_postgresql.owner = "postgres";
+  sops.secrets."lists_env" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+  };
+
+  sops.secrets."lists_bounce_migadu" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+  };
+
   systemd.services.listmonk = {
     preStart = ''
       ${pkgs.listmonk}/bin/listmonk --config /nix/store/cjcm9lx15lsqd47ij75gnq4fiwqf4wda-listmonk.toml --idempotent --upgrade --yes
     '';
     serviceConfig = {
       ExecStartPre = [ "${updateBounceSettings}/bin/update-database-config.sh" ];
-      LoadCredential = "migadu_bounce:${config.sops.secrets.listmonk_bounce_migadu.path}";
+      LoadCredential = "migadu_bounce:${config.sops.secrets."lists_bounce_migadu".path}";
     };
   };
   services = {
-    postgresql.ensureUsers = [{ name = "listmonk"; ensurePasswordFile = config.sops.secrets.listmonk_postgresql.path; }];
-
     listmonk = {
       enable = true;
       settings = {
@@ -29,29 +35,34 @@ in
           address = "127.0.0.1:9820";
           admin_username = "admin";
         };
+        db = {
+          host = "svc-pg01.dd-ix.net";
+          port = 5432;
+          user = "listmonk";
+          database = "listmonk";
+          ssl_mode = "verify-full";
+        };
       };
-      secretFile = config.sops.secrets.listmonk.path;
+      secretFile = config.sops.secrets."lists_env".path;
       database = {
-        createLocally = true;
+        createLocally = false;
         mutableSettings = false;
         settings = {
-          smtp = [
-            {
-              enabled = true;
-              host = "mta.dd-ix.net";
-              port = 25;
-              uuid = "3c860444-42f3-425a-8ce7-36aebb7add95";
-              tls_type = "none";
-              username = "";
-              idle_timeout = "15s";
-              wait_timeout = "5s";
-              auth_protocol = "none";
-              email_headers = [ ];
-              hello_hostname = "";
-              max_msg_retries = 2;
-              tls_skip_verify = false;
-            }
-          ];
+          smtp = [{
+            enabled = true;
+            host = "mta.dd-ix.net";
+            port = 25;
+            uuid = "3c860444-42f3-425a-8ce7-36aebb7add95";
+            tls_type = "none";
+            username = "";
+            idle_timeout = "15s";
+            wait_timeout = "5s";
+            auth_protocol = "none";
+            email_headers = [ ];
+            hello_hostname = "";
+            max_msg_retries = 2;
+            tls_skip_verify = false;
+          }];
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
           "app.notify_emails" = [ "admin@dd-ix.net" ];
         };

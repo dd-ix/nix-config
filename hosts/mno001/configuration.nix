@@ -15,7 +15,6 @@
         "content.dd-ix.net"
         "keycloak.auth.dd-ix.net"
         "wiki.dd-ix.net"
-        "lists.dd-ix.net"
         "vault.dd-ix.net"
         "orga.dd-ix.net"
       ];

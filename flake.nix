@@ -221,6 +221,19 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        svc-lists01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            ./hosts/svc-lists01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
       };
   };
 }

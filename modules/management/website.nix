@@ -64,9 +64,9 @@
         port = 9123;
       };
       listmonk = {
-        host = "http://127.0.0.1";
-        port = 9820;
-        user = config.services.listmonk.settings.app.admin_username;
+        host = "https://lists.dd-ix.net";
+        port = 443;
+        user = "admin";
         passwordFile = config.sops.secrets.listmonk_admin.path;
         allowed_lists = [ 9 ];
       };

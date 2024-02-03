@@ -12,6 +12,7 @@ keys:
   - &svc-pg01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
   - &svc-cloud01 age1swpyhunuhrmz0z6vpvhhk6asseggcmu696qr05hhmq02njjcna6s4dp4am
   - &svc-dcim01 age19eew0cu2pwzvdcl08ghftwy928fpvk50txxn8fswrhh52m2k4d7qpl72ka
+  - &svc-lists01 age1ulpjjd62lnmm3zrvmgm2vjfdjxmgyhzucpvrga2868a3y5uhuq7q5cdgw5
 creation_rules:
   - path_regex: secrets/management/secrets.yaml
     key_groups:
@@ -103,3 +104,13 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-dcim01
+  - path_regex: secrets/management/(rfc2136/lists.dd-ix.net|lists).yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        age:
+        - *svc-lists01
