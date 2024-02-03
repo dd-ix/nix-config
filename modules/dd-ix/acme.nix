@@ -11,6 +11,7 @@ in
         };
         group = lib.mkOption {
           type = lib.types.str;
+          default = config.security.acme.defaults.group;
         };
       };
     });

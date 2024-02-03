@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020202  ; Serial
+               2024020204  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -52,6 +52,8 @@ svc-mta01     A     212.111.245.180
 svc-portal01  AAAA  2a01:7700:80b0:6001::2
 svc-fpx01     AAAA  2a01:7700:80b0:6001::3
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
+svc-auth01    AAAA  2a01:7700:80b0:6001::4
+svc-pg01      AAAA  2a01:7700:80b0:6001::5
 
 ;; til rename is done
 mno001  CNAME svc-hv01
@@ -75,6 +77,7 @@ lists          CNAME  rpx
 vault          CNAME  rpx
 portal         CNAME  rpx
 orga           CNAME  rpx
+auth           CNAME  rpx
 
 ;; ACME
 _acme-challenge.www            CNAME  www.acme-dns
@@ -87,6 +90,8 @@ _acme-challenge.lists          CNAME  lists.acme-dns
 _acme-challenge.vault          CNAME  vault.acme-dns
 _acme-challenge.portal         CNAME  portal.acme-dns
 _acme-challenge.orga           CNAME  orga.acme-dns
+_acme-challenge.auth           CNAME  auth.acme-dns
+_acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1

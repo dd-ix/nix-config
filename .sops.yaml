@@ -5,11 +5,11 @@ keys:
   - &admin_adb 6F9E5DCB111D958035A7B0084653A66E940BBA1A
   - &admin_marcel 46D4682470DBE26790DF9433446F3B093DF81C6A
 
-  # test key
-  - &test age1925katzy5gws3f9hnvnlwspu6trxf488arwt6ayw3urg2mgumqhszxnmqh
-  - &mno001 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
-  - &ns-mno001 age19nann8gw4mnmnjzq0ztg0vsjsf8kafehhygqpccww5yqjnmdqgmqyp3nm4
-  - &portal-mno001 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
+  - &svc-hv01 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
+  - &svc-ns01 age19nann8gw4mnmnjzq0ztg0vsjsf8kafehhygqpccww5yqjnmdqgmqyp3nm4
+  - &svc-portal01 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
+  - &svc-auth01 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
+  - &svc-pg01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
 creation_rules:
   - path_regex: secrets/management/secrets.yaml
     key_groups:
@@ -20,7 +20,7 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *mno001
+        - *svc-hv01
   - path_regex: secrets/management/portal.yaml
     key_groups:
       - pgp:
@@ -30,7 +30,7 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *portal-mno001
+        - *svc-portal01
   - path_regex: secrets/management/rfc2136/bind.yaml
     key_groups:
       - pgp:
@@ -40,7 +40,7 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *ns-mno001
+        - *svc-ns01
   - path_regex: secrets/management/rfc2136/((www|content|keycloak.auth|cloud|wiki|dcim|lists|vault|orga).)?dd-ix.net.yaml
     key_groups:
       - pgp:
@@ -50,7 +50,7 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *mno001
+        - *svc-hv01
   - path_regex: secrets/management/rfc2136/portal.dd-ix.net.yaml
     key_groups:
       - pgp:
@@ -60,5 +60,25 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *portal-mno001
+        - *svc-portal01
+  - path_regex: secrets/management/rfc2136/auth.dd-ix.net.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        age:
+        - *svc-auth01
+  - path_regex: secrets/management/rfc2136/svc-pg01.dd-ix.net.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        age:
+        - *svc-pg01
  

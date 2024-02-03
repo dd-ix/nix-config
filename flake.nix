@@ -44,9 +44,15 @@
       url = "github:dd-ix/ixp-manager.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    authentik = {
+      url = "github:nix-community/authentik-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-23-05.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager, authentik }: {
     nixosConfigurations =
       let
         overlays = [
@@ -158,6 +164,33 @@
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-rpx01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        svc-auth01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            authentik.nixosModules.default
+            ./hosts/svc-auth01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        svc-pg01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            ./hosts/svc-pg01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
