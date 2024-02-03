@@ -28,6 +28,8 @@ in
       domains = [ "auth.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
+
+    postgres = [ "authentik" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 443 ];

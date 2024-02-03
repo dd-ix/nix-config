@@ -8,5 +8,6 @@
     ./acme.nix
     ./fpx.nix
     ./rpx.nix
+    ./postgres.nix
   ];
 }

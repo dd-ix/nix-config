@@ -71,7 +71,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-auth01
-  - path_regex: secrets/management/rfc2136/svc-pg01.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/svc-pg01.dd-ix.net|postgres/postgres).yaml
     key_groups:
       - pgp:
         - *admin_tassilo
