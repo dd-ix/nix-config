@@ -30,7 +30,7 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 443 ];
 
   system.stateVersion = "23.11";
 }
