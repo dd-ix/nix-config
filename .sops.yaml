@@ -10,7 +10,7 @@ keys:
   - &svc-portal01 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
   - &svc-auth01 age12vlqwh94qv2dnz89zuc4q0dw5clpjxyxa2tetvyuvq7rt7mpg3nq5gmjtq
   - &svc-pg01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
-  - &svc-cloud01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
+  - &svc-cloud01 age1swpyhunuhrmz0z6vpvhhk6asseggcmu696qr05hhmq02njjcna6s4dp4am
 creation_rules:
   - path_regex: secrets/management/secrets.yaml
     key_groups:

@@ -193,8 +193,9 @@
             ./hosts/svc-pg01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
-          ];};
-         svc-cloud01 = nixpkgs.lib.nixosSystem {
+          ];
+        };
+        svc-cloud01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
@@ -206,7 +207,7 @@
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
-   };    
-         };
+        };
+      };
   };
 }
