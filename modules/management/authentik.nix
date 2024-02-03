@@ -12,19 +12,22 @@ in
     "${hostname}.key:${config.security.acme.certs."${hostname}".directory}/key.pem"
   ];
 
-  services.nginx.virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
-    listen = [{
-      addr = "[::]:443";
-      proxyProtocol = true;
-      ssl = true;
-    }];
+  services.nginx = {
+    enable = true;
+    virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
+      listen = [{
+        addr = "[::]:443";
+        proxyProtocol = true;
+        ssl = true;
+      }];
 
-    onlySSL = true;
-    useACMEHost = hostname;
+      onlySSL = true;
+      useACMEHost = hostname;
 
-    locations."/" = {
-      proxyWebsockets = true;
-      proxyPass = "https://[::1]:900";
+      locations."/" = {
+        proxyWebsockets = true;
+        proxyPass = "https://[::1]:900";
+      };
     };
   };
 
