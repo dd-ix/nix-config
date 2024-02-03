@@ -26,7 +26,7 @@ in
 
       locations."/" = {
         proxyWebsockets = true;
-        proxyPass = "https://[::1]:900";
+        proxyPass = "http://[::1]:9000";
       };
     };
   };
