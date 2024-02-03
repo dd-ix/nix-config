@@ -9,5 +9,6 @@
     ./fpx.nix
     ./rpx.nix
     ./postgres.nix
+    ./nginx.nix
   ];
 }

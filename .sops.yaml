@@ -61,7 +61,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-portal01
-  - path_regex: secrets/management/rfc2136/auth.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/auth.dd-ix.net|auth).yaml
     key_groups:
       - pgp:
         - *admin_tassilo

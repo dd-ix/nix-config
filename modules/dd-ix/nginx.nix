@@ -1,4 +1,5 @@
 { ... }:
+
 let
   headers = ''
     # Permissions Policy - gps only
@@ -11,11 +12,11 @@ let
     # add_header X-Frame-Options DENY;
 
     # Prevent injection of code in other mime types (XSS Attacks)
-    # add_header X-Content-Type-Options nosniff;
+    add_header X-Content-Type-Options nosniff;
 
     # Enable XSS protection of the browser.
     # May be unnecessary when CSP is configured properly (see above)
-    # add_header X-XSS-Protection "1; mode=block";
+    add_header X-XSS-Protection "1; mode=block";
 
     # STS
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
@@ -27,11 +28,13 @@ let
 in
 {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-
   services.nginx = {
+    recommendedZstdSettings = true;
     recommendedTlsSettings = true;
+    recommendedProxySettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
+    recommendedBrotliSettings = true;
     commonHttpConfig = headers;
   };
 }
