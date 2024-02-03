@@ -28,7 +28,7 @@ in
   };
 
   systemd.services.postgresql.serviceConfig = {
-    ExecStart = lib.mkForce "${startPostgres}/bin/postgres.sh";
+    ExecStart = lib.mkForce startPostgres;
     LoadCredential = [
       "fullchain.pem:${config.security.acme.certs."svc-pg01.dd-ix.net".directory}/fullchain.pem"
       "key.pem:${config.security.acme.certs."svc-pg01.dd-ix.net".directory}/key.pem"
