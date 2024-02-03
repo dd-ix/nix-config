@@ -34,7 +34,7 @@ in
   services.authentik = {
     enable = true;
 
-    environmentFile = "/run/secrets/authentik/authentik-env";
+    environmentFile = config.sops.secrets."authentik_env".path;
 
     createDatabase = false;
 
