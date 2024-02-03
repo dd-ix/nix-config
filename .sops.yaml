@@ -44,7 +44,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-ns01
-  - path_regex: secrets/management/rfc2136/((www|content|wiki|lists|vault|orga).)?dd-ix.net.yaml
+  - path_regex: secrets/management/rfc2136/((www|content|wiki|vault|orga).)?dd-ix.net.yaml
     key_groups:
       - pgp:
         - *admin_tassilo

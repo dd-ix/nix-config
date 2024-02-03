@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ self, lib, config, pkgs, ... }:
 let
   updateBounceSettings = pkgs.writeShellScriptBin "update-database-config.sh" ''
     export PGPASSWORD=''${LISTMONK_db__password}
@@ -35,8 +35,8 @@ in
           address = "127.0.0.1:9820";
           admin_username = "admin";
         };
-        db = {
-          host = "svc-pg01.dd-ix.net";
+        "db" = {
+          host = lib.mkForce "svc-pg01.dd-ix.net";
           port = 5432;
           user = "listmonk";
           database = "listmonk";
