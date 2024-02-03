@@ -62,4 +62,9 @@ in
       "key.pem:${config.security.acme.certs."svc-pg01.dd-ix.net".directory}/key.pem"
     ];
   };
+
+  services.postgresqlBackup = {
+    enable = true;
+    databases = users;
+  };
 }
