@@ -68,7 +68,12 @@ in
         createLocally = false;
         mutableSettings = false;
         settings = {
-          smtp = [{
+            "app.site_name" = "DD-IX Maling";
+            "app.root_url" = "https://lists.dd-ix.net";
+            "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.svg";
+            "app.favicon_url" = "https://dd-ix.net/en/favicon.ico";
+            "app.from_email" = "DD-IX Mailing <noreply@lists.dd-ix.net>";
+                    smtp = [{
             enabled = true;
             host = "mta.dd-ix.net";
             port = 25;
