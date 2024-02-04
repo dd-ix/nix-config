@@ -251,22 +251,6 @@
         "type": "github"
       }
     },
-    "keycloak-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1699446776,
-        "narHash": "sha256-S+rR9YwBF/LqbfN5DEl9xsy4FmVnJsXc1qyQEnla3D8=",
-        "owner": "dd-ix",
-        "repo": "keycloak-theme",
-        "rev": "1c2d04c61f74fd63648a417193d695ad47c39c28",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dd-ix",
-        "repo": "keycloak-theme",
-        "type": "github"
-      }
-    },
     "microvm": {
       "inputs": {
         "flake-utils": "flake-utils_5",
@@ -451,7 +435,6 @@
         "foundation": "foundation",
         "ifstate": "ifstate",
         "ixp-manager": "ixp-manager",
-        "keycloak-theme": "keycloak-theme",
         "microvm": "microvm",
         "nixpkgs": "nixpkgs",
         "presence": "presence",

@@ -13,7 +13,6 @@
         "dd-ix.net"
         "www.dd-ix.net"
         "content.dd-ix.net"
-        "keycloak.auth.dd-ix.net"
         "wiki.dd-ix.net"
         "vault.dd-ix.net"
         "orga.dd-ix.net"

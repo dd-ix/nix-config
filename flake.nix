@@ -35,11 +35,6 @@
       flake = false;
     };
 
-    keycloak-theme = {
-      url = "github:dd-ix/keycloak-theme";
-      flake = false;
-    };
-
     ixp-manager = {
       url = "github:dd-ix/ixp-manager.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +47,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, keycloak-theme, ixp-manager, authentik }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik }: {
     nixosConfigurations =
       let
         overlays = [
@@ -60,7 +55,6 @@
           foundation.overlays.default
           (final: prev: {
             website-content = website-content;
-            keycloak-theme = keycloak-theme;
           })
         ];
 

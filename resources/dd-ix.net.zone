@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020400  ; Serial
+               2024020401  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -73,7 +73,6 @@ wg   CNAME  svc-fw01
 ;; Reverse Proxy Aliases
 www            CNAME  rpx
 content        CNAME  rpx
-keycloak.auth  CNAME  rpx
 cloud          CNAME  rpx
 wiki           CNAME  rpx
 dcim           CNAME  rpx
@@ -87,7 +86,6 @@ auth           CNAME  rpx
 _acme-challenge                CNAME  acme-dns
 _acme-challenge.www            CNAME  www.acme-dns
 _acme-challenge.content        CNAME  content.acme-dns
-_acme-challenge.keycloak.auth  CNAME  keycloak.auth.acme-dns
 _acme-challenge.cloud          CNAME  cloud.acme-dns
 _acme-challenge.wiki           CNAME  wiki.acme-dns
 _acme-challenge.dcim           CNAME  dcim.acme-dns

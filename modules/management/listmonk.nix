@@ -68,12 +68,14 @@ in
         createLocally = false;
         mutableSettings = false;
         settings = {
-            "app.site_name" = "DD-IX Maling";
-            "app.root_url" = "https://lists.dd-ix.net";
-            "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.svg";
-            "app.favicon_url" = "https://dd-ix.net/en/favicon.ico";
-            "app.from_email" = "DD-IX Mailing <noreply@lists.dd-ix.net>";
-                    smtp = [{
+          "app.site_name" = "DD-IX Malling";
+          "app.root_url" = "https://lists.dd-ix.net";
+          "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.svg";
+          "app.favicon_url" = "https://dd-ix.net/en/favicon.ico";
+          "app.from_email" = "DD-IX Mailling <noreply@lists.dd-ix.net>";
+          "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
+          "app.notify_emails" = [ "noc@dd-ix.net" ];
+          smtp = [{
             enabled = true;
             host = "mta.dd-ix.net";
             port = 25;
@@ -88,8 +90,6 @@ in
             max_msg_retries = 2;
             tls_skip_verify = false;
           }];
-          "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
-          "app.notify_emails" = [ "noc@dd-ix.net" ];
         };
       };
     };
