@@ -98,6 +98,7 @@ in
             "app.from_email" = "DD-IX Mailling <noreply@lists.dd-ix.net>";
             "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
             "app.notify_emails" = [ "noc@dd-ix.net" ];
+            "bounce.enabled" = true;
             smtp = [{
               enabled = true;
               host = "mta.dd-ix.net";
