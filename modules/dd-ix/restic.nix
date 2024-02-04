@@ -34,7 +34,7 @@ in
       ];
 
       timerConfig = {
-        OnCalendar = "* *-*-* */12:*:*";
+        OnCalendar = "00/12:20";
         Persistent = true;
       };
 

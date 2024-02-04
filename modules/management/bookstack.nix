@@ -38,7 +38,7 @@
       config = {
         AUTH_METHOD = "oidc";
         AUTH_AUTO_INITIATE = true;
-        OIDC_NAME = ''"DD-IX Bookstack"'';
+        OIDC_NAME = ''"DD-IX Auth"'';
         OIDC_DISPLAY_NAME_CLAIMS = "name";
         OIDC_CLIENT_ID = "KTqcn54vUSLrQxMQLnXi8xdH8RPKclqfePL4ZWpT";
         OIDC_CLIENT_SECRET._secret = "${config.sops.secrets.bookstack_oidc_secret.path}";
