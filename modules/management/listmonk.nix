@@ -1,12 +1,34 @@
 { self, lib, config, pkgs, ... }:
 let
+  cfg = config.services.listmonk;
+  tomlFormat = pkgs.formats.toml { };
+  cfgFile = tomlFormat.generate "listmonk.toml" cfg.settings;
+  setDatabaseOption = key: value:
+    "UPDATE settings SET value = '${
+      lib.replaceStrings [ "'" ] [ "''" ] (builtins.toJSON value)
+    }' WHERE key = '${key}';";
+  updateDatabaseConfigSQL = pkgs.writeText "update-database-config.sql"
+    (lib.concatStringsSep "\n" (lib.mapAttrsToList setDatabaseOption
+      (if (cfg.database.settings != null) then
+        cfg.database.settings
+      else
+        { })));
+
   updateBounceSettings = pkgs.writeShellScriptBin "update-database-config.sh" ''
     export PGPASSWORD=''${LISTMONK_db__password}
-      ${pkgs.postgresql}/bin/psql \
-    --host svc-pg01.dd-ix.net \
-    --user listmonk \
-    -d listmonk \
-    -c "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
+    "${pkgs.postgresql}/bin/psql" \
+      --host svc-pg01.dd-ix.net \
+      --port 5432 \
+      --username listmonk \
+      --dbname listmonk \
+      -f "${updateDatabaseConfigSQL}"
+      
+    "${pkgs.postgresql}/bin/psql" \
+      --host svc-pg01.dd-ix.net \
+      --port 5432 \
+      --username listmonk \
+      --dbname listmonk \
+      --command "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
   '';
 in
 {
@@ -19,11 +41,12 @@ in
   };
 
   systemd.services.listmonk = {
-    preStart = ''
-      ${pkgs.listmonk}/bin/listmonk --config /nix/store/cjcm9lx15lsqd47ij75gnq4fiwqf4wda-listmonk.toml --idempotent --upgrade --yes
-    '';
     serviceConfig = {
-      ExecStartPre = [ "${updateBounceSettings}/bin/update-database-config.sh" ];
+      ExecStartPre = lib.mkForce [
+        ''${pkgs.coreutils}/bin/mkdir -p "''${STATE_DIRECTORY}/listmonk/uploads"''
+        "${cfg.package}/bin/listmonk --config ${cfgFile} --idempotent --install --upgrade --yes"
+        "${updateBounceSettings}/bin/update-database-config.sh"
+      ];
       LoadCredential = "migadu_bounce:${config.sops.secrets."lists_bounce_migadu".path}";
     };
   };
