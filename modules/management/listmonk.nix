@@ -93,7 +93,7 @@ in
           settings2 = {
             "app.site_name" = "DD-IX Mailling";
             "app.root_url" = "https://lists.dd-ix.net";
-            "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.svg";
+            "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.png";
             "app.favicon_url" = "https://dd-ix.net/en/favicon.ico";
             "app.from_email" = "DD-IX Mailling <noreply@lists.dd-ix.net>";
             "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
