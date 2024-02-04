@@ -4,8 +4,7 @@ let
 
   # allow relay from
   mynetworks = [
-    # mno001 (temp.)
-    "212.111.245.178"
+    # mno001
     "[2a01:7700:80b0:7000::1]/128"
     # svc-cloud01
     "[2a01:7700:80b0:6001::6]/128"
@@ -14,7 +13,7 @@ let
   ];
 
   # enable virtual aliases for those domains
-  virtual_alias_domains = "cloud.dd-ix.net lists.dd-ix.net vault.dd-ix.net wiki.dd-ix.net auth.dd-ix.net";
+  virtual_alias_domains = "cloud.dd-ix.net lists.dd-ix.net vault.dd-ix.net wiki.dd-ix.net auth.dd-ix.net svc-hv01.dd-ix.net";
 
   # virtual alias map for $virtual_alias_domains
   virtual_alias_map =
@@ -24,6 +23,7 @@ let
       noreply@vault.dd-ix.net        noc@dd-ix.net
       noreply@wiki.dd-ix.net         noc@dd-ix.net
       noreply@auth.dd-ix.net         noc@dd-ix.net
+      noreply@svc-hv01.dd-ix.net     noc@dd-ix.net
     '';
 in
 {
