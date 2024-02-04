@@ -31,7 +31,7 @@ in
       adminpassFile = "${config.sops.secrets."cloud_admin_pw".path}";
     };
     extraOptions = {
-      allow_local_remote_servers = true;
+      allow_local_remote_servers = false;
       hide_login_form = true;
       mail_domain = "cloud.dd-ix.net";
       mail_from_address = "noreply";
@@ -40,9 +40,9 @@ in
       mail_smtpport = 25;
       mail_smtpsecure = ""; # ssl
       updatechecker = false;
-      has_internet_connection = false;
+      has_internet_connection = true;
       defaultapp = "files";
-      appstoreenabled = false;
+      appstoreenabled = true;
     };
     phpOptions = {
       "opcache.jit" = "tracing";
