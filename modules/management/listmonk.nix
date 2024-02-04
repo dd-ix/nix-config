@@ -91,11 +91,11 @@ in
           createLocally = false;
           mutableSettings = false;
           settings2 = {
-            "app.site_name" = "DD-IX Mailling";
+            "app.site_name" = "DD-IX Mailing";
             "app.root_url" = "https://lists.dd-ix.net";
             "app.logo_url" = "https://dd-ix.net/en/assets/images/logo.png";
             "app.favicon_url" = "https://dd-ix.net/en/favicon.ico";
-            "app.from_email" = "DD-IX Mailling <noreply@lists.dd-ix.net>";
+            "app.from_email" = "DD-IX Mailing <noreply@lists.dd-ix.net>";
             "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
             "app.notify_emails" = [ "noc@dd-ix.net" ];
             "bounce.enabled" = true;
