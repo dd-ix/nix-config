@@ -17,6 +17,7 @@ in
       vlan = "s";
 
       v6Addr = "${addr}/64";
+      v4Addr = "10.96.1.6/24";
     };
 
     acme = [{
