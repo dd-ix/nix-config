@@ -68,7 +68,7 @@
         port = 443;
         user = "admin";
         passwordFile = config.sops.secrets.listmonk_admin.path;
-        allowed_lists = [ 9 ];
+        allowed_lists = [ 3 ];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
     };
