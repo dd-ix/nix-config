@@ -12,7 +12,7 @@ keys:
   - &svc-pg01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
   - &svc-cloud01 age1swpyhunuhrmz0z6vpvhhk6asseggcmu696qr05hhmq02njjcna6s4dp4am
   - &svc-dcim01 age19eew0cu2pwzvdcl08ghftwy928fpvk50txxn8fswrhh52m2k4d7qpl72ka
-  - &svc-lists01 age1ulpjjd62lnmm3zrvmgm2vjfdjxmgyhzucpvrga2868a3y5uhuq7q5cdgw5
+  - &svc-lists01 age1kq5036xjkesuaa6aa48mdnp7unm90a26exll5vd7lceuqn39pulqrsezkw
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
