@@ -33,6 +33,11 @@
           group = "nginx";
         })
         domains;
+
+      restic = {
+        enable = true;
+        name = "svc-hv01";
+      };
     };
 
   # Use the systemd-boot EFI boot loader.

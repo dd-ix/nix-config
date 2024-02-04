@@ -10,5 +10,6 @@
     ./rpx.nix
     ./postgres.nix
     ./nginx.nix
+    ./restic.nix
   ];
 }
