@@ -10,6 +10,8 @@ let
     "[2a01:7700:80b0:6001::6]/128"
     # svc-auth01
     "[2a01:7700:80b0:6001::4]/128"
+    # svc-lists01
+    "[2a01:7700:80b0:6001::8]/128"
   ];
 
   # enable virtual aliases for those domains
