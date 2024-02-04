@@ -32,7 +32,7 @@ in
       enable = true;
       settings = {
         app.admin_username = "admin";
-        db = lib.mkForce {
+        db = {
           host = "svc-pg01.dd-ix.net";
           port = 5432;
           user = "listmonk";
