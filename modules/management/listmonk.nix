@@ -31,12 +31,9 @@ in
     listmonk = {
       enable = true;
       settings = {
-        app = {
-          address = "127.0.0.1:9820";
-          admin_username = "admin";
-        };
-        "db" = {
-          host = lib.mkForce "svc-pg01.dd-ix.net";
+        app.admin_username = "admin";
+        db = lib.mkForce {
+          host = "svc-pg01.dd-ix.net";
           port = 5432;
           user = "listmonk";
           database = "listmonk";
