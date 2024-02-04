@@ -61,7 +61,7 @@ in
             tls_skip_verify = false;
           }];
           "privacy.domain_blocklist" = [ ]; # list of domains excluded from subscribing
-          "app.notify_emails" = [ "admin@dd-ix.net" ];
+          "app.notify_emails" = [ "noc@dd-ix.net" ];
         };
       };
     };
