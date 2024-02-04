@@ -51,6 +51,7 @@ in
         use_tls = false;
         use_ssl = false;
         from = "noreply@auth.dd-ix.net";
+        template_dir = "/var/lib/authentik/templates";
       };
       cookie_domain = "auth.dd-ix.net";
       disable_startup_analytics = true;

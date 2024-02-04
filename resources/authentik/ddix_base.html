@@ -1,0 +1,126 @@
+{% load authentik_stages_email %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtm=l">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #212124;
+      }
+
+      h2 {
+        display: inline-block;
+        font-family: Arial, sans-serif;
+        font-size: 28px;
+        line-height: 125%;
+        font-weight: 700;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: 0;
+      }
+
+      .flexibleImage {
+        height: auto;
+      }
+
+      img.logo {
+        max-width: 100%;
+        max-height: 35px;
+      }
+
+      .properties-table {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+      }
+
+      .properties-table tr:first-child {
+        border-top: 1px solid rgba(196, 196, 196, 0.2);
+      }
+
+      .properties-table tr:first-child>td {
+        padding-top: 24px;
+      }
+
+      .properties-table tr:last-child {
+        border-bottom: 1px solid rgba(196, 196, 196, 0.2);
+      }
+
+      .properties-table tr:last-child>td {
+        padding-bottom: 24px;
+      }
+
+      .properties-table td {
+        line-height: 24px;
+        vertical-align: top;
+        padding: 4px 15px;
+      }
+
+      .td-right {
+        text-align: right;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        text-decoration: none;
+        color: #FFF;
+        background-color: #209680;
+        border: solid #209680;
+        width: 100%;
+        line-height: 2em;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        text-transform: capitalize;
+      }
+      .btn-primary a {
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <center>
+        <div style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; table-layout: fixed; width: 100%; max-width: 448px; padding: 60px 20px; font-size: 14px;">
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td style="padding: 20px;border: 1px solid #c1c1c1;">
+                <table width="100%" style="background-color: #FFFFFF; border-spacing: 0; margin-top: 15px;">
+                  <tr height="80">
+                    <td align="center" style="padding: 20px 0;">
+                      <svg class="flexibleImage logo" viewBox="0 0 507.406 116.277" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g _ngcontent-ng-c1482587093="" stroke-miterlimit="2" stroke-width="0"><path _ngcontent-ng-c1482587093="" d="M111.788 27.408C106.306 18.77 98.666 11.96 88.866 7.143 78.899 2.492 67.604 0 54.98 0H0v26.245H53.65c9.967 0 17.94 2.824 23.92 8.471 5.98 5.814 9.135 13.62 9.135 23.42 0 9.967-3.156 17.774-9.136 23.422-5.98 5.647-13.952 8.47-23.919 8.47H32.888V59.134H0v57.14h54.98c12.624 0 23.92-2.325 33.886-7.142 9.8-4.651 17.44-11.461 22.922-20.265 5.315-8.637 8.139-18.936 8.139-30.73 0-11.626-2.824-21.925-8.14-30.728zm137.22 0c-5.481-8.638-13.122-15.448-22.922-20.265C216.12 2.492 204.825 0 192.2 0h-54.98v26.245h53.65c9.967 0 17.94 2.824 23.92 8.471 5.98 5.814 9.136 13.62 9.136 23.42 0 9.967-3.156 17.774-9.136 23.422-5.98 5.647-13.953 8.47-23.92 8.47H170.11V59.134H137.22v57.14h54.98c12.625 0 23.92-2.325 33.886-7.142 9.8-4.651 17.44-11.461 22.922-20.265 5.316-8.637 8.14-18.936 8.14-30.73 0-11.626-2.824-21.925-8.14-30.728zm22.113 29.402v24.252h48.502V56.81ZM339.339 0v116.273h32.888V0Z" fill="#209680"></path><path _ngcontent-ng-c1482587093="" d="M431.33 12.297 423.025.005h-37.04l25.745 36.543zM480 78.24l-19.268 24.916 8.803 13.122h37.872zM504.749.005h-35.547l-85.045 116.273h37.54z" fill="#cf0"></path></g></svg>
+                    </td>
+                  </tr>
+                  {% block content %}
+                  {% endblock %}
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table border="0" style="margin-top: 10px;" width="100%">
+                  <tr>
+                    <td style="background: #FAFBFB;">
+                      <table style="width: 100%;">
+                        {% block sub_content %}
+                        {% endblock %}
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    </div>
+  </body>
+</html>
