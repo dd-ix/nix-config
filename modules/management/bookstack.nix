@@ -40,9 +40,9 @@
         AUTH_AUTO_INITIATE = true;
         OIDC_NAME = ''"DD-IX Bookstack"'';
         OIDC_DISPLAY_NAME_CLAIMS = "name";
-        OIDC_CLIENT_ID = "bookstack";
+        OIDC_CLIENT_ID = "KTqcn54vUSLrQxMQLnXi8xdH8RPKclqfePL4ZWpT";
         OIDC_CLIENT_SECRET._secret = "${config.sops.secrets.bookstack_oidc_secret.path}";
-        OIDC_ISSUER = "https://keycloak.auth.${config.deployment-dd-ix.domain}/realms/DD-IX";
+        OIDC_ISSUER = "https://auth.${config.deployment-dd-ix.domain}/application/o/wiki/";
         OIDC_ISSUER_DISCOVER = true;
 
         OIDC_USER_TO_GROUPS = true;
