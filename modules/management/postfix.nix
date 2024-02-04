@@ -5,7 +5,7 @@ let
   # allow relay from
   mynetworks = [
     # mno001
-    "[2a01:7700:80b0:7000::1]/128"
+    "[2a01:7700:80b0:7000::2]/128"
     # svc-cloud01
     "[2a01:7700:80b0:6001::6]/128"
     # svc-auth01
