@@ -25,7 +25,7 @@ in
       initialize = true;
 
       user = "xxx";
-      
+
       passwordFile = config.sops.secrets."restic_${cfg.name}/pw".path;
       repositoryFile = config.sops.secrets."restic_${cfg.name}/repo".path;
 

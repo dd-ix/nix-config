@@ -1,6 +1,13 @@
-{ self, config, ... }:
+{ self, config, pkgs, inputs, ... }:
 let
   hostname = "auth.${config.deployment-dd-ix.domain}";
+
+  customScope = (inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
+    (final: prev: prev.authentikComponents // {
+      frontend = prev.authentikComponents.frontend.overrideAttrs (_: {
+        patches = [ (self + /resouces/authentik-logo.pathc) ];
+      });
+    });
 in
 {
   sops.secrets."authentik_env" = {
@@ -32,6 +39,8 @@ in
   };
 
   services.authentik = {
+    inherit (customScope) authentikComponents;
+
     enable = true;
 
     environmentFile = config.sops.secrets."authentik_env".path;
