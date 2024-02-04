@@ -72,7 +72,7 @@ in
       };
 
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} has failed\r\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail marcel.koch@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} has failed\r\n\r\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail marcel.koch@dd-ix.net
       '';
     };
   };
