@@ -24,8 +24,6 @@ in
     services.restic.backups."${cfg.name}" = {
       initialize = true;
 
-      user = "xxx";
-
       passwordFile = config.sops.secrets."restic_${cfg.name}/pw".path;
       repositoryFile = config.sops.secrets."restic_${cfg.name}/repo".path;
 
@@ -72,7 +70,7 @@ in
       };
 
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} has failed\r\n\r\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail marcel.koch@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} has failed\r\n\r\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
       '';
     };
   };
