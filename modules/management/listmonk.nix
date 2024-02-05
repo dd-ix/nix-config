@@ -1,4 +1,4 @@
-{ self, lib, config, pkgs, ... }:
+{ self, lib, config, pkgs, inputs, system, ... }:
 let
   cfg = config.services.listmonk;
   tomlFormat = pkgs.formats.toml { };
@@ -67,7 +67,8 @@ in
       serviceConfig = {
         ExecStartPre = lib.mkForce [
           ''${pkgs.coreutils}/bin/mkdir -p "''${STATE_DIRECTORY}/listmonk/uploads"''
-          "${cfg.package}/bin/listmonk --config ${cfgFile} --idempotent --install --upgrade --yes"
+          "${cfg.package}/bin/listmonk --config ${cfgFile} --idempotent --install --yes"
+          "${cfg.package}/bin/listmonk --config ${cfgFile} --upgrade --yes"
           "${updateBounceSettings}/bin/update-database-config.sh"
         ];
         LoadCredential = "migadu_bounce:${config.sops.secrets."lists_bounce_migadu".path}";
@@ -76,6 +77,7 @@ in
     services = {
       listmonk = {
         enable = true;
+        package = inputs.nixpkgs-listmonk.legacyPackages.x86_64-linux.listmonk;
         settings = {
           app.admin_username = "admin";
           db = {

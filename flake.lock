@@ -196,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707059464,
-        "narHash": "sha256-k33JeyIoIqr8gtg4lGo4N6Oe15Z72Slkm7uGhQNa7NQ=",
+        "lastModified": 1707136430,
+        "narHash": "sha256-ODj/AJuMSW0co3LUp19RFEvd97wi5ukdkkAw07Vqo+I=",
         "owner": "dd-ix",
         "repo": "foundation",
-        "rev": "6f669d30cb3f58e3428e79ffda451d8e8b8e2291",
+        "rev": "81f47de355cc6fa97ff09832d8452ec1231e3393",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1706214321,
-        "narHash": "sha256-42FZWeJQNYgz0ZkclMzShuvjT9TvJNRN78Iu3SEyD4M=",
+        "lastModified": 1707084830,
+        "narHash": "sha256-550b8OUt8j5G3tC4MgCfc+sHAAxARXzWYcYpfhNDhUc=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "186b8bf6dbacc1ab55fe8ac8d5a2bbf76a1a70e1",
+        "rev": "c5074bb6d328a6071a70dcb097f8bcd208fce80a",
         "type": "github"
       },
       "original": {
@@ -354,6 +354,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-listmonk": {
+      "locked": {
+        "lastModified": 1707147359,
+        "narHash": "sha256-6KrEWaWTH9F7nO+LP4uqPyHE0IHpqdE8jdg5IqqSjo8=",
+        "owner": "MarcelCoding",
+        "repo": "nixpkgs",
+        "rev": "2173c8010e5331809a7132b088ccea1528495ba2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MarcelCoding",
+        "ref": "listmonk",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pnpm2nix": {
       "inputs": {
         "flake-utils": [
@@ -437,6 +453,7 @@
         "ixp-manager": "ixp-manager",
         "microvm": "microvm",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-listmonk": "nixpkgs-listmonk",
         "presence": "presence",
         "sops-nix": "sops-nix",
         "website-content": "website-content"
