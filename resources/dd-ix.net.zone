@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020600  ; Serial
+               2024020601  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -61,7 +61,6 @@ svc-lists01   AAAA  2a01:7700:80b0:6001::8
 
 ;; til rename is done
 mno001  CNAME svc-hv01
-mno01   CNAME svc-hv01
 
 
 ;; Services
