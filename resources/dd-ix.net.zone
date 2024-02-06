@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020401  ; Serial
+               2024020600  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -111,3 +111,6 @@ _pop3s._tcp         SRV  0  1  995 pop.migadu.com.
 _submissions._tcp   SRV  0  1  465 smtp.migadu.com.
 
 _dmarc              TXT  "v=DMARC1; p=quarantine; sp=none;"
+
+;; GitHub
+_github-challenge-dd-ix-org  TXT "e642ddfe8c"
