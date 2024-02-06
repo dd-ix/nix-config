@@ -38,13 +38,14 @@ in
         Persistent = true;
       };
 
-      pruneOpts = [
-        "--keep-hourly 2"
-        "--keep-daily 7"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 5"
-      ];
+      pruneOpts = [ ];
+      #pruneOpts = [
+      #  "--keep-hourly 2"
+      #  "--keep-daily 7"
+      #  "--keep-weekly 5"
+      #  "--keep-monthly 12"
+      #  "--keep-yearly 5"
+      #];
     };
 
     systemd.services."restic-backups-${cfg.name}".unitConfig.OnFailure = "notify-backup-failed-${cfg.name}.service";
@@ -70,7 +71,7 @@ in
       };
 
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} has failed\r\n\r\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup job ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} failed:\n\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
       '';
     };
   };
