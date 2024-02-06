@@ -18,6 +18,7 @@
   users.users. nginx.extraGroups = [ "netbox" ];
 
   services = {
+    postgresql.enable = lib.mkForce false;
     netbox = {
       enable = true;
       package = pkgs.netbox;
