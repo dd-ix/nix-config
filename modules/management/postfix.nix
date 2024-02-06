@@ -22,6 +22,7 @@ let
     ''
       noreply@cloud.dd-ix.net        noc@dd-ix.net
       bounce@lists.dd-ix.net         lists@dd-ix.net
+      norely@lists.dd-ix.net         lists@dd-ix.net
       noreply@vault.dd-ix.net        noc@dd-ix.net
       noreply@wiki.dd-ix.net         noc@dd-ix.net
       noreply@auth.dd-ix.net         noc@dd-ix.net
