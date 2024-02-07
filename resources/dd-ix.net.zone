@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024020603  ; Serial
+               2024020700  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -81,6 +81,13 @@ orga           CNAME  rpx
 auth           CNAME  rpx
 office         CNAME  rpx
 
+;; Management
+svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
+
+;; IXP
+ixp-cc-sw01    AAAA  2a01:7700:80b0:4000::1
+ixp-c2-sw02    AAAA  2a01:7700:80b0:4000::2
+
 ;; ACME
 _acme-challenge                CNAME  acme-dns
 _acme-challenge.www            CNAME  www.acme-dns
@@ -96,9 +103,6 @@ _acme-challenge.auth           CNAME  auth.acme-dns
 _acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
 _acme-challenge.office       CNAME  office.acme-dns
 
-;; Management
-svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
-
 ;; Migadu Mail Setup
 autoconfig          CNAME  autoconfig.migadu.com.
 key1._domainkey     CNAME  key1.dd-ix.net._domainkey.migadu.com.
@@ -111,6 +115,3 @@ _pop3s._tcp         SRV  0  1  995 pop.migadu.com.
 _submissions._tcp   SRV  0  1  465 smtp.migadu.com.
 
 _dmarc              TXT  "v=DMARC1; p=quarantine; sp=none;"
-
-;; GitHub
-_github-challenge-dd-ix-org  TXT "e642ddfe8c"

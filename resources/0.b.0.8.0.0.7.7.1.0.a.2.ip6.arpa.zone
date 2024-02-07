@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @    SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-        2024020302  ; Serial
+        2024020700  ; Serial
         7200        ; Refresh
         3600        ; Retry
         1209600     ; Expire
@@ -22,7 +22,12 @@ $TTL    1h         ; default TTL for zone
 ;1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.3
 
 ;; PTR IXP Internal Services
-1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  gw-v601.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  ixp-cc-sw01.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.4 PTR  ixp-cc-sw01-v301.dd-ix.net.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  ixp-c2-sw01.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.0.4 PTR  ixp-cc-sw01-v302.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.4 PTR  gw-v300.dd-ix.net.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.4 PTR  ixp-c2-sw01-e46.dd-ix.net.
 
 ;; PTR IXP EVPN Underlay
 ;1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.5
