@@ -31,8 +31,8 @@ in
   systemd.services = {
     nextcloud-setup.after = [ "network.target" ];
     onlyoffice-converter = {
-      after = [ "network.target" "onlyoffice-docservice.service" ];
-      requires = [ "network.target" "onlyoffice-docservice.service" ];
+      after = lib.mkForce [ "network.target" "onlyoffice-docservice.service" ];
+      requires = lib.mkForce [ "network.target" "onlyoffice-docservice.service" ];
     };
     onlyoffice-docservice = {
       after = [ "network.target" ];
@@ -63,6 +63,7 @@ in
             ''}
               .services.CoAuthoring.sql.dbUser = "${cfg.postgresUser}" |
             ${lib.optionalString (cfg.jwtSecretFile != null) ''
+              .services.CoAuthoring.sql.pgPoolExtraOptions.ssl = true |
               .services.CoAuthoring.token.enable.browser = true |
               .services.CoAuthoring.token.enable.request.inbox = true |
               .services.CoAuthoring.token.enable.request.outbox = true |
@@ -79,26 +80,26 @@ in
                 --port 5432 \
                 --username onlyoffice \
                 --dbname onlyoffice \
-                -c "SELECT 'task_result'::regclass;" >/dev/null; then
+                --command "SELECT 'task_result'::regclass;" >/dev/null; then
               psql \
                 --host svc-pg01.dd-ix.net \
                 --port 5432 \
                 --username onlyoffice \
                 --dbname onlyoffice \
-                -f ${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/removetbl.sql
+                -f "${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/removetbl.sql"
               psql \
                 --host svc-pg01.dd-ix.net \
                 --port 5432 \
                 --username onlyoffice \
                 --dbname onlyoffice \
-                -f ${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/createdb.sql
+                -f "${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/createdb.sql"
             else
                psql \
                 --host svc-pg01.dd-ix.net \
                 --port 5432 \
                 --username onlyoffice \
-                -dbname onlyoffice \
-                -f ${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/createdb.sql
+                --dbname onlyoffice \
+                -f "${cfg.package}/var/www/onlyoffice/documentserver/server/schema/postgresql/createdb.sql"
             fi
           '')
       ];
