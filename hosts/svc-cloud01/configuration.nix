@@ -20,17 +20,17 @@ in
       v4Addr = "10.96.1.6/24";
     };
 
-    acme = [{
-      name = "cloud.dd-ix.net";
-      group = "nginx";
-    }];
+    acme = [
+      { name = "cloud.dd-ix.net"; group = "nginx"; }
+      { name = "office.dd-ix.net"; group = "nginx"; }
+    ];
 
     rpx = {
-      domains = [ "cloud.dd-ix.net" ];
+      domains = [ "cloud.dd-ix.net" "office.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
 
-    postgres = [ "nextcloud" ];
+    postgres = [ "nextcloud" "onlyoffice" ];
   };
 
   system.stateVersion = "23.11";
