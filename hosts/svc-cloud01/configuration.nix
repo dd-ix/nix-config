@@ -9,8 +9,8 @@ in
     microvm = {
       enable = true;
 
-      mem = 2048;
-      vcpu = 2;
+      mem = 4096;
+      vcpu = 4;
 
       hostName = "svc-cloud01";
       mac = "e2:d0:2f:67:dd:ae";
