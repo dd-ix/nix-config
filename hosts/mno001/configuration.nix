@@ -14,7 +14,6 @@
         "www.dd-ix.net"
         "content.dd-ix.net"
         "wiki.dd-ix.net"
-        "vault.dd-ix.net"
       ];
     in
     {
