@@ -1,13 +1,14 @@
-{ pkgs, config, ... }: {
+{ self, config, ... }: {
 
-  sops.secrets.postgres_vaultwarden.owner = config.services.postgresql.superUser;
-  sops.secrets.vaultwarden_env_file.owner = "vaultwarden";
+  sops.secrets."vault_env" = {
+    sopsFile = self + "/secrets/management/vault.yaml";
+    owner = config.systemd.services.vaultwarden.serviceConfig.User;
+  };
 
   services = {
     vaultwarden = {
       enable = true;
       dbBackend = "postgresql";
-      backupDir = "/var/backup/vaultwarden";
       config = {
         ROCKET_ADDRESS = "::1";
         ROCKET_PORT = 8222;
@@ -25,7 +26,7 @@
         SMTP_FROM_NAME = "DD-IX Vault";
         SMTP_SECURITY = "off";
       };
-      environmentFile = config.sops.secrets.vaultwarden_env_file.path;
+      environmentFile = config.sops.secrets.vault_env.path;
     };
 
     nginx = {
