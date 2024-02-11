@@ -54,5 +54,9 @@
       package = pkgs.mariadb;
       enable = true;
     };
+    mysqlBackup = {
+      enable = true;
+      databases = [ "bookstack" ];
+    };
   };
 }
