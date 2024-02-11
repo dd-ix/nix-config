@@ -46,7 +46,7 @@
         OIDC_ISSUER_DISCOVER = true;
 
         OIDC_USER_TO_GROUPS = true;
-        OIDC_GROUPS_CLAIM = "resource_access.bookstack.roles";
+        OIDC_GROUPS_CLAIM = "groups";
         OIDC_REMOVE_FROM_GROUPS = true;
       };
     };
