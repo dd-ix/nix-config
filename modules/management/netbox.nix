@@ -21,7 +21,11 @@
     postgresql.enable = lib.mkForce false;
     netbox = {
       enable = true;
-      package = pkgs.netbox;
+      package = pkgs.netbox_3_6.overrideAttrs (old: {
+        installPhase = old.installPhase + ''
+          ln -s ${self + "/resources/netbox/pipeline.py"} $out/opt/netbox/netbox/netbox/ddix_pipeline.py
+        '';
+      });
       secretKeyFile = "${config.sops.secrets.dcim_secret_key.path}";
       plugins = python3Packages: with python3Packages; [ python-jose ];
       settings = {
@@ -40,24 +44,6 @@
         SOCIAL_AUTH_OIDC_ENDPOINT = "https://auth.dd-ix.net/application/o/dcim/";
         SOCIAL_AUTH_OIDC_KEY = "ooCkcwLzdXcCMVJFGzZY0g0H2Y1gLmXHI2ZcPbva";
         LOGOUT_REDIRECT_URL = "https://auth.dd-ix.net/application/o/dcim/end-session/";
-
-        # https://stackoverflow.com/questions/53550321/keycloak-gatekeeper-aud-claim-and-client-id-do-not-match
-        #REMOTE_AUTH_AUTO_CREATE_USER = true;
-        #REMOTE_AUTH_GROUP_SYNC_ENABLED = true;
-
-        #REMOTE_AUTH_GROUP_SEPARATOR=",";
-        #REMOTE_AUTH_SUPERUSER_GROUPS = [ "superuser" ];
-        #REMOTE_AUTH_STAFF_GROUPS = [ "staff" ];
-        #REMOTE_AUTH_DEFAULT_GROUPS = [ "staff" ];
-
-        #SOCIAL_AUTH_KEYCLOAK_KEY = "netbox";
-        #SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxeOlZAP0/GDzHW29AVq9svu7CMnqqm2JJmAheFZboBGYhGr5obusczoblHdUhv0O5HOzHY8x+vMyQ7RTbCH2j7ezY2b96kUwcSdNbXIQGMpxSM44m2XGr/FaPl1qqDm5NIyNUo0mTPO62Z5hQ1Uocup9Bs29w521QepR15JuzMBc1NeIo2tQ0oid/nhqfacUPsJRyLqWbpy1Jcpvo8sf///uWlVpg64au6Fum4zJiIhj0/JHMdMJU+z7V5BcxIdcY+i8WXdn7YQZ1sFwcuO4jAO+Wb4ZL7JzBqbxdZQeUPZU8flfPqXQwBibi8bwbF6pQWdV49EKOxgvn+zI8+GEvwIDAQAB";
-        #SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL = "https://keycloak.auth.${config.deployment-dd-ix.domain}/realms/DD-IX/protocol/openid-connect/auth";
-        #SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL = "https://keycloak.auth.${config.deployment-dd-ix.domain}/realms/DD-IX/protocol/openid-connect/token";
-        #SOCIAL_AUTH_KEYCLOAK_ID_KEY = "email";
-        #SOCIAL_AUTH_JSONFIELD_ENABLED = true;
-        #SOCIAL_AUTH_VERIFY_SSL = false;
-        #SOCIAL_AUTH_OIDC_SCOPE = [ "groups" "roles"];
       };
       extraConfig = ''
         with open('${config.sops.secrets."dcim_db_pw".path}', 'r') as file:
@@ -65,6 +51,65 @@
 
         with open('${config.sops.secrets."dcim_oidc_secret".path}', 'r') as file:
           SOCIAL_AUTH_OIDC_SECRET = file.read()
+
+      
+        SOCIAL_AUTH_PIPELINE = (
+          ###################
+          # Default pipelines
+          ###################
+
+          # Get the information we can about the user and return it in a simple
+          # format to create the user instance later. In some cases the details are
+          # already part of the auth response from the provider, but sometimes this
+          # could hit a provider API.
+          'social_core.pipeline.social_auth.social_details',
+
+          # Get the social uid from whichever service we're authing thru. The uid is
+          # the unique identifier of the given user in the provider.
+          'social_core.pipeline.social_auth.social_uid',
+
+          # Verifies that the current auth process is valid within the current
+          # project, this is where emails and domains whitelists are applied (if
+          # defined).
+          'social_core.pipeline.social_auth.auth_allowed',
+
+          # Checks if the current social-account is already associated in the site.
+          'social_core.pipeline.social_auth.social_user',
+
+          # Make up a username for this person, appends a random string at the end if
+          # there's any collision.
+          'social_core.pipeline.user.get_username',
+
+          # Send a validation email to the user to verify its email address.
+          # Disabled by default.
+          # 'social_core.pipeline.mail.mail_validation',
+
+          # Associates the current social details with another user account with
+          # a similar email address. Disabled by default.
+          # 'social_core.pipeline.social_auth.associate_by_email',
+
+          # Create a user account if we haven't found one yet.
+          'social_core.pipeline.user.create_user',
+
+          # Create the record that associates the social account with the user.
+          'social_core.pipeline.social_auth.associate_user',
+
+          # Populate the extra_data field in the social record with the values
+          # specified by settings (and the default ones like access_token, etc).
+          'social_core.pipeline.social_auth.load_extra_data',
+
+          # Update the user record with any changed info from the auth service.
+          'social_core.pipeline.user.user_details',
+
+          ###################
+          # Custom pipelines
+          ###################
+          # Set authentik Groups
+          'netbox.ddix_pipeline.add_groups',
+          'netbox.ddix_pipeline.remove_groups',
+          # Set Roles
+          'netbox.ddix_pipeline.set_roles'
+        )
       '';
     };
 
