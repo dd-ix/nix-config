@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024021001  ; Serial
+               2024021300  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -87,7 +87,7 @@ svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
 
 ;; IXP
 ixp-cc-sw01    AAAA  2a01:7700:80b0:4000::1
-ixp-c2-sw02    AAAA  2a01:7700:80b0:4000::2
+ixp-c2-sw01    AAAA  2a01:7700:80b0:4000::2
 
 ;; ACME
 _acme-challenge                CNAME  acme-dns
