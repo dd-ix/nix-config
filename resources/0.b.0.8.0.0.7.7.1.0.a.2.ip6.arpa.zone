@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @    SOA  ns.dd-ix.net.  noc.dd-ix.net.  (
-        2024021000  ; Serial
+        2024021400  ; Serial
         7200        ; Refresh
         3600        ; Retry
         1209600     ; Expire
@@ -23,9 +23,13 @@ $TTL    1h         ; default TTL for zone
 
 ;; PTR IXP Internal Services
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  ixp-cc-sw01.dd-ix.net.
-1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.4 PTR  ixp-cc-sw01-v301.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.4 PTR  ixp-cc-sw01-v601.dd-ix.net.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.0.4 PTR  ixp-rs01.dd-ix.net.
+a.0.8.7.e.2.e.f.f.f.1.f.a.7.6.b.1.0.0.4 PTR  ixp-rs01-ilo.dd-ix.net.
 2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4 PTR  ixp-c2-sw01.dd-ix.net.
-1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.0.4 PTR  ixp-cc-sw01-v302.dd-ix.net.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.0.4 PTR  ixp-c2-sw01-v602.dd-ix.net.
+2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.0.4 PTR  ixp-rs02.dd-ix.net.
+a.3.6.6.e.2.e.f.f.f.1.f.a.7.6.b.2.0.0.4 PTR  ixp-rs02-ilo.dd-ix.net.
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.4 PTR  gw-v300.dd-ix.net.
 2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.4 PTR  ixp-c2-sw01-e46.dd-ix.net.
 
