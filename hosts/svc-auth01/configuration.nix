@@ -32,6 +32,8 @@ in
     postgres = [ "authentik" ];
   };
 
+  networking.firewall.allowedUDPPorts = [ 1812 ];
+
   # https://github.com/goauthentik/authentik/issues/3005
   time.timeZone = lib.mkForce "UTC";
 
