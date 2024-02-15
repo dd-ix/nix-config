@@ -21,20 +21,20 @@ in
         }
         (lib.mkMerge (map
           (name: {
-            "source.${name}-v4" = {
-              name = "${name}.dd-ix.net (IPv4)";
+            "source.rs${num}-v4" = {
+              name = "rs${num}.dd-ix.net (IPv4)";
             };
-            "source.${name}-v4.birdwatcher" = {
+            "source.rs${num}-v4.birdwatcher" = {
               # https://github.com/alice-lg/alice-lg/blob/main/etc/alice-lg/alice.example.conf#L210-L214
-              api = "http://ixp-${name}.dd-ix.net:29184/";
+              api = "http://[2a01:7700:80b0:4001::${num}]:29184/";
               type = "multi_table";
             };
-            "source.${name}-v6" = {
-              name = "${name}.dd-ix.net (IPv6)";
+            "source.rs-${num}-v6" = {
+              name = "rs${num}.dd-ix.net (IPv6)";
             };
-            "source.${name}-v6.birdwatcher" = {
+            "source.rs-${num}-v6.birdwatcher" = {
               # https://github.com/alice-lg/alice-lg/blob/main/etc/alice-lg/alice.example.conf#L210-L214
-              api = "http://ixp-${name}.dd-ix.net:29184/";
+              api = "http://[2a01:7700:80b0:4001::${num}]:29184/";
               type = "multi_table";
             };
           })
