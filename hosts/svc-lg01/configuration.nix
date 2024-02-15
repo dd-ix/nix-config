@@ -28,8 +28,6 @@ in
       domains = [ "lg.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
-
-    postgres = [ "alice-lg" ];
   };
 
   system.stateVersion = "23.11";
