@@ -104,6 +104,11 @@ ixp-rs02       AAAA 2a01:7700:80b0:4002::2
 ixp-rs01-ilo   AAAA 2a01:7700:80b0:4001:b67a:f1ff:fe2e:780a
 ixp-rs02-ilo   AAAA 2a01:7700:80b0:4002:b67a:f1ff:fe2e:663a
 
+rs01           A    193.201.151.65
+               AAAA 2001:7f8:79::dff0:1
+rs02           A    193.201.151.66
+               AAAA 2001:7f8:79::dff0:2
+
 
 ;; ACME
 _acme-challenge                CNAME  acme-dns
