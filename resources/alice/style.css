@@ -32,9 +32,3 @@
 .page-header .status-name {
   font-size: 18px;
 }
-
-.dd-ix-footer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
