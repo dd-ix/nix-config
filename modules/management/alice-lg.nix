@@ -2,8 +2,8 @@
 let
   listen_addr = "[::1]:7340";
   route_server = [
-    "rs01"
-    "rs02"
+    "01"
+    "02"
   ];
 in
 {
@@ -20,7 +20,7 @@ in
           theme.path = self + "/resources/alice";
         }
         (lib.mkMerge (map
-          (name: {
+          (num: {
             "source.rs${num}-v4" = {
               name = "rs${num}.dd-ix.net (IPv4)";
             };
