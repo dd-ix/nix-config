@@ -68,7 +68,6 @@ mno001  CNAME svc-hv01
 rpx  CNAME  svc-rpx01
 ns   CNAME  svc-ns01
 mta  CNAME  svc-mta01
-wg   CNAME  svc-fw01
 wg             A      212.111.245.177
                AAAA   2a01:7700:80bf::2
 
