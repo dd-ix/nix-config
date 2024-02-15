@@ -1,0 +1,40 @@
+.page-sidebar .sidebar-header, .page-header {
+  height: 80px
+}
+
+.page-sidebar .sidebar-header {
+  padding: 15px;
+}
+
+.page-sidebar .sidebar-header .logo {
+  background-image: url("https://dd-ix.net/en/assets/images/logo.svg");
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+  flex: unset;
+}
+
+.page-sidebar .sidebar-header .logo i {
+  display: none;
+}
+
+.page-sidebar .sidebar-header .title {
+  display: none;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+}
+
+.page-header .status-name {
+  font-size: 18px;
+}
+
+.dd-ix-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

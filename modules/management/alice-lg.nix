@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ self, lib, config, ... }:
 let
   listen_addr = "[::1]:7340";
   route_server = [
@@ -15,7 +15,9 @@ in
           server = {
             listen_http = "${listen_addr}";
             asn = 57328;
+            enable_prefix_lookup = true;
           };
+          theme.path = self + "/resources/alice";
         }
         (lib.mkMerge (map
           (name: {
