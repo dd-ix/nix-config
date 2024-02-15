@@ -242,6 +242,19 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        svc-lg01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            ./hosts/svc-lg01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
       };
   };
 }
