@@ -26,7 +26,7 @@ in
             };
             "source.rs${num}-v4.birdwatcher" = {
               # https://github.com/alice-lg/alice-lg/blob/main/etc/alice-lg/alice.example.conf#L210-L214
-              api = "http://[2a01:7700:80b0:40${num}::2]:29184/";
+              api = "http://[2a01:7700:80b0:40${num}::2]:29184";
               type = "multi_table";
             };
             "source.rs-${num}-v6" = {
@@ -34,7 +34,7 @@ in
             };
             "source.rs-${num}-v6.birdwatcher" = {
               # https://github.com/alice-lg/alice-lg/blob/main/etc/alice-lg/alice.example.conf#L210-L214
-              api = "http://[2a01:7700:80b0:40${num}::2]:29184/";
+              api = "http://[2a01:7700:80b0:40${num}::2]:29184";
               type = "multi_table";
             };
           })
