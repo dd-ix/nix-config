@@ -10,7 +10,7 @@ in
   services = {
     alice-lg = {
       enable = true;
-      package = pkgs.callPackage ../../resources/alice.nix {};
+      package = pkgs.callPackage ../../resources/alice.nix { };
       settings = lib.mkMerge [
         {
           server = {

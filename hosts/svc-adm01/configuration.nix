@@ -18,7 +18,7 @@
   environment.systemPackages = with pkgs; [
     ansible
     git
-    fping 
+    fping
     inetutils
     mc
     vim

@@ -52,10 +52,10 @@
       DB_PASSWORD = "test";
 
       # We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
-      MAIL_MAILER="smtp";
-      MAIL_HOST="mta.dd-ix.net";
-      MAIL_PORT="25";
-      MAIL_ENCRYPTION="false";
+      MAIL_MAILER = "smtp";
+      MAIL_HOST = "mta.dd-ix.net";
+      MAIL_PORT = "25";
+      MAIL_ENCRYPTION = "false";
 
       IDENTITY_SITENAME = "DD-IX Portal";
 
@@ -65,11 +65,11 @@
       IDENTITY_LEGALNAME = "DD-IX Dresden Internet Exchange e.V.";
       IDENTITY_CITY = "Dresden";
       IDENTITY_COUNTRY = "DE";
-      IDENTITY_ORGNAME="\${IDENTITY_LEGALNAME}";
+      IDENTITY_ORGNAME = "\${IDENTITY_LEGALNAME}";
 
       # As well as uses in other places, emails are sent from the following name/email:
-      IDENTITY_NAME="DD-IX Dresden Internet Exchange";
-      IDENTITY_EMAIL="noc@dd-ix.net";
+      IDENTITY_NAME = "DD-IX Dresden Internet Exchange";
+      IDENTITY_EMAIL = "noc@dd-ix.net";
 
       #IDENTITY_TESTEMAIL="\${IDENTITY_EMAIL}";
 
@@ -89,21 +89,21 @@
 
       # The logo to show on the login page. Should be a URL.
       # (the example here works - the leading '//' means the browser should match http/https based on the web page)
-      IDENTITY_BIGLOGO="https://dd-ix.net/assets/images/logo.svg";
+      IDENTITY_BIGLOGO = "https://dd-ix.net/assets/images/logo.svg";
 
       # For some actions (e.g. peering matrix) we need to know what VLAN to show by default.
       # This is the vlan.id database entry (i.e. not the VLAN number/tag!)
-      IDENTITY_DEFAULT_VLAN="1";
+      IDENTITY_DEFAULT_VLAN = "1";
 
       # See: http://docs.ixpmanager.org/features/reseller/
-      IXP_RESELLER_ENABLED="false";
+      IXP_RESELLER_ENABLED = "false";
 
       # See: http://docs.ixpmanager.org/features/as112/
-      IXP_AS112_UI_ACTIVE="false";
+      IXP_AS112_UI_ACTIVE = "false";
 
       # Send email notifications when a customer's billing details are updated.
       # See: http://docs.ixpmanager.org/usage/customers/#notification-of-billing-details-changed
-      IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY="vorstand@dd-ix.net";
+      IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY = "vorstand@dd-ix.net";
 
       # AUTH_PEERINGDB_ENABLED=true;
       # PEERINGDB_OAUTH_CLIENT_ID="xxx";
