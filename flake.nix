@@ -96,19 +96,6 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-ns01 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
-          modules = [
-            ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
-            microvm.nixosModules.microvm
-            ./hosts/svc-ns01
-            sops-nix.nixosModules.default
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
-          ];
-        };
         svc-mta01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
@@ -118,6 +105,32 @@
             sops-nix.nixosModules.default
             microvm.nixosModules.microvm
             ./hosts/svc-mta01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        svc-node01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            ./hosts/svc-node01
+            sops-nix.nixosModules.default
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        svc-ns01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            ./hosts/svc-ns01
+            sops-nix.nixosModules.default
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];

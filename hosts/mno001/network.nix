@@ -88,13 +88,28 @@ in
         Name = "svc-lab";
         Kind = "bridge";
       };
+
+      "20-${bond_device_name}.104" = {
+        netdevConfig = {
+          Name = "${bond_device_name}.104";
+          Kind = "vlan";
+        };
+        vlanConfig = {
+          Id = 104;
+        };
+      };
+
+      "20-svc-admin".netdevConfig = {
+        Name = "svc-admin";
+        Kind = "bridge";
+      };
     };
 
     networks = {
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" ];
+        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" "${bond_device_name}.104" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
@@ -150,6 +165,16 @@ in
       "30-microvm-svc-lab" = {
         matchConfig.Name = "l-*";
         networkConfig.Bridge = "svc-lab";
+      };
+
+      "10-${bond_device_name}.104" = {
+        matchConfig.Name = "${bond_device_name}.104";
+        networkConfig.Bridge = "svc-admin";
+      };
+
+      "30-microvm-svc-admin" = {
+        matchConfig.Name = "a-*";
+        networkConfig.Bridge = "svc-admin";
       };
 
       "40-bring-up-bridges" = {

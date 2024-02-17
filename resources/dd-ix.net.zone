@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024021700  ; Serial
+               2024021701  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -39,27 +39,28 @@ acme-dns  NS  ans-01.ibh.de.
 
 
 ;; Hosts
-svc-adm01     AAAA  2a01:7700:80b0:7002::2
 svc-fw01      A     212.111.245.177
               AAAA  2a01:7700:80b0:6000::1
-svc-hv01      AAAA  2a01:7700:80b0:7000::2
-              TXT   "v=spf1 a:mta.dd-ix.net -all"
+svc-mta01     A     212.111.245.180
+              AAAA  2a01:7700:80b0:6000::25
 svc-rpx01     A     212.111.245.178
               AAAA  2a01:7700:80b0:6000::443
               TXT   "v=spf1 a:mta.dd-ix.net -all"
 svc-ns01      AAAA  2a01:7700:80b0:6000::53
-svc-mta01     A     212.111.245.180
-              AAAA  2a01:7700:80b0:6000::25
 svc-portal01  AAAA  2a01:7700:80b0:6001::2
 svc-fpx01     AAAA  2a01:7700:80b0:6001::3
-svc-clab01    AAAA  2a01:7700:80b0:7001::2
 svc-auth01    AAAA  2a01:7700:80b0:6001::4
 svc-pg01      AAAA  2a01:7700:80b0:6001::5
 svc-cloud01   AAAA  2a01:7700:80b0:6001::6
 svc-dcim01    AAAA  2a01:7700:80b0:6001::7
 svc-lists01   AAAA  2a01:7700:80b0:6001::8
 svc-vault01   AAAA  2a01:7700:80b0:6001::9
-svc-lg01   AAAA  2a01:7700:80b0:6001::10
+svc-lg01      AAAA  2a01:7700:80b0:6001::10
+svc-hv01      AAAA  2a01:7700:80b0:7000::2
+              TXT   "v=spf1 a:mta.dd-ix.net -all"
+svc-clab01    AAAA  2a01:7700:80b0:7001::2
+svc-adm01     AAAA  2a01:7700:80b0:7002::2
+svc-node01    AAAA  2a01:7700:80b0:7002::3
 
 ;; til rename is done
 mno001  CNAME svc-hv01

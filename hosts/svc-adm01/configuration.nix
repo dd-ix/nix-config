@@ -8,8 +8,8 @@
       vcpu = 2;
 
       hostName = "svc-adm01";
-      mac = "22:99:63:77:e4:42";
-      vlan = "l";
+      mac = "42:df:f0:70:02:02";
+      vlan = "a";
 
       v6Addr = "2a01:7700:80b0:7002::2/64";
     };
