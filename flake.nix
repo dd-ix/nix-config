@@ -83,6 +83,19 @@
             }
           ] ++ nixos-modules;
         };
+        svc-adm01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            ./hosts/svc-adm01
+            sops-nix.nixosModules.default
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
         svc-ns01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
