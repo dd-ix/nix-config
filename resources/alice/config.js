@@ -6,5 +6,5 @@ Alice.updateContent({
   footer: "<a href='https://dd-ix.net/imprint'>Imprint</a> <a href='https://dd-ix.net/privacy-policy'>Privacy Policy</a>"
 });
 
-document.title = "BCIX Looking Glass";
+document.title = "DD-IX Looking Glass";
 
