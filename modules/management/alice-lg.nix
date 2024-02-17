@@ -1,4 +1,4 @@
-{ self, lib, config, ... }:
+{ self, lib, config, pkgs, ... }:
 let
   listen_addr = "[::1]:7340";
   route_server = [
@@ -10,6 +10,7 @@ in
   services = {
     alice-lg = {
       enable = true;
+      package = pkgs.callPackage ../../resources/alice.nix {};
       settings = lib.mkMerge [
         {
           server = {
