@@ -65,13 +65,13 @@
       IDENTITY_LEGALNAME = "DD-IX Dresden Internet Exchange e.V.";
       IDENTITY_CITY = "Dresden";
       IDENTITY_COUNTRY = "DE";
-      IDENTITY_ORGNAME="${IDENTITY_LEGALNAME}";
+      IDENTITY_ORGNAME="\${IDENTITY_LEGALNAME}";
 
       # As well as uses in other places, emails are sent from the following name/email:
       IDENTITY_NAME="DD-IX Dresden Internet Exchange";
       IDENTITY_EMAIL="noc@dd-ix.net";
 
-      #IDENTITY_TESTEMAIL="${IDENTITY_EMAIL}";
+      #IDENTITY_TESTEMAIL="\${IDENTITY_EMAIL}";
 
       # Used on some traffic graphs:
       IDENTITY_WATERMARK = "DD-IX";
