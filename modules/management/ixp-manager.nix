@@ -54,8 +54,8 @@
       # We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
       MAIL_MAILER="smtp";
       MAIL_HOST="mta.dd-ix.net";
-      MAIL_PORT=25;
-      MAIL_ENCRYPTION=false;
+      MAIL_PORT="25";
+      MAIL_ENCRYPTION="false";
 
       IDENTITY_SITENAME = "DD-IX Portal";
 
@@ -93,13 +93,13 @@
 
       # For some actions (e.g. peering matrix) we need to know what VLAN to show by default.
       # This is the vlan.id database entry (i.e. not the VLAN number/tag!)
-      IDENTITY_DEFAULT_VLAN=1;
+      IDENTITY_DEFAULT_VLAN="1";
 
       # See: http://docs.ixpmanager.org/features/reseller/
-      IXP_RESELLER_ENABLED=false;
+      IXP_RESELLER_ENABLED="false";
 
       # See: http://docs.ixpmanager.org/features/as112/
-      IXP_AS112_UI_ACTIVE=false;
+      IXP_AS112_UI_ACTIVE="false";
 
       # Send email notifications when a customer's billing details are updated.
       # See: http://docs.ixpmanager.org/usage/customers/#notification-of-billing-details-changed
