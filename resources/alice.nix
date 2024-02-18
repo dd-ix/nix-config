@@ -11,8 +11,8 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "MarcelCoding";
     repo = "alice-lg";
-    rev = "da846fc52158869958c8bc8d876f8ff2559b595f";
-    hash = "sha256-yZWCAj/m8OaNML08BDw/5aSSz6GKQQUB6SSLI/AgX30=";
+    rev = "a12a1161b750b19a7f5d361e0d9f7e2f29d407c7";
+    hash = "sha256-rAqmWqNY7GdbBKZ0tpoNta1X8VXTyXHx0lx2/XrmmHg=";
   };
 
   vendorHash = "sha256-8N5E1CW5Z7HujwXRsZLv7y4uNOJkjj155kmX9PCjajQ=";
@@ -36,12 +36,17 @@ buildGoModule rec {
       yarn --offline build
     '';
 
+    checkPhase = ''
+      yarn --offline test --cache=false
+    '';
+
     installPhase = ''
       mkdir $out
       cp -R build/* $out
     '';
 
     doDist = false;
+    doCheck = true;
   };
 
   preBuild = ''
