@@ -29,6 +29,7 @@ let
       noreply@wiki.dd-ix.net         noc@dd-ix.net
       noreply@auth.dd-ix.net         noc@dd-ix.net
       noreply@svc-hv01.dd-ix.net     noc@dd-ix.net
+      noreply@svc-adm01.dd-ix.net    noc@dd-ix.net
     '';
 in
 {
