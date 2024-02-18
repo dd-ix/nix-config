@@ -17,7 +17,6 @@
 
   environment.systemPackages = with pkgs; [
     ansible
-    bgpq4
     git
     fping
     inetutils
