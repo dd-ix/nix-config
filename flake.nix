@@ -95,7 +95,6 @@
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
-            arouteserver.nixosModules.default
             { nixpkgs.overlays = [ arouteserver.overlays.default ]; }
             ./hosts/svc-adm01
             sops-nix.nixosModules.default
