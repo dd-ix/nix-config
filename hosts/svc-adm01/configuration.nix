@@ -23,6 +23,7 @@
     inetutils
     mc
     vim
+    arouteserver
   ];
 
   system.stateVersion = "23.11";
