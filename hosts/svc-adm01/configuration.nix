@@ -22,12 +22,18 @@
   sops.secrets = {
     arouteserver_config = {
       sopsFile = self + "/secrets/management/adm.yaml";
-      owner = "root";
+      owner = "arouteserver";
     };
     arouteserver_ssh_priv_key = {
       sopsFile = self + "/secrets/management/adm.yaml";
       mode = "0400";
-      path = "id_ed25519";
+      path = "/home/arouteserver/.ssh/id_ed25519";
+      owner = "arouteserver";
+    };
+    arouteserver_ssh_known_hosts = {
+      sopsFile = self + "/secrets/management/adm.yaml";
+      mode = "0400";
+      path = "/home/arouteserver/.ssh/known_hosts";
       owner = "arouteserver";
     };
   };
@@ -43,7 +49,7 @@
   };
 
   systemd.services = {
-    aarouteserver = {
+    arouteserver = {
       enable = true;
       script = ''
         echo noop
