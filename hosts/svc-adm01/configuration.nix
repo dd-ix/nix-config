@@ -15,7 +15,10 @@
     };
   };
 
-  environment.variables.AROUTESERVER_WORKDIR = "/var/lib/arouteserver";
+  environment.variables = {
+  AROUTESERVER_WORKDIR = "/var/lib/arouteserver";
+AROUTESERVER_SECRETS_FILE = config.sops.secrets.arouteserver_config.path;
+};
 
   users.users.arouteserver = {
     isNormalUser = true;
