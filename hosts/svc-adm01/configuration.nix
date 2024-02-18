@@ -15,6 +15,8 @@
     };
   };
 
+  environment.variables.AROUTESERVER_WORKDIR = "/var/lib/arouteserver";
+
   users.users.arouteserver = {
     isNormalUser = true;
   };
