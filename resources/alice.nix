@@ -11,8 +11,8 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "MarcelCoding";
     repo = "alice-lg";
-    rev = "a12a1161b750b19a7f5d361e0d9f7e2f29d407c7";
-    hash = "sha256-rAqmWqNY7GdbBKZ0tpoNta1X8VXTyXHx0lx2/XrmmHg=";
+    rev = "84fc6938e29ae6da0e311b4299791bfcf02000bb";
+    hash = "sha256-bEzfx7K0Ch/YoMDO+atirLjsVOpvFDE3TSM9lDb9EfY=";
   };
 
   vendorHash = "sha256-8N5E1CW5Z7HujwXRsZLv7y4uNOJkjj155kmX9PCjajQ=";
