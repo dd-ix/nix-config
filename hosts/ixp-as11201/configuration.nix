@@ -37,5 +37,41 @@ in
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
 
+  boot.kernel.sysctl = {
+    # this machine should not participate in SLAAC
+    "net.ipv6.conf.all.accept_ra" = 0;
+    "net.ipv6.conf.default.accept_ra" = 0;
+    "net.ipv6.conf.all.autoconf" = 0;
+    "net.ipv6.conf.default.autoconf" = 0;
+    # no redirects nor evil RH0
+    "net.ipv6.conf.all.ipv6.accept_redirects" = 0;
+    "net.ipv6.conf.default.ipv6.accept_redirects" = 0;
+    "net.ipv6.conf.all.accept_source_route" = 0;
+    "net.ipv6.conf.default.accept_source_route" = 0;
+    # no forwarding
+    "net.ipv6.conf.all.forwarding" = 0;
+    "net.ipv6.conf.default.forwarding" = 0;
+
+
+    # no redirects nor source route
+    "net.ipv4.cong.all.accept_redirects" = 0;
+    "net.ipv4.cong.default.accept_redirects" = 0;
+    "net.ipv4.cong.all.send_redirects" = 0;
+    "net.ipv4.cong.default.send_redirects" = 0;
+    "net.ipv4.cong.all.accept_source_route" = 0;
+    "net.ipv4.cong.default.accept_source_route" = 0;
+    # handle arp requests strict
+    "net.ipv4.cong.all.arp_ignore" = 1;
+    "net.ipv4.cong.default.arp_ignore" = 1;
+    "net.ipv4.cong.all.arp_notify" = 1;
+    "net.ipv4.cong.default.arp_notify" = 1;
+    # do strict rp filtering
+    "net.ipv4.cong.all.rp_filter" = 1;
+    "net.ipv4.cong.default.rp_filter" = 1;
+    # no forwarding
+    "net.ipv4.cong.all.forwarding" = 0;
+    "net.ipv4.cong.default.forwarding" = 0;
+  };
+
   system.stateVersion = "23.11";
 }
