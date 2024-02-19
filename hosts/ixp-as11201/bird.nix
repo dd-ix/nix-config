@@ -3,31 +3,67 @@
   services.bird2 = {
     enable = true;
     config = ''
-      router id 10.77.1.1;
+      # log to stderr
+      log stderr all;
+
+      # timeformat for birdc scraping
+      timeformat base iso long;
+
+      # our router id
+      router id 193.201.151.70;
+
+      # enable internal watchdog
+      watchdog warning 5 s;
+      watchdog timeout 30 s;
 
       protocol device {
       }
 
-      protocol direct {
+      protocol direct any112 {
+        interface "any112";
         ipv4;
+        ipv6;
       }
 
-      protocol static {
+      # bgp templates
+      template bgp tpl_ddix_rs {
+        local as 65077;
+
+        disabled yes;
+
+        graceful restart yes;
+
+        enable extended messages yes;
+
+        advertise hostname yes;
+      }
+      template bgp tpl_ddix_rs_v4 from bgp tpl_ddix_rs {
         ipv4 {
           import all;
-          export none;
+          export where source = RTS_DIRECT;
+        };
+      }
+      template bgp tpl_ddix_rs_v6 from bgp tpl_ddix_rs {
+        ipv6 {
+          import all;
+          export where source = RTS_DIRECT;
         };
       }
 
-      protocol bgp hel1vyos {
-        local 10.99.3.4 as 65077;
-        neighbor 10.99.3.1 as 65099;
-        hold time 180;
+      # DD-IX Route Servers IPv4
+      protocol bgp ddix_rs01_v4 from tpl_ddix_rs_v4 {
+        neighbor 193.201.151.65 as 57328;
+      }
+      protocol bgp ddix_rs02_v4 from tpl_ddix_rs_v4 {
+        neighbor 193.201.151.66 as 57328;
+      }
 
-        ipv4 {
-          import all;
-          export all;
-        };
+      # DD-IX Route Servers IPv6
+      protocol bgp ddix_rs01_v6 from tpl_ddix_rs_v6 {
+        neighbor 2001:7f8:79::dff0:1 as 57328;
+      }
+      protocol bgp ddix_rs02_v6 from tpl_ddix_rs_v6 {
+        neighbor 2001:7f8:79::dff0:2 as 57328;
       }
     '';
   };
