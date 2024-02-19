@@ -74,17 +74,20 @@ in
     arouteserver = {
       enable = true;
       script = ''
-        echo noop
+        echo [DD-IX] building bird config
+        ${ddix-bird-build}/bin/ddix-bird-build
+        echo [DD-IX] deploying bird config
+        ${ddix-bird-push}/bin/ddix-bird-push
       '';
-      # every day 01:15
-      startAt = "*-*-* 01:15:00";
+      # every 6 hours
+      startAt = "00/6:20";
       serviceConfig = {
         Type = "oneshot";
-        RuntimeDirectory = "arouteserver";
-        WorkingDirectory = "%t/arouteserver";
         User = "arouteserver";
-        LoadCredential = "config.yaml:${config.sops.secrets.arouteserver_config.path}";
-        Environment = "CONFIG_PATH=%d/config.yaml";
+        Environment = [
+          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
+          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
+        ];
       };
       unitConfig.OnFailure = "notify-arouteserver-failed.service";
     };

@@ -14,6 +14,8 @@ let
     "[2a01:7700:80b0:6001::8]/128"
     # svc-vault01
     "[2a01:7700:80b0:6001::9]/128"
+    # svc-adm01
+    "[2a01:7700:80b0:7002::2]/128"
   ];
 
   # enable virtual aliases for those domains
