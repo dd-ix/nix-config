@@ -60,6 +60,7 @@ in
   ];
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
+  systemd.services.bird2.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
 
   boot.kernel.sysctl = {
     # this machine should not participate in SLAAC
