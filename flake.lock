@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708371758,
+        "lastModified": 1708372436,
         "narHash": "sha256-itkYF0u9ERjym4ice+waw84UC60CTUG3yWJU10ipEkI=",
         "owner": "dd-ix",
         "repo": "arouteserver.nix",
-        "rev": "a9d89e29bf9e00483d937cc6a82ac927954d7438",
+        "rev": "49b560a5f4b169f4be2faf47953e1b4e007f80a4",
         "type": "github"
       },
       "original": {
@@ -257,11 +257,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1705561212,
-        "narHash": "sha256-NNN/KFLH9gv4aebmSVdnrC7hu7/aIi77bMHF+5yBSa0=",
+        "lastModified": 1708383608,
+        "narHash": "sha256-aGpRUK6XD3mpk7GYBQx1NS5tQsE3+VMoauEgOVgHNbY=",
         "ref": "refs/heads/main",
-        "rev": "690684f5f8854b1ad29b20ea565979a9f12e1ebf",
-        "revCount": 8,
+        "rev": "9f94dc4fab64bb37379a938877ebb8747c5561e7",
+        "revCount": 9,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
