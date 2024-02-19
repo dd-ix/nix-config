@@ -3,8 +3,8 @@ let
   ddix-ansible-bird = pkgs.fetchFromGitHub {
     owner = "dd-ix";
     repo = "ddix-ansible-bird";
-    rev = "c57a90e22ec93f192fba4558729719f8c4f2fa14";
-    hash = "sha256-KABxOaNFCIreGSYNveFvx5L/X1mplPjXiIpxXruFo60=";
+    rev = "ad23d8857aded93b32a8940529ff551c313d9623";
+    hash = "sha256-cVLYlcAHtYuxMRAxV558Lw76QVCHkOKa35KJnZ3MjU8=";
   };
   ddix-bird-build = pkgs.writeShellScriptBin "ddix-bird-build" ''
     cd ${ddix-ansible-bird}/plays
