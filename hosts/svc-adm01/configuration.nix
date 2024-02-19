@@ -7,16 +7,12 @@ let
     hash = "sha256-KABxOaNFCIreGSYNveFvx5L/X1mplPjXiIpxXruFo60=";
   };
   ddix-bird-build = pkgs.writeShellScriptBin "ddix-bird-build" ''
-    CUR_DIR=$(pwd)
     cd ${ddix-ansible-bird}/plays
-    ${pkgs.ansible}/bin/ansible-playbook build.yml $@
-    cd $CUR_DIR
+    exec ${pkgs.ansible}/bin/ansible-playbook build.yml $@
   '';
   ddix-bird-push = pkgs.writeShellScriptBin "ddix-bird-push" ''
-    CUR_DIR=''$(pwd)
     cd ${ddix-ansible-bird}/plays
-    ${pkgs.ansible}/bin/ansible-playbook push.yml $@
-    cd ''$CUR_DIR
+    exec ${pkgs.ansible}/bin/ansible-playbook push.yml $@
   '';
 in
 
