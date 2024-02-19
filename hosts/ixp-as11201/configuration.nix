@@ -1,6 +1,7 @@
 { ... }:
 let
-  addr = "2a01:7700:80b0:6001::11";
+  addr = "2a01:7700:80b0:4101::2";
+  macPeering = "12:6d:81:f8:61:de";
 in
 {
   dd-ix = {
@@ -14,26 +15,49 @@ in
 
       hostName = "ixp-as11201";
       mac = "62:7a:2e:2f:68:66";
-      vlan = "s";
+      vlan = "im";
 
       v6Addr = "${addr}/64";
     };
   };
 
-  networking.ifstate.settings.namespaces.ixp-peering.interfaces = [{
-    name = "any112";
-    link.kind = "dummy";
-    addresses = [
-      "192.175.48.1/32" #  prisoner.iana.org (anycast)
-      "2620:4f:8000::1/128" #  prisoner.iana.org (anycast)
-      "192.175.48.6/32" #  blackhole-1.iana.org (anycast)
-      "2620:4f:8000::6/128" #  blackhole-1.iana.org (anycast)
-      "192.175.48.42/32" #  blackhole-2.iana.org (anycast)
-      "2620:4f:8000::42/128" #  blackhole-2.iana.org (anycast)
-      "192.31.196.1/32" #  blackhole.as112.arpa (anycast)
-      "2001:4:112::1/128" #  blackhole.as112.arpa (anycast)
-    ];
+  microvm.interfaces = [{
+    type = "tap";
+    id = "p-ixp-as11201";
+    mac = macPeering;
   }];
+
+  networking.ifstate.settings.namespaces.ixp-peering.interfaces = [
+    {
+      name = "any112";
+      link = {
+        state = "up";
+        kind = "dummy";
+      };
+      addresses = [
+        "192.175.48.1/32" #  prisoner.iana.org (anycast)
+        "2620:4f:8000::1/128" #  prisoner.iana.org (anycast)
+        "192.175.48.6/32" #  blackhole-1.iana.org (anycast)
+        "2620:4f:8000::6/128" #  blackhole-1.iana.org (anycast)
+        "192.175.48.42/32" #  blackhole-2.iana.org (anycast)
+        "2620:4f:8000::42/128" #  blackhole-2.iana.org (anycast)
+        "192.31.196.1/32" #  blackhole.as112.arpa (anycast)
+        "2001:4:112::1/128" #  blackhole.as112.arpa (anycast)
+      ];
+    }
+    {
+      name = "ixp-peering";
+      link = {
+        state = "up";
+        kind = "physical";
+        permaddr = macPeering;
+      };
+      addresses = [
+        "2001:7f8:79::70:1/64"
+        "193.201.151.70/26"
+      ];
+    }
+  ];
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
 
@@ -51,7 +75,6 @@ in
     # no forwarding
     "net.ipv6.conf.all.forwarding" = 0;
     "net.ipv6.conf.default.forwarding" = 0;
-
 
     # no redirects nor source route
     "net.ipv4.cong.all.accept_redirects" = 0;

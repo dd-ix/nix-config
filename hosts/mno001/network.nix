@@ -3,6 +3,7 @@ let
   bond_device_name = "bond"; # name of the bond interface
   first_device_name = "enp144s0"; # first port that should be part of the LAG
   second_device_name = "enp144s0d1"; # second port that should be part of the LAG
+  ixp_peering_device_name = "eno2";
 in
 {
   networking = {
@@ -103,13 +104,33 @@ in
         Name = "svc-admin";
         Kind = "bridge";
       };
+
+      "20-${bond_device_name}.301" = {
+        netdevConfig = {
+          Name = "${bond_device_name}.301";
+          Kind = "vlan";
+        };
+        vlanConfig = {
+          Id = 301;
+        };
+      };
+
+      "20-svc-ixp-mgmt".netdevConfig = {
+        Name = "svc-ixp-mgmt";
+        Kind = "bridge";
+      };
+
+      "20-ixp-peering".netdevConfig = {
+        Name = "ixp-peering";
+        Kind = "bridge";
+      };
     };
 
     networks = {
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" "${bond_device_name}.104" ];
+        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" "${bond_device_name}.104" "${bond_device_name}.301" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
@@ -175,6 +196,26 @@ in
       "30-microvm-svc-admin" = {
         matchConfig.Name = "a-*";
         networkConfig.Bridge = "svc-admin";
+      };
+
+      "10-${bond_device_name}.301" = {
+        matchConfig.Name = "${bond_device_name}.301";
+        networkConfig.Bridge = "svc-ixp-mgmt";
+      };
+
+      "30-microvm-svc-ixp-mgmt" = {
+        matchConfig.Name = "im-*";
+        networkConfig.Bridge = "svc-ixp-mgmt";
+      };
+
+      "10-${ixp_peering_device_name}" = {
+        matchConfig.Name = "${ixp_peering_device_name}";
+        networkConfig.Bridge = "ixp-peering";
+      };
+
+      "30-microvm-ixp-peering" = {
+        matchConfig.Name = "p-*";
+        networkConfig.Bridge = "ixp-peering";
       };
 
       "40-bring-up-bridges" = {
