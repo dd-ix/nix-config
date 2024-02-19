@@ -1,4 +1,25 @@
 { self, config, pkgs, ... }:
+let
+  ddix-ansible-bird = pkgs.fetchFromGitHub {
+    owner = "dd-ix";
+    repo = "ddix-ansible-bird";
+    rev = "c57a90e22ec93f192fba4558729719f8c4f2fa14";
+    hash = "sha256-KABxOaNFCIreGSYNveFvx5L/X1mplPjXiIpxXruFo60=";
+  };
+  ddix-bird-build = pkgs.writeShellScriptBin "ddix-bird-build" ''
+    CUR_DIR=$(pwd)
+    cd ${ddix-ansible-bird}/plays
+    ${pkgs.ansible}/bin/ansible-playbook build.yml $@
+    cd $CUR_DIR
+  '';
+  ddix-bird-push = pkgs.writeShellScriptBin "ddix-bird-push" ''
+    CUR_DIR=''$(pwd)
+    cd ${ddix-ansible-bird}/plays
+    ${pkgs.ansible}/bin/ansible-playbook push.yml $@
+    cd ''$CUR_DIR
+  '';
+in
+
 {
   dd-ix = {
     microvm = {
@@ -16,9 +37,9 @@
   };
 
   environment.variables = {
-  AROUTESERVER_WORKDIR = "/var/lib/arouteserver";
-AROUTESERVER_SECRETS_FILE = config.sops.secrets.arouteserver_config.path;
-};
+    AROUTESERVER_WORKDIR = "/var/lib/arouteserver";
+    AROUTESERVER_SECRETS_FILE = config.sops.secrets.arouteserver_config.path;
+  };
 
   users.users.arouteserver = {
     isNormalUser = true;
@@ -91,7 +112,10 @@ AROUTESERVER_SECRETS_FILE = config.sops.secrets.arouteserver_config.path;
     inetutils
     mc
     vim
+    bgpq4
     arouteserver
+    ddix-bird-build
+    ddix-bird-push
   ];
 
   system.stateVersion = "23.11";
