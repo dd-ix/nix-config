@@ -79,6 +79,11 @@ in
         echo [DD-IX] deploying bird config
         ${ddix-bird-push}/bin/ddix-bird-push
       '';
+      path = with pkgs; [
+        arouteserver
+        bgpq4
+        openssh
+      ];
       # every 6 hours
       startAt = "00/6:20";
       serviceConfig = {
