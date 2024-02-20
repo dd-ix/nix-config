@@ -218,8 +218,17 @@ in
         networkConfig.Bridge = "ixp-peering";
       };
 
-      "40-bring-up-bridges" = {
+      "40-bring-svc-up-bridges" = {
         matchConfig.Name = "svc-*";
+        networkConfig = {
+          DHCP = "no";
+          LinkLocalAddressing = "no";
+          KeepConfiguration = "yes";
+        };
+      };
+      
+      "40-bring-ixp-up-bridges" = {
+        matchConfig.Name = "ixp-*";
         networkConfig = {
           DHCP = "no";
           LinkLocalAddressing = "no";
