@@ -27,6 +27,8 @@ in
     mac = macPeering;
   }];
 
+  networking.firewall.allowedUDPPorts = [6343];
+
   networking.ifstate.settings.namespaces.ixp-peering.interfaces = [
     {
       name = "any112";
