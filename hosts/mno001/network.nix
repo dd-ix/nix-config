@@ -226,7 +226,7 @@ in
           KeepConfiguration = "yes";
         };
       };
-      
+
       "40-bring-ixp-up-bridges" = {
         matchConfig.Name = "ixp-*";
         networkConfig = {

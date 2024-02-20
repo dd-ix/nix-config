@@ -19,6 +19,7 @@ in
             enable_prefix_lookup = true;
           };
           theme.path = self + "/resources/alice";
+          rpki.enabled = true;
         }
         (lib.mkMerge (map
           (num: {
