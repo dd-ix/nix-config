@@ -37,16 +37,16 @@
 
         advertise hostname yes;
       }
-      template bgp tpl_ddix_rs_v4 from bgp tpl_ddix_rs {
+      template bgp tpl_ddix_rs_v4 from tpl_ddix_rs {
         ipv4 {
           import all;
-          export where source = RTS_DIRECT;
+          export where proto = "any112";
         };
       }
-      template bgp tpl_ddix_rs_v6 from bgp tpl_ddix_rs {
+      template bgp tpl_ddix_rs_v6 from tpl_ddix_rs {
         ipv6 {
           import all;
-          export where source = RTS_DIRECT;
+          export where proto = "any112";
         };
       }
 
