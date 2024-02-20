@@ -35,14 +35,14 @@ in
         kind = "dummy";
       };
       addresses = [
-        "192.175.48.1/32" #  prisoner.iana.org (anycast)
-        "2620:4f:8000::1/128" #  prisoner.iana.org (anycast)
-        "192.175.48.6/32" #  blackhole-1.iana.org (anycast)
-        "2620:4f:8000::6/128" #  blackhole-1.iana.org (anycast)
-        "192.175.48.42/32" #  blackhole-2.iana.org (anycast)
-        "2620:4f:8000::42/128" #  blackhole-2.iana.org (anycast)
-        "192.31.196.1/32" #  blackhole.as112.arpa (anycast)
-        "2001:4:112::1/128" #  blackhole.as112.arpa (anycast)
+        "192.175.48.1/24" #  prisoner.iana.org (anycast)
+        "2620:4f:8000::1/48" #  prisoner.iana.org (anycast)
+        "192.175.48.6/24" #  blackhole-1.iana.org (anycast)
+        "2620:4f:8000::6/48" #  blackhole-1.iana.org (anycast)
+        "192.175.48.42/24" #  blackhole-2.iana.org (anycast)
+        "2620:4f:8000::42/48" #  blackhole-2.iana.org (anycast)
+        "192.31.196.1/24" #  blackhole.as112.arpa (anycast)
+        "2001:4:112::1/48" #  blackhole.as112.arpa (anycast)
       ];
     }
     {
