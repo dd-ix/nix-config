@@ -27,7 +27,7 @@
 
       # bgp templates
       template bgp tpl_ddix_rs {
-        local as 65077;
+        local as 112;
 
         disabled yes;
 
@@ -52,17 +52,21 @@
 
       # DD-IX Route Servers IPv4
       protocol bgp ddix_rs01_v4 from tpl_ddix_rs_v4 {
+        disabled no;
         neighbor 193.201.151.65 as 57328;
       }
       protocol bgp ddix_rs02_v4 from tpl_ddix_rs_v4 {
+        disabled no;
         neighbor 193.201.151.66 as 57328;
       }
 
       # DD-IX Route Servers IPv6
       protocol bgp ddix_rs01_v6 from tpl_ddix_rs_v6 {
+        disabled no;
         neighbor 2001:7f8:79::dff0:1 as 57328;
       }
       protocol bgp ddix_rs02_v6 from tpl_ddix_rs_v6 {
+        disabled no;
         neighbor 2001:7f8:79::dff0:2 as 57328;
       }
     '';
