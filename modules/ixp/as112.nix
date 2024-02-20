@@ -24,7 +24,7 @@ let
   '';
   hostname-as112-net = pkgs.writeText "db.hostname.as112.net" ''
     $TTL    1W
-    @       SOA     server.example.net. admin.example.net. (
+    @       SOA     ixp-as11201.dd-ix.net. noc.dd-ix.net. (
                             1               ; serial number
                             1W              ; refresh
                             1M              ; retry
@@ -42,7 +42,7 @@ let
   '';
   hostname-as112-arpa = pkgs.writeText "db.hostname.as112.arpa" ''
     $TTL    1W
-    @       SOA     server.example.net. admin.example.net. (
+    @       SOA     ixp-as11201.dd-ix.net. noc.dd-ix.net. (
                             1               ; serial number
                             1W              ; refresh
                             1M              ; retry
