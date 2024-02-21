@@ -8,13 +8,7 @@
   services.nginx = {
     enable = true;
     virtualHosts."svc-prom01.dd-ix.net" = {
-      listen = [{
-        addr = "[::]:443";
-        proxyProtocol = true;
-        ssl = true;
-      }];
-
-      onlySSL = true;
+      forceSSL = true;
       useACMEHost = "svc-prom01.dd-ix.net";
 
       locations."/" = {
