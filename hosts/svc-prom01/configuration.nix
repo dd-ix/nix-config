@@ -1,6 +1,8 @@
 { ... }:
 {
   dd-ix = {
+    useFpx = true;
+
     microvm = {
       enable = true;
 
