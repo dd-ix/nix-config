@@ -16,7 +16,7 @@ keys:
   - &svc-vault01 age12n7ckcmw9j9qym430lv00l6ax3xklljjt3502s9vxkn43qqpqfyqqusqrg
   - &svc-lg01 age1mpakhhssx0ha5nv72hcyzecz0uy2lqnwduqkdyhdkexqe7gruvqqj0gqx0
   - &svc-adm01 age1yg56aehyj58nytm6c8d2d67mrds8s9rzjstyds0grval5kjm7dcq7pfpv8
-  - &svc-prom01 age1yg56aehyj58nytm6c8d2d67mrds8s9rzjstyds0grval5kjm7dcq7pfpv8
+  - &svc-prom01 age1s5rwy7xa9ytmkrd0ch9eqe0dfe6u2ew5su2353jtgpjnhl5lq34s85lqjt
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
