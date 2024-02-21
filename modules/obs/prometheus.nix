@@ -3,6 +3,12 @@
   services.prometheus = {
     enable = true;
     webExternalUrl = "https://svc-prom01.dd-ix.net";
+    scrapeConfigs = [
+      {
+        job_name = "sflow_exporter";
+        static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9100" ]; }];
+      }
+    ];
   };
 
   services.nginx = {
