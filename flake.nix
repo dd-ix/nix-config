@@ -325,7 +325,7 @@
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
-            sflow-exporter.nixosModules.sflowExporter
+            sflow-exporter.nixosModules.default
             { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
             sops-nix.nixosModules.default
             ./hosts/svc-exp01
