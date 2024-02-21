@@ -15,14 +15,10 @@
 
       v6Addr = "2a01:7700:80b0:4101::3/64";
     };
-
-    acme = [{
-      name = "svc-exp01.dd-ix.net";
-      group = "nginx";
-    }];
   };
 
   networking.firewall.allowedUDPPorts = [ 6343 ];
+  networking.firewall.allowedTCPPorts = [ 9100 ];
 
   system.stateVersion = "23.11";
 }

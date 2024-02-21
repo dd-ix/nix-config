@@ -17,7 +17,7 @@ keys:
   - &svc-lg01 age1mpakhhssx0ha5nv72hcyzecz0uy2lqnwduqkdyhdkexqe7gruvqqj0gqx0
   - &svc-adm01 age1yg56aehyj58nytm6c8d2d67mrds8s9rzjstyds0grval5kjm7dcq7pfpv8
   - &svc-prom01 age1s5rwy7xa9ytmkrd0ch9eqe0dfe6u2ew5su2353jtgpjnhl5lq34s85lqjt
-  - &svc-exp01 age12eeaqsw8w5lj8u064tnuq5nat87vr0nnjqjnlart5r8ge8pszg0sp08x3p
+  - &svc-obs01 age12eeaqsw8w5lj8u064tnuq5nat87vr0nnjqjnlart5r8ge8pszg0sp08x3p
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
@@ -159,7 +159,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-prom01
-  - path_regex: secrets/management/rfc2136/svc-exp01.dd-ix.net.yaml
+  - path_regex: secrets/management/rfc2136/obs.dd-ix.net.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
@@ -168,4 +168,4 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         age:
-        - *svc-exp01
+        - *svc-obs01
