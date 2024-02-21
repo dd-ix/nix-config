@@ -20,5 +20,7 @@
     }];
   };
 
+  networking.firewall.allowedUDPPorts = [ 6343 ];
+
   system.stateVersion = "23.11";
 }
