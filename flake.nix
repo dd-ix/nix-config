@@ -51,9 +51,14 @@
       url = "github:dd-ix/arouteserver.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sflow-exporter = {
+      url = "github:dd-ix/sflow_exporter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, arouteserver, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, arouteserver, sflow-exporter, ... }: {
     nixosConfigurations =
       let
         overlays = [
@@ -309,6 +314,21 @@
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-prom01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+        svc-exp01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sflow-exporter.nixosModules.sflowExporter
+            { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
+            sops-nix.nixosModules.default
+            ./hosts/svc-exp01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];

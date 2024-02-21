@@ -12,7 +12,6 @@
       useACMEHost = "svc-prom01.dd-ix.net";
 
       locations."/" = {
-        proxyWebsockets = true;
         proxyPass = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
       };
     };
