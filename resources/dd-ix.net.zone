@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024022103  ; Serial
+               2024022104  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -64,6 +64,7 @@ svc-node01    AAAA  2a01:7700:80b0:7002::3
 ixp-as11201   AAAA  2a01:7700:80b0:4101::2
 svc-prom01    AAAA  2a01:7700:80b0:7002::4
 svc-exp01     AAAA  2a01:7700:80b0:4101::3
+svc-obs01     AAAA  2a01:7700:80b0:6001::11
 
 ;; til rename is done
 mno001  CNAME svc-hv01
@@ -89,6 +90,7 @@ orga           CNAME  rpx
 auth           CNAME  rpx
 office         CNAME  rpx
 lg             CNAME  rpx
+obs            CNAME  rpx
 
 
 ;; Management
@@ -130,7 +132,7 @@ _acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
 _acme-challenge.office         CNAME  office.acme-dns
 _acme-challenge.lg             CNAME  lg.acme-dns
 _acme-challenge.svc-prom01     CNAME  svc-prom01.acme-dns
-_acme-challenge.svc-exp01      CNAME  svc-exp01.acme-dns
+_acme-challenge.obs            CNAME  obs.acme-dns
 
 ;; Migadu Mail Setup
 autoconfig          CNAME  autoconfig.migadu.com.
