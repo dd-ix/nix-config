@@ -53,7 +53,7 @@
 
       DB_HOST = "svc-mari01.dd-ix.net";
       DB_DATABASE = "ixp_manager";
-      DB_USERNAME = "ixp_mabager";
+      DB_USERNAME = "ixp_manager";
 
       # We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
       MAIL_MAILER = "smtp";

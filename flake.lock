@@ -295,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708639805,
-        "narHash": "sha256-2qrBUzRUWnfej7oOXi7yC0h2ApdhXUgI0/jrqXvEi3U=",
+        "lastModified": 1708642209,
+        "narHash": "sha256-3g8xSU/bU56QwLK8435gB4Gq7re8IwpqngEJC3T28do=",
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
-        "rev": "7650e0c2a5e32619496e9856b2b69f0b589e35dd",
+        "rev": "f4022f026e0467f99fb7fec23f37882c29219c12",
         "type": "github"
       },
       "original": {
