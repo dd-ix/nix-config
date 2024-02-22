@@ -489,11 +489,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1708361897,
-        "narHash": "sha256-9a0QXE1twMoDsTDe4zzJ8r2g4u11VClX4pk+1Ha7VtQ=",
+        "lastModified": 1708629964,
+        "narHash": "sha256-Ijl2ce/4OpcNTcPkFthfJ0s/SwU8q7kUIpR2GLy2aTU=",
         "owner": "dd-ix",
         "repo": "presence",
-        "rev": "08ff2db63994398cfc6f66df5b4661d8a7d11df9",
+        "rev": "5e1022519aec109c82f193cb73a352b152797328",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708627269,
-        "narHash": "sha256-iN29OMX80h1b7Pb2Aoc5OSSVPR7lxssrL8EsmoJ9iIg=",
+        "lastModified": 1708627430,
+        "narHash": "sha256-fWWuQ+1ffmKlSU3lyhqSLSk/u3MKgMBmNqewze6VxhE=",
         "owner": "dd-ix",
         "repo": "sflow_exporter",
-        "rev": "0a4b2b77f19437ee32b7c6e0604ceb8b2125a45a",
+        "rev": "b7e8718daeeb502fc2ecbf42ad1885dd5c0f66d1",
         "type": "github"
       },
       "original": {
