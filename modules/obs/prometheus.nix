@@ -6,7 +6,7 @@
     scrapeConfigs = [
       {
         job_name = "sflow_exporter";
-        static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9100" ]; }];
+        static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9144" ]; }];
         scrape_interval = "15s";
       }
       {
