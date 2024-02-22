@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
     ./configuration.nix
-    ../../modules/management/authentik.nix
+    ../../modules/obs/grafana.nix
   ];
 }

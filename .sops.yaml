@@ -159,7 +159,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-prom01
-  - path_regex: secrets/management/rfc2136/obs.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/obs.dd-ix.net|obs).yaml
     key_groups:
       - pgp:
         - *admin_tassilo
