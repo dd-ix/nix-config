@@ -74,7 +74,7 @@
         oauth_auto_login = true;
       };
       "auth.generic_oauth" = {
-        name = "authentik";
+        name = "DD-IX Auth";
         enabled = true;
         client_id = "0JoW22eMuKF2CPfQUjL1AlnuQ96Bx6fGdJt9iZJa";
         client_secret = "$__file{${config.sops.secrets."obs_auth_secret_key".path}}";
