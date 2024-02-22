@@ -11,5 +11,6 @@
     ./postgres.nix
     ./nginx.nix
     ./restic.nix
+    ./mariadb.nix
   ];
 }

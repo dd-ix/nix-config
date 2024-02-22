@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  options.dd-ix.postgres = lib.mkOption {
+  options.dd-ix.mariadb = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [ ];
   };
