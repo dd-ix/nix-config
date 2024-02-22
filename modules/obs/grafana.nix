@@ -1,21 +1,40 @@
 { self, config, ... }:
 {
- sops.secrets."obs_db_pw" = {
-   sopsFile = self + "/secrets/management/obs.yaml";
+  sops.secrets."obs_db_pw" = {
+    sopsFile = self + "/secrets/management/obs.yaml";
     owner = config.systemd.services.grafana.serviceConfig.User;
-   };
- sops.secrets."obs_auth_secret_key" = {
-   sopsFile = self + "/secrets/management/obs.yaml";
+  };
+  sops.secrets."obs_auth_secret_key" = {
+    sopsFile = self + "/secrets/management/obs.yaml";
     owner = config.systemd.services.grafana.serviceConfig.User;
-   };
+  };
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."obs.${config.deployment-dd-ix.domain}" = {
+      listen = [{
+        addr = "[::]:443";
+        proxyProtocol = true;
+        ssl = true;
+      }];
+
+      onlySSL = true;
+      useACMEHost = "obs.${config.deployment-dd-ix.domain}";
+
+      locations."/" = {
+        proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
+        proxyWebsockets = true;
+      };
+    };
+  };
 
   services.grafana = {
     enable = true;
     settings = {
       server = {
-        protocol = true;
+        protocol = "https";
         enforce_domain = true;
-        domain = "obs.dd-ix.net";
+        domain = "obs.${config.deployment-dd-ix.domain}";
       };
       security = {
         disable_initial_admin_creation = true;
@@ -65,12 +84,13 @@
         api_url = "https://auth.dd-ix.net/application/o/userinfo/";
         role_attribute_path = "contains(groups, 'DDIX-Board') && 'Admin' || contains(groups, 'DDIX-Tech') && 'Editor' || 'Viewer'";
       };
+      user.auto_assign_org = true;
     };
     provision = {
       enable = true;
-      datasources = {
-        deleteDatasources = [{ name = "svc-prom01"; }];
-        settings.datasources = [{
+      datasources.settings = {
+        deleteDatasources = [{ name = "svc-prom01"; orgId = 1; }];
+        datasources = [{
           name = "svc-prom01";
           url = "https://svc-prom01.dd-ix.net:443";
           uid = "svc-prom01";
