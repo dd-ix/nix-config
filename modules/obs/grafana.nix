@@ -82,7 +82,7 @@
         auth_url = "https://auth.dd-ix.net/application/o/authorize/";
         token_url = "https://auth.dd-ix.net/application/o/token/";
         api_url = "https://auth.dd-ix.net/application/o/userinfo/";
-        role_attribute_path = "contains(groups, 'DDIX-Board') && 'Admin' || contains(groups, 'DDIX-Tech') && 'Editor' || 'Viewer'";
+        role_attribute_path = "contains(groups, 'DDIX-Tech') && 'Editor' || 'Viewer'";
         login_attribute_path = "preferred_username";
       };
       user.auto_assign_org = true;
