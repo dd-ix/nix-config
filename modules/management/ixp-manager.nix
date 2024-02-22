@@ -51,7 +51,7 @@
       APP_URL = "https://portal.dd-ix.net";
       APP_CHIPHER = "aes-256-gcm";
 
-      DB_HOST="svc-mari01.dd-ix.net";
+      DB_HOST = "svc-mari01.dd-ix.net";
       DB_DATABASE = "ixp_manager";
       DB_USERNAME = "ixp_mabager";
 

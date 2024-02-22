@@ -23,6 +23,7 @@ in
       ssl_cert = "${config.security.acme.certs."svc-mari01.dd-ix.net".directory}/fullchain.pem";
       ssl_key = "${config.security.acme.certs."svc-mari01.dd-ix.net".directory}/key.pem";
       require_secure_transport = true;
+      skip-name-resolve = true;
     };
     ensureDatabases = users;
   };
@@ -31,9 +32,9 @@ in
     (lib.concatMapStrings
       (user:
         ''
-          ( echo "DROP USER IF EXISTS '${user}'@'*';"
-            echo "CREATE USER IF NOT EXISTS '${user}'@'*' IDENTIFIED BY \"''$(cat ${config.sops.secrets."mari_${user}".path})\";"
-            echo "GRANT ALL PRIVILEGES ON ${user}.* TO '${user}'@'*';"
+          ( echo "DROP USER IF EXISTS '${user}'@'%';"
+            echo "CREATE USER IF NOT EXISTS '${user}'@'%' IDENTIFIED BY \"''$(cat ${config.sops.secrets."mari_${user}".path})\";"
+            echo "GRANT ALL PRIVILEGES ON ${user}.* TO '${user}'@'%';"
           ) | ${config.services.mysql.package}/bin/mysql -N
         '')
       users)

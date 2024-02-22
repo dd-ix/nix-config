@@ -120,6 +120,7 @@ in
     arouteserver
     ddix-bird-build
     ddix-bird-push
+    mariadb_1011
   ];
 
   system.stateVersion = "23.11";
