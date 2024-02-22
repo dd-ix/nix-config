@@ -32,9 +32,9 @@
     enable = true;
     settings = {
       server = {
-        protocol = "https";
         enforce_domain = true;
         domain = "obs.${config.deployment-dd-ix.domain}";
+        root_url = "https://obs.${config.deployment-dd-ix.domain}";
       };
       security = {
         disable_initial_admin_creation = true;
@@ -70,7 +70,7 @@
         feedback_links_enabled = false;
       };
       auth = {
-        signout_redirect_url = "https://authentik.company/application/o/obs/end-session/";
+        signout_redirect_url = "https://auth.dd-ix.net/application/o/obs/end-session/";
         oauth_auto_login = true;
       };
       "auth.generic_oauth" = {
@@ -83,8 +83,13 @@
         token_url = "https://auth.dd-ix.net/application/o/token/";
         api_url = "https://auth.dd-ix.net/application/o/userinfo/";
         role_attribute_path = "contains(groups, 'DDIX-Board') && 'Admin' || contains(groups, 'DDIX-Tech') && 'Editor' || 'Viewer'";
+        login_attribute_path = "preferred_username";
       };
       user.auto_assign_org = true;
+      remote_cache = {
+        type = "redis";
+        connstr = "addr=${config.services.redis.servers.grafana.unixSocket},pool_size=100,db=0";
+      };
     };
     provision = {
       enable = true;
@@ -100,5 +105,9 @@
         }];
       };
     };
+  };
+
+  services.redis.servers.grafana = {
+    enable = true;
   };
 }
