@@ -21,7 +21,7 @@ in
 
     acme = [{
       name = "svc-mari01.dd-ix.net";
-      group = "mysql";# "mysql"# config.systemd.services.mysql.serviceConfig.User;
+      group = config.systemd.services.mysql.serviceConfig.Group;
     }];
   };
 

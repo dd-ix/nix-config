@@ -29,6 +29,8 @@ in
       domains = [ "portal.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
+
+    mariadb = [ "ixp_manager" ];
   };
 
   system.stateVersion = "23.11";

@@ -13,8 +13,8 @@
   services.ixp-manager = {
     enable = true;
     hostname = "portal.dd-ix.net";
-    #environmentFile = config.sops.secrets."env_file".path;
-    createDatabaseLocally = true;
+    environmentFile = config.sops.secrets."env_file".path;
+    createDatabaseLocally = false;
     enableMRTG = true;
 
     nginx = {
@@ -50,7 +50,10 @@
     settings = {
       APP_URL = "https://portal.dd-ix.net";
       APP_CHIPHER = "aes-256-gcm";
-      DB_PASSWORD = "test";
+
+      DB_HOST="svc-mari01.dd-ix.net";
+      DB_DATABASE = "ixp_manager";
+      DB_USERNAME = "ixp_mabager";
 
       # We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
       MAIL_MAILER = "smtp";
