@@ -111,6 +111,7 @@ in
 
   environment.systemPackages = with pkgs; [
     ansible
+    python311Packages.mysqlclient
     git
     fping
     inetutils
