@@ -8,6 +8,18 @@
         job_name = "sflow_exporter";
         static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9100" ]; }];
       }
+      {
+        job_name = "node_exporter";
+        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9100" "ixp-rs02.dd-ix.net:9100" "svc-fw01.dd-ix.net:9100" ]; }];
+      }
+      {
+        job_name = "openrc_exporter";
+        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9816" "ixp-rs02.dd-ix.net:9816" "svc-fw01.dd-ix.net:9816" ]; }];
+      }
+      {
+        job_name = "bird_exporter";
+        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9324" "ixp-rs02.dd-ix.net:9324" ]; }];
+      }
     ];
   };
 
