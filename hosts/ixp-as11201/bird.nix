@@ -25,6 +25,20 @@
         ipv6;
       }
 
+      protocol kernel kernel4 {
+        ipv4 {
+          import none;
+          export all;
+        };
+      }
+
+      protocol kernel kernel6 {
+        ipv6 {
+          import none;
+          export all;
+        };
+      }
+
       # bgp templates
       template bgp tpl_ddix_rs {
         local as 112;
