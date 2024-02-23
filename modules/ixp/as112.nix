@@ -102,4 +102,17 @@ in
       };
     };
   };
+
+  services.prometheus.exporters.knot = {
+    enable = true;
+    openFirewall = true;
+    extraFlags = [
+      "--no-meminfo"
+      "--no-global-stats"
+      "--no-zone-status"
+      "--no-zone-timers"
+      "--no-zone-serial"
+    ];
+  };
 }
+

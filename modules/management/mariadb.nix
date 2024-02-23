@@ -22,7 +22,7 @@ in
     settings.mysqld = {
       ssl_cert = "${config.security.acme.certs."svc-mari01.dd-ix.net".directory}/fullchain.pem";
       ssl_key = "${config.security.acme.certs."svc-mari01.dd-ix.net".directory}/key.pem";
-#      require_secure_transport = true;
+      #      require_secure_transport = true;
       skip-name-resolve = true;
     };
     ensureDatabases = users;
