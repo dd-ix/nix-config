@@ -47,8 +47,8 @@
       inputs.nixpkgs-23-05.follows = "nixpkgs";
     };
 
-    arouteserver = {
-      url = "github:dd-ix/arouteserver.nix";
+    ddix-ansible-ixp = {
+      url = "github:dd-ix/ddix-ansible-ixp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -58,7 +58,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, arouteserver, sflow-exporter, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
     nixosConfigurations =
       let
         overlays = [
@@ -100,7 +100,7 @@
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
-            { nixpkgs.overlays = [ arouteserver.overlays.default ]; }
+            { nixpkgs.overlays = [ ddix-ansible-ixp.overlays.default ]; }
             ./hosts/svc-adm01
             sops-nix.nixosModules.default
             ./modules/dd-ix

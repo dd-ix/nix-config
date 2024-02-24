@@ -1,16 +1,4 @@
 { self, config, pkgs, ... }:
-let
-  ddix-ansible-bird = pkgs.fetchFromGitHub {
-    owner = "dd-ix";
-    repo = "ddix-ansible-bird";
-    rev = "1291246129b589a1b0800d043ad096a7e52a24bf";
-    hash = "sha256-QWRDhpJQu7oGVRCUum+odi64UNt9oU1ojyhrhkQBq+4=";
-  };
-  ddix-ansible-ixp = pkgs.writeShellScriptBin "ddix-ansible-ixp" ''
-    cd ${ddix-ansible-bird}/plays && exec ${pkgs.ansible}/bin/ansible-playbook ixp.yml $@
-  '';
-in
-
 {
   dd-ix = {
     microvm = {
@@ -70,15 +58,8 @@ in
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${ddix-ansible-ixp}/bin/ddix-ansible-ixp -D
+        ${pkgs.ddix-ansible-ixp}/bin/ddix-ansible-ixp -D
       '';
-      path = with pkgs; [
-        arouteserver
-        bgpq4
-        openssh
-        python311Packages.mysqlclient
-        mariadb_1011
-      ];
       # every 6 hours
       startAt = "00/6:20";
       serviceConfig = {
@@ -105,17 +86,12 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    ansible
-    python311Packages.mysqlclient
     git
     fping
     inetutils
     mc
     vim
-    bgpq4
-    arouteserver
     ddix-ansible-ixp
-    mariadb_1011
   ];
 
   system.stateVersion = "23.11";
