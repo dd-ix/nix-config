@@ -3,16 +3,11 @@ let
   ddix-ansible-bird = pkgs.fetchFromGitHub {
     owner = "dd-ix";
     repo = "ddix-ansible-bird";
-    rev = "ad23d8857aded93b32a8940529ff551c313d9623";
-    hash = "sha256-cVLYlcAHtYuxMRAxV558Lw76QVCHkOKa35KJnZ3MjU8=";
+    rev = "1291246129b589a1b0800d043ad096a7e52a24bf";
+    hash = "sha256-QWRDhpJQu7oGVRCUum+odi64UNt9oU1ojyhrhkQBq+4=";
   };
-  ddix-bird-build = pkgs.writeShellScriptBin "ddix-bird-build" ''
-    cd ${ddix-ansible-bird}/plays
-    exec ${pkgs.ansible}/bin/ansible-playbook build.yml $@
-  '';
-  ddix-bird-push = pkgs.writeShellScriptBin "ddix-bird-push" ''
-    cd ${ddix-ansible-bird}/plays
-    exec ${pkgs.ansible}/bin/ansible-playbook push.yml $@
+  ddix-ansible-ixp = pkgs.writeShellScriptBin "ddix-ansible-ixp" ''
+    cd ${ddix-ansible-bird}/plays && exec ${pkgs.ansible}/bin/ansible-playbook ixp.yml $@
   '';
 in
 
@@ -74,10 +69,8 @@ in
     arouteserver = {
       enable = true;
       script = ''
-        echo [DD-IX] building bird config
-        ${ddix-bird-build}/bin/ddix-bird-build
-        echo [DD-IX] deploying bird config
-        ${ddix-bird-push}/bin/ddix-bird-push
+        echo [DD-IX] run ixp deployment
+        ${ddix-ansible-ixp}/bin/ddix-ansible-ixp -D
       '';
       path = with pkgs; [
         arouteserver
@@ -119,8 +112,7 @@ in
     vim
     bgpq4
     arouteserver
-    ddix-bird-build
-    ddix-bird-push
+    ddix-ansible-ixp
     mariadb_1011
   ];
 
