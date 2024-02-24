@@ -77,11 +77,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708773561,
-        "narHash": "sha256-OnJgPTF8MV4+MyUmM0IHx/jUW7+ODYWFg6QTbrfVv4c=",
+        "lastModified": 1708781622,
+        "narHash": "sha256-roqqlYSQowFq5xCv7NhFdaIwkASkWCruM3Zd4JXm4pE=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "938504c01ab13662b341948645d0cff8c425166c",
+        "rev": "79e5f42a4e4933d1ce0b1fb4b827bf5234416ca8",
         "type": "github"
       },
       "original": {
@@ -567,11 +567,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708739410,
-        "narHash": "sha256-iGo5HJxjW6ybnzV1lD3WQjaCpFQZGTV7ZhXoAz7AJcU=",
+        "lastModified": 1708784506,
+        "narHash": "sha256-vdxkFIFi+NsJuuBqTorCsynCurae3x1pD4yOboU/azA=",
         "owner": "dd-ix",
         "repo": "sflow_exporter",
-        "rev": "246d46f64d0352332b5eeabde7f0041ed4326039",
+        "rev": "e5ce03043c6b2195df2f5788e339cc379c128330",
         "type": "github"
       },
       "original": {
