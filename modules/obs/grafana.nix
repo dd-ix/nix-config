@@ -94,15 +94,31 @@
     provision = {
       enable = true;
       datasources.settings = {
-        deleteDatasources = [{ name = "svc-prom01"; orgId = 1; }];
-        datasources = [{
-          name = "svc-prom01";
-          url = "https://svc-prom01.dd-ix.net:443";
-          uid = "svc-prom01";
-          type = "prometheus";
-          access = "proxy";
-          enable = true;
-        }];
+        deleteDatasources = [
+          { name = "svc-prom01"; orgId = 1; }
+          { name = "svc-prom01_15s"; orgId = 1; }
+          { name = "svc-prom01_1m"; orgId = 1; }
+        ];
+        datasources = [
+          {
+            name = "svc-prom01_15s";
+            url = "https://svc-prom01.dd-ix.net:443";
+            uid = "svc-prom01_15s";
+            type = "prometheus";
+            access = "proxy";
+            enable = true;
+            jsonData.timeInterval = "15s";
+          }
+          {
+            name = "svc-prom01_1m";
+            url = "https://svc-prom01.dd-ix.net:443";
+            uid = "svc-prom01_1m";
+            type = "prometheus";
+            access = "proxy";
+            enable = true;
+            jsonData.timeInterval = "1m";
+          }
+        ];
       };
     };
   };
