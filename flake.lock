@@ -526,11 +526,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708627430,
-        "narHash": "sha256-fWWuQ+1ffmKlSU3lyhqSLSk/u3MKgMBmNqewze6VxhE=",
+        "lastModified": 1708739410,
+        "narHash": "sha256-iGo5HJxjW6ybnzV1lD3WQjaCpFQZGTV7ZhXoAz7AJcU=",
         "owner": "dd-ix",
         "repo": "sflow_exporter",
-        "rev": "b7e8718daeeb502fc2ecbf42ad1885dd5c0f66d1",
+        "rev": "246d46f64d0352332b5eeabde7f0041ed4326039",
         "type": "github"
       },
       "original": {

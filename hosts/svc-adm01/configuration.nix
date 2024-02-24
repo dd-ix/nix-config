@@ -76,6 +76,8 @@ in
         arouteserver
         bgpq4
         openssh
+        python311Packages.mysqlclient
+        mariadb_1011
       ];
       # every 6 hours
       startAt = "00/6:20";
