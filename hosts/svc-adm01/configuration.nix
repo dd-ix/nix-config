@@ -92,6 +92,7 @@
     mc
     vim
     ddix-ansible-ixp
+    net-snmp
   ];
 
   system.stateVersion = "23.11";
