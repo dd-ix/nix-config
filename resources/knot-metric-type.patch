@@ -1,0 +1,22 @@
+diff --git a/knot_exporter/knot_exporter.py b/knot_exporter/knot_exporter.py
+index 32f3339..a162e64 100755
+--- a/knot_exporter/knot_exporter.py
++++ b/knot_exporter/knot_exporter.py
+@@ -12,7 +12,7 @@ import libknot
+ import libknot.control
+
+ from prometheus_client.core import REGISTRY
+-from prometheus_client.core import GaugeMetricFamily
++from prometheus_client.core import CounterMetricFamily
+ from prometheus_client.exposition import MetricsHandler
+
+
+@@ -70,7 +70,7 @@ class KnotCollector(object):
+         metric_families = dict()
+
+         def metric_families_append(family, labels, labels_val, data):
+-            m = metric_families.get(family, GaugeMetricFamily(family, '', labels=labels))
++            m = metric_families.get(family, CounterMetricFamily(family, '', labels=labels))
+             m.add_metric(labels_val, data)
+             metric_families[family] = m
+

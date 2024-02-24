@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 let
   dd-empty = pkgs.writeText "db.dd-empty" ''
     $TTL    1W
@@ -135,5 +135,14 @@ in
       "--no-zone-serial"
     ];
   };
-}
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      prometheus-knot-exporter = prev.prometheus-knot-exporter.overrideAttrs (o: {
+        patches = (o.patches or [ ]) ++ [
+          ../../resources/knot-metric-type.patch
+        ];
+      });
+    })
+  ];
+}
