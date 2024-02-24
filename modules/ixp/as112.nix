@@ -62,12 +62,32 @@ in
   services.knot = {
     enable = true;
     settings = {
-      server = {
-        listen = [
-          "0.0.0.0@53"
-          "::@53"
-        ];
-      };
+      server.listen = [
+        "0.0.0.0@53"
+        "::@53"
+      ];
+
+      mod-stats = [{
+        id = "custom";
+        request-protocol = false;
+        server-operation = false;
+        request-bytes = false;
+        response-bytes = false;
+        edns-presence = false;
+        flag-presence = false;
+        response-code = false;
+        request-edns-option = false;
+        response-edns-option = false;
+        reply-nodata = false;
+        query-type = true;
+        query-size = false;
+        reply-size = false;
+      }];
+
+      template = [{
+        id = "default";
+        global-module = "mod-stats/custom";
+      }];
 
       zone = {
         # Direct Delegation AS112 Service
@@ -105,10 +125,11 @@ in
 
   services.prometheus.exporters.knot = {
     enable = true;
+    listenAddress = "::";
     openFirewall = true;
     extraFlags = [
       "--no-meminfo"
-      "--no-global-stats"
+      "--no-zone-stats"
       "--no-zone-status"
       "--no-zone-timers"
       "--no-zone-serial"

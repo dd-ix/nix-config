@@ -11,15 +11,41 @@
       }
       {
         job_name = "node_exporter";
-        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9100" "ixp-rs02.dd-ix.net:9100" "svc-fw01.dd-ix.net:9100" ]; }];
+        static_configs = [{
+          targets = [
+            "ixp-rs01.dd-ix.net:9100"
+            "ixp-rs02.dd-ix.net:9100"
+            "svc-fw01.dd-ix.net:9100"
+          ];
+        }];
       }
       {
         job_name = "openrc_exporter";
-        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9816" "ixp-rs02.dd-ix.net:9816" "svc-fw01.dd-ix.net:9816" ]; }];
+        static_configs = [{
+          targets = [
+            "ixp-rs01.dd-ix.net:9816"
+            "ixp-rs02.dd-ix.net:9816"
+            "svc-fw01.dd-ix.net:9816"
+          ];
+        }];
       }
       {
         job_name = "bird_exporter";
-        static_configs = [{ targets = [ "ixp-rs01.dd-ix.net:9324" "ixp-rs02.dd-ix.net:9324" ]; }];
+        static_configs = [{
+          targets = [
+            "ixp-rs01.dd-ix.net:9324"
+            "ixp-rs02.dd-ix.net:9324"
+          ];
+        }];
+      }
+      {
+        job_name = "knot-exporter";
+        static_configs = [{ targets = [ "ixp-as11201.dd-ix.net:9433" ]; }];
+        metric_relabel_configs = [{
+          source_labels = [ "__name__" ];
+          regex = "knot_query_type";
+          action = "keep";
+        }];
       }
     ];
   };

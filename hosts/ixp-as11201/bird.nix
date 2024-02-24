@@ -85,4 +85,10 @@
       }
     '';
   };
+
+  # fix bird2 starting before netns is created
+  systemd.services.bird2 = {
+    wants = [ "network.target" ];
+    after = [ "network.target" ];
+  };
 }
