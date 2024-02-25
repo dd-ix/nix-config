@@ -14,7 +14,7 @@ in {
       node = {
 	enable = true;
 	port = 9100;
-	listenAddress = (builtins.elemAt (builtins.split "/" config.dd-ix.microvm.v6Addr) 0); # removing cidr
+	listenAddress = "::";
 	openFirewall = true;
 	disabledCollectors = [];
 	enabledCollectors = [];
