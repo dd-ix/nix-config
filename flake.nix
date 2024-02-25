@@ -61,19 +61,9 @@
   outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
     nixosConfigurations =
       let
-        overlays = [
-          presence.overlays.default
-          foundation.overlays.default
-          (final: prev: {
-            website-content = website-content;
-          })
-        ];
-
         nixos-modules = [
           sops-nix.nixosModules.default
           microvm.nixosModules.host
-          presence.nixosModules.default
-          foundation.nixosModules.default
         ];
       in
       {
@@ -85,12 +75,6 @@
             ./modules/management
             ./modules/dd-ix
             ./modules/postgresql.nix
-            {
-              nixpkgs.overlays = overlays;
-              deployment-dd-ix = {
-                domain = "dd-ix.net";
-              };
-            }
           ] ++ nixos-modules;
         };
         svc-adm01 = nixpkgs.lib.nixosSystem {
@@ -364,9 +348,20 @@
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                ifstate.overlays.default
+                presence.overlays.default
+                foundation.overlays.default
+                (final: prev: {
+                  website-content = website-content;
+                })
+              ];
+            }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            presence.nixosModules.default
+            foundation.nixosModules.default
             ./hosts/svc-web01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
