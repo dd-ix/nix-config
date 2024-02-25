@@ -15,7 +15,7 @@ in
       node = {
         enable = true;
         port = 9100;
-        listenAddress = "::";
+        listenAddress = "[::]";
         openFirewall = true;
         disabledCollectors = [ ];
         enabledCollectors = [ ];
