@@ -793,11 +793,11 @@
     "website-content": {
       "flake": false,
       "locked": {
-        "lastModified": 1708851076,
-        "narHash": "sha256-YcS3xjYbbn+BPkoda+5v3myCWNKXYR7vUwy3leX7W3U=",
+        "lastModified": 1708851963,
+        "narHash": "sha256-ldoP/L3BRu/Nfu6lvCNdi19QgX9yJ7a7Y2L60e1sfA4=",
         "owner": "dd-ix",
         "repo": "website-content",
-        "rev": "7b94f14ddbf1e1631dc73fc27b938c64c2ff191f",
+        "rev": "cfd6d01dc2d7fd974f56340837d6ce4008296dad",
         "type": "github"
       },
       "original": {
