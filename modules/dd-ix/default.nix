@@ -12,5 +12,6 @@
     ./nginx.nix
     ./restic.nix
     ./mariadb.nix
+    ./monitoring.nix
   ];
 }
