@@ -1,7 +1,8 @@
-{pkgs, config, lib, ...}: 
+{ pkgs, config, lib, ... }:
 let
   cfg = config.dd-ix.monitoring;
-in {
+in
+{
   options.dd-ix.monitoring = {
     enable = lib.mkEnableOption (lib.mdDoc "dd-ix monitoring");
     #name = lib.mkOption {
@@ -12,12 +13,12 @@ in {
   config = lib.mkIf cfg.enable {
     services.prometheus.exporters = {
       node = {
-	enable = true;
-	port = 9100;
-	listenAddress = "::";
-	openFirewall = true;
-	disabledCollectors = [];
-	enabledCollectors = [];
+        enable = true;
+        port = 9100;
+        listenAddress = "::";
+        openFirewall = true;
+        disabledCollectors = [ ];
+        enabledCollectors = [ ];
       };
     };
   };

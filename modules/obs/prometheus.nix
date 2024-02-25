@@ -12,26 +12,28 @@
       {
         job_name = "node_exporter";
         static_configs = [{
-          targets = let 
-	  	toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
+          targets =
+            let
+              toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
 
-		# list of all nixos systems in this flake
-		allSystems = toList self.nixosConfigurations;
+              # list of all nixos systems in this flake
+              allSystems = toList self.nixosConfigurations;
 
-		# filters out all the systems where monitoring is turned off
-		monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.enable == true) allSystems;
+              # filters out all the systems where monitoring is turned off
+              monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.enable == true) allSystems;
 
-		# turns the hostname into an address
-		extractAddress = host: "${host.config.dd-ix.microvm.hostName}.dd-ix.net:9100";
+              # turns the hostname into an address
+              extractAddress = host: "${host.config.dd-ix.microvm.hostName}.dd-ix.net:9100";
 
-		# list of addresses
-		listAddress = builtins.map extractAddress monitoredSystems;
+              # list of addresses
+              listAddress = builtins.map extractAddress monitoredSystems;
 
-	  in [
-            "ixp-rs01.dd-ix.net:9100"
-            "ixp-rs02.dd-ix.net:9100"
-            "svc-fw01.dd-ix.net:9100"
-          ] ++ listAddress;
+            in
+            [
+              "ixp-rs01.dd-ix.net:9100"
+              "ixp-rs02.dd-ix.net:9100"
+              "svc-fw01.dd-ix.net:9100"
+            ] ++ listAddress;
         }];
       }
       {
