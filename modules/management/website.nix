@@ -71,7 +71,7 @@
         host = "https://lists.dd-ix.net";
         port = 443;
         user = "admin";
-        passwordFile = config.sops.secrets.listmonk_admin.path;
+        passwordFile = config.sops.secrets.web_listmonk_admin_pw.path;
         allowed_lists = [ 3 ];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
