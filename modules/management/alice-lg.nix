@@ -19,8 +19,12 @@ in
             enable_prefix_lookup = true;
             enable_neighbors_status_refresh = true;
           };
-          theme.path = self + "/resources/alice";
 
+          noexport = {
+            load_on_demand = true;
+          };
+
+          theme.path = self + "/resources/alice";
 
           housekeeping = {
             interval = 5;
@@ -33,35 +37,38 @@ in
             routes_not_exported_page_size = 250;
           };
 
-
-          neighbours_columns = {
-            address = "Neighbour";
-            asn = "ASN";
-            state = "State";
-            Uptime = "Uptime";
-            Description = "Description";
-            routes_received = "Routes Received";
-            routes_filtered = "Filtered";
+          neighbors_columns = {
+            "address" = "Neighbor";
+            "asn" = "ASN";
+            "state" = "State";
+            "Uptime" = "Last State Change";
+            "Description" = "Description";
+            "routes_received" = "Received";
+            "routes_accepted" = "Accepted";
+            "routes_filtered" = "Filtered";
+            "routes_exported" = "Exported";
           };
 
-
           routes_columns = {
-            network = "Network";
-            gateway = "Gateway";
-            interface = "Interface";
-            metric = "Metric";
+            "flags" = "";
+            "network" = "Network";
+            "gateway" = "Next-Hop";
             "bgp.as_path" = "AS Path";
+            "metric" = "Local Pref.";
+            "bgp.med" = "MED";
+            "bgp.origin" = "Origin";
+            "age" = "Age";
           };
 
           lookup_columns = {
-            network = "Network";
-            gateway = "Gateway";
-            "neighbour.asn" = "ASN";
-            "neighbour.description" = "Description";
-            "bgp.as_path" = "AS Path";
+            "flags" = "";
+            "network" = "Network";
+            "gateway" = "Next-Hop";
+            "ASPath" = "AS Path";
+            "neighbor.asn" = "ASN";
+            "neighbor.description" = "Neighbor";
             "routeserver.name" = "RS";
           };
-
 
           rpki = {
             enabled = true;
