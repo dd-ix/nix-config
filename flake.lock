@@ -77,11 +77,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708855712,
-        "narHash": "sha256-INCnmn/5vUd9CYj6Yr/3a8Z8CwejbZlLOGEzax3qC+4=",
+        "lastModified": 1708876825,
+        "narHash": "sha256-yzHRmI1VjbbqN9ILIQF71e3g8DugAqFkw2Ck//fK5ms=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "0d1ec225aceb3856930b008d1f03f64ddbbf27a9",
+        "rev": "694aceecc3e7dc706403a87697502638eaa5110c",
         "type": "github"
       },
       "original": {
@@ -294,11 +294,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707136430,
-        "narHash": "sha256-ODj/AJuMSW0co3LUp19RFEvd97wi5ukdkkAw07Vqo+I=",
+        "lastModified": 1708877372,
+        "narHash": "sha256-ZODguP4c5Otr0jF8wpIcLs/acUibzTS+FtmaFvicU0s=",
         "owner": "dd-ix",
         "repo": "foundation",
-        "rev": "81f47de355cc6fa97ff09832d8452ec1231e3393",
+        "rev": "b2028799c65a3eac0e3fab92df00064e8da64ca9",
         "type": "github"
       },
       "original": {
@@ -530,11 +530,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1708855910,
-        "narHash": "sha256-j4/SxJQFs1RtChrj8t6eSG00E17FQaH6dVaZYdArBbs=",
+        "lastModified": 1708877514,
+        "narHash": "sha256-N9h/fmLwzLcwp4gIcQk9XLf+NWFSSDU4hqZBK4NT+Ro=",
         "owner": "dd-ix",
         "repo": "presence",
-        "rev": "bfa3b6b39813115fa59633326f6cec7650d1a139",
+        "rev": "4243ef7febb69c45cd50889daedd1e9ea2c1e4f3",
         "type": "github"
       },
       "original": {
