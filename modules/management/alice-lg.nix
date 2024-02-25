@@ -46,6 +46,15 @@ in
             "64512:41" = "Route authorized soley because of a client white list entry";
             "rt:64512:41" = "Route authorized soley because of a client white list entry";
             "57328:64512:41" = "Route authorized soley because of a client white list entry";
+            "64512:51" = "RPKI Valid";
+            "rt:64512:51" = "RPKI Valid";
+            "57328:1000:1" = "RPKI Valid";
+            "64512:52" = "RPKI Unknown";
+            "rt:64512:52" = "RPKI Unknown";
+            "57328:1000:2" = "RPKI Unknown";
+            "64512:532" = "RPKI Invalid";
+            "rt:64512:53" = "RPKI Invalid";
+            "57328:1000:4" = "RPKI Invalid";
             "64512:50" = "RPKI BGP Origin Validation not performed";
             "rt:64512:50" = "RPKI BGP Origin Validation not performed";
             "57328:1000:3" = "RPKI BGP Origin Validation not performed";
