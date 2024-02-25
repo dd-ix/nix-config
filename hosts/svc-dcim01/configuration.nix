@@ -30,6 +30,10 @@ in
     };
 
     postgres = [ "netbox" ];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

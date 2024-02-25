@@ -1,19 +1,24 @@
 { self, lib, ... }:
 {
-  dd-ix.microvm = {
-    enable = true;
+  dd-ix = {
+    microvm = {
+      enable = true;
 
-    mem = 2048;
-    vcpu = 2;
+      mem = 2048;
+      vcpu = 2;
 
-    hostName = "svc-rpx01";
-    mac = "32:08:69:71:62:9b";
-    vlan = "i";
+      hostName = "svc-rpx01";
+      mac = "32:08:69:71:62:9b";
+      vlan = "i";
 
-    v6Addr = "2a01:7700:80b0:6000::443/64";
-    v4Addr = "212.111.245.178/29";
+      v6Addr = "2a01:7700:80b0:6000::443/64";
+      v4Addr = "212.111.245.178/29";
+    };
+
+    monitoring = {
+      enable = true;
+    };
   };
-
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   services.nginx = {

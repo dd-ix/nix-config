@@ -20,6 +20,10 @@
       name = "svc-prom01.dd-ix.net";
       group = "nginx";
     }];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

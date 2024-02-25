@@ -38,6 +38,10 @@ in
       domains = [ "dd-ix.net" "www.dd-ix.net" "content.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

@@ -31,6 +31,10 @@ in
     };
 
     mariadb = [ "ixp_manager" ];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

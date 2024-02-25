@@ -15,6 +15,10 @@
 
       v6Addr = "2a01:7700:80b0:4101::3/64";
     };
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   networking.firewall.allowedUDPPorts = [ 6343 ];

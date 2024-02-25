@@ -23,6 +23,10 @@ in
       name = "svc-mari01.dd-ix.net";
       group = config.systemd.services.mysql.serviceConfig.Group;
     }];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 3306 ];

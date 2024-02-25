@@ -31,6 +31,10 @@ in
     };
 
     postgres = [ "nextcloud" "onlyoffice" ];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

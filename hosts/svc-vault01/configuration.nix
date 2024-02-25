@@ -30,6 +30,10 @@ in
     };
 
     postgres = [ "vaultwarden" ];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   system.stateVersion = "23.11";

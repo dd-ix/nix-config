@@ -20,6 +20,10 @@ in
     };
 
     acme = [{ name = "svc-pg01.dd-ix.net"; }];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 443 ];

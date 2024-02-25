@@ -30,6 +30,10 @@ in
     };
 
     postgres = [ "authentik" ];
+
+    monitoring = {
+      enable = true;
+    };
   };
 
   networking.firewall.allowedUDPPorts = [ 1812 ];

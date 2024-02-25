@@ -13,6 +13,9 @@
 
       v6Addr = "2a01:7700:80b0:7002::2/64";
     };
+    monitoring = {
+      enable = true;
+    };
   };
 
   environment.variables = {
