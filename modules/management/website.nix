@@ -1,6 +1,10 @@
-{ config, ... }: {
+{ self, config, ... }: {
 
-  sops.secrets.listmonk_admin.owner = config.dd-ix.foundation.user;
+  sops.secrets.web_listmonk_admin_pw = {
+    sopsFile = self + "/secrets/management/web.yaml";
+    owner = config.dd-ix.foundation.user;
+  };
+
   services.nginx = {
     enable = true;
     virtualHosts = {

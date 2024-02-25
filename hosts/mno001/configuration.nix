@@ -10,9 +10,6 @@
   dd-ix =
     let
       domains = [
-        "dd-ix.net"
-        "www.dd-ix.net"
-        "content.dd-ix.net"
         "wiki.dd-ix.net"
       ];
     in
