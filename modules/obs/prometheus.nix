@@ -39,7 +39,7 @@
         }];
       }
       {
-        job_name = "knot-exporter";
+        job_name = "knot_exporter";
         static_configs = [{ targets = [ "ixp-as11201.dd-ix.net:9433" ]; }];
         metric_relabel_configs = [{
           source_labels = [ "__name__" ];
