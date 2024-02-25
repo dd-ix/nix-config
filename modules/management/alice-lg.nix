@@ -20,10 +20,6 @@ in
             enable_neighbors_status_refresh = true;
           };
 
-          noexport = {
-            load_on_demand = true;
-          };
-
           theme.path = self + "/resources/alice";
 
           housekeeping = {
