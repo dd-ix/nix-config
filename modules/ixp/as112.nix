@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ pkgs, ... }:
 let
   dd-empty = pkgs.writeText "db.dd-empty" ''
     $TTL    1W
