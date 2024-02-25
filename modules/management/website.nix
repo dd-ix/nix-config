@@ -71,6 +71,7 @@
         allowed_lists = [ 3 ];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
+      prometheusUrl = "https://svc-prom01.${config.deployment-dd-ix.domain}/";
     };
   };
 }
