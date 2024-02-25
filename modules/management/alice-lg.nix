@@ -17,8 +17,51 @@ in
             listen_http = "${listen_addr}";
             asn = 57328;
             enable_prefix_lookup = true;
+            enable_neighbors_status_refresh = true;
           };
           theme.path = self + "/resources/alice";
+
+
+          housekeeping = {
+            interval = 5;
+            force_release_memory = true;
+          };
+
+          pagination = {
+            routes_filtered_page_size = 250;
+            routes_accepted_page_size = 250;
+            routes_not_exported_page_size = 250;
+          };
+
+
+          neighbours_columns = {
+            address = "Neighbour";
+            asn = "ASN";
+            state = "State";
+            Uptime = "Uptime";
+            Description = "Description";
+            routes_received = "Routes Received";
+            routes_filtered = "Filtered";
+          };
+
+
+          routes_columns = {
+            network = "Network";
+            gateway = "Gateway";
+            interface = "Interface";
+            metric = "Metric";
+            "bgp.as_path" = "AS Path";
+          };
+
+          lookup_columns = {
+            network = "Network";
+            gateway = "Gateway";
+            "neighbour.asn" = "ASN";
+            "neighbour.description" = "Description";
+            "bgp.as_path" = "AS Path";
+            "routeserver.name" = "RS";
+          };
+
 
           rpki = {
             enabled = true;
