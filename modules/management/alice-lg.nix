@@ -204,7 +204,7 @@ in
             "source.rs${num}".name = "rs${num}.dd-ix.net";
             "source.rs${num}.birdwatcher" = {
               api = "http://[2a01:7700:80b0:40${num}::2]:29184";
-              type = "single_table";
+              type = "multi_table";
               timezone = "Europe/Berlin";
             };
           })
