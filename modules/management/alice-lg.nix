@@ -164,6 +164,9 @@ in
             "57328:1101:10" = "Origin ASN not in IRRDB AS-SETs";
             "57328:1101:9" = "Prefix not in IRRDB AS-SETs";
             "57328:1101:13" = "RPKI INVALID route";
+
+            "57328:2000:1" = "IXP PoP CC";
+            "57328:2000:2" = "IXP PoP C2";
           };
         }
         (lib.mkMerge (map
