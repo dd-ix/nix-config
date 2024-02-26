@@ -33,39 +33,6 @@ in
             routes_not_exported_page_size = 250;
           };
 
-          neighbors_columns = {
-            "address" = "Neighbor";
-            "asn" = "ASN";
-            "state" = "State";
-            "Uptime" = "Last State Change";
-            "Description" = "Description";
-            "routes_received" = "Received";
-            "routes_accepted" = "Accepted";
-            "routes_filtered" = "Filtered";
-            "routes_exported" = "Exported";
-          };
-
-          routes_columns = {
-            "flags" = "";
-            "network" = "Network";
-            "gateway" = "Next-Hop";
-            "bgp.as_path" = "AS Path";
-            "metric" = "Local Pref.";
-            "bgp.med" = "MED";
-            "bgp.origin" = "Origin";
-            "age" = "Age";
-          };
-
-          lookup_columns = {
-            "flags" = "";
-            "network" = "Network";
-            "gateway" = "Next-Hop";
-            "ASPath" = "AS Path";
-            "neighbor.asn" = "ASN";
-            "neighbor.description" = "Neighbor";
-            "routeserver.name" = "RS";
-          };
-
           rpki = {
             enabled = true;
             valid = "57328:1000:1";
@@ -228,4 +195,38 @@ in
       };
     };
   };
+
+  environment .etc."alice-lg/alice.conf".source = lib.mkForce (pkgs.writeText "alice.conf" ''
+    ${lib.generators.toINI {} config.services.alice-lg.settings}
+  
+    [neighbors_columns]
+    address = "Neighbor";
+    asn = "ASN";
+    state = "State";
+    Uptime = "Last State Change";
+    Description = "Description";
+    routes_received = "Received";
+    routes_accepted = "Accepted";
+    routes_filtered = "Filtered";
+    routes_exported = "Exported";
+    
+    [routes_columns]
+    flags = "";
+    network = "Network";
+    gateway = "Next-Hop";
+    bgp.as_path = "AS Path";
+    metric = "Local Pref.";
+    bgp.med = "MED";
+    bgp.origin = "Origin";
+    age = "Age";
+    
+    [lookup_columns]
+    flags = "";
+    network = "Network";
+    gateway = "Next-Hop";
+    ASPath = "AS Path";
+    neighbor.asn = "ASN";
+    neighbor.description = "Neighbor";
+    routeserver.name = "RS";
+  '');
 }
