@@ -6,6 +6,7 @@ in
 {
   dd-ix = {
     useFpx = true;
+    monitoring = true;
 
     microvm = {
       enable = true;
