@@ -51,8 +51,8 @@
         # allow_embedding = true;
       };
       smtp = {
-        enable = true;
-        host = "mta.dd-ix.net";
+        enabled = true;
+        host = "mta.dd-ix.net:25";
         from_name = "DD-IX OBS";
         from_address = "noreply@obs.dd-ix.net";
       };
