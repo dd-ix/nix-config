@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-listmonk.url = "github:MarcelCoding/nixpkgs/listmonk";
+    nixpkgs-listmonk.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
