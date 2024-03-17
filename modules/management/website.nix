@@ -33,9 +33,8 @@
         useACMEHost = config.deployment-dd-ix.domain;
 
         locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:4000/";
-          };
+          "/".proxyPass = "http://127.0.0.1:4000/";
+          "/g/ml".return = "301 https://${config.deployment-dd-ix.domain}/news/subscribe";
         };
       };
       "content.${config.deployment-dd-ix.domain}" = {
