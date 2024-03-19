@@ -1,2 +1,2 @@
 # nix-config
-High Quality, Premium, Turbo Deluxe, High Performant, Awesome Config for Routers and Networks 
+High Quality, Premium, Turbo Deluxe, Blazingly Fast, Awesome Config for our Infra.  
