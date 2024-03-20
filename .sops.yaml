@@ -181,7 +181,7 @@ creation_rules:
         - *admin_marcel
         age:
         - *svc-mari01
-  - path_regex: secrets/management/(rfc2136/((www|content).)?dd-ix.net|web).yaml
+  - path_regex: secrets/management/(rfc2136/((www|content|talks).)?dd-ix.net|web).yaml
     key_groups:
       - pgp:
         - *admin_tassilo

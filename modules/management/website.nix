@@ -1,4 +1,4 @@
-{ self, config, ... }: {
+{ self, config, pkgs, ... }: {
 
   sops.secrets.web_listmonk_admin_pw = {
     sopsFile = self + "/secrets/management/web.yaml";
@@ -51,6 +51,25 @@
           "/" = {
             proxyPass = "http://${config.dd-ix.foundation.http.host}:${toString config.dd-ix.foundation.http.port}/";
           };
+        };
+      };
+      "talks.${config.deployment-dd-ix.domain}" = {
+        listen = [{
+          addr = "[::]:443";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "talks.${config.deployment-dd-ix.domain}";
+
+        root = pkgs.fetchFromGitea {
+          domain = "codeberg.org";
+          owner = "dd-ix";
+          repo = "ddix-talks";
+          fetchSubmodules = true;
+          rev = "2cf23142099b4fad36547111585abeb1257e72b0";
+          hash = "sha256-E3e/OFoU4xnyRV+5na+PRzZwQ0AxI1WAi82qkAV+g5A=";
         };
       };
     };

@@ -32,10 +32,14 @@ in
         name = "content.dd-ix.net";
         group = "nginx";
       }
+      {
+        name = "talks.dd-ix.net";
+        group = "nginx";
+      }
     ];
 
     rpx = {
-      domains = [ "dd-ix.net" "www.dd-ix.net" "content.dd-ix.net" ];
+      domains = [ "dd-ix.net" "www.dd-ix.net" "content.dd-ix.net" "talks.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
 
