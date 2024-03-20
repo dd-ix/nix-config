@@ -11,8 +11,8 @@ buildGoModule rec {
   src = fetchFromGitHub {
     owner = "MarcelCoding";
     repo = "alice-lg";
-    rev = "64a0ceefc778ea39359f75d3ebaf1c48146f9fcd";
-    hash = "sha256-HJbvQLH64YqvquZLApqSztGqz6ilJxLgivkJYcgZ7Yw=";
+    rev = "cb5d089071a942ba6a8063ca4cdd694adcff8914";
+    hash = "sha256-s4eg433CwIdzWbFdlBdXjut5qCN96ZvIHvvA7oNbsyA=";
   };
 
   vendorHash = "sha256-8N5E1CW5Z7HujwXRsZLv7y4uNOJkjj155kmX9PCjajQ=";
@@ -25,7 +25,7 @@ buildGoModule rec {
 
     offlineCache = fetchYarnDeps {
       yarnLock = "${src}/ui/yarn.lock";
-      hash = "sha256-i9uIpLI76tCu1UF+G4U7j+Z3ra6ek/g7ocK33teFmXU=";
+      hash = "sha256-PyLYIYDb7p+gMlA+z5Eu+y3eMjKhzSJ1BqfN8B8S4Lk=";
     };
 
     configurePhase = ''
