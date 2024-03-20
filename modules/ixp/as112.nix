@@ -135,15 +135,4 @@ in
       "--no-zone-serial"
     ];
   };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      # patch until 24.05
-      prometheus-knot-exporter = prev.prometheus-knot-exporter.overrideAttrs (o: {
-        patches = (o.patches or [ ]) ++ [
-          ../../resources/knot-metric-type.patch
-        ];
-      });
-    })
-  ];
 }
