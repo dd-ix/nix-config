@@ -315,11 +315,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710885221,
-        "narHash": "sha256-R2/2eAL2dL/nhHCASZscYkiDLzw+9aSNwrDZ56jPRys=",
+        "lastModified": 1711041106,
+        "narHash": "sha256-L1YPRIQy7y+0oVozhd5wsRCPIP3Q++TMLspzPe96ZaU=",
         "ref": "refs/heads/main",
-        "rev": "9a7552b808f765da08e0509ab1fcb80e1167fa1f",
-        "revCount": 14,
+        "rev": "bd1a0cb3f53de9140b073c39bb297c67d4ecc389",
+        "revCount": 15,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -420,11 +420,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1710838473,
-        "narHash": "sha256-RLvwdQSENKOaLdKhNie8XqHmTXzNm00/M/THj6zplQo=",
+        "lastModified": 1710951922,
+        "narHash": "sha256-FOOBJ3DQenLpTNdxMHR2CpGZmYuctb92gF0lpiirZ30=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fa9f817df522ac294016af3d40ccff82f5fd3a63",
+        "rev": "f091af045dff8347d66d186a62d42aceff159456",
         "type": "github"
       },
       "original": {
