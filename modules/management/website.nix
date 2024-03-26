@@ -94,6 +94,7 @@
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
       prometheusUrl = "https://svc-prom01.${config.deployment-dd-ix.domain}/";
+      ixpManagerUrl = "https://portal.${config.deployment-dd-ix.domain}/";
     };
   };
 }
