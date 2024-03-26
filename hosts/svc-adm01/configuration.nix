@@ -83,7 +83,7 @@
         DynamicUser = true;
       };
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-AROUTESERVER] routeserver deployment failed\r\n\r\narouteserver deployment:\n\n$(systemctl status --full arouteserver)" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] deployment failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value arouteserver.service`)" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
       '';
     };
   };
