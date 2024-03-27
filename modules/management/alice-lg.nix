@@ -174,7 +174,7 @@ in
             "source.rs${num}".name = "rs${num}.dd-ix.net";
             "source.rs${num}.birdwatcher" = {
               api = "http://[2a01:7700:80b0:40${num}::2]:29184";
-              type = "multi_table";
+              type = "single_table";
               timezone = "Europe/Berlin";
               # go timeparsing: https://golang.org/pkg/time/#pkg-constants
               servertime = "2006-01-02T15:04:05Z07:00";
