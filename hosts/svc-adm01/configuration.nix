@@ -61,7 +61,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${pkgs.ddix-ansible-ixp}/bin/ddix-ansible-ixp -D
+        ${pkgs.ddix-ansible-ixp}/bin/ddix-ansible-ixp -D -e engage_config=true
       '';
       # every 6 hours
       startAt = "00/6:20";
