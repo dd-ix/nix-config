@@ -294,11 +294,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711730098,
-        "narHash": "sha256-por2r8fyglSbz+gwijEzNHo+0DFcq/YemzjAo1vSF/Y=",
+        "lastModified": 1711732281,
+        "narHash": "sha256-MS/kRxmaLD4lVju9pY26fqjAv23m8ZEpzUUQGN0k+2w=",
         "owner": "dd-ix",
         "repo": "foundation",
-        "rev": "47f8bc0148942de7d574255ecc9e5061fd4df007",
+        "rev": "95fb9da3a39b870c5d123a8c1584f90bc1866590",
         "type": "github"
       },
       "original": {
