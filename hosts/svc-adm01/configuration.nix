@@ -112,7 +112,6 @@
     inetutils
     mc
     vim
-    ddix-ansible-ixp
     net-snmp
   ];
 
