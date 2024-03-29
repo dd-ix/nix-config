@@ -57,11 +57,11 @@
   };
 
   systemd.services = {
-    arouteserver = {
+    ddix-ixp-deploy = {
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${pkgs.ddix-ansible-ixp}/bin/ddix-ansible-ixp -D -e engage_config=true
+        ${pkgs.ddix-ansible-ixp}/bin/ddix-ixp-deploy -D -e engage_config=true
       '';
       # every 6 hours
       startAt = "00/6:20";
@@ -73,9 +73,27 @@
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
       };
-      unitConfig.OnFailure = "notify-arouteserver-failed.service";
+      unitConfig.OnFailure = "notify-ddix-ixp-failed.service";
     };
-    notify-arouteserver-failed = {
+    ddix-ixp-commit = {
+      enable = true;
+      script = ''
+        echo [DD-IX] run ixp commit
+        ${pkgs.ddix-ansible-ixp}/bin/ddix-ixp-commit -D
+      '';
+      # commit at 22:00
+      startAt = "22:00";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "arouteserver";
+        Environment = [
+          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
+          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
+        ];
+      };
+      unitConfig.OnFailure = "notify-ddix-ixp-failed.service";
+    };
+    notify-ddix-ixp-failed = {
       enable = true;
       serviceConfig = {
         Type = "oneshot";
