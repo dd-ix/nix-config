@@ -61,7 +61,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${pkgs.ddix-ansible-ixp}/bin/ddix-ixp-deploy -D -e engage_config=true
+        ${pkgs.ddix-ansible-deploy}/bin/ddix-ixp-deploy -D -e engage_config=true
       '';
       # every 6 hours
       startAt = "00/6:20";
@@ -79,7 +79,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp commit
-        ${pkgs.ddix-ansible-ixp}/bin/ddix-ixp-commit -D
+        ${pkgs.ddix-ansible-commit}/bin/ddix-ixp-commit -D
       '';
       # commit at 22:00
       startAt = "22:00";
