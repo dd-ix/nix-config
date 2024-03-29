@@ -77,11 +77,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711705726,
-        "narHash": "sha256-ryT3LrjxLJcpN0V36XslrFuiSHSS9A/hquvYmwI7YCM=",
+        "lastModified": 1711735483,
+        "narHash": "sha256-DD+NpeWiKMEoJ8nfZIthFl5Tlyi9/Q+ROJFoQQQWIpY=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "d7aa9624e9d0e876c4cf7249c04abee76d0309d4",
+        "rev": "218ff83e3b174b7aafd303754f139f6212e522b0",
         "type": "github"
       },
       "original": {
@@ -358,11 +358,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1711159783,
-        "narHash": "sha256-nwl2Cygq7NrV9QcebJE/T/vXv7w+zLERD7ygHz0F5g8=",
+        "lastModified": 1711734840,
+        "narHash": "sha256-92FBmtTrBeztq+zJx1briV3N4y553oSLKLtRUPJwbaE=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "d31f7c7d3194c51372134832a3a2a256773c161a",
+        "rev": "782e849f5c6eae3d2ae992e44840ba85e8664b5a",
         "type": "github"
       },
       "original": {
