@@ -42,7 +42,7 @@
     };
 
     authentik = {
-      url = "github:nix-community/authentik-nix";
+      url = "github:MarcelCoding/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-23-05.follows = "nixpkgs";
     };
