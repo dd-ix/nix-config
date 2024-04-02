@@ -171,8 +171,18 @@ in
         }
         (lib.mkMerge (map
           (num: {
-            "source.rs${num}".name = "rs${num}.dd-ix.net";
-            "source.rs${num}.birdwatcher" = {
+            "source.rs${num}_v6".name = "rs${num}.dd-ix.net (IPv6)";
+            "source.rs${num}_v6.birdwatcher" = {
+              api = "http://[2a01:7700:80b0:40${num}::2]:29186";
+              type = "single_table";
+              timezone = "Europe/Berlin";
+              # go timeparsing: https://golang.org/pkg/time/#pkg-constants
+              servertime = "2006-01-02T15:04:05Z07:00";
+              servertime_short = "2006-01-02 15:04:05";
+              servertime_ext = "2006-01-02 15:04:05";
+            };
+            "source.rs${num}_v4".name = "rs${num}.dd-ix.net (IPv4)";
+            "source.rs${num}_v4.birdwatcher" = {
               api = "http://[2a01:7700:80b0:40${num}::2]:29184";
               type = "single_table";
               timezone = "Europe/Berlin";
