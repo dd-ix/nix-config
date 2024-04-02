@@ -21,13 +21,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    presence = {
-      url = "github:dd-ix/presence";
+    website = {
+      url = "github:dd-ix/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    foundation = {
-      url = "github:dd-ix/foundation";
+    website-content-api = {
+      url = "github:dd-ix/website-content-api";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -58,7 +58,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, foundation, presence, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
     nixosConfigurations =
       let
         nixos-modules = [
@@ -351,8 +351,8 @@
             {
               nixpkgs.overlays = [
                 ifstate.overlays.default
-                presence.overlays.default
-                foundation.overlays.default
+                website.overlays.default
+                website-content-api.overlays.default
                 (final: prev: {
                   website-content = website-content;
                 })
@@ -360,8 +360,8 @@
             }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
-            presence.nixosModules.default
-            foundation.nixosModules.default
+            website.nixosModules.default
+            website-content-api.nixosModules.default
             ./hosts/svc-web01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix

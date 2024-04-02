@@ -2,7 +2,7 @@
 
   sops.secrets.web_listmonk_admin_pw = {
     sopsFile = self + "/secrets/management/web.yaml";
-    owner = config.dd-ix.foundation.user;
+    owner = config.dd-ix.website-content-api.user;
   };
 
   services.nginx = {
@@ -49,7 +49,7 @@
 
         locations = {
           "/" = {
-            proxyPass = "http://${config.dd-ix.foundation.http.host}:${toString config.dd-ix.foundation.http.port}/";
+            proxyPass = "http://${config.dd-ix.website-content-api.http.host}:${toString config.dd-ix.website-content-api.http.port}/";
           };
         };
       };
@@ -76,10 +76,10 @@
   };
 
   dd-ix = {
-    presence = {
+    website = {
       enable = true;
     };
-    foundation = {
+    website-content-api = {
       enable = true;
       http = {
         host = "127.0.0.1";
