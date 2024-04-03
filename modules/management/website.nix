@@ -33,7 +33,6 @@
         useACMEHost = config.deployment-dd-ix.domain;
 
         locations = {
-          "/".proxyPass = "http://127.0.0.1:4000/";
           "/g/ml".return = "301 https://${config.deployment-dd-ix.domain}/news/subscribe";
         };
       };
@@ -46,12 +45,6 @@
 
         onlySSL = true;
         useACMEHost = "content.${config.deployment-dd-ix.domain}";
-
-        locations = {
-          "/" = {
-            proxyPass = "http://${config.dd-ix.website-content-api.http.host}:${toString config.dd-ix.website-content-api.http.port}/";
-          };
-        };
       };
       "talks.${config.deployment-dd-ix.domain}" = {
         listen = [{
@@ -78,9 +71,11 @@
   dd-ix = {
     website = {
       enable = true;
+      domain = "${config.deployment-dd-ix.domain}";
     };
     website-content-api = {
       enable = true;
+      domain = "content.${config.deployment-dd-ix.domain}";
       http = {
         host = "127.0.0.1";
         port = 9123;
