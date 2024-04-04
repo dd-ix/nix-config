@@ -33,6 +33,7 @@
         useACMEHost = config.deployment-dd-ix.domain;
 
         locations = {
+          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
           "/g/ml".return = "301 https://${config.deployment-dd-ix.domain}/news/subscribe";
         };
       };
@@ -45,6 +46,9 @@
 
         onlySSL = true;
         useACMEHost = "content.${config.deployment-dd-ix.domain}";
+        locations = {
+          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
+        };
       };
       "talks.${config.deployment-dd-ix.domain}" = {
         listen = [{
@@ -63,6 +67,10 @@
           fetchSubmodules = true;
           rev = "2cf23142099b4fad36547111585abeb1257e72b0";
           hash = "sha256-E3e/OFoU4xnyRV+5na+PRzZwQ0AxI1WAi82qkAV+g5A=";
+        };
+
+        locations = {
+          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
         };
       };
     };
