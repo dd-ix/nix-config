@@ -2,7 +2,7 @@
 
   sops.secrets.web_listmonk_admin_pw = {
     sopsFile = self + "/secrets/management/web.yaml";
-    owner = config.dd-ix.website-content-api.user;
+    owner = "root";
   };
 
   services.nginx = {

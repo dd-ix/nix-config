@@ -786,11 +786,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1712162745,
-        "narHash": "sha256-57HhIEMkwLV6gy9DHOLNpwig5JN5cmxVND6O/vaOUPc=",
+        "lastModified": 1712221342,
+        "narHash": "sha256-Kd/OVPT6kIGuVapG51p98TlJIXQm8lLcfsShiKvko+g=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "cd691125e39dc14c7a2211a6839a52b5a8f01304",
+        "rev": "41283c0452f0270b73899d8c38fec5d9c848749f",
         "type": "github"
       },
       "original": {
@@ -823,11 +823,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712162732,
-        "narHash": "sha256-4BQPSfYOdhXy2dgTTm1szHOuoz0FXFLH91uwk0F2qKg=",
+        "lastModified": 1712224102,
+        "narHash": "sha256-0XkIXd4ebRHPyhDMIV640LhpDu5VOHEfkcFHnypNKD0=",
         "owner": "dd-ix",
         "repo": "website-content-api",
-        "rev": "b436e7d9d68dfad789a81c633ff1122f30da7743",
+        "rev": "21db9cc0e6c6c49805ddf0611905e780a697bdeb",
         "type": "github"
       },
       "original": {
