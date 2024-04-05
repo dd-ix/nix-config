@@ -48,7 +48,7 @@ in
     };
   };
 
-  users.users.ixp-deploy = {
+  users.users.ddix-deploy = {
     isNormalUser = true;
     openssh.authorizedKeys = {
       keys = [
