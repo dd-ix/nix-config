@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024052003  ; Serial
+               2024052004  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -63,6 +63,7 @@ svc-adm01     AAAA  2a01:7700:80b0:7002::2
 svc-node01    AAAA  2a01:7700:80b0:7002::3
 ixp-as11201   AAAA  2a01:7700:80b0:4101::2
 svc-prom01    AAAA  2a01:7700:80b0:7002::4
+svc-prom02    AAAA  2a01:7700:80b0:7002::5
 svc-exp01     AAAA  2a01:7700:80b0:4101::3
 svc-obs01     AAAA  2a01:7700:80b0:6001::11
 svc-mari01    AAAA  2a01:7700:80b0:6001::12
@@ -135,6 +136,7 @@ _acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
 _acme-challenge.office         CNAME  office.acme-dns
 _acme-challenge.lg             CNAME  lg.acme-dns
 _acme-challenge.svc-prom01     CNAME  svc-prom01.acme-dns
+_acme-challenge.svc-prom02     CNAME  svc-prom02.acme-dns
 _acme-challenge.obs            CNAME  obs.acme-dns
 _acme-challenge.svc-mari01     CNAME  svc-mari01.acme-dns
 _acme-challenge.talks          CNAME  talks.acme-dns

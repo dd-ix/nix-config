@@ -101,9 +101,9 @@
         ];
         datasources = [
           {
-            name = "svc-prom01_15s";
-            url = "https://svc-prom01.dd-ix.net:443";
-            uid = "svc-prom01_15s";
+            name = "svc-prom02_15s";
+            url = "https://svc-prom02.dd-ix.net:443";
+            uid = "svc-prom02_15s";
             type = "prometheus";
             access = "proxy";
             enable = true;

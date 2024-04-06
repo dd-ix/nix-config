@@ -315,6 +315,19 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        svc-prom02 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            ./hosts/svc-prom02
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
         svc-exp01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
