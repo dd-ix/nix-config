@@ -38,11 +38,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1711875815,
-        "narHash": "sha256-h76NqzQZg4h69tth+jCHlnL0I/KLalCosBK/qGe1zcM=",
+        "lastModified": 1712429991,
+        "narHash": "sha256-Tt/IgpyJr/21ONTiLGYXcpiPtR410IDLZPZ7FJatZEo=",
         "owner": "MarcelCoding",
         "repo": "authentik-nix",
-        "rev": "5703b09b1c581d61055934b60e40501ad2eb5c39",
+        "rev": "90d53c76a82d9633160cafa1dc25e428a3f9649d",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711875145,
-        "narHash": "sha256-Yat0mIQ9OgYUNqwWYgewmcORlIWtLuwcRk+FBS4Vf6Q=",
+        "lastModified": 1712429786,
+        "narHash": "sha256-U9Q5uKMOVq2X546oAGVSMq03orH+NCOOWk9deFQX+BI=",
         "ref": "refs/heads/main",
-        "rev": "73c9e9dd869c1ea04e17dbff218e13644181ef05",
-        "revCount": 17,
+        "rev": "52d5f0c141a09a265d8f75317176913ef36609fc",
+        "revCount": 18,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
