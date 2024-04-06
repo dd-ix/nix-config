@@ -380,6 +380,19 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        svc-bbe01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            ./hosts/svc-bbe01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
       };
   };
 }
