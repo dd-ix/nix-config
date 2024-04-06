@@ -16,11 +16,6 @@
       v6Addr = "2a01:7700:80b0:6001::14/64";
     };
 
-    acme = [{
-      name = "svc-bbe01.dd-ix.net";
-      group = "nginx";
-    }];
-
     monitoring = {
       enable = true;
     };
