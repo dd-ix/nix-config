@@ -11,7 +11,7 @@
 
       hostName = "svc-bbe01";
       mac = "42:f3:bc:bb:11:b6";
-      vlan = "a";
+      vlan = "s";
 
       v6Addr = "2a01:7700:80b0:6001::14/64";
     };
