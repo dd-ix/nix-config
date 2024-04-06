@@ -98,6 +98,8 @@
           { name = "svc-prom01"; orgId = 1; }
           { name = "svc-prom01_15s"; orgId = 1; }
           { name = "svc-prom01_1m"; orgId = 1; }
+          { name = "svc-prom02_15s"; orgId = 1; }
+          { name = "svc-prom02_1m"; orgId = 1; }
         ];
         datasources = [
           {
@@ -108,6 +110,15 @@
             access = "proxy";
             enable = true;
             jsonData.timeInterval = "15s";
+          }
+          {
+            name = "svc-prom02_1m";
+            url = "https://svc-prom02.dd-ix.net:443";
+            uid = "svc-prom02_15s";
+            type = "prometheus";
+            access = "proxy";
+            enable = true;
+            jsonData.timeInterval = "1m";
           }
           {
             name = "svc-prom01_1m";
