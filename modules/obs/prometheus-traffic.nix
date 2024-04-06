@@ -10,6 +10,15 @@
         static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9144" ]; }];
         scrape_interval = "15s";
       }
+      {
+        job_name = "knot_exporter";
+        static_configs = [{ targets = [ "ixp-as11201.dd-ix.net:9433" ]; }];
+        metric_relabel_configs = [{
+          source_labels = [ "__name__" ];
+          regex = "knot_query_type_total";
+          action = "keep";
+        }];
+      }
     ];
   };
 
