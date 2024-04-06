@@ -786,11 +786,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1712418008,
-        "narHash": "sha256-1a94Y4r1rlb9K350jLkHtnG5BhHXnImU8gZxKMUUBBE=",
+        "lastModified": 1712431449,
+        "narHash": "sha256-U3VOoG5vrwOZ1MbxoulC4M3MYHCTBDx7KmDsh2HRp/4=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "f83ed120673cd99d4d04a16e0d6b4d2273cdd4ce",
+        "rev": "13ed447348a600f94dab699cb9e77aab2a6995f6",
         "type": "github"
       },
       "original": {
