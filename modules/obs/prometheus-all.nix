@@ -56,6 +56,23 @@
           ];
         }];
       }
+      {
+        job_name = "blackbox_exporter";
+        metric_relabel_configs = [{
+          source_labels = [ "__address__" ];
+          replacement = "svc-bbe01.dd-ix.net:9115";
+        }];
+        static_configs = [{
+          targets = [
+            "https://dd-ix.net"
+            "https://cloud.dd-ix.net"
+            "https://dcim.dd-ix.net"
+            "https://lg.dd-ix.net"
+            "https://portal.dd-ix.net"
+            "https://wiki.dd-ix.net"
+          ];
+        }];
+      }
     ];
   };
 
