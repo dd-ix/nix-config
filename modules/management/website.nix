@@ -96,7 +96,7 @@
         allowed_lists = [ 3 ];
       };
       url = "https://content.${config.deployment-dd-ix.domain}/";
-      prometheusUrl = "https://svc-prom01.${config.deployment-dd-ix.domain}/";
+      prometheusUrl = "https://svc-prom02.${config.deployment-dd-ix.domain}/";
       ixpManagerUrl = "https://portal.${config.deployment-dd-ix.domain}/";
     };
   };
