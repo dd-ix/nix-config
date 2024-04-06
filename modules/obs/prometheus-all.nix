@@ -6,11 +6,6 @@
     webExternalUrl = "https://svc-prom01.dd-ix.net";
     scrapeConfigs = [
       {
-        job_name = "sflow_exporter";
-        static_configs = [{ targets = [ "svc-exp01.dd-ix.net:9144" ]; }];
-        scrape_interval = "15s";
-      }
-      {
         job_name = "node_exporter";
         static_configs = [{
           targets =

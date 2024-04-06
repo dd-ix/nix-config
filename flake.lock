@@ -38,15 +38,15 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1712429991,
-        "narHash": "sha256-Tt/IgpyJr/21ONTiLGYXcpiPtR410IDLZPZ7FJatZEo=",
-        "owner": "MarcelCoding",
+        "lastModified": 1712433433,
+        "narHash": "sha256-rvfPBNyhNqaO4Q0iE5vANaw8cog5IKOOl3d5CinrVGU=",
+        "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "90d53c76a82d9633160cafa1dc25e428a3f9649d",
+        "rev": "d700a0df676fb0939f74d3d195d62ce8bc0500c1",
         "type": "github"
       },
       "original": {
-        "owner": "MarcelCoding",
+        "owner": "nix-community",
         "repo": "authentik-nix",
         "type": "github"
       }
