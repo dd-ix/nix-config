@@ -2,7 +2,7 @@
 {
   services.prometheus = {
     enable = true;
-    retentionTime = "99y";
+    retentionTime = "90d";
     webExternalUrl = "https://svc-prom01.dd-ix.net";
     scrapeConfigs = [
       {
