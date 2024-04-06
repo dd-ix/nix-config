@@ -62,7 +62,7 @@
         params = {
           module = [ "http_2xx"];
         };
-        metric_relabel_configs = [
+        relabel_configs = [
         {
           source_labels = ["__address__"];
           target_label = "__param_target";
