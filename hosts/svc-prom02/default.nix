@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
     ./configuration.nix
-    ../../modules/obs/prometheus2.nix
+    ../../modules/obs/prometheus-traffic.nix
   ];
 }
