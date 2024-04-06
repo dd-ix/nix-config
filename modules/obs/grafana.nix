@@ -114,7 +114,7 @@
           {
             name = "svc-prom02_1m";
             url = "https://svc-prom02.dd-ix.net:443";
-            uid = "svc-prom02_15s";
+            uid = "svc-prom02_1m";
             type = "prometheus";
             access = "proxy";
             enable = true;
