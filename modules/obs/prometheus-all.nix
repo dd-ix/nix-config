@@ -54,21 +54,21 @@
       {
         job_name = "blackbox";
         params = {
-          module = [ "http_2xx"];
+          module = [ "http_2xx" ];
         };
         relabel_configs = [
-        {
-          source_labels = ["__address__"];
-          target_label = "__param_target";
-        }
-        {
-          source_labels = ["__param_target"];
-          target_label = "instance";
-        }
-        {
-          target_label =  "__address__";
-          replacement = "svc-bbe01.dd-ix.net:9115";
-        }
+          {
+            source_labels = [ "__address__" ];
+            target_label = "__param_target";
+          }
+          {
+            source_labels = [ "__param_target" ];
+            target_label = "instance";
+          }
+          {
+            target_label = "__address__";
+            replacement = "svc-bbe01.dd-ix.net:9115";
+          }
         ];
         static_configs = [{
           targets = [
