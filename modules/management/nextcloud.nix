@@ -1,4 +1,4 @@
-{ self, config, pkgs, lib, ... }:
+{ self, config, pkgs, lib, nixpkgs-onlyoffice, ... }:
 let
   domain = "cloud.${config.deployment-dd-ix.domain}";
   cfg = config.services.onlyoffice;
@@ -154,6 +154,7 @@ in
 
     onlyoffice = {
       enable = true;
+      package = nixpkgs-onlyoffice.onlyoffice-documentserver;
       hostname = "office.${config.deployment-dd-ix.domain}";
       postgresName = "onlyoffice"; # dbname
       postgresHost = "svc-pg01.dd-ix.net";
