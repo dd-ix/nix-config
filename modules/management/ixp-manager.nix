@@ -92,7 +92,7 @@
       IDENTITY_BILLING_HOURS = "24x7";
 
       # Web address of your IXP's website. Used in IX-F Export schema, etc.
-      IDENTITY_CORPORATE_URL = "http://dd-ix.net/";
+      IDENTITY_CORPORATE_URL = "https://dd-ix.net/";
 
       # The logo to show on the login page. Should be a URL.
       # (the example here works - the leading '//' means the browser should match http/https based on the web page)
