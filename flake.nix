@@ -45,7 +45,6 @@
     authentik = {
       url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-23-05.follows = "nixpkgs";
     };
 
     ddix-ansible-ixp = {
