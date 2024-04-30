@@ -73,12 +73,12 @@
         ];
         static_configs = [{
           targets = [
-            "https://dd-ix.net"
-            "https://cloud.dd-ix.net"
-            "https://dcim.dd-ix.net"
+            "https://dd-ix.net/en/"
+            "https://cloud.dd-ix.net/status.php"
+            "https://dcim.dd-ix.net/api/"
             "https://lg.dd-ix.net"
-            "https://portal.dd-ix.net"
-            "https://wiki.dd-ix.net"
+            "https://portal.dd-ix.net/login"
+            "https://wiki.dd-ix.net/status"
           ];
         }];
       }
