@@ -41,6 +41,7 @@
         disable_gravatar = true;
         data_source_proxy_whitelist = [
           "svc-prom01.dd-ix.net:443"
+          "svc-prom02.dd-ix.net:443"
         ];
         csrf_trusted_origins = [
           "auth.dd-ix.net"
