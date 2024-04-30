@@ -35,11 +35,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1714248572,
-        "narHash": "sha256-eTTMT76hf3QK+9IJVP7S6MOlOAnOee/U4IXTADXKpOk=",
+        "lastModified": 1714488505,
+        "narHash": "sha256-j5BdVs2pG1BzwA0J0GRwaWZhjJc3wi2w847USY1BEiE=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "d2a70db150055be41a154530fbbc832f1b06682f",
+        "rev": "e3a0712b2933f9c5d820ebb4ff3a4fa96f526776",
         "type": "github"
       },
       "original": {
@@ -462,22 +462,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-onlyoffice": {
-      "locked": {
-        "lastModified": 1711026856,
-        "narHash": "sha256-rWQlojRD7j5SPhnY4wyPOjLwV7VqBtEuoCjfVJbgfqY=",
-        "owner": "r-ryantm",
-        "repo": "nixpkgs",
-        "rev": "af8872bc72acfb90917e3531367a7fbd67a1cd6e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "r-ryantm",
-        "ref": "auto-update/onlyoffice-documentserver",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pnpm2nix": {
       "inputs": {
         "flake-utils": "flake-utils_9",
@@ -537,7 +521,6 @@
         "microvm": "microvm",
         "nixpkgs": "nixpkgs",
         "nixpkgs-listmonk": "nixpkgs-listmonk",
-        "nixpkgs-onlyoffice": "nixpkgs-onlyoffice",
         "sflow-exporter": "sflow-exporter",
         "sops-nix": "sops-nix",
         "website": "website",
