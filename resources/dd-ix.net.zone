@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024052006  ; Serial
+               2024052005  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -92,7 +92,7 @@ vault          CNAME  rpx
 portal         CNAME  rpx
 orga           CNAME  rpx
 auth           CNAME  rpx
-;office         CNAME  rpx
+office         CNAME  rpx
 lg             CNAME  rpx
 obs            CNAME  rpx
 talks          CNAME  rpx
@@ -134,7 +134,7 @@ _acme-challenge.portal         CNAME  portal.acme-dns
 _acme-challenge.orga           CNAME  orga.acme-dns
 _acme-challenge.auth           CNAME  auth.acme-dns
 _acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
-;_acme-challenge.office         CNAME  office.acme-dns
+_acme-challenge.office         CNAME  office.acme-dns
 _acme-challenge.lg             CNAME  lg.acme-dns
 _acme-challenge.svc-prom01     CNAME  svc-prom01.acme-dns
 _acme-challenge.svc-prom02     CNAME  svc-prom02.acme-dns
