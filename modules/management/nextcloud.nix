@@ -154,8 +154,8 @@ in
 
     onlyoffice = {
       enable = true;
+      package = nixpkgs-onlyoffice.onlyoffice-documentserver;
       hostname = "office.${config.deployment-dd-ix.domain}";
-      package = nixpkgs-onlyoffice.packages.x86_64-linux.onlyoffice-documentserver;
       postgresName = "onlyoffice"; # dbname
       postgresHost = "svc-pg01.dd-ix.net";
       postgresUser = "onlyoffice";

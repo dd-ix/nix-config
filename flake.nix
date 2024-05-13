@@ -4,10 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-listmonk.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-onlyoffice = {
-      url = "github:MarcelCoding/onlyoffice.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs-onlyoffice.url = "github:r-ryantm/nixpkgs/auto-update/onlyoffice-documentserver";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -61,13 +58,19 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, nixpkgs-onlyoffice, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
     nixosConfigurations =
       let
         nixos-modules = [
           sops-nix.nixosModules.default
           microvm.nixosModules.host
         ];
+        nixpkgs-onlyoffice = import inputs.nixpkgs-onlyoffice {
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+          };
+        };
       in
       {
         mno001 = nixpkgs.lib.nixosSystem {
@@ -232,7 +235,7 @@
           specialArgs = { inherit inputs self nixpkgs-onlyoffice; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default nixpkgs-onlyoffice.overlays.default ]; }
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-cloud01
