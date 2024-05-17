@@ -79,4 +79,11 @@ in
       environmentFile = config.sops.secrets."authentik_radius_env".path;
     };
   };
+
+  systemd.services.authentik.environment = {
+    AUTHENTIK_ERROR_REPORTING__ENABLED = false;
+    AUTHENTIK_DISABLE_UPDATE_CHECK = true;
+    AUTHENTIK_DISABLE_STARTUP_ANALYTICS = true;
+    AUTHENTIK_AVATARS = "initials";
+  };
 }
