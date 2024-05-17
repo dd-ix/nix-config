@@ -11,5 +11,6 @@ modules:
         - HTTP/2.0
       valid_status_codes:
         - 200
+        - 204
     prober: http
     timeout: 10s
