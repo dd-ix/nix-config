@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ self, pkgs, config, ...}:
 
 {
   imports = [
@@ -31,6 +31,16 @@
       restic = {
         enable = true;
         name = "svc-hv01";
+      };
+      monitoring.smart = {
+        enable = true;
+        host = config.dd-ix.rpx.addr;
+        devices = [
+          "/dev/sda"
+          "/dev/sdb"
+          "/dev/sdc"
+          "/dev/sdd"
+        ];
       };
     };
 

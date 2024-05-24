@@ -73,11 +73,11 @@
         };
       in
       {
-        mno001 = nixpkgs.lib.nixosSystem {
+        svc-hv01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
-            ./hosts/mno001/configuration.nix
+            ./hosts/svc-hv01/configuration.nix
             ./modules/management
             ./modules/dd-ix
             ./modules/postgresql.nix
