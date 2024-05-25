@@ -32,6 +32,7 @@
         enable = true;
         name = "svc-hv01";
       };
+      monitoring.enable = true;
       monitoring.smart = {
         enable = true;
         host = config.dd-ix.rpx.addr;
