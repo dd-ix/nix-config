@@ -1,4 +1,10 @@
 { self, config, lib, ... }:
+let
+  toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
+
+  # list of all nixos systems in this flake
+  allSystems = toList self.nixosConfigurations;
+in
 {
   services.prometheus = {
     enable = true;
@@ -10,11 +16,6 @@
         static_configs = [{
           targets =
             let
-              toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
-
-              # list of all nixos systems in this flake
-              allSystems = toList self.nixosConfigurations;
-
               # filters out all the systems where monitoring is turned off
               monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.enable == true) allSystems;
 
@@ -30,6 +31,24 @@
               "ixp-rs02.dd-ix.net:9100"
               "svc-fw01.dd-ix.net:9100"
             ] ++ listAddress;
+        }];
+      }
+      {
+        job_name = "smart_exporter";
+        static_configs = [{
+          targets =
+            let
+              # filters out all the systems where monitoring is turned off
+              monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.smart.enable == true) allSystems;
+
+              # turns the hostname into an address
+              extractAddress = host: "${host.config.dd-ix.monitoring.smart.host}:${toString host.config.dd-ix.monitoring.smart.port}";
+
+              # list of addresses
+              listAddress = builtins.map extractAddress monitoredSystems;
+
+            in
+            listAddress;
         }];
       }
       {

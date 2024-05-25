@@ -2,7 +2,7 @@
 let
   bindUser = "named";
   # IBH authorative nameservers
-  # (IPv4 only as mno01 does not have IPv6, yet)
+  # (IPv4 only as svc-hv01 does not have IPv6, yet)
   ibh_ans_ip = [
     # ans-01.ibh.de
     "212.111.228.50"

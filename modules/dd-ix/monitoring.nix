@@ -8,9 +8,28 @@ in
     #name = lib.mkOption {
     #  type = lib.types.str;
     #};
+    smart = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
+
+      devices = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+      };
+      port = lib.mkOption {
+        type = lib.types.port;
+        default = 21953;
+      };
+      host = lib.mkOption {
+        type = lib.types.str;
+        default = "127.0.0.1";
+      };
+    };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = ((lib.mkIf cfg.enable {
     services.prometheus.exporters = {
       node = {
         enable = true;
@@ -21,5 +40,13 @@ in
         enabledCollectors = [ ];
       };
     };
-  };
+  }) // (lib.mkIf cfg.smart.enable {
+    services.prometheus.exporters.smartctl = {
+      enable = cfg.smart.enable;
+      maxInterval = "10m";
+      listenAddress = cfg.smart.host;
+      port = cfg.smart.port;
+      devices = cfg.smart.devices;
+    };
+  }));
 }

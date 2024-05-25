@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ self, pkgs, config, ...}:
 
 {
   imports = [
@@ -32,6 +32,16 @@
         enable = true;
         name = "svc-hv01";
       };
+      monitoring.smart = {
+        enable = true;
+        host = config.dd-ix.rpx.addr;
+        devices = [
+          "/dev/sda"
+          "/dev/sdb"
+          "/dev/sdc"
+          "/dev/sdd"
+        ];
+      };
     };
 
   # Use the systemd-boot EFI boot loader.
@@ -45,7 +55,7 @@
   boot.supportedFilesystems = [ "zfs" ];
 
   networking.hostId = "eeb0e9de";
-  networking.hostName = "mno001";
+  networking.hostName = "svc-hv01";
 
   services.zfs.autoSnapshot.enable = true;
   services.zfs.autoScrub.enable = true;
