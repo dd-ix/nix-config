@@ -47,5 +47,6 @@ in
         devices = cfg.smart.devices;
       };
     };
+    networking.firewall.allowedTCPPorts = [ 9100 ] ++ (if cfg.smart.enable then [9101] else []);
   };
 }
