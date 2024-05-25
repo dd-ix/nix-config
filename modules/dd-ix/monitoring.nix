@@ -29,7 +29,7 @@ in
     };
   };
 
-  config = ((lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.prometheus.exporters = {
       node = {
         enable = true;
@@ -39,14 +39,13 @@ in
         disabledCollectors = [ ];
         enabledCollectors = [ ];
       };
+      smartctl = {
+        enable = cfg.smart.enable;
+        maxInterval = "10m";
+        listenAddress = cfg.smart.host;
+        port = cfg.smart.port;
+        devices = cfg.smart.devices;
+      };
     };
-  }) // (lib.mkIf cfg.smart.enable {
-    services.prometheus.exporters.smartctl = {
-      enable = cfg.smart.enable;
-      maxInterval = "10m";
-      listenAddress = cfg.smart.host;
-      port = cfg.smart.port;
-      devices = cfg.smart.devices;
-    };
-  }));
+  };
 }
