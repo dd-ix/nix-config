@@ -35,6 +35,7 @@
       monitoring.smart = {
         enable = true;
         host = config.dd-ix.rpx.addr;
+        port = 9101;
         devices = [
           "/dev/sda"
           "/dev/sdb"
