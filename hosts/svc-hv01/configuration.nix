@@ -18,7 +18,7 @@
 
       rpx = {
         inherit domains;
-        addr = "[2a01:7700:80b0:7000::2]:443";
+        addr = "[2a01:7700:80b0:7000::2]";
       };
 
       acme = map
