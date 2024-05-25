@@ -4,6 +4,7 @@ let
 in
 {
   dd-ix = {
+    hostName = "svc-lists01";
     useFpx = true;
 
     microvm = {
@@ -12,7 +13,6 @@ in
       mem = 2048;
       vcpu = 2;
 
-      hostName = "svc-lists01";
       mac = "e2:7a:81:44:91:a3";
       vlan = "s";
 

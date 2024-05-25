@@ -1,13 +1,14 @@
 { ... }:
 {
   dd-ix = {
+    hostName = "svc-fpx01";
+
     microvm = {
       enable = true;
 
       mem = 2048;
       vcpu = 2;
 
-      hostName = "svc-fpx01";
       mac = "d2:9e:36:14:00:ec";
       vlan = "s";
 

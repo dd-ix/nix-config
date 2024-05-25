@@ -15,6 +15,7 @@
     in
     {
       useFpx = true;
+      hostName = "svc-hv01";
 
       rpx = {
         inherit domains;
@@ -32,6 +33,7 @@
         enable = true;
         name = "svc-hv01";
       };
+
       monitoring.enable = true;
       monitoring.smart = {
         enable = true;

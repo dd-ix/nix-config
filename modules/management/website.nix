@@ -8,7 +8,7 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "www.${config.deployment-dd-ix.domain}" = {
+      "www.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -16,13 +16,13 @@
         }];
 
         onlySSL = true;
-        useACMEHost = "www.${config.deployment-dd-ix.domain}";
+        useACMEHost = "www.${config.dd-ix.domain}";
 
         locations = {
-          "/".return = "301 https://${config.deployment-dd-ix.domain}$request_uri";
+          "/".return = "301 https://${config.dd-ix.domain}$request_uri";
         };
       };
-      "${config.deployment-dd-ix.domain}" = {
+      "${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -30,27 +30,14 @@
         }];
 
         onlySSL = true;
-        useACMEHost = config.deployment-dd-ix.domain;
+        useACMEHost = config.dd-ix.domain;
 
-        locations = {
-          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
-          "/g/ml".return = "301 https://${config.deployment-dd-ix.domain}/news/subscribe";
-        };
-      };
-      "content.${config.deployment-dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
-
-        onlySSL = true;
-        useACMEHost = "content.${config.deployment-dd-ix.domain}";
         locations = {
           "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
+          "/g/ml".return = "301 https://${config.dd-ix.domain}/news/subscribe";
         };
       };
-      "talks.${config.deployment-dd-ix.domain}" = {
+      "content.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -58,7 +45,20 @@
         }];
 
         onlySSL = true;
-        useACMEHost = "talks.${config.deployment-dd-ix.domain}";
+        useACMEHost = "content.${config.dd-ix.domain}";
+        locations = {
+          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
+        };
+      };
+      "talks.${config.dd-ix.domain}" = {
+        listen = [{
+          addr = "[::]:443";
+          proxyProtocol = true;
+          ssl = true;
+        }];
+
+        onlySSL = true;
+        useACMEHost = "talks.${config.dd-ix.domain}";
 
         root = pkgs.fetchFromGitea {
           domain = "codeberg.org";
@@ -79,11 +79,11 @@
   dd-ix = {
     website = {
       enable = true;
-      domain = "${config.deployment-dd-ix.domain}";
+      domain = "${config.dd-ix.domain}";
     };
     website-content-api = {
       enable = true;
-      domain = "content.${config.deployment-dd-ix.domain}";
+      domain = "content.${config.dd-ix.domain}";
       http = {
         host = "127.0.0.1";
         port = 9123;
@@ -95,9 +95,9 @@
         passwordFile = config.sops.secrets.web_listmonk_admin_pw.path;
         allowed_lists = [ 3 ];
       };
-      url = "https://content.${config.deployment-dd-ix.domain}/";
-      prometheusUrl = "https://svc-prom02.${config.deployment-dd-ix.domain}/";
-      ixpManagerUrl = "https://portal.${config.deployment-dd-ix.domain}/";
+      url = "https://content.${config.dd-ix.domain}/";
+      prometheusUrl = "https://svc-prom02.${config.dd-ix.domain}/";
+      ixpManagerUrl = "https://portal.${config.dd-ix.domain}/";
     };
   };
 }

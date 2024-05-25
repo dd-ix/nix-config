@@ -27,7 +27,7 @@ in
       enable = true;
       recommendedProxySettings = true;
       virtualHosts = {
-        "orga.${config.deployment-dd-ix.domain}" = {
+        "orga.${config.dd-ix.domain}" = {
           listen = [{
             addr = "[::]:443";
             proxyProtocol = true;
@@ -35,7 +35,7 @@ in
           }];
 
           onlySSL = true;
-          useACMEHost = "orga.${config.deployment-dd-ix.domain}";
+          useACMEHost = "orga.${config.dd-ix.domain}";
 
           locations = {
             "/" = {

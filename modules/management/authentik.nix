@@ -1,6 +1,6 @@
 { self, config, pkgs, inputs, ... }:
 let
-  hostname = "auth.${config.deployment-dd-ix.domain}";
+  hostname = "auth.${config.dd-ix.domain}";
 
   customScope = (inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
     (final: prev: prev.authentikComponents // {
@@ -25,7 +25,7 @@ in
 
   services.nginx = {
     enable = true;
-    virtualHosts."cloud.${config.deployment-dd-ix.domain}" = {
+    virtualHosts."cloud.${config.dd-ix.domain}" = {
       listen = [{
         addr = "[::]:443";
         proxyProtocol = true;

@@ -3,13 +3,13 @@
   dd-ix = {
     useFpx = true;
 
+    hostName = "svc-prom02";
     microvm = {
       enable = true;
 
       mem = 1024 * 2;
       vcpu = 2;
 
-      hostName = "svc-prom02";
       mac = "42:f7:f7:72:24:0f";
       vlan = "a";
 

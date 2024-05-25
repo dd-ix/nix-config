@@ -1,6 +1,7 @@
 { ... }:
 {
   dd-ix = {
+    hostName = "svc-bbe01";
     useFpx = true;
 
     microvm = {
@@ -9,7 +10,6 @@
       mem = 1024 * 2;
       vcpu = 2;
 
-      hostName = "svc-bbe01";
       mac = "42:f3:bc:bb:11:b6";
       vlan = "s";
 

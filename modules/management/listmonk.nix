@@ -123,7 +123,7 @@ in
       };
       nginx = {
         enable = true;
-        virtualHosts."lists.${config.deployment-dd-ix.domain}" = {
+        virtualHosts."lists.${config.dd-ix.domain}" = {
           listen = [{
             addr = "[::]:443";
             proxyProtocol = true;
@@ -131,7 +131,7 @@ in
           }];
 
           onlySSL = true;
-          useACMEHost = "lists.${config.deployment-dd-ix.domain}";
+          useACMEHost = "lists.${config.dd-ix.domain}";
 
           locations =
             let

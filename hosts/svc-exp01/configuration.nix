@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   dd-ix = {
+    hostName = "svc-exp01";
     useFpx = true;
 
     microvm = {
@@ -9,7 +10,6 @@
       mem = 1024 * 2;
       vcpu = 2;
 
-      hostName = "svc-exp01";
       mac = "d2:7b:c0:b2:42:0f";
       vlan = "im";
 

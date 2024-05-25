@@ -1,13 +1,14 @@
 { pkgs, ... }:
 {
   dd-ix = {
+    hostName = "svc-node01";
+
     microvm = {
       enable = true;
 
       mem = 1024 * 2;
       vcpu = 2;
 
-      hostName = "svc-node01";
       mac = "42:df:f0:70:02:03";
       vlan = "a";
 

@@ -198,7 +198,7 @@ in
 
     nginx = {
       enable = true;
-      virtualHosts."lg.${config.deployment-dd-ix.domain}" = {
+      virtualHosts."lg.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -206,7 +206,7 @@ in
         }];
 
         onlySSL = true;
-        useACMEHost = "lg.${config.deployment-dd-ix.domain}";
+        useACMEHost = "lg.${config.dd-ix.domain}";
 
         locations."/".proxyPass = "http://${listen_addr}";
       };

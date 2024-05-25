@@ -12,7 +12,7 @@
       config = {
         ROCKET_ADDRESS = "::1";
         ROCKET_PORT = 8222;
-        DOMAIN = "https://vault.${config.deployment-dd-ix.domain}";
+        DOMAIN = "https://vault.${config.dd-ix.domain}";
         SIGNUPS_ALLOWED = false;
         WEBSOCKET_ENABLED = true;
         PUSH_ENABLED = false;
@@ -32,7 +32,7 @@
     nginx = {
       enable = true;
 
-      virtualHosts."vault.${config.deployment-dd-ix.domain}" = {
+      virtualHosts."vault.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -40,7 +40,7 @@
         }];
 
         onlySSL = true;
-        useACMEHost = "vault.${config.deployment-dd-ix.domain}";
+        useACMEHost = "vault.${config.dd-ix.domain}";
 
         locations =
           let

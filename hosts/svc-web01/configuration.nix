@@ -5,6 +5,7 @@ in
 {
   dd-ix = {
     useFpx = true;
+    hostName = "svc-web01";
 
     microvm = {
       enable = true;
@@ -12,7 +13,6 @@ in
       mem = 2048;
       vcpu = 2;
 
-      hostName = "svc-web01";
       mac = "82:5a:db:e0:53:63";
       vlan = "s";
 

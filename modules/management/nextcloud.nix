@@ -1,6 +1,6 @@
 { self, config, pkgs, lib, ... }:
 let
-  domain = "cloud.${config.deployment-dd-ix.domain}";
+  domain = "cloud.${config.dd-ix.domain}";
 in
 {
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -159,7 +159,7 @@ in
     #onlyoffice = {
     #  enable = false;
     #  package = nixpkgs-onlyoffice.onlyoffice-documentserver;
-    #  hostname = "office.${config.deployment-dd-ix.domain}";
+    #  hostname = "office.${config.dd-ix.domain}";
     #  postgresName = "onlyoffice"; # dbname
     #  postgresHost = "svc-pg01.dd-ix.net";
     #  postgresUser = "onlyoffice";
@@ -168,7 +168,7 @@ in
     #};
 
     nginx.virtualHosts = {
-      "cloud.${config.deployment-dd-ix.domain}" = {
+      "cloud.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -176,9 +176,9 @@ in
         }];
 
         onlySSL = true;
-        useACMEHost = "cloud.${config.deployment-dd-ix.domain}";
+        useACMEHost = "cloud.${config.dd-ix.domain}";
       };
-      "office.${config.deployment-dd-ix.domain}" = {
+      "office.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -186,7 +186,7 @@ in
         }];
 
         onlySSL = true;
-        useACMEHost = "office.${config.deployment-dd-ix.domain}";
+        useACMEHost = "office.${config.dd-ix.domain}";
         locations."/" = {
           proxyPass = "http://127.0.0.1:80";
           proxyWebsockets = true;

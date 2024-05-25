@@ -4,6 +4,7 @@ let
 in
 {
   dd-ix = {
+    hostName = "svc-vault01";
     useFpx = true;
 
     microvm = {
@@ -12,7 +13,6 @@ in
       mem = 2048;
       vcpu = 2;
 
-      hostName = "svc-vault01";
       mac = "b2:a0:24:ba:e8:15";
       vlan = "s";
 

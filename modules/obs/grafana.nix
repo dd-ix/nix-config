@@ -11,7 +11,7 @@
 
   services.nginx = {
     enable = true;
-    virtualHosts."obs.${config.deployment-dd-ix.domain}" = {
+    virtualHosts."obs.${config.dd-ix.domain}" = {
       listen = [{
         addr = "[::]:443";
         proxyProtocol = true;
@@ -19,7 +19,7 @@
       }];
 
       onlySSL = true;
-      useACMEHost = "obs.${config.deployment-dd-ix.domain}";
+      useACMEHost = "obs.${config.dd-ix.domain}";
 
       locations."/" = {
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
@@ -33,8 +33,8 @@
     settings = {
       server = {
         enforce_domain = true;
-        domain = "obs.${config.deployment-dd-ix.domain}";
-        root_url = "https://obs.${config.deployment-dd-ix.domain}";
+        domain = "obs.${config.dd-ix.domain}";
+        root_url = "https://obs.${config.dd-ix.domain}";
       };
       security = {
         disable_initial_admin_creation = true;

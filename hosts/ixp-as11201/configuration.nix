@@ -7,6 +7,7 @@ in
   dd-ix = {
     useFpx = true;
     monitoring = { enable = true; };
+    hostName = "ixp-as11201";
 
     microvm = {
       enable = true;
@@ -14,7 +15,6 @@ in
       mem = 2048;
       vcpu = 2;
 
-      hostName = "ixp-as11201";
       mac = "62:7a:2e:2f:68:66";
       vlan = "im";
 

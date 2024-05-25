@@ -1,13 +1,14 @@
 { self, config, pkgs, ... }:
 {
   dd-ix = {
+    hostName = "svc-adm01";
+
     microvm = {
       enable = true;
 
       mem = 1024 * 2;
       vcpu = 2;
 
-      hostName = "svc-adm01";
       mac = "42:df:f0:70:02:02";
       vlan = "a";
 

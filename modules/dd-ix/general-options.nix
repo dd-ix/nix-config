@@ -1,11 +1,19 @@
-{ lib, ... }:
-with lib; {
+{ lib, options, config, ... }:
+{
   options = {
-    deployment-dd-ix.domain = mkOption {
-      type = types.str;
-      default = "dd-ix.net";
-      description = "domain the server is running on";
+    dd-ix = {
+      hostName = options.networking.hostName;
+      domain = lib.mkOption {
+        type = lib.types.str;
+      };
     };
+  };
+  config = {
+    networking = {
+      hostName = config.dd-ix.hostName;
+      domain = "dd-ix.net";
+    };
+    dd-ix.domain = "dd-ix.net";
   };
 }
 

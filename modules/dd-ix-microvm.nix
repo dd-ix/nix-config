@@ -4,29 +4,31 @@ let
 in
 {
   options = {
-    dd-ix.microvm = {
-      enable = lib.mkEnableOption (lib.mkDoc "Whether to enable microvm settings.");
+    dd-ix = {
 
-      vcpu = options.microvm.vcpu;
-      mem = options.microvm.mem;
+      microvm = {
+        enable = lib.mkEnableOption (lib.mkDoc "Whether to enable microvm settings.");
 
-      hostName = options.networking.hostName;
+        vcpu = options.microvm.vcpu;
+        mem = options.microvm.mem;
 
-      mac = lib.mkOption {
-        type = lib.types.str;
-      };
 
-      vlan = lib.mkOption {
-        type = lib.types.str; #lib.types.oneOf [ "i" "s" "l" ];
-      };
+        mac = lib.mkOption {
+          type = lib.types.str;
+        };
 
-      v6Addr = lib.mkOption {
-        type = lib.types.str;
-      };
+        vlan = lib.mkOption {
+          type = lib.types.str; #lib.types.oneOf [ "i" "s" "l" ];
+        };
 
-      v4Addr = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
+        v6Addr = lib.mkOption {
+          type = lib.types.str;
+        };
+
+        v4Addr = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+        };
       };
     };
   };
@@ -39,7 +41,7 @@ in
 
       interfaces = [{
         type = "tap";
-        id = "${cfg.vlan}-${cfg.hostName}";
+        id = "${cfg.vlan}-${config.dd-ix.hostName}";
         mac = cfg.mac;
       }];
 
@@ -52,25 +54,20 @@ in
           socket = "store.socket";
         }
         {
-          source = "/var/lib/microvms/${cfg.hostName}/etc";
+          source = "/var/lib/microvms/${config.dd-ix.hostName}/etc";
           mountPoint = "/etc";
           tag = "etc";
           proto = "virtiofs";
           socket = "etc.socket";
         }
         {
-          source = "/var/lib/microvms/${cfg.hostName}/var";
+          source = "/var/lib/microvms/${config.dd-ix.hostName}/var";
           mountPoint = "/var";
           tag = "var";
           proto = "virtiofs";
           socket = "var.socket";
         }
       ];
-    };
-
-    networking = {
-      hostName = cfg.hostName;
-      domain = "dd-ix.net";
     };
 
     networking.ifstate = {

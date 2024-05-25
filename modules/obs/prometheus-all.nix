@@ -20,7 +20,7 @@ in
               monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.enable == true) allSystems;
 
               # turns the hostname into an address
-              extractAddress = host: "${host.config.dd-ix.microvm.hostName}.dd-ix.net:9100";
+              extractAddress = host: "${host.config.dd-ix.hostName}.dd-ix.net:9100";
 
               # list of addresses
               listAddress = builtins.map extractAddress monitoredSystems;

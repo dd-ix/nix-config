@@ -25,7 +25,7 @@
       }];
 
       onlySSL = true;
-      useACMEHost = "portal.${config.deployment-dd-ix.domain}";
+      useACMEHost = "portal.${config.dd-ix.domain}";
 
       # override hardcoded support page to just redirect to our own website
       locations."= /public-content/support".return = "302 https://dd-ix.net/contact";

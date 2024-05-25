@@ -29,7 +29,7 @@
       secretKeyFile = "${config.sops.secrets.dcim_secret_key.path}";
       plugins = python3Packages: with python3Packages; [ python-jose ];
       settings = {
-        ALLOWED_HOSTS = [ "dcim.${config.deployment-dd-ix.domain}" ];
+        ALLOWED_HOSTS = [ "dcim.${config.dd-ix.domain}" ];
 
         DATABASE = {
           NAME = "netbox";
@@ -115,7 +115,7 @@
 
     nginx = {
       enable = true;
-      virtualHosts."dcim.${config.deployment-dd-ix.domain}" = {
+      virtualHosts."dcim.${config.dd-ix.domain}" = {
         listen = [{
           addr = "[::]:443";
           proxyProtocol = true;
@@ -123,7 +123,7 @@
         }];
 
         onlySSL = true;
-        useACMEHost = "dcim.${config.deployment-dd-ix.domain}";
+        useACMEHost = "dcim.${config.dd-ix.domain}";
 
         locations = {
           "/static/".alias = "${config.services.netbox.dataDir}/static/";
