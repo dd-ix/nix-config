@@ -80,4 +80,9 @@ in
     hardstatus alwayslastline
     hardstatus string "%w"
   '';
+
+  environment.interactiveShellInit = /* sh */ ''
+    # raise some awareness torwards failed services
+    systemctl --no-pager --failed || true
+  '';
 }
