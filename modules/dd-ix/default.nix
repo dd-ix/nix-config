@@ -4,6 +4,7 @@
     ./base.nix
     ./general-options.nix
     ./dns.nix
+    ./networking.nix
     ./time.nix
     ./acme.nix
     ./fpx.nix
