@@ -3,8 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-listmonk.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-mrtg.url = "github:NixOS/nixpkgs/backport-313719-to-release-24.05";
+    nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -65,7 +64,7 @@
           sops-nix.nixosModules.default
           microvm.nixosModules.host
         ];
-        nixpkgs-mrtg = import inputs.nixpkgs-mrtg {
+        nixpkgs-24-05 = import inputs.nixpkgs-24-05 {
           system = "x86_64-linux";
           config = {
             allowUnfree = true;
@@ -141,7 +140,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default (_:_: { inherit (nixpkgs-mrtg) mrtg; }) ]; }
+            { nixpkgs.overlays = [ ifstate.overlays.default (_:_: { inherit (nixpkgs-24-05) mrtg; }) ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
@@ -261,7 +260,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            { nixpkgs.overlays = [ ifstate.overlays.default (_:_: { inherit (nixpkgs-24-05) listmonk; }) ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-lists01

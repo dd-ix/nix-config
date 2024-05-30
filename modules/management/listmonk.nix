@@ -77,7 +77,6 @@ in
     services = {
       listmonk = {
         enable = true;
-        package = inputs.nixpkgs-listmonk.legacyPackages.x86_64-linux.listmonk;
         settings = {
           app.admin_username = "admin";
           db = {
