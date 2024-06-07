@@ -34,11 +34,9 @@ in
   environment.systemPackages = with pkgs; [
     git
     htop
-    tmux
     screen
     neovim
     wget
-    git-crypt
     iftop
     tcpdump
     dig
@@ -60,6 +58,7 @@ in
       ../../keys/ssh/maurice
     ];
   };
+
   services.openssh = {
     enable = true;
     settings = {
@@ -67,7 +66,6 @@ in
       PasswordAuthentication = false;
     };
   };
-  programs.mosh.enable = true;
 
   users.motd = prodMotd;
 
