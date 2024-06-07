@@ -1,5 +1,7 @@
 { self, pkgs, config, ... }:
-
+let
+  addr = "[2a01:7700:80b0:7000::2]";
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -19,7 +21,7 @@
 
       rpx = {
         inherit domains;
-        addr = "[2a01:7700:80b0:7000::2]:443";
+        addr = "${addr}:443";
       };
 
       acme = map
@@ -37,7 +39,7 @@
       monitoring.enable = true;
       monitoring.smart = {
         enable = true;
-        host = config.dd-ix.rpx.addr;
+        host = addr;
         port = 9101;
         devices = [
           "/dev/sda"
