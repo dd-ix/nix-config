@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024052007  ; Serial
+               2024060801  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -19,9 +19,11 @@ $TTL    1h         ; default TTL for zone
          A     212.111.245.178
          AAAA  2a01:7700:80b0:6000::443
 
-         CAA  0 issue "letsencrypt.org"
-         CAA  0 issuewild "letsencrypt.org"
-         CAA  0 iodef "mailto:noc@dd-ix.net"
+         CAA  128  issue "letsencrypt.org"
+         CAA  128  issuewild "letsencrypt.org"
+         CAA  128  iodef "mailto:noc@dd-ix.net"
+         CAA  128  issue "letsencrypt.org;validationmethods=dns-01"
+         CAA  128  issuewild "letsencrypt.org;validationmethods=dns-01"
 
          TXT   "v=spf1 include:spf.migadu.com -all"
          TXT   "hosted-email-verify=ddocclet"
