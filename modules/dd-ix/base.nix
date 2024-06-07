@@ -71,15 +71,18 @@ in
 
   users.motd = prodMotd;
 
-  programs.screen.screenrc = ''
-    defscrollback 10000
+  programs.screen = {
+    enable = true;
+    screenrc = ''
+      defscrollback 10000
 
-    startup_message off
+      startup_message off
 
-    hardstatus on
-    hardstatus alwayslastline
-    hardstatus string "%w"
-  '';
+      hardstatus on
+      hardstatus alwayslastline
+      hardstatus string "%w"
+    '';
+  };
 
   environment.interactiveShellInit = /* sh */ ''
     # raise some awareness torwards failed services

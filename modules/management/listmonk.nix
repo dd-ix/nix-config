@@ -1,4 +1,4 @@
-{ self, lib, config, pkgs, inputs, ... }:
+{ self, lib, config, pkgs, ... }:
 let
   cfg = config.services.listmonk;
   tomlFormat = pkgs.formats.toml { };

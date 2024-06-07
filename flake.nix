@@ -2,8 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -42,7 +41,7 @@
     };
 
     authentik = {
-      url = "github:nix-community/authentik-nix";
+      url = "github:nix-community/authentik-nix/node-22";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -64,12 +63,6 @@
           sops-nix.nixosModules.default
           microvm.nixosModules.host
         ];
-        nixpkgs-24-05 = import inputs.nixpkgs-24-05 {
-          system = "x86_64-linux";
-          config = {
-            allowUnfree = true;
-          };
-        };
       in
       {
         svc-hv01 = nixpkgs.lib.nixosSystem {
@@ -140,7 +133,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default (_:_: { inherit (nixpkgs-24-05) mrtg; }) ]; }
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
@@ -260,7 +253,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default (_:_: { inherit (nixpkgs-24-05) listmonk; }) ]; }
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-lists01
