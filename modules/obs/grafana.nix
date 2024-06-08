@@ -35,7 +35,9 @@
         enforce_domain = true;
         domain = "obs.${config.dd-ix.domain}";
         root_url = "https://obs.${config.dd-ix.domain}";
+        enable_gzip = true;
       };
+      log.level = "warn";
       security = {
         disable_initial_admin_creation = true;
         disable_gravatar = true;
@@ -49,7 +51,8 @@
         cookie_secure = true;
         cookie_samesite = "strict";
         content_security_policy = true;
-        # allow_embedding = true;
+        strict_transport_security = true;
+        allow_embedding = false;
       };
       smtp = {
         enabled = true;

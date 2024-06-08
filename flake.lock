@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711526842,
-        "narHash": "sha256-NWqMgay69hb3l2+VThDrKtYc8BnTTDLJz4z7bmR5Wrw=",
+        "lastModified": 1717807235,
+        "narHash": "sha256-Uo+kF/6e6Doja5uan7kj+VIsQd3lNpg0xuYCEVmhmNA=",
         "owner": "dd-ix",
         "repo": "arouteserver.nix",
-        "rev": "4fe57fdef8f9e824a9fde5fa221333b67144fc45",
+        "rev": "8e6dbd6069e1de6e3ca8ce82d79ada94c860fede",
         "type": "github"
       },
       "original": {
@@ -75,11 +75,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712692841,
-        "narHash": "sha256-it8eCqpJlCXBrmlIHjCjh+FiXVYTJcI4P5JGdZ5hHEI=",
+        "lastModified": 1717807342,
+        "narHash": "sha256-py5wtLbF+5d7FbHoWDDdha6k5yCfckOFHeq8SY7qTiQ=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "c9d6532807c5d58a8230edf79336228451ccef0c",
+        "rev": "7c4caf053697e2d0decfc23ac70b825c26c45ced",
         "type": "github"
       },
       "original": {
@@ -253,11 +253,11 @@
         "systems": "systems_8"
       },
       "locked": {
-        "lastModified": 1705309234,
-        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715466625,
-        "narHash": "sha256-ufxAIs532qEW/3uJTiKQDWNuFwNSF+ap3x6dRTY1PHQ=",
+        "lastModified": 1717796586,
+        "narHash": "sha256-a3GkKQusPcQkUNYHpsm8mLKO1c8VrSi/ShZuCNNNT4s=",
         "ref": "refs/heads/main",
-        "rev": "9aa23f0240301bb62a109b821ae3f20cb719fde1",
-        "revCount": 23,
+        "rev": "725757ab175c01b94ebc1914430fe969a07aea8f",
+        "revCount": 24,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -415,11 +415,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1717555607,
-        "narHash": "sha256-WZ1s48OODmRJ3DHC+I/DtM3tDRuRJlNqMvxvAPTD7ec=",
+        "lastModified": 1717696253,
+        "narHash": "sha256-1+ua0ggXlYYPLTmMl3YeYYsBXDSCqT+Gw3u6l4gvMhA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0b8e7a1ae5a94da2e1ee3f3030a32020f6254105",
+        "rev": "9b5328b7f761a7bbdc0e332ac4cf076a3eedb89b",
         "type": "github"
       },
       "original": {
@@ -520,11 +520,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715960933,
-        "narHash": "sha256-a0ZEknj06zIwB+By6tV7wqtmIk01YUnFaXcw12aYTZw=",
+        "lastModified": 1717795826,
+        "narHash": "sha256-ibcfRmnZL+y1Cx3mnBOG81cZHK0JwllZYC0xuRQkimw=",
         "owner": "dd-ix",
         "repo": "sflow_exporter",
-        "rev": "647a268a7623974d57504536ca3d7447fbec421d",
+        "rev": "07743460003297126e4ef745132a436401699f01",
         "type": "github"
       },
       "original": {
