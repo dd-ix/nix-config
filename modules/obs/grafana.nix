@@ -89,7 +89,7 @@
       user.auto_assign_org = true;
       remote_cache = {
         type = "redis";
-        connstr = "addr=${config.services.redis.servers.grafana.unixSocket},pool_size=100,db=0";
+        connstr = "addr=${config.services.redis.servers.grafana.bind}:${builtins.toString config.services.redis.servers.grafana.port},pool_size=100,db=0,ssl=false";
       };
     };
     provision = {
@@ -137,5 +137,6 @@
 
   services.redis.servers.grafana = {
     enable = true;
+    port = 6379;
   };
 }
