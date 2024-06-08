@@ -72,7 +72,7 @@
       };
       auth = {
         signout_redirect_url = "https://auth.dd-ix.net/application/o/obs/end-session/";
-        oauth_auto_login = true;
+        auto_login = true;
       };
       "auth.generic_oauth" = {
         name = "DD-IX Auth";
