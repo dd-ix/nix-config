@@ -37,10 +37,10 @@ in
         listenAddress = "[::]";
         openFirewall = true;
         disabledCollectors = [ ];
-        enabledCollectors = [ ];
+        enabledCollectors = [ "systemd" ];
       };
-      smartctl = {
-        enable = cfg.smart.enable;
+      smartctl = lib.mkIf cfg.smart.enable {
+        enable = true;
         maxInterval = "10m";
         listenAddress = cfg.smart.host;
         port = cfg.smart.port;
