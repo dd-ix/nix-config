@@ -69,6 +69,8 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            ifstate.nixosModules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             ./hosts/svc-hv01/configuration.nix
             ./modules/management
             ./modules/dd-ix
