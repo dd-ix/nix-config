@@ -33,7 +33,7 @@
         useACMEHost = config.dd-ix.domain;
 
         locations = {
-          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
+          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
           "/g/ml".return = "301 https://${config.dd-ix.domain}/news/subscribe";
         };
       };
@@ -47,7 +47,7 @@
         onlySSL = true;
         useACMEHost = "content.${config.dd-ix.domain}";
         locations = {
-          "/robots.txt".return = "200 \"User-agent: *\nAllow: /\"";
+          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
         };
       };
       "talks.${config.dd-ix.domain}" = {
