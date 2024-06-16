@@ -7,4 +7,6 @@
     "ntp2.ibh.net"
     "ntp3.ibh.net"
   ];
+
+  services.chrony.enable = true;
 }
