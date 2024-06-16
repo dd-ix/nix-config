@@ -56,7 +56,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-ns01
-  - path_regex: secrets/management/rfc2136/(wiki|orga).dd-ix.net.yaml
+  - path_regex: secrets/management/rfc2136/wiki.dd-ix.net.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
@@ -221,3 +221,14 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-web01
+  - path_regex: secrets/management/(rfc2136/orga.dd-ix.net|orga).yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        - *admin_maurice
+        age:
+        - *svc-hv01
