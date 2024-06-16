@@ -3,7 +3,7 @@
 
 {
   sops.secrets."openproject_env" = {
-    sopsFile = self + "/secrets/management/openproject.yaml";
+    sopsFile = self + "/secrets/management/orga.yaml";
     owner = "root";
   };
 
