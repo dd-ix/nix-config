@@ -7,6 +7,8 @@
     owner = "root";
   };
 
+  services.nginx.enable = true;
+
   # Runtime
   virtualisation.podman = {
     enable = true;
@@ -20,39 +22,6 @@
   virtualisation.oci-containers.backend = "podman";
 
   # Containers
-  virtualisation.oci-containers.containers."ddix-orga-autoheal" = {
-    image = "willfarrell/autoheal:1.2.0";
-    environment = {
-      AUTOHEAL_CONTAINER_LABEL = "autoheal";
-      AUTOHEAL_INTERVAL = "30";
-      AUTOHEAL_START_PERIOD = "600";
-    };
-    volumes = [
-      "/var/run/docker.sock:/var/run/docker.sock:rw"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=autoheal"
-      "--network=ddix-orga_default"
-    ];
-  };
-  systemd.services."podman-ddix-orga-autoheal" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 500 "\"no\"";
-    };
-    after = [
-      "podman-network-ddix-orga_default.service"
-    ];
-    requires = [
-      "podman-network-ddix-orga_default.service"
-    ];
-    partOf = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-  };
   virtualisation.oci-containers.containers."ddix-orga-cache" = {
     image = "memcached";
     log-driver = "journald";
@@ -98,7 +67,6 @@
     cmd = [ "./docker/prod/cron" ];
     dependsOn = [
       "ddix-orga-cache"
-      "ddix-orga-db"
       "ddix-orga-seeder"
     ];
     log-driver = "journald";
@@ -126,84 +94,50 @@
       "podman-compose-ddix-orga-root.target"
     ];
   };
-  virtualisation.oci-containers.containers."ddix-orga-db" = {
-    image = "postgres:13";
-    environment = {
-      POSTGRES_DB = "openproject";
-      POSTGRES_PASSWORD = "p4ssw0rd";
-    };
-    volumes = [
-      "pgdata:/var/lib/postgresql/data:rw"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=db"
-      "--network=ddix-orga_backend"
-    ];
-  };
-  systemd.services."podman-ddix-orga-db" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 500 "always";
-    };
-    after = [
-      "podman-network-ddix-orga_backend.service"
-      "podman-volume-ddix-orga_pgdata.service"
-    ];
-    requires = [
-      "podman-network-ddix-orga_backend.service"
-      "podman-volume-ddix-orga_pgdata.service"
-    ];
-    partOf = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-  };
-  virtualisation.oci-containers.containers."ddix-orga-proxy" = {
-    image = "caddy:2";
-    environment = {
-      APP_HOST = "web";
-    };
-    volumes = [
-      "/tmp/openproject/compose/Caddyfile.template:/etc/caddy/Caddyfile.template:ro"
-      "/tmp/openproject/compose/proxy-entrypoint.sh:/usr/local/bin/proxy-entrypoint.sh:ro"
-      "assets:/public:ro"
-    ];
-    ports = [
-      "8080:80/tcp"
-    ];
-    cmd = [ "/usr/local/bin/proxy-entrypoint.sh" ];
-    dependsOn = [
-      "ddix-orga-web"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=proxy"
-      "--network=ddix-orga_frontend"
-    ];
-  };
-  systemd.services."podman-ddix-orga-proxy" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 500 "always";
-    };
-    after = [
-      "podman-network-ddix-orga_frontend.service"
-      "podman-volume-ddix-orga_assets.service"
-    ];
-    requires = [
-      "podman-network-ddix-orga_frontend.service"
-      "podman-volume-ddix-orga_assets.service"
-    ];
-    partOf = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-ddix-orga-root.target"
-    ];
-  };
+#  virtualisation.oci-containers.containers."ddix-orga-proxy" = {
+#    image = "caddy:2";
+#    environment = {
+#      APP_HOST = "web";
+#    };
+#    volumes = [
+#      "/tmp/openproject/compose/Caddyfile.template:/etc/caddy/Caddyfile.template:ro"
+#      "/tmp/openproject/compose/proxy-entrypoint.sh:/usr/local/bin/proxy-entrypoint.sh:ro"
+#      "assets:/public:ro"
+#    ];
+#    ports = [
+#      "8080:80/tcp"
+#    ];
+#    cmd = [ "/usr/local/bin/proxy-entrypoint.sh" ];
+#    dependsOn = [
+#      "ddix-orga-web"
+#    ];
+#    log-driver = "journald";
+#    extraOptions = [
+#      "--network-alias=proxy"
+#      "--network=ddix-orga_frontend"
+#    ];
+#  };
+#  systemd.services."podman-ddix-orga-proxy" = {
+#    serviceConfig = {
+#      Restart = lib.mkOverride 500 "always";
+#    };
+#    after = [
+#      "podman-network-ddix-orga_frontend.service"
+#      "podman-volume-ddix-orga_assets.service"
+#    ];
+#    requires = [
+#      "podman-network-ddix-orga_frontend.service"
+ #     "podman-volume-ddix-orga_assets.service"
+ #   ];
+ #   partOf = [
+ #     "podman-compose-ddix-orga-root.target"
+ #   ];
+ #   wantedBy = [
+ #     "podman-compose-ddix-orga-root.target"
+ #   ];
+ # };
   virtualisation.oci-containers.containers."ddix-orga-seeder" = {
-    image = "openproject/openproject:14-slim";
+   image = "openproject/openproject:14-slim";
     environment = {
       IMAP_ENABLED = "false";
       OPENPROJECT_CACHE__MEMCACHE__SERVER = "cache:11211";
@@ -264,12 +198,8 @@
       "opdata:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/web" ];
-    labels = {
-      "autoheal" = "true";
-    };
     dependsOn = [
       "ddix-orga-cache"
-      "ddix-orga-db"
       "ddix-orga-seeder"
     ];
     log-driver = "journald";
@@ -327,7 +257,6 @@
     cmd = [ "./docker/prod/worker" ];
     dependsOn = [
       "ddix-orga-cache"
-      "ddix-orga-db"
       "ddix-orga-seeder"
     ];
     log-driver = "journald";

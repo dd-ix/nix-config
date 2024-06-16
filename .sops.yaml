@@ -22,6 +22,7 @@ keys:
   - &svc-mari01 age1yatz0dnu3644dyzz03w84suzyyf0a25elmprvfudpqpv9s8nr4wsqctdq8
   - &svc-web01 age17z4tnuns8hqjjl9mqqeve3d2vmshw4xxldkcp4h6le6rhal3laqs897jnc
   - &svc-prom02 age1w3t9hz6hqjdhy8y49h42zeqnalew88hsnpekw66y38ckp6mkusgq5shh39
+  - &svc-orga01 age1f9zr5zpev2gev8pd5fgldp83hrdu2uecqfefqv06unh8lh7hudms8ju9e0
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
@@ -231,4 +232,4 @@ creation_rules:
         - *admin_marcel
         - *admin_maurice
         age:
-        - *svc-hv01
+        - *svc-orga01
