@@ -1,6 +1,19 @@
-{ self, pkgs, config, ... }:
+{ self, pkgs, lib, config, ... }:
 let
   addr = "[2a01:7700:80b0:7000::2]";
+
+  toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
+
+  # list of all nixos systems in this flake
+  allSystems = toList self.nixosConfigurations;
+
+  allMicroVMS = builtins.filter (x: ((builtins.hasAttr "microvm" x.config.dd-ix) && (x.config.dd-ix.microvm.enable == true))) allSystems;
+
+  # turns the hostname into an address
+  extractName = host: "${host.config.dd-ix.hostName}";
+
+  # list of addresses
+  listOfNames = builtins.map extractName allMicroVMS;
 in
 {
   imports = [
@@ -49,6 +62,9 @@ in
         ];
       };
     };
+
+  microvm.autostart = listOfNames;
+  microvm.stateDir = "/var/lib/microvms";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
