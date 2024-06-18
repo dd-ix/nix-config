@@ -58,12 +58,6 @@
 
   outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
     nixosConfigurations =
-      let
-        nixos-modules = [
-          sops-nix.nixosModules.default
-          microvm.nixosModules.host
-        ];
-      in
       {
         svc-hv01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -75,7 +69,9 @@
             ./modules/management
             ./modules/dd-ix
             ./modules/postgresql.nix
-          ] ++ nixos-modules;
+            sops-nix.nixosModules.default
+            microvm.nixosModules.host
+          ];
         };
         svc-adm01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
