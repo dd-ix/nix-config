@@ -11,7 +11,6 @@ in
     useDHCP = false;
 
     useNetworkd = true;
-    wireguard.enable = true;
   };
 
   systemd.network = {
@@ -241,7 +240,7 @@ in
   # enabling and configuring firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 22 443 2222 ];
+    allowedTCPPorts = [ 22 ];
     allowedUDPPorts = [ ];
   };
 }
