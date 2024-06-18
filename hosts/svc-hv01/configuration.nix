@@ -19,7 +19,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./network.nix
-    ./initrd_network.nix
+    #./initrd_network.nix
   ];
 
   dd-ix =
