@@ -4,7 +4,7 @@ let
     link = { inherit permaddr; state = "up"; kind = "physical"; master = bond; };
   };
   mkVlan = link: id: master: {
-    name = "${link}.${id}";
+    name = "${link}.${builtins.toString id}";
     addresses = [ ];
     link = { inherit link master; state = "up"; kind = "vlan"; vlan_id = id; };
   };
