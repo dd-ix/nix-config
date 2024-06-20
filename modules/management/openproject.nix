@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, config, lib, ... }:
 
 let
   env = {
@@ -22,6 +22,8 @@ in
   services.nginx.enable = true;
   services.memcached.enable = true;
 
+  systemd.services."podman-ddix-orga-seeder".serviceConfig.Restart = lib.mkForce "on-failure";
+
   services.nginx.virtualHosts."orga.${config.dd-ix.domain}" = {
     listen = [{
       addr = "[::]:443";
@@ -44,6 +46,7 @@ in
     ];
     cmd = [ "./docker/prod/cron" ];
     extraOptions = [ "--network=host" ];
+    dependsOn = [ "ddix-orga-seeder" ];
   };
 
   virtualisation.oci-containers.containers."ddix-orga-seeder" = {
@@ -74,6 +77,7 @@ in
       "--health-timeout=3s"
       "--network=host"
     ];
+    dependsOn = [ "ddix-orga-seeder" ];
   };
 
   virtualisation.oci-containers.containers."ddix-orga-worker" = {
@@ -84,8 +88,7 @@ in
       "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/worker" ];
-    extraOptions = [
-      "--network=host"
-    ];
+    extraOptions = [ "--network=host" ];
+    dependsOn = [ "ddix-orga-seeder" ];
   };
 }
