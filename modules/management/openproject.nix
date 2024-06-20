@@ -40,7 +40,7 @@ in
     environment = env;
     environmentFiles = [ config.sops.secrets."openproject_env".path ];
     volumes = [
-      "opdata:/var/openproject/assets:rw"
+      "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/cron" ];
     extraOptions = [ "--network=host" ];
@@ -51,7 +51,7 @@ in
     environment = env;
     environmentFiles = [ config.sops.secrets."openproject_env".path ];
     volumes = [
-      "opdata:/var/openproject/assets:rw"
+      "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/seeder" ];
     extraOptions = [ "--network=host" ];
@@ -62,8 +62,8 @@ in
     environment = env;
     environmentFiles = [ config.sops.secrets."openproject_env".path ];
     volumes = [
-      "assets:/app/public:rw"
-      "opdata:/var/openproject/assets:rw"
+      "/var/liv/openproject/public:/app/public:rw"
+      "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/web" ];
     extraOptions = [
@@ -81,7 +81,7 @@ in
     environment = env;
     environmentFiles = [ config.sops.secrets."openproject_env".path ];
     volumes = [
-      "opdata:/var/openproject/assets:rw"
+      "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/worker" ];
     extraOptions = [
