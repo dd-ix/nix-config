@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718726694,
-        "narHash": "sha256-fH+9DWKHeuxcYnS2FLgKdpUTCplqN8SQeiIuMcdWY64=",
+        "lastModified": 1718901280,
+        "narHash": "sha256-LjTHqgRZTD8hiXK+KDLaDeAwtSXD1ao4WrZs4wJ5HG8=",
         "ref": "refs/heads/main",
-        "rev": "b51145a3737aff6f7e57a9f51b66b24ba8cf17b3",
-        "revCount": 26,
+        "rev": "c9e299eed7792aec16ab34ecab9eea186a7fb070",
+        "revCount": 28,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
