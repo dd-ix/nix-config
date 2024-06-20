@@ -62,7 +62,7 @@ in
     environment = env;
     environmentFiles = [ config.sops.secrets."openproject_env".path ];
     volumes = [
-      "/var/liv/openproject/public:/app/public:rw"
+      "/var/lib/openproject/public:/app/public:rw"
       "/var/lib/openproject/assets:/var/openproject/assets:rw"
     ];
     cmd = [ "./docker/prod/web" ];
