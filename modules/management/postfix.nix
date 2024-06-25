@@ -18,6 +18,8 @@ let
     "[2a01:7700:80b0:6001::9]/128"
     # svc-adm01
     "[2a01:7700:80b0:7002::2]/128"
+    # svc-portal01
+    "[2a01:7700:80b0:6001::2]/128"
   ];
 
   # enable virtual aliases for those domains
@@ -34,6 +36,7 @@ let
       noreply@auth.dd-ix.net         noc@dd-ix.net
       noreply@svc-hv01.dd-ix.net     noc@dd-ix.net
       noreply@svc-adm01.dd-ix.net    noc@dd-ix.net
+      noreply@portal.dd-ix.net       noc@dd-ix.net
     '';
 in
 {

@@ -76,7 +76,7 @@
 
       # As well as uses in other places, emails are sent from the following name/email:
       IDENTITY_NAME = "DD-IX Dresden Internet Exchange";
-      IDENTITY_EMAIL = "noc@dd-ix.net";
+      IDENTITY_EMAIL = "noreply@portal.dd-ix.net";
 
       #IDENTITY_TESTEMAIL="\${IDENTITY_EMAIL}";
 
