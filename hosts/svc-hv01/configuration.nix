@@ -63,8 +63,11 @@ in
       };
     };
 
-  microvm.autostart = listOfNames;
-  microvm.stateDir = "/var/lib/microvms";
+  microvm = {
+    autostart = listOfNames;
+    stateDir = "/var/lib/microvms";
+    virtiofsd.threadPoolSize = 8;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
