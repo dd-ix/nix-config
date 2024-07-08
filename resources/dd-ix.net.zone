@@ -25,12 +25,13 @@ $TTL    1h         ; default TTL for zone
          CAA  128  issue "letsencrypt.org;validationmethods=dns-01"
          CAA  128  issuewild "letsencrypt.org;validationmethods=dns-01"
 
-         TXT   "v=spf1 include:spf.migadu.com -all"
          TXT   "hosted-email-verify=ddocclet"
          TXT   "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
-         MX  20  aspmx2.migadu.com.
-         MX  10  aspmx1.migadu.com.
+         TXT   "v=spf1 a mx include:spf.as-ihg.de -all"
+         TXT   "v=DMARC1; p=none; rua=mailto:postmaster@dd-ix.net"
+         
+         MX  10  mail.netarix.net
 
 ;; Delegations
 acme-dns  NS  ans-01.ibh.de.
