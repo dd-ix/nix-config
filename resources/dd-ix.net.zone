@@ -4,7 +4,8 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2024061600  ; Serial
+               ; serial is broken again
+               2024061601  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -25,12 +26,13 @@ $TTL    1h         ; default TTL for zone
          CAA  128  issue "letsencrypt.org;validationmethods=dns-01"
          CAA  128  issuewild "letsencrypt.org;validationmethods=dns-01"
 
-         TXT   "v=spf1 include:spf.migadu.com -all"
+         TXT   "v=spf1 a mx include:spf.as-ihg.de include:spf.migadu.com -all"
          TXT   "hosted-email-verify=ddocclet"
          TXT   "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
-         MX  20  aspmx2.migadu.com.
-         MX  10  aspmx1.migadu.com.
+         TXT   "v=DMARC1; p=none; rua=mailto:postmaster@dd-ix.net"
+         
+         MX  10  mail.netarix.net.
 
 ;; Delegations
 acme-dns  NS  ans-01.ibh.de.
@@ -145,15 +147,3 @@ _acme-challenge.obs            CNAME  obs.acme-dns
 _acme-challenge.svc-mari01     CNAME  svc-mari01.acme-dns
 _acme-challenge.talks          CNAME  talks.acme-dns
 
-;; Migadu Mail Setup
-autoconfig          CNAME  autoconfig.migadu.com.
-key1._domainkey     CNAME  key1.dd-ix.net._domainkey.migadu.com.
-key2._domainkey     CNAME  key2.dd-ix.net._domainkey.migadu.com.
-key3._domainkey     CNAME  key3.dd-ix.net._domainkey.migadu.com.
-
-_autodiscover._tcp  SRV  0  1  443 autodiscover.migadu.com.
-_imaps._tcp         SRV  0  1  993 imap.migadu.com.
-_pop3s._tcp         SRV  0  1  995 pop.migadu.com.
-_submissions._tcp   SRV  0  1  465 smtp.migadu.com.
-
-_dmarc              TXT  "v=DMARC1; p=quarantine; sp=none;"
