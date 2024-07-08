@@ -146,15 +146,3 @@ _acme-challenge.obs            CNAME  obs.acme-dns
 _acme-challenge.svc-mari01     CNAME  svc-mari01.acme-dns
 _acme-challenge.talks          CNAME  talks.acme-dns
 
-;; Migadu Mail Setup
-autoconfig          CNAME  autoconfig.migadu.com.
-key1._domainkey     CNAME  key1.dd-ix.net._domainkey.migadu.com.
-key2._domainkey     CNAME  key2.dd-ix.net._domainkey.migadu.com.
-key3._domainkey     CNAME  key3.dd-ix.net._domainkey.migadu.com.
-
-_autodiscover._tcp  SRV  0  1  443 autodiscover.migadu.com.
-_imaps._tcp         SRV  0  1  993 imap.migadu.com.
-_pop3s._tcp         SRV  0  1  995 pop.migadu.com.
-_submissions._tcp   SRV  0  1  465 smtp.migadu.com.
-
-_dmarc              TXT  "v=DMARC1; p=quarantine; sp=none;"

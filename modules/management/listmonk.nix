@@ -28,7 +28,7 @@ let
       --port 5432 \
       --username listmonk \
       --dbname listmonk \
-      --command "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/migadu_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
+      --command "UPDATE settings SET value = '$(cat ''${CREDENTIALS_DIRECTORY}/it_heinrich_bounce | tr '\n' ' ' | tr '"' \"'''\")' WHERE key = 'bounce.mailboxes';" 
   '';
 in
 {
@@ -59,7 +59,7 @@ in
       sopsFile = self + "/secrets/management/lists.yaml";
     };
 
-    sops.secrets."lists_bounce_migadu" = {
+    sops.secrets."lists_bounce_it_heinrich" = {
       sopsFile = self + "/secrets/management/lists.yaml";
     };
 
@@ -71,7 +71,7 @@ in
           "${cfg.package}/bin/listmonk --config ${cfgFile} --upgrade --yes"
           "${updateBounceSettings}/bin/update-database-config.sh"
         ];
-        LoadCredential = "migadu_bounce:${config.sops.secrets."lists_bounce_migadu".path}";
+        LoadCredential = "it_heinrich_bounce:${config.sops.secrets."lists_bounce_it_heinrich".path}";
       };
     };
     services = {
