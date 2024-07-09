@@ -66,7 +66,7 @@ in
   microvm = {
     autostart = listOfNames;
     stateDir = "/var/lib/microvms";
-    virtiofsd.threadPoolSize = 8;
+    virtiofsd.threadPoolSize = 16;
   };
 
   # Use the systemd-boot EFI boot loader.
