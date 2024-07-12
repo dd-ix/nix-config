@@ -1,28 +1,20 @@
 { self, lib, config, ... }:
-let
-  bindUser = "named";
-  # IBH authorative nameservers
-  # (IPv4 only as svc-hv01 does not have IPv6, yet)
-  ibh_ans_ip = [
-    # ans-01.ibh.de
-    "212.111.228.50"
-    "2a01:7700:0:1035::1:50"
-    # ans-02.ibh.net
-    "193.36.123.50"
-    "2a01:7700:0:1036::1:50"
-    # ans-03.ibh.de
-    "195.30.105.203"
-    "2001:608:c00:10::1:138"
-    # ans-04.ibh.services
-    "167.235.139.88"
-    "2a01:4f8:c0c:74b9::1"
-    # ans-05.ibh.net
-    "65.109.1.68"
-    "2a01:4f9:c012:61fd::1"
-  ];
-in
 
 let
+  bindUser = "named";
+  # IBH authoritative nameservers
+  ibh_ans_ip = [
+    # ans-01.ibh.de
+    "2a01:7700:0:1035::1:50"
+    # ans-02.ibh.net
+    "2a01:7700:0:1036::1:50"
+    # ans-03.ibh.de
+    "2001:608:c00:10::1:138"
+    # ans-04.ibh.services
+    "2a01:4f8:c0c:74b9::1"
+    # ans-05.ibh.net
+    "2a01:4f9:c012:61fd::1"
+  ];
   systems = lib.attrValues self.nixosConfigurations;
   acmeSystems = lib.filter (system: (lib.length system.config.dd-ix.acme) != 0) systems;
   acmeDomains = lib.flatten (map (system: system.config.dd-ix.acme) acmeSystems);
@@ -122,7 +114,7 @@ in
       recursion no;
 
       # obscure bind9 chaos version queries
-      version "DD-IX Authorative Name Server";
+      version "DD-IX Authoritative Name Server";
 
       # track stats on zones
       zone-statistics yes;
