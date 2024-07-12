@@ -1,6 +1,6 @@
-{ self, ... }:
+{ config, ... }:
 let
-  domain = "svc-mta01.dd-ix.net";
+  domain = "svc-mta01.${config.dd-ix.domain}";
 
   # allow relay from
   mynetworks = [
@@ -42,37 +42,41 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25 ];
 
-  services = {
-    postfix = {
-      enable = true;
-      hostname = "${domain}";
-      domain = "${domain}";
-      origin = "${domain}";
-      virtual = virtual_alias_map;
-      networks = mynetworks;
-      postmasterAlias = "noc@dd-ix.net";
-      rootAlias = "noc@dd-ix.net";
-      config = {
-        smtp_helo_name = domain;
-        smtp_use_tls = true;
-        # smtp_tls_security_level = "encrypt";
-        smtpd_recipient_restrictions = [
-          "permit_sasl_authenticated"
-          "permit_mynetworks"
-          "reject_unauth_destination"
-          "reject_non_fqdn_sender"
-          "reject_non_fqdn_recipient"
-          "reject_unknown_sender_domain"
-          "reject_unknown_recipient_domain"
-          "reject_unauth_destination"
-          "reject_unauth_pipelining"
-          "reject_invalid_hostname"
-        ];
-        smtpd_relay_restrictions = [
-          "permit_mynetworks"
-          "reject_unauth_destination"
-        ];
-        "virtual_alias_domains" = virtual_alias_domains;
+  services.postfix = {
+    enable = true;
+    hostname = domain;
+    domain = domain;
+    origin = domain;
+    virtual = virtual_alias_map;
+    networks = mynetworks;
+    postmasterAlias = "noc@dd-ix.net";
+    rootAlias = "noc@dd-ix.net";
+    config = {
+      smtp_helo_name = domain;
+      smtp_use_tls = true;
+      # smtp_tls_security_level = "encrypt";
+      smtpd_recipient_restrictions = [
+        "permit_sasl_authenticated"
+        "permit_mynetworks"
+        "reject_unauth_destination"
+        "reject_non_fqdn_sender"
+        "reject_non_fqdn_recipient"
+        "reject_unknown_sender_domain"
+        "reject_unknown_recipient_domain"
+        "reject_unauth_destination"
+        "reject_unauth_pipelining"
+        "reject_invalid_hostname"
+      ];
+      smtpd_relay_restrictions = [
+        "permit_mynetworks"
+        "reject_unauth_destination"
+      ];
+      "virtual_alias_domains" = virtual_alias_domains;
+    };
+    masterConfig = {
+      lmtp = {
+        type = "inet";
+        private = false;
       };
     };
   };
