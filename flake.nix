@@ -41,7 +41,7 @@
     };
 
     authentik = {
-      url = "github:nix-community/authentik-nix/node-22";
+      url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
