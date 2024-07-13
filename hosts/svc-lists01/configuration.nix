@@ -29,7 +29,7 @@ in
       addr = "[${addr}]:443";
     };
 
-    postgres = [ "listmonk" ];
+    postgres = [ "mailman" ];
 
     monitoring = {
       enable = true;
