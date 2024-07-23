@@ -31,7 +31,7 @@
       };
       database = {
         class = "mailman.database.postgresql.PostgreSQLDatabase";
-        url = "postgresql://mailman:mypassword@svc-pg01.dd-ix.net/mailman";
+        url = "postgresql://mailman:mypassword@svc-pg01.dd-ix.net/mailman?sslmode=require";
       };
     };
   };
