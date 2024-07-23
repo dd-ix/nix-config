@@ -43,6 +43,13 @@
         class = "mailman.database.postgresql.PostgreSQLDatabase";
       };
     };
+    webSettings = {
+      EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend";
+      EMAIL_HOST = "mta.dd-ix.net";
+      EMAIL_PORT = 25;
+      DEFAULT_FROM_EMAIL = "noreply@lists.dd-ix.net";
+      SERVER_EMAIL = "noreply@lists.dd-ix.net";
+    };
   };
 
   environment.etc."mailman3/settings.py".text = lib.mkAfter /* python */ ''
