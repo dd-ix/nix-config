@@ -13,7 +13,7 @@ keys:
   - &svc-pg01 age1xncen8ley579x7upvswpey5w84yyn2qf44y0t3pf9qh66vmvueeqj8zgk3
   - &svc-cloud01 age1swpyhunuhrmz0z6vpvhhk6asseggcmu696qr05hhmq02njjcna6s4dp4am
   - &svc-dcim01 age19eew0cu2pwzvdcl08ghftwy928fpvk50txxn8fswrhh52m2k4d7qpl72ka
-  - &svc-lists01 age1kq5036xjkesuaa6aa48mdnp7unm90a26exll5vd7lceuqn39pulqrsezkw
+  - &svc-lists01 age1szvwsfrfhkmx4a3e8zt7286w2u3m2ctvj9nj07guvczcumhauqks2apeme
   - &svc-vault01 age12n7ckcmw9j9qym430lv00l6ax3xklljjt3502s9vxkn43qqpqfyqqusqrg
   - &svc-lg01 age1mpakhhssx0ha5nv72hcyzecz0uy2lqnwduqkdyhdkexqe7gruvqqj0gqx0
   - &svc-adm01 age1yg56aehyj58nytm6c8d2d67mrds8s9rzjstyds0grval5kjm7dcq7pfpv8
