@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024061601  ; Serial
+               2024072300  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -92,7 +92,10 @@ content        CNAME  rpx
 cloud          CNAME  rpx
 wiki           CNAME  rpx
 dcim           CNAME  rpx
-lists          CNAME  rpx
+lists          A      212.111.245.178
+               AAAA   2a01:7700:80b0:6000::443
+               MX     svc-mta01
+               TXT    "v=spf1 mx -all"
 vault          CNAME  rpx
 portal         CNAME  rpx
 orga           CNAME  rpx
