@@ -24,9 +24,9 @@
         incoming = "mailman.mta.postfix.LMTP";
         outgoing = "mailman.mta.deliver.deliver";
         lmtp_host = "mta.dd-ix.net";
-        lmtp_port = 24;
+        lmtp_port = "24";
         smtp_host = "mta.dd-ix.net";
-        smtp_port = 25;
+        smtp_port = "25";
         configuration = "python:mailman.config.postfix";
       };
       database = {
