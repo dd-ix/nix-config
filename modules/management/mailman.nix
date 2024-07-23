@@ -27,6 +27,7 @@
         lmtp_port = 24;
         smtp_host = "mta.dd-ix.net";
         smtp_port = 25;
+        configuration = "python:mailman.config.postfix";
       };
       database = {
         class = "mailman.database.postgresql.PostgreSQLDatabase";
