@@ -8,6 +8,13 @@
     mode = "0440";
   };
 
+  sops.secrets."lists_web_db_pass" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+    owner = config.systemd.services.mailman.serviceConfig.User;
+    group = config.systemd.services.mailman.serviceConfig.Group;
+    mode = "0440";
+  };
+
   /*  services.postfix = {
     enable = true;
     relayDomains = [ "hash:/var/lib/mailman/data/postfix_domains" ];
@@ -56,6 +63,18 @@
     import urllib.parse
     with open('${config.sops.secrets."lists_db_pass".path}') as f:
       config['database']['url'] = f"postgresql://mailman:{urllib.parse.quote(f.read())}@svc-pg01.dd-ix.net/mailman?sslmode=require"
+    
+    with open('${config.sops.secrets."lists_web_db_pass".path}') as f:
+      DATABASES = {
+        'default': {
+          'ENGINE': 'django.db.backends.postgresql',
+          'NAME': 'mailman_web',
+          'USER': 'mailman_web',
+          'PASSWORD': f.read(),
+          'HOST': 'svc-pg01.dd-ix.net',
+          'PORT': '5432',
+        }
+      }
   '';
 
   services.nginx = {
