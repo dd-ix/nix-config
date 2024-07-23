@@ -15,6 +15,13 @@
     mode = "0440";
   };
 
+  sops.secrets."lists_oidc_client_secret" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+    owner = config.systemd.services.mailman.serviceConfig.User;
+    group = config.systemd.services.mailman.serviceConfig.Group;
+    mode = "0440";
+  };
+
   /*  services.postfix = {
     enable = true;
     relayDomains = [ "hash:/var/lib/mailman/data/postfix_domains" ];
@@ -73,6 +80,23 @@
           'PASSWORD': f.read(),
           'HOST': 'svc-pg01.dd-ix.net',
           'PORT': '5432',
+        }
+      }
+
+    INSTALLED_APPS.append('allauth.socialaccount.providers.openid_connect')
+
+    with open('${config.sops.secrets."lists_oidc_client_secret".path}') as f:
+      SOCIALACCOUNT_PROVIDERS = {
+        "openid_connect": {
+          "APPS": [{
+            "provider_id": "dd-ix-auth",
+            "name": "DD-IX Auth",
+            "client_id": "YmGymjU8CFStxNIiWMjnTsSgU46Nm4tVfBdkEZtM",
+            "secret": f.read(),
+            "settings": {
+              "server_url": "https://auth.dd-ix.net/application/o/lists/",
+            },
+          }],
         }
       }
   '';
