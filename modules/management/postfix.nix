@@ -29,8 +29,7 @@ let
   virtual_alias_map =
     ''
       noreply@cloud.dd-ix.net        noc@dd-ix.net
-      bounce@lists.dd-ix.net         lists@dd-ix.net
-      norely@lists.dd-ix.net         lists@dd-ix.net
+      noreply@lists.dd-ix.net        noc@dd-ix.net
       noreply@vault.dd-ix.net        noc@dd-ix.net
       noreply@wiki.dd-ix.net         noc@dd-ix.net
       noreply@auth.dd-ix.net         noc@dd-ix.net
@@ -71,7 +70,15 @@ in
         "permit_mynetworks"
         "reject_unauth_destination"
       ];
-      "virtual_alias_domains" = virtual_alias_domains;
+      inherit virtual_alias_domains;
+      # mailman config
+      # https://docs.mailman3.org/projects/mailman/en/latest/src/mailman/docs/mta.html#basic-postfix-connections
+      recipient_delimiter = "+";
+      unknown_local_recipient_reject_code = "550";
+      owner_request_special = false;
+      transport_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
+      local_recipient_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
+      relay_domains = [ "regexp:/var/lib/mailman/data/postfix_domains" ];
     };
     masterConfig = {
       lmtp = {
