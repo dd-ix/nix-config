@@ -94,7 +94,7 @@ wiki           CNAME  rpx
 dcim           CNAME  rpx
 lists          A      212.111.245.178
                AAAA   2a01:7700:80b0:6000::443
-               MX     svc-mta01
+               MX 10  svc-mta01
                TXT    "v=spf1 mx -all"
 vault          CNAME  rpx
 portal         CNAME  rpx
