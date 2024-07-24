@@ -114,4 +114,6 @@
       useACMEHost = "lists.${config.dd-ix.domain}";
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 8024 ];
 }
