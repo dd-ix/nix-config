@@ -49,6 +49,9 @@ in
     networks = mynetworks;
     postmasterAlias = "noc@dd-ix.net";
     rootAlias = "noc@dd-ix.net";
+    destination = [
+      "lists.dd-ix.net"
+    ];
     config = {
       smtp_helo_name = domain;
       smtp_use_tls = true;
