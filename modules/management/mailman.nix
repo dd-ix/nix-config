@@ -46,7 +46,7 @@
         outgoing = "mailman.mta.deliver.deliver";
         lmtp_host = /* svc-lists01.dd-ix.net */ "2a01:7700:80b0:6001::8";
         lmtp_port = "8024";
-        smtp_host = "mta.dd-ix.net";
+        smtp_host = "svc-mta01.dd-ix.net";
         smtp_port = "25";
         configuration = "${pkgs.writeText "mailman-postfix.cfg" /* ini */ ''
           [postfix]
@@ -59,7 +59,7 @@
     };
     webSettings = {
       EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend";
-      EMAIL_HOST = "mta.dd-ix.net";
+      EMAIL_HOST = "svc-mta01.dd-ix.net";
       EMAIL_PORT = 25;
       DEFAULT_FROM_EMAIL = "noreply@lists.dd-ix.net";
       SERVER_EMAIL = "noreply@lists.dd-ix.net";

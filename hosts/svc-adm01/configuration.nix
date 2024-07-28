@@ -50,7 +50,7 @@
   programs.msmtp = {
     enable = true;
     accounts.default = {
-      host = "mta.dd-ix.net";
+      host = "svc-mta01.dd-ix.net";
       from = "noreply@svc-adm01.dd-ix.net";
       user = "";
       password = "";

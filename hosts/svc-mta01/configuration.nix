@@ -2,6 +2,7 @@
 {
   dd-ix = {
     hostName = "svc-mta01";
+    useFpx = true;
 
     microvm = {
       enable = true;
@@ -15,6 +16,12 @@
       v6Addr = "2a01:7700:80b0:6000::25/64";
       v4Addr = "212.111.245.180/29";
     };
+
+    acme = [{
+      name = "svc-mta01.dd-ix.net";
+      group = "root";
+    }];
+
     monitoring = {
       enable = true;
     };

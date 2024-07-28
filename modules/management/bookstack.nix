@@ -11,7 +11,7 @@
       mail = {
         from = "noreply@wiki.dd-ix.net";
         fromName = "DD-IX-Wiki";
-        host = "mta.dd-ix.net";
+        host = "svc-mta01.dd-ix.net";
         port = 25;
       };
 

@@ -56,9 +56,10 @@
       };
       smtp = {
         enabled = true;
-        host = "mta.dd-ix.net:25";
+        host = "svc-mta01.dd-ix.net:25";
         from_name = "DD-IX OBS";
         from_address = "noreply@obs.dd-ix.net";
+        startTLS_policy = "MandatoryStartTLS";
       };
       database = {
         user = "grafana";

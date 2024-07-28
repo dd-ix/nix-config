@@ -20,7 +20,7 @@
         # update on demand
         ORG_CREATION_USERS = ""; # none
         PASSWORD_HINTS_ALLOWED = false;
-        SMTP_HOST = "mta.dd-ix.net";
+        SMTP_HOST = "svc-mta01.dd-ix.net";
         SMTP_PORT = 25;
         SMTP_FROM = "noreply@vault.dd-ix.net";
         SMTP_FROM_NAME = "DD-IX Vault";

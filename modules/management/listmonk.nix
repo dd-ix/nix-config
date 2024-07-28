@@ -102,7 +102,7 @@ in
             "bounce.enabled" = true;
             smtp = [{
               enabled = true;
-              host = "mta.dd-ix.net";
+              host = "svc-mta01.dd-ix.net";
               port = 25;
               uuid = "3c860444-42f3-425a-8ce7-36aebb7add95";
               tls_type = "none";

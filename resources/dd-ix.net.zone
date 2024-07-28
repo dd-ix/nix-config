@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024072300  ; Serial
+               2024072901  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -49,7 +49,7 @@ svc-mta01     A     212.111.245.180
               AAAA  2a01:7700:80b0:6000::25
 svc-rpx01     A     212.111.245.178
               AAAA  2a01:7700:80b0:6000::443
-              TXT   "v=spf1 a:mta.dd-ix.net -all"
+              TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
 svc-ns01      AAAA  2a01:7700:80b0:6000::53
 svc-portal01  AAAA  2a01:7700:80b0:6001::2
 svc-fpx01     AAAA  2a01:7700:80b0:6001::3
@@ -61,7 +61,7 @@ svc-lists01   AAAA  2a01:7700:80b0:6001::8
 svc-vault01   AAAA  2a01:7700:80b0:6001::9
 svc-lg01      AAAA  2a01:7700:80b0:6001::10
 svc-hv01      AAAA  2a01:7700:80b0:7000::2
-              TXT   "v=spf1 a:mta.dd-ix.net -all"
+              TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
 svc-adm01     AAAA  2a01:7700:80b0:7002::2
 svc-node01    AAAA  2a01:7700:80b0:7002::3
@@ -80,9 +80,7 @@ mno001  CNAME svc-hv01
 
 
 ;; Services
-rpx  CNAME  svc-rpx01
 ns   CNAME  svc-ns01
-mta  CNAME  svc-mta01
 wg             A      212.111.245.177
                AAAA   2a01:7700:80bf::2
 
@@ -149,4 +147,5 @@ _acme-challenge.svc-prom02     CNAME  svc-prom02.acme-dns
 _acme-challenge.obs            CNAME  obs.acme-dns
 _acme-challenge.svc-mari01     CNAME  svc-mari01.acme-dns
 _acme-challenge.talks          CNAME  talks.acme-dns
+_acme-challenge.svc-mta01      CNAME  svc-mta01.acme-dns
 

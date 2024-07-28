@@ -59,7 +59,7 @@ in
           user = "authentik";
         };
         email = {
-          host = "mta.dd-ix.net";
+          host = "svc-mta01.dd-ix.net";
           port = 25;
           username = "";
           use_tls = false;

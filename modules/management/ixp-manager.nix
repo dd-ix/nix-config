@@ -60,7 +60,7 @@
 
       # We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
       MAIL_MAILER = "smtp";
-      MAIL_HOST = "mta.dd-ix.net";
+      MAIL_HOST = "svc-mta01.dd-ix.net";
       MAIL_PORT = "25";
       MAIL_ENCRYPTION = "false";
 

@@ -46,7 +46,7 @@ in
         mail_domain = "cloud.dd-ix.net";
         mail_from_address = "noreply";
         mail_smtpmode = "smtp";
-        mail_smtphost = "mta.dd-ix.net";
+        mail_smtphost = "svc-mta01.dd-ix.net";
         mail_smtpport = 25;
         mail_smtpsecure = ""; # ssl
         updatechecker = false;

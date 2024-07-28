@@ -40,9 +40,15 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25 ];
 
+  security.acme.certs.${domain}.postRun = ''
+    systemctl reload postfix.service 
+  '';
+
   services.postfix = {
     enable = true;
     hostname = domain;
+    sslCert = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
+    sslKey = "${config.security.acme.certs.${domain}.directory}/key.pem";
     domain = domain;
     origin = domain;
     virtual = virtual_alias_map;
