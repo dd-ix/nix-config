@@ -54,8 +54,7 @@ in
     ];
     config = {
       smtp_helo_name = domain;
-      smtp_use_tls = true;
-      # smtp_tls_security_level = "encrypt";
+      smtp_tls_security_level = "encrypt";
       smtpd_recipient_restrictions = [
         "permit_sasl_authenticated"
         "permit_mynetworks"
@@ -79,14 +78,7 @@ in
       unknown_local_recipient_reject_code = "550";
       owner_request_special = false;
       transport_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
-      local_recipient_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
       relay_domains = [ "regexp:/var/lib/mailman/data/postfix_domains" ];
-    };
-    masterConfig = {
-      lmtp = {
-        type = "inet";
-        private = false;
-      };
     };
   };
 }
