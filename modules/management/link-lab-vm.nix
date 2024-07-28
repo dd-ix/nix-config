@@ -10,10 +10,11 @@
       };
     };
   };
-
+  users.groups.link-lab-vm = {};
   users.users.link-lab-vm = {
     name = "link-lab-vm";
     isSystemUser = true;
+    group = "link-lab-vm";
     extraGroups = [ "libvirtd" ];
   };
 
