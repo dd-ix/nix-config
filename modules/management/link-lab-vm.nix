@@ -1,5 +1,5 @@
-{pkgs, config, lib, ...}: {
-  
+{ pkgs, config, lib, ... }: {
+
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -11,8 +11,11 @@
     };
   };
 
-  users.users.link-lab-vm.extraGroups = [ "libvirtd" ];
-
+  users.users.link-lab-vm = {
+    name = "link-lab-vm";
+    isSystemUser = true;
+    extraGroups = [ "libvirtd" ];
+  };
 
   systemd.services."link-lab-vm" = {
     name = "link-lab-vm";
