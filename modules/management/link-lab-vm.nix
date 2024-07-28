@@ -19,7 +19,6 @@
   };
 
   systemd.services."link-lab-vm" = {
-    name = "link-lab-vm";
     after = [
       "network.target"
       "multi-user.target"
