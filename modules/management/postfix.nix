@@ -84,6 +84,7 @@ in
       unknown_local_recipient_reject_code = "550";
       owner_request_special = false;
       transport_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
+      local_recipient_maps = [ "regexp:/var/lib/mailman/data/postfix_lmtp" ];
       relay_domains = [ "regexp:/var/lib/mailman/data/postfix_domains" ];
     };
   };
