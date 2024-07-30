@@ -22,6 +22,14 @@
     mode = "0440";
   };
 
+  sops.secrets."lists_env" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+    owner = config.systemd.services.mailman.serviceConfig.User;
+    group = config.systemd.services.mailman.serviceConfig.Group;
+    mode = "0440";
+  };
+
+
   /*  services.postfix = {
     enable = true;
     relayDomains = [ "hash:/var/lib/mailman/data/postfix_domains" ];
@@ -40,6 +48,7 @@
     siteOwner = "noc@dd-ix.net";
     enablePostfix = false;
     #extraPythonPackages = with pkgs.python3Packages; [ psycopg2 ];
+    dbPassFile = config.sops.secrets."lists_db_pass".path;
     settings = {
       mta = {
         incoming = "mailman.mta.postfix.LMTP";
@@ -55,6 +64,7 @@
       };
       database = {
         class = "mailman.database.postgresql.PostgreSQLDatabase";
+      url = "postgresql://mailman:#NIXOS_MAILMAN_DB_PW#@svc-pg01.dd-ix.net/mailman?sslmode=require";
       };
     };
     webSettings = {
@@ -66,10 +76,12 @@
     };
   };
 
+  systemd.services.mailman.serviceConfig.EnvironmentFile = config.sops.secrets."lists_env".path;
+
   environment.etc."mailman3/settings.py".text = lib.mkAfter /* python */ ''
     import urllib.parse
     with open('${config.sops.secrets."lists_db_pass".path}') as f:
-      config['database']['url'] = f"postgresql://mailman:{urllib.parse.quote(f.read())}@svc-pg01.dd-ix.net/mailman?sslmode=require"
+      config['database']['url'] = f"postgresql://m1ilman:{urllib.parse.quote(f.read())}@svc-pg01.dd-ix.net/mailman?sslmode=require"
     
     with open('${config.sops.secrets."lists_web_db_pass".path}') as f:
       DATABASES = {
@@ -99,6 +111,9 @@
           }],
         }
       }
+
+    import sys
+    print(config["database"]["url"], file=sys.stderr)
   '';
 
   services.nginx = {

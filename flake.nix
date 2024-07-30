@@ -2,7 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:MarcelCoding/nixpkgs/nixos-24.05";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
