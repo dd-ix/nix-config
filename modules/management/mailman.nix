@@ -30,16 +30,13 @@
   };
 
 
-  /*  services.postfix = {
-    enable = true;
-    relayDomains = [ "hash:/var/lib/mailman/data/postfix_domains" ];
-    sslCert = config.security.acme.certs."lists.example.org".directory + "/full.pem";
-    sslKey = config.security.acme.certs."lists.example.org".directory + "/key.pem";
-    config = {
-      transport_maps = [ "hash:/var/lib/mailman/data/postfix_lmtp" ];
-      local_recipient_maps = [ "hash:/var/lib/mailman/data/postfix_lmtp" ];
-    };
-  };*/
+  sops.secrets."lists_arc_priv_key" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+    owner = config.systemd.services.mailman.serviceConfig.User;
+    group = config.systemd.services.mailman.serviceConfig.Group;
+    mode = "0440";
+  };
+
   services.mailman = {
     enable = true;
     serve.enable = true;
@@ -47,7 +44,6 @@
     webHosts = [ "lists.dd-ix.net" ];
     siteOwner = "noc@dd-ix.net";
     enablePostfix = false;
-    #extraPythonPackages = with pkgs.python3Packages; [ psycopg2 ];
     dbPassFile = config.sops.secrets."lists_db_pass".path;
     settings = {
       mta = {
@@ -64,7 +60,17 @@
       };
       database = {
         class = "mailman.database.postgresql.PostgreSQLDatabase";
-      url = "postgresql://mailman:#NIXOS_MAILMAN_DB_PW#@svc-pg01.dd-ix.net/mailman?sslmode=require";
+        url = "postgresql://mailman:#NIXOS_MAILMAN_DB_PW#@svc-pg01.dd-ix.net/mailman?sslmode=require";
+      };
+      ARC = {
+        enabled = "yes";
+        dmarc = "yes";
+        dkim = "yes";
+        authserv_id = "svc-mta01.dd-ix.net";
+        privkey = config.sops.secrets."lists_arc_priv_key".path;
+        # just take the current year
+        selector = "mailman_2024";
+        domain = "lists.dd-ix.net";
       };
     };
     webSettings = {
