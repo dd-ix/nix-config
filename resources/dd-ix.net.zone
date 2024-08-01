@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024072902  ; Serial
+               2024080101  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -90,10 +90,11 @@ content        CNAME  svc-rpx01
 cloud          CNAME  svc-rpx01
 wiki           CNAME  svc-rpx01
 dcim           CNAME  svc-rpx01
-lists          A      212.111.245.178
-               AAAA   2a01:7700:80b0:6000::443
-               MX 10  svc-mta01
-               TXT    "v=spf1 mx -all"
+lists                          A       212.111.245.178
+                               AAAA    2a01:7700:80b0:6000::443
+                               MX  10  svc-mta01
+                               TXT     "v=spf1 mx -all"
+mailman_2024._domainkey.lists  TXT     ("v=DKIM1; k=rsa; " "p=MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA7cAH+Q/FT8UrV9MVudTkDo5wCNLFHcaj0Iavny0aWYGKJ+/v1+QrTkFul4lEUoWXnFzSyznmArbx5HTw+B22A5OPHDXMfETVavgUPJExJiErS3bLYm7eNO6DpDW7EZhDqapUfK9Kk4EKZ6HhhsID15l76JZEmX6Lcm0Q7IaOtRBF3eu+u4Sry6ggl07JcK8En" "aeksNTQr1/qw7oBa1HkDAvfRBH3NB6LDPI3vqj5nfo254eU50OfcgOX34Vz2j4nnb/Wir2sQVWy/AGx5Pc2s5aPPYC6KiizQ31oWUrAwmgx4TWtuZDyBFKw5F4GEfmNzhGjp0QY4zWdTvlxCibnon+fiid6hashde8CmqRTaxiv46k+MGyCZ+qX3LUd/0wW7FZcT+eWyL9BS4gHLRyddtBx1ZdWLmJqZnx4VNuoi9qIjFcQSTqV3UUwEBwj2Cd0" "f4f+r6+enCvnfDH+Fzr4u+subgQ8pVTCAmFdnEXJtSZllBapGGtbrNKIOhUYk7wakr6XwQzUh1Ubn3Ok2sJVV3ZTmzUSXBqt3c3C/WcP29/pxAoIaImRVC/nHKnK1hDtgld5C5vv7lyWaWBpQIpaZh2HWDaDzobLMZJWdcl+EA8aH39G3uoH8Hs+nySeaJCbike8U0vhPx86kSZzeQ0B0bK8k0duhhJSx3SXmA9BLPMCAwEAAQ==")
 vault          CNAME  svc-rpx01
 portal         CNAME  svc-rpx01
 orga           CNAME  svc-rpx01
