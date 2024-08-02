@@ -69,7 +69,7 @@
         authserv_id = "svc-mta01.dd-ix.net";
         privkey = config.sops.secrets."lists_arc_priv_key".path;
         # just take the current year
-        selector = "mailman_2024";
+        selector = "arc_2024";
         domain = "lists.dd-ix.net";
       };
     };
@@ -85,10 +85,6 @@
   systemd.services.mailman.serviceConfig.EnvironmentFile = config.sops.secrets."lists_env".path;
 
   environment.etc."mailman3/settings.py".text = lib.mkAfter /* python */ ''
-    import urllib.parse
-    with open('${config.sops.secrets."lists_db_pass".path}') as f:
-      config['database']['url'] = f"postgresql://m1ilman:{urllib.parse.quote(f.read())}@svc-pg01.dd-ix.net/mailman?sslmode=require"
-    
     with open('${config.sops.secrets."lists_web_db_pass".path}') as f:
       DATABASES = {
         'default': {
@@ -117,9 +113,6 @@
           }],
         }
       }
-
-    import sys
-    print(config["database"]["url"], file=sys.stderr)
   '';
 
   services.nginx = {
