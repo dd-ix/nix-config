@@ -54,9 +54,14 @@
       url = "github:dd-ix/sflow_exporter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    post = {
+      url = "github:dd-ix/post";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, ... }: {
     nixosConfigurations =
       {
         svc-hv01 = nixpkgs.lib.nixosSystem {
@@ -95,6 +100,8 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             sops-nix.nixosModules.default
             microvm.nixosModules.microvm
+            post.nixosModules.default
+            { nixpkgs.overlays = [ post.overlays.default ]; }
             ./hosts/svc-mta01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix

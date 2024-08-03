@@ -29,7 +29,6 @@
     mode = "0440";
   };
 
-
   sops.secrets."lists_arc_priv_key" = {
     sopsFile = self + "/secrets/management/lists.yaml";
     owner = config.systemd.services.mailman.serviceConfig.User;
