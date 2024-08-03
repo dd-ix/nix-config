@@ -56,6 +56,7 @@
           [postfix]
           transport_file_type: regex
         ''}";
+        remove_dkim_headers = "yes";
       };
       database = {
         class = "mailman.database.postgresql.PostgreSQLDatabase";
