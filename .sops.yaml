@@ -234,7 +234,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-orga01
-  - path_regex: secrets/management/rfc2136/svc-mta01.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/svc-mta01.dd-ix.net|mta).yaml
     key_groups:
       - pgp:
         - *admin_tassilo
