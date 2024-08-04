@@ -1,7 +1,7 @@
 <mjml>
   <mj-head>
     <mj-title>DD-IX Enrollment</mj-title>
-    <mj-preview>You have been invited by the DD-IX Dresden Internet Exchange e.V. to creat e a login for access to the association's services. Just press the button below to start the enrollment process.</mj-preview>
+    <mj-preview>You have been invited by the DD-IX Dresden Internet Exchange e.V. to create a login for access to the association's services. Just press the button below to start the enrollment process.</mj-preview>
     <mj-attributes>
       <mj-all font-family="system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'">
         ></mj-all>
@@ -31,7 +31,7 @@
         <mj-column>
           <mj-text font-size="20px" font-weight="bold">Hello {{ name }}!</mj-text>
           <mj-text>
-            You have been invited by the DD-IX Dresden Internet Exchange e.V. to creat e a login for access to the association's services. Just press the button below to start the enrollment process.
+            You have been invited by the DD-IX Dresden Internet Exchange e.V. to create a login for access to the association's services. Just press the button below to start the enrollment process.
           </mj-text>
         </mj-column>
       </mj-section>
@@ -71,7 +71,7 @@
             </tr>
             <tr>
               <td style="font-weight:bold">
-                Gültigkeit:
+                Expiration:
               </td>
               <td>
                 {{ expire }}
