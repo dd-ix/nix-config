@@ -19,13 +19,15 @@
 
     acme = [{
       name = "svc-mta01.dd-ix.net";
-      group = "root";
+      group = "nginx";
     }];
 
     monitoring = {
       enable = true;
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 443 ];
 
   system.stateVersion = "23.11";
 }
