@@ -35,6 +35,7 @@
         locations = {
           "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
           "/g/ml".return = "301 https://${config.dd-ix.domain}/news/subscribe";
+          "/g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
         };
       };
       "content.${config.dd-ix.domain}" = {
