@@ -74,6 +74,7 @@
             ./modules/management
             ./modules/dd-ix
             ./modules/postgresql.nix
+            ./modules/management/link-lab-vm.nix
             sops-nix.nixosModules.default
             microvm.nixosModules.host
           ];
