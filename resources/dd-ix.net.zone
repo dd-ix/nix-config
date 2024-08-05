@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024080200  ; Serial
+               2024080500  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -94,9 +94,10 @@ lists                      A       212.111.245.178
                            AAAA    2a01:7700:80b0:6000::443
                            MX  10  svc-mta01
                            TXT     "v=spf1 mx -all"
-; opendkim-genkey --domain lists.dd-ix.net --selector arc_2024 --append-domain
-arc_2024._domainkey.lists  TXT     ( "v=DKIM1; k=rsa; "
-          "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDKwk9y+bA61tKL3F55qew7fiAHMokeSfXdthMTXHxlCzOnBsWuZeSm/GLqZ9NOYWGaVqgd2nyQQjvQ18DqzrQdgnnhUpS3eXwLNkSfnPzvIUUmKIlbVdjpaM8Z4zZbUSXp6JKm55IycuVpeUb+xY3/Mso2YFd6c3xoi0cZ9TNLbwIDAQAB" )  ; ----- DKIM key arc_2024 for lists.dd-ix.net
+; opendkim-genkey --domain lists.dd-ix.net --selector arc_2024_2 --append-domain --bits 2048
+arc_2024_2._domainkey.lists  TXT     ( "v=DKIM1; k=rsa; "
+          "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5hh4vFmxXV2/2GDw1ltjA7gbwr1QnRVB0Dif7RMwdtgN6LJ08HBpi7/+9eOR0iB1Hp1vUWQhOJO5kjvRjJyMiGDiImy268ztCDKPjJ8WKUYMYKScHsD+3snRf6+ZqjYVkxMQwjlnh+DvaVEUlhzwAs5H50Q8CwaSqX9HyqZPO231flK/rwTihXQnGHhe+JSEn85YLh5wVMTtvz"
+          "LRoM2elQnNuCym8t0YjQY4Bbn/wwdCblJxgKyjxxJPnCZXzhcFsIJ8h6t/5JK23XAQX5Uh9T483TU0Ht+yfE4jp8e0f150pSKNVxgmsVCGIrY+6uk3nG5dB88n4kA2mLSc4eccqwIDAQAB" )
 vault          CNAME  svc-rpx01
 portal         CNAME  svc-rpx01
 orga           CNAME  svc-rpx01

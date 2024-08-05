@@ -69,7 +69,7 @@
         authserv_id = "svc-mta01.dd-ix.net";
         privkey = config.sops.secrets."lists_arc_priv_key".path;
         # just take the current year
-        selector = "arc_2024";
+        selector = "arc_2024_2";
         domain = "lists.dd-ix.net";
       };
     };
