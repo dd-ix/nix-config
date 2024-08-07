@@ -80,7 +80,8 @@
   dd-ix = {
     website = {
       enable = true;
-      domain = "${config.dd-ix.domain}";
+      domain = config.dd-ix.domain;
+      contentApi = "https://content.${config.dd-ix.domain}";
     };
     website-content-api = {
       enable = true;
