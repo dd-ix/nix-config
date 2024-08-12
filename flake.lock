@@ -481,6 +481,22 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
       }
     },
+    "nixpkgs-vault": {
+      "locked": {
+        "lastModified": 1723504875,
+        "narHash": "sha256-P+WWTCXSGvm97LOx2W/H1iEtkIf5JcP8Hk/obTlncXc=",
+        "owner": "tanneberger",
+        "repo": "nixpkgs",
+        "rev": "70c6aebd61f6269c3deea30e1a8d5773e3d2a493",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tanneberger",
+        "ref": "vaultwarden-fix",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pnpm2nix": {
       "inputs": {
         "flake-utils": "flake-utils_10",
@@ -560,6 +576,7 @@
         "ixp-manager": "ixp-manager",
         "microvm": "microvm",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-vault": "nixpkgs-vault",
         "post": "post",
         "sflow-exporter": "sflow-exporter",
         "sops-nix": "sops-nix",
