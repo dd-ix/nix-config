@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:MarcelCoding/nixpkgs/nixos-24.05";
-    nixpkgs-vault.url = "github:tanneberger/nixpkgs/vaultwarden-fix";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -62,7 +61,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixpkgs-vault, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, ... }: {
     nixosConfigurations =
       {
         svc-hv01 = nixpkgs.lib.nixosSystem {
@@ -267,7 +266,7 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-vault01 = nixpkgs-vault.lib.nixosSystem {
+        svc-vault01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
