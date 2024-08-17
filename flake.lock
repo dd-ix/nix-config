@@ -892,11 +892,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723403104,
-        "narHash": "sha256-EgQO7LTWfHeFsMd2Nbf0wJrsnWxreLcQWQ8cG6kOqgo=",
+        "lastModified": 1723921868,
+        "narHash": "sha256-SvAGcIvIAVzAJCxsH7Z7OnPQ2aaZpXOeW6SbWzAWavU=",
         "owner": "dd-ix",
         "repo": "website-content-api",
-        "rev": "348c19417f0a14bdb9ea4cc835ac2c8f21fc6fff",
+        "rev": "bcaf8833f0015523f43325ca300d965a81faf69b",
         "type": "github"
       },
       "original": {
