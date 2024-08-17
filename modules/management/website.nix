@@ -1,10 +1,6 @@
-{ self, config, pkgs, ... }: {
+{ config, pkgs, ... }:
 
-  sops.secrets.web_listmonk_admin_pw = {
-    sopsFile = self + "/secrets/management/web.yaml";
-    owner = "root";
-  };
-
+{
   services.nginx = {
     enable = true;
     virtualHosts = {
@@ -89,13 +85,6 @@
       http = {
         host = "127.0.0.1";
         port = 9123;
-      };
-      listmonk = {
-        host = "https://lists.dd-ix.net";
-        port = 443;
-        user = "admin";
-        passwordFile = config.sops.secrets.web_listmonk_admin_pw.path;
-        allowed_lists = [ 3 ];
       };
       url = "https://content.${config.dd-ix.domain}/";
       prometheusUrl = "https://svc-prom02.${config.dd-ix.domain}/";
