@@ -36,11 +36,10 @@ in
         dbname = "nextcloud";
         dbhost = "svc-pg01.dd-ix.net";
         dbpassFile = "${config.sops.secrets."cloud_db_pw".path}";
-        overwriteProtocol = "https";
         adminuser = "admin";
         adminpassFile = "${config.sops.secrets."cloud_admin_pw".path}";
       };
-      extraOptions = {
+      settings = {
         allow_local_remote_servers = false;
         hide_login_form = true;
         mail_domain = "cloud.dd-ix.net";
@@ -53,6 +52,7 @@ in
         has_internet_connection = true;
         defaultapp = "files";
         appstoreenabled = true;
+        overwriteprotocol = "https";
       };
       phpOptions = {
         "opcache.jit" = "tracing";
