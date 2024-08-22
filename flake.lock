@@ -855,11 +855,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1723921059,
-        "narHash": "sha256-cJfre+XP20ce2NT7HtILva9/70orMOvsVddGzmKldx4=",
+        "lastModified": 1724196969,
+        "narHash": "sha256-TxtPLbBRxgCgCjmFhp1wiKOKtDsycFm+3dF5h6LhrRM=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "35f265e260e19bb3fc8b143799707d9e2300953a",
+        "rev": "6c93d3643dc7c20efd8270e29553a17a345f6121",
         "type": "github"
       },
       "original": {
