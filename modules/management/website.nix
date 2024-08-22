@@ -30,8 +30,17 @@
 
         locations = {
           "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
-          "/g/ml".return = "301 https://${config.dd-ix.domain}/news/subscribe";
+          "/g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
+          
+          # legacy
+          "/g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/de/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/en/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/de/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/en/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
         };
       };
       "content.${config.dd-ix.domain}" = {
