@@ -107,6 +107,13 @@ in
         file = self + "/resources/0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.zone";
         slaves = ibh_ans_ip;
       };
+
+       # ipv6 peering
+      "9.7.0.0.8.f.7.0.1.0.0.2.ip6.arpa" = {
+        master = true;
+        file = self + "/resources/9.7.0.0.8.f.7.0.1.0.0.2.ip6.arpa.zone";
+        slaves = ibh_ans_ip;
+      };
     };
 
     extraOptions = ''    
