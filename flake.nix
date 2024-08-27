@@ -74,7 +74,6 @@
             ./modules/management
             ./modules/dd-ix
             ./modules/postgresql.nix
-            ./modules/management/link-lab-vm.nix
             sops-nix.nixosModules.default
             microvm.nixosModules.host
           ];
@@ -293,19 +292,33 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        ixp-as11201 = nixpkgs.lib.nixosSystem {
+        ixp-as11201 = nixpkgs.lib.nixossystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
+          specialargs = { inherit inputs self; };
           modules = [
-            ifstate.nixosModules.default
+            ifstate.nixosmodules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
+            microvm.nixosmodules.microvm
+            sops-nix.nixosmodules.default
             ./hosts/ixp-as11201
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
         };
+        ixp-link-lab01 = nixpkgs.lib.nixossystem {
+          system = "x86_64-linux";
+          specialargs = { inherit inputs self; };
+          modules = [
+            ifstate.nixosmodules.default
+            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            microvm.nixosmodules.microvm
+            sops-nix.nixosmodules.default
+            ./hosts/ixp-link-lab01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
+
         svc-prom01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };

@@ -3,7 +3,8 @@ let
   bond_device_name = "bond"; # name of the bond interface
   first_device_name = "enp144s0"; # first port that should be part of the LAG
   second_device_name = "enp144s0d1"; # second port that should be part of the LAG
-  ixp_peering_device_name = "eno2";
+  ixp_peering_device_name_as112 = "eno2";
+  ixp_peering_device_name_link_lab = "eno3"; # TODO: figure out
 in
 {
   networking = {
@@ -119,8 +120,14 @@ in
         Kind = "bridge";
       };
 
-      "20-ixp-peering".netdevConfig = {
-        Name = "ixp-peering";
+      "20-ixp-peering-as112".netdevConfig = {
+        Name = "ixp-peering-as112";
+        Kind = "bridge";
+      };
+
+
+      "20-ixp-peering-link-lab".netdevConfig = {
+        Name = "ixp-peering-link-lab";
         Kind = "bridge";
       };
     };
@@ -207,14 +214,24 @@ in
         networkConfig.Bridge = "svc-ixp-mgmt";
       };
 
-      "10-${ixp_peering_device_name}" = {
-        matchConfig.Name = "${ixp_peering_device_name}";
-        networkConfig.Bridge = "ixp-peering";
+      "10-${ixp_peering_device_name_as112}" = {
+        matchConfig.Name = "${ixp_peering_device_name_as112}";
+        networkConfig.Bridge = "ixp-peering-as112";
       };
 
-      "30-microvm-ixp-peering" = {
+      "10-${ixp_peering_device_name_link_lab}" = {
+        matchConfig.Name = "${ixp_peering_device_name_link_lab}";
+        networkConfig.Bridge = "ixp-peering-link-lab";
+      };
+
+      "30-microvm-ixp-peering-as112" = {
         matchConfig.Name = "p-*";
-        networkConfig.Bridge = "ixp-peering";
+        networkConfig.Bridge = "ixp-peering-as112";
+      };
+
+      "30-microvm-ixp-peering-link-lab" = {
+        matchConfig.Name = "p-*";
+        networkConfig.Bridge = "ixp-peering-link-lab";
       };
 
       "40-bring-svc-up-bridges" = {
