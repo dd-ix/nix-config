@@ -49,5 +49,10 @@
     }];
   };
 
+  environment.systemPackages = with pkgs; [
+    # ansible
+    python3
+  ];
+
   system.stateVersion = "23.11";
 }
