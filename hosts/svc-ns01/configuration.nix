@@ -20,5 +20,21 @@
     };
   };
 
+  users.users.ixp-deploy = {
+    isNormalUser = true;
+    openssh.authorizedKeys = {
+      keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH0vuZeitSJiVxdACcwB8s1Cj2hi0wXjDMbhLelEJmIv"
+      ];
+      keyFiles = [
+        ../../keys/ssh/tassilo
+        ../../keys/ssh/melody
+        ../../keys/ssh/fiasko
+        ../../keys/ssh/marcel
+        ../../keys/ssh/adb
+      ];
+    };
+  };
+
   system.stateVersion = "23.11";
 }
