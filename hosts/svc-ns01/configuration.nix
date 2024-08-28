@@ -1,4 +1,5 @@
-{ ... }:
+{ pkgs, ... }:
+
 {
   dd-ix = {
     hostName = "svc-ns01";
@@ -34,6 +35,18 @@
         ../../keys/ssh/adb
       ];
     };
+  };
+
+  # https://wiki.nixos.org/wiki/Sudo
+  security.sudo = {
+    enable = true;
+    extraRules = [{
+      commands = [{
+        command = "/run/current-system/sw/bin/systemctl reload bind";
+        options = [ "NOPASSWD" ];
+      }];
+      users = [ "ixp-deploy" ];
+    }];
   };
 
   system.stateVersion = "23.11";
