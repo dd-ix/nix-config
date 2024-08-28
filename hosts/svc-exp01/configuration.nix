@@ -41,7 +41,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # ansible trash:
+    # ansible
     python3
   ];
 
