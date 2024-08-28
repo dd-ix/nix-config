@@ -88,6 +88,7 @@ in
   environment.systemPackages = with pkgs; [
     vim
     git
+    ethtool
   ];
 
   sops.defaultSopsFile = self + /secrets/management/secrets.yaml;
