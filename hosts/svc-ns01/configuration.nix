@@ -42,7 +42,7 @@
     enable = true;
     extraRules = [{
       commands = [{
-        command = "/run/current-system/sw/bin/systemctl reload bind";
+        command = "/run/current-system/sw/bin/systemctl reload bind.service";
         options = [ "NOPASSWD" ];
       }];
       users = [ "ixp-deploy" ];
