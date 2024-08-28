@@ -46,7 +46,10 @@ in
         mkdir -p /var/lib/bind/
         cp ${self}/resources/acme-dns.dd-ix.net.zone /var/lib/bind/acme-dns.dd-ix.net.zone
       fi
-      chown -R named:named /var/lib/bind
+      chown named:named /var/lib/bind/*
+
+      mkdir -m 0775 -p /var/lib/bind/ixp-deploy
+      chown ixp-deploy:named /var/lib/bind/ixp-deploy
     '';
     serviceConfig = {
       Type = "oneshot";
