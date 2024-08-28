@@ -110,6 +110,20 @@ in
         file = self + "/resources/0.b.0.8.0.0.7.7.1.0.a.2.ip6.arpa.zone";
         slaves = ibh_ans_ip;
       };
+
+      # ipv6 peering
+      "9.7.0.0.8.f.7.0.1.0.0.2.ip6.arpa" = {
+        master = true;
+        file = "/var/lib/bind/ixp-deploy/9.7.0.0.8.f.7.0.1.0.0.2.ip6.arpa.db";
+        slaves = ibh_ans_ip;
+      };
+
+      # ipv4 peering
+      "64.151.201.193.in-addr.arpa.db" = {
+        master = true;
+        file = "/var/lib/bind/ixp-deploy/64.151.201.193.in-addr.arpa.db";
+        slaves = ibh_ans_ip;
+      };
     };
 
     extraOptions = ''    
