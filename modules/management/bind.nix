@@ -119,9 +119,9 @@ in
       };
 
       # ipv4 peering
-      "64.151.201.193.in-addr.arpa.db" = {
+      "64-127.151.201.193.in-addr.arpa" = {
         master = true;
-        file = "/var/lib/bind/ixp-deploy/64.151.201.193.in-addr.arpa.db";
+        file = "/var/lib/bind/ixp-deploy/64-127.151.201.193.in-addr.arpa.db";
         slaves = ibh_ans_ip;
       };
     };
