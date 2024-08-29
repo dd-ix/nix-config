@@ -112,6 +112,10 @@ in
         "168.192.in-addr.arpa" = { file = dd-empty; };
         # RFC 6890
         "254.169.in-addr.arpa" = { file = dd-empty; };
+        # RFC 8375 - Special-Use Domain 'home.arpa.'
+        "home.arpa" = { file = dd-empty; };
+        # https://datatracker.ietf.org/doc/html/draft-ietf-dnssd-srp-25
+        "service.arpa" = { file = dd-empty; };
         # DNAME redirection AS112 Service
         "empty.as112.arpa" = { file = dr-empty; };
         # Also answer authoritatively for the HOSTNAME.AS112.NET and
