@@ -94,6 +94,14 @@ in
   sops.defaultSopsFile = self + /secrets/management/secrets.yaml;
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
+  virtualisation.libvirtd = {
+    enable = true;
+    onShutdown = "shutdown";
+  };
+
+  # required by libvirtd
+  security.polkit.enable = true;
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
