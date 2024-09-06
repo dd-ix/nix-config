@@ -4,6 +4,15 @@ let
   first_device_name = "enp144s0"; # first port that should be part of the LAG
   second_device_name = "enp144s0d1"; # second port that should be part of the LAG
   ixp_peering_device_name = "eno2";
+  mkVlan = id: {
+    netdevConfig = {
+      Name = "${bond_device_name}.${toString id}";
+      Kind = "vlan";
+    };
+    vlanConfig = {
+      Id = id;
+    };
+  };
 in
 {
   networking = {
@@ -29,93 +38,52 @@ in
         };
       };
 
-      "20-${bond_device_name}.100" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.100";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 100;
-        };
-      };
+      "20-${bond_device_name}.100" = mkVlan 100;
 
       "20-svc-internet".netdevConfig = {
         Name = "svc-internet";
         Kind = "bridge";
       };
 
-      "20-${bond_device_name}.101" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.101";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 101;
-        };
-      };
+      "20-${bond_device_name}.101" = mkVlan 101;
 
       "20-svc-services".netdevConfig = {
         Name = "svc-services";
         Kind = "bridge";
       };
 
-      "20-${bond_device_name}.102" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.102";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 102;
-        };
-      };
+      "20-${bond_device_name}.102" = mkVlan 102;
 
       "20-svc-management".netdevConfig = {
         Name = "svc-management";
         Kind = "bridge";
       };
 
-      "20-${bond_device_name}.103" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.103";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 103;
-        };
-      };
+      "20-${bond_device_name}.103" = mkVlan 103;
 
       "20-svc-lab".netdevConfig = {
         Name = "svc-lab";
         Kind = "bridge";
       };
 
-      "20-${bond_device_name}.104" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.104";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 104;
-        };
-      };
+      "20-${bond_device_name}.104" = mkVlan 104;
 
       "20-svc-admin".netdevConfig = {
         Name = "svc-admin";
         Kind = "bridge";
       };
 
-      "20-${bond_device_name}.301" = {
-        netdevConfig = {
-          Name = "${bond_device_name}.301";
-          Kind = "vlan";
-        };
-        vlanConfig = {
-          Id = 301;
-        };
-      };
+      "20-${bond_device_name}.301" = mkVlan 301;
 
       "20-svc-ixp-mgmt".netdevConfig = {
         Name = "svc-ixp-mgmt";
+        Kind = "bridge";
+      };
+
+      "20-${bond_device_name}.601" = mkVlan 601;
+
+      "20-prj-linklab".netdevConfig = {
+        Name = "prj-linklab";
         Kind = "bridge";
       };
 
@@ -129,7 +97,7 @@ in
       "10-${bond_device_name}" = {
         matchConfig.Name = "${bond_device_name}";
 
-        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" "${bond_device_name}.104" "${bond_device_name}.301" ];
+        vlan = [ "${bond_device_name}.100" "${bond_device_name}.101" "${bond_device_name}.102" "${bond_device_name}.103" "${bond_device_name}.104" "${bond_device_name}.301" "${bond_device_name}.601" ];
       };
 
       "10-${first_device_name}-${bond_device_name}" = {
@@ -207,6 +175,16 @@ in
         networkConfig.Bridge = "svc-ixp-mgmt";
       };
 
+      "10-${bond_device_name}.601" = {
+        matchConfig.Name = "${bond_device_name}.601";
+        networkConfig.Bridge = "prj-linklab";
+      };
+
+      "30-microvm-prj-linklab" = {
+        matchConfig.Name = "prj-llb-*";
+        networkConfig.Bridge = "prj-linklab";
+      };
+
       "10-${ixp_peering_device_name}" = {
         matchConfig.Name = "${ixp_peering_device_name}";
         networkConfig.Bridge = "ixp-peering";
@@ -228,6 +206,15 @@ in
 
       "40-bring-ixp-up-bridges" = {
         matchConfig.Name = "ixp-*";
+        networkConfig = {
+          DHCP = "no";
+          LinkLocalAddressing = "no";
+          KeepConfiguration = "yes";
+        };
+      };
+
+      "40-bring-prj-up-bridges" = {
+        matchConfig.Name = "prj-*";
         networkConfig = {
           DHCP = "no";
           LinkLocalAddressing = "no";
