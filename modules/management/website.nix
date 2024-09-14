@@ -41,6 +41,7 @@
           "/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/de/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/en/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "/event".return = "301 https://dd-ix.net/blog";
         };
       };
       "content.${config.dd-ix.domain}" = {
