@@ -32,7 +32,7 @@
           "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
           "/g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
-          
+
           # legacy
           "/g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";

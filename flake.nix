@@ -62,12 +62,18 @@
   };
 
   outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, ... }: {
+
+    nixosModules = {
+      common = import ./modules/common;
+    };
+
     nixosConfigurations =
       {
         svc-hv01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             ./hosts/svc-hv01/configuration.nix
@@ -82,6 +88,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -96,6 +103,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             sops-nix.nixosModules.default
@@ -111,6 +119,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -124,6 +133,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -137,6 +147,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -152,6 +163,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -165,6 +177,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -178,6 +191,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -191,6 +205,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -205,6 +220,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -218,6 +234,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -231,6 +248,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -244,6 +262,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -257,6 +276,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -270,6 +290,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -283,6 +304,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -296,6 +318,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -309,6 +332,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -322,6 +346,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -335,6 +360,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -350,6 +376,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -363,6 +390,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             {
               nixpkgs.overlays = [
@@ -387,6 +415,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
@@ -400,6 +429,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            self.nixosModules.common
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
