@@ -825,11 +825,11 @@
     "website-content": {
       "flake": false,
       "locked": {
-        "lastModified": 1726463181,
-        "narHash": "sha256-xuCzZwG8BZkvQYsnGpmI8l0ru+/Rv4d9ElHLuC/TTEg=",
+        "lastModified": 1726500170,
+        "narHash": "sha256-eCW25lSShl0FxGQ/r1u3D15tUuX4za1XYoId8ErCkzE=",
         "owner": "dd-ix",
         "repo": "website-content",
-        "rev": "dc04db26da665f37203228075e6394c8cb5d830b",
+        "rev": "6aaf873d22080cf3f91b312ea2f35f128d412b0e",
         "type": "github"
       },
       "original": {
