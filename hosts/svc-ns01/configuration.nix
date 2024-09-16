@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   dd-ix = {
@@ -40,6 +40,8 @@
   # https://wiki.nixos.org/wiki/Sudo
   security.sudo = {
     enable = true;
+
+    execWheelOnly = lib.mkForce false;
     extraRules = [{
       commands = [{
         command = "/run/current-system/sw/bin/systemctl reload bind.service";
