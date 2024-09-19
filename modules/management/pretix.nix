@@ -15,7 +15,8 @@ in
         database = {
           name = "pretix";
           user = "pretix";
-          host = "svc-pg01.dd-ix.net:5432";
+          host = "svc-pg01.dd-ix.net";
+          port = 5432;
           backend = "postgresql";
           createLocally = false;
         };
