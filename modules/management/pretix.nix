@@ -9,6 +9,7 @@
           user = "pretix";
           host = "svc-pg01.dd-ix.net:5432";
           backend = "postgresql";
+          createLocally = false; # we want to use the postgres vm
         };
         mail = {
           host = "svc-mta01.dd-ix.net";

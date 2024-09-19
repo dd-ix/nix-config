@@ -91,6 +91,15 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-auth01
+  - path_regex: secrets/management/rfc2136/tickets.dd-ix.net.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_melody
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        - *admin_maurice
   - path_regex: secrets/management/(rfc2136/svc-pg01.dd-ix.net|postgres/postgres).yaml
     key_groups:
       - pgp:
