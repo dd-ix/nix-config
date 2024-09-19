@@ -437,11 +437,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1726675191,
-        "narHash": "sha256-vUcd8TsjOmbfW8znnDcSvcXg5IEwn98kgJaN3MTXRJQ=",
+        "lastModified": 1726724962,
+        "narHash": "sha256-0D2RTWI+sOphcjIGQg9WJUSlWdXRI2O8zkbB8F6CRr4=",
         "owner": "MarcelCoding",
         "repo": "nixpkgs",
-        "rev": "1486d2effcf8603a2d2e4d7df17e40d4c62f3ad2",
+        "rev": "01c83a48a99ec82848440413260d80cbafa2d7dc",
         "type": "github"
       },
       "original": {
