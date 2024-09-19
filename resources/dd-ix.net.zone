@@ -74,6 +74,7 @@ svc-mari01    AAAA  2a01:7700:80b0:6001::12
 svc-web01     AAAA  2a01:7700:80b0:6001::13
 svc-bbe01     AAAA  2a01:7700:80b0:6001::14
 svc-orga01    AAAA  2a01:7700:80b0:6001::15
+svc-tix01    AAAA  2a01:7700:80b0:6001::16
 prj-llb01     AAAA  2a01:7700:80b0:f001::2
 
 ;; til rename is done
@@ -90,6 +91,7 @@ www            CNAME  svc-rpx01
 content        CNAME  svc-rpx01
 cloud          CNAME  svc-rpx01
 wiki           CNAME  svc-rpx01
+tickets        CNAME  svc-rpx01
 dcim           CNAME  svc-rpx01
 lists                      A       212.111.245.178
                            AAAA    2a01:7700:80b0:6000::443
