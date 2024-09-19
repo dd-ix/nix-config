@@ -8,8 +8,10 @@ in
     pretix = {
       enable = true;
       settings = {
-        url = "https://${domain}";
-        instance_name = domain;
+        pretix = {
+          url = "https://${domain}";
+          instance_name = domain;
+        };
         database = {
           name = "pretix";
           user = "pretix";
