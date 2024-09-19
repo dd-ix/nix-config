@@ -24,6 +24,7 @@ keys:
   - &svc-prom02 age1w3t9hz6hqjdhy8y49h42zeqnalew88hsnpekw66y38ckp6mkusgq5shh39
   - &svc-orga01 age1f9zr5zpev2gev8pd5fgldp83hrdu2uecqfefqv06unh8lh7hudms8ju9e0
   - &svc-mta01 age1dch6m69xayedr76psrdurae3j3jyrw9fgeq4wklt0gnanl6sxqpq2wnf8l
+  - &svc-tix01 age1dch6m69xayedr76psrdurae3j3jyrw9fgeq4wklt0gnanl6sxqpq2wnf8l
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
@@ -91,7 +92,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-auth01
-  - path_regex: secrets/management/rfc2136/tickets.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/tickets.dd-ix.net|tickets).yaml
     key_groups:
       - pgp:
         - *admin_tassilo
@@ -100,6 +101,8 @@ creation_rules:
         - *admin_adb
         - *admin_marcel
         - *admin_maurice
+        age:
+        - *svc-tix01
   - path_regex: secrets/management/(rfc2136/svc-pg01.dd-ix.net|postgres/postgres).yaml
     key_groups:
       - pgp:
