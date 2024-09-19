@@ -1,9 +1,14 @@
-{ config, ... }:
+{ self, config, ... }:
 
 let
   domain = "tickets.${config.dd-ix.domain}";
 in
 {
+  sops.secrets."tickets_env" = {
+    sopsFile = self + "/secrets/management/tickets.yaml";
+    owner = config.services.pretix.user;
+  };
+
   services = {
     pretix = {
       enable = true;
@@ -24,8 +29,10 @@ in
           host = "svc-mta01.dd-ix.net";
           port = 25;
           from = "noreply@tickets.dd-ix.net";
+          tls = "on";
         };
       };
+      environmentFile = config.sops.secrets.tickets_env.path;
       nginx = {
         enable = true;
         inherit domain;
