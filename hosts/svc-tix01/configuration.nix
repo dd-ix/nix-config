@@ -20,13 +20,19 @@ in
       v6Addr = "${addr}/64";
     };
 
-    acme = [{
-      name = "tickets.dd-ix.net";
-      group = "nginx";
-    }];
+    acme = [
+      {
+        name = "tickets.dd-ix.net";
+        group = "nginx";
+      }
+      {
+        name = "events.dd-ix.net";
+        group = "nginx";
+      }
+    ];
 
     rpx = {
-      domains = [ "tickets.dd-ix.net" ];
+      domains = [ "tickets.dd-ix.net" "events.dd-ix.net" ];
       addr = "[${addr}]:443";
     };
 

@@ -92,6 +92,7 @@ content        CNAME  svc-rpx01
 cloud          CNAME  svc-rpx01
 wiki           CNAME  svc-rpx01
 tickets        CNAME  svc-rpx01
+events         CNAME  svc-rpx01
 dcim           CNAME  svc-rpx01
 lists                      A       212.111.245.178
                            AAAA    2a01:7700:80b0:6000::443
@@ -156,4 +157,5 @@ _acme-challenge.svc-mari01     CNAME  svc-mari01.acme-dns
 _acme-challenge.talks          CNAME  talks.acme-dns
 _acme-challenge.svc-mta01      CNAME  svc-mta01.acme-dns
 _acme-challenge.tickets        CNAME  tickets.acme-dns
+_acme-challenge.events         CNAME  events.acme-dns
 

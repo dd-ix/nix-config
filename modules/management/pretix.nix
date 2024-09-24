@@ -1,7 +1,9 @@
 { self, config, ... }:
 
 let
-  domain = "tickets.${config.dd-ix.domain}";
+  pretix_domain = "events.${config.dd-ix.domain}";
+  storefront_domain = "tickets.${config.dd-ix.domain}";
+
 in
 {
   sops.secrets."tickets_env" = {
@@ -14,8 +16,8 @@ in
       enable = true;
       settings = {
         pretix = {
-          url = "https://${domain}";
-          instance_name = domain;
+          url = "https://${pretix_domain}";
+          instance_name = pretix_domain;
         };
         database = {
           name = "pretix";
@@ -35,13 +37,13 @@ in
       environmentFile = config.sops.secrets.tickets_env.path;
       nginx = {
         enable = true;
-        inherit domain;
+        domain = pretix_domain;
       };
     };
     nginx = {
       enable = true;
       virtualHosts = {
-        "${domain}" = {
+        "${pretix_domain}" = {
           listen = [{
             addr = "[::]:443";
             proxyProtocol = true;
@@ -49,7 +51,17 @@ in
           }];
 
           onlySSL = true;
-          useACMEHost = domain;
+          useACMEHost = pretix_domain;
+        };
+        "${storefront_domain}" = {
+          listen = [{
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }];
+
+          onlySSL = true;
+          useACMEHost = storefront_domain;
         };
       };
     };
