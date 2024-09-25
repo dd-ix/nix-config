@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024091901  ; Serial
+               2024091902  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
