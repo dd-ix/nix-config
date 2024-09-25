@@ -437,11 +437,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1727079565,
-        "narHash": "sha256-DgzTNKf5PpCUdOcwsPHP6ecn0IiZg6SwlP46JD/bAeQ=",
+        "lastModified": 1727291802,
+        "narHash": "sha256-EhVnxf9eW5mJudh2rsuF1Al8Uik1AWnFeKD3ECbbXx0=",
         "owner": "MarcelCoding",
         "repo": "nixpkgs",
-        "rev": "3516317864a8170b700a1806d1e9e0aa9ba83a28",
+        "rev": "f07f9dd364bc514109ae6f9e6ab0ab889910b119",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1726674543,
-        "narHash": "sha256-VJ2aVJY5gEYJ7CsoYtS0l1eNwIzK68aUEzcJICLgxK8=",
+        "lastModified": 1727289181,
+        "narHash": "sha256-6pQUO66jU1jpj7wkW0tvPSDEhXwPVfYYRLCCHH/piFE=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "26155be6bd997b204aac3043d5fb5a014fe86fa0",
+        "rev": "871803600910f8f526c3a29e2cf2bb001ad52c86",
         "type": "github"
       },
       "original": {
