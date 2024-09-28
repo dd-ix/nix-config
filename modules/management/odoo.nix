@@ -4,10 +4,14 @@ let
   domain = "crm.${config.dd-ix.domain}";
 in
 {
-#  sops.secrets."openproject_env" = {
-#    sopsFile = self + "/secrets/management/crm.yaml";
-#    owner = "root";
-#  };
+  #  sops.secrets."openproject_env" = {
+  #    sopsFile = self + "/secrets/management/crm.yaml";
+  #    owner = "root";
+  #  };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
 
   services = {
     odoo = {
