@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
     ./configuration.nix
-    ../../modules/management/openproject.nix
+    ../../modules/management/odoo.nix
   ];
 }
