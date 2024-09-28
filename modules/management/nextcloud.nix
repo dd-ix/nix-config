@@ -95,7 +95,7 @@ in
   };
 
   virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:8.1.1.1";
+    image = "onlyoffice/documentserver:8.1.3.2";
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];
   };
