@@ -19,6 +19,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./network.nix
+    ./nix-remote-builder.nix
     #./initrd_network.nix
   ];
 
