@@ -32,6 +32,6 @@ in
         in
         "restrict,pty,command=\"${lib.getExe wrapper-dispatch-ssh-nix}\" ${key}"
       )
-      config.nix.remoteBuilder.sshPublicKeys;
+      keys;
   };
 }
