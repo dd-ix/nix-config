@@ -53,25 +53,15 @@ in
           };
 
           bgp_communities = {
-            "64512:11" = "Prefix is included in client's AS-SET";
             "57328:64512:11" = "Prefix is included in client's AS-SET";
-            "64512:10" = "Prefix is NOT included in client's AS-SET";
             "57328:64512:10" = "Prefix is NOT included in client's AS-SET";
-            "64512:21" = "Origin ASN is included in client's AS-SET";
             "57328:64512:21" = "Origin ASN is included in client's AS-SET";
-            "64512:20" = "Origin ASN is NOT included in client's AS-SET";
             "57328:64512:20" = "Origin ASN is NOT included in client's AS-SET";
-            "64512:31" = "Prefix matched by a RPKI ROA for the authorized origin ASN";
             "57328:64512:31" = "Prefix matched by a RPKI ROA for the authorized origin ASN";
-            "64512:41" = "Route authorized soley because of a client white list entry";
             "57328:64512:41" = "Route authorized soley because of a client white list entry";
-            "64512:51" = "RPKI Valid";
             "57328:1000:1" = "RPKI Valid";
-            "64512:52" = "RPKI Unknown";
             "57328:1000:2" = "RPKI Unknown";
-            "64512:532" = "RPKI Invalid";
             "57328:1000:4" = "RPKI Invalid";
-            "64512:50" = "RPKI BGP Origin Validation not performed";
             "57328:1000:3" = "RPKI BGP Origin Validation not performed";
             "0:57328" = "Do not announce to any client";
             "57328:0:0" = "Do not announce to any client";
@@ -97,37 +87,21 @@ in
             "57328:65282:peer_as" = "Add NO_ADVERTISE to peer";
             "65520:0" = "Generic code: the route must be treated as rejected";
             "57328:65520:0" = "Generic code: the route must be treated as rejected";
-            "65520:1" = "Invalid AS_PATH length";
             "57328:65520:1" = "Invalid AS_PATH length";
-            "65520:2" = "Prefix is bogon";
             "57328:65520:2" = "Prefix is bogon";
-            "65520:3" = "Prefix is in global blacklist";
             "57328:65520:3" = "Prefix is in global blacklist";
-            "65520:4" = "Invalid AFI";
             "57328:65520:4" = "Invalid AFI";
-            "65520:5" = "Invalid NEXT_HOP";
             "57328:65520:5" = "Invalid NEXT_HOP";
-            "65520:6" = "Invalid left-most ASN";
             "57328:65520:6" = "Invalid left-most ASN";
-            "65520:7" = "Invalid ASN in AS_PATH";
             "57328:65520:7" = "Invalid ASN in AS_PATH";
-            "65520:8" = "Transit-free ASN in AS_PATH";
             "57328:65520:8" = "Transit-free ASN in AS_PATH";
-            "65520:9" = "Origin ASN not in IRRDB AS-SETs";
             "57328:65520:9" = "Origin ASN not in IRRDB AS-SETs";
-            "65520:10" = "IPv6 prefix not in global unicast space";
             "57328:65520:10" = "IPv6 prefix not in global unicast space";
-            "65520:11" = "Prefix is in client blacklist";
             "57328:65520:11" = "Prefix is in client blacklist";
-            "65520:12" = "Prefix not in IRRDB AS-SETs";
             "57328:65520:12" = "Prefix not in IRRDB AS-SETs";
-            "65520:13" = "Invalid prefix length";
             "57328:65520:13" = "Invalid prefix length";
-            "65520:14" = "RPKI INVALID route";
             "57328:65520:14" = "RPKI INVALID route";
-            "65520:15" = "Never via route-servers ASN in AS_PATH";
             "57328:65520:15" = "Never via route-servers ASN in AS_PATH";
-            "65520:65535" = "Unknown";
             "57328:65520:65535" = "Unknown";
             "57328:1101:5" = "Invalid AS_PATH length";
             "57328:1101:3" = "Prefix is bogon";
@@ -139,8 +113,8 @@ in
             "57328:1101:9" = "Prefix not in IRRDB AS-SETs";
             "57328:1101:13" = "RPKI INVALID route";
 
-            "57328:2000:1" = "IXP PoP CC";
-            "57328:2000:2" = "IXP PoP C2";
+            "57328:2000:1" = "DD-IX PoP CC";
+            "57328:2000:2" = "DD-IX PoP C2";
           };
         }
         (lib.mkMerge (map
