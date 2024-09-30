@@ -40,6 +40,18 @@ in
             invalid = "57328:1000:4";
           };
 
+          reject_reasons = {
+            "57328:1101:3" = "Prefix is bogon";
+            "57328:1101:4" = "Invalid ASN in AS_PATH";
+            "57328:1101:5" = "Invalid AS_PATH length";
+            "57328:1101:7" = "Invalid left-most ASN";
+            "57328:1101:8" = "Invalid NEXT_HOP";
+            "57328:1101:9" = "Prefix not in IRRDB AS-SETs";
+            "57328:1101:10" = "Origin ASN not in IRRDB AS-SETs";
+            "57328:1101:13" = "RPKI INVALID route";
+            "57328:1101:14" = "Transit-free ASN in AS_PATH";
+          };
+
           bgp_communities = {
             "64512:11" = "Prefix is included in client's AS-SET";
             "57328:64512:11" = "Prefix is included in client's AS-SET";
