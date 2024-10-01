@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024092800  ; Serial
+               2024100100  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -68,6 +68,7 @@ svc-node01    AAAA  2a01:7700:80b0:7002::3
 ixp-as11201   AAAA  2a01:7700:80b0:4101::2
 svc-prom01    AAAA  2a01:7700:80b0:7002::4
 svc-prom02    AAAA  2a01:7700:80b0:7002::5
+svc-cmk01     AAAA  2a01:7700:80b0:7002::6
 svc-exp01     AAAA  2a01:7700:80b0:4101::3
 svc-obs01     AAAA  2a01:7700:80b0:6001::11
 svc-mari01    AAAA  2a01:7700:80b0:6001::12
@@ -94,6 +95,7 @@ wiki           CNAME  svc-rpx01
 tickets        CNAME  svc-rpx01
 events         CNAME  svc-rpx01
 dcim           CNAME  svc-rpx01
+moni           CNAME  svc-rpx01
 lists                      A       212.111.245.178
                            AAAA    2a01:7700:80b0:6000::443
                            MX  10  svc-mta01
@@ -158,4 +160,3 @@ _acme-challenge.talks          CNAME  talks.acme-dns
 _acme-challenge.svc-mta01      CNAME  svc-mta01.acme-dns
 _acme-challenge.tickets        CNAME  tickets.acme-dns
 _acme-challenge.events         CNAME  events.acme-dns
-
