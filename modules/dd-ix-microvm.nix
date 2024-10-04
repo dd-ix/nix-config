@@ -67,6 +67,13 @@ in
           proto = "virtiofs";
           socket = "var.socket";
         }
+        {
+          source = "/usr/local/sbin";
+          mountPoint = "/usr/local/sbin";
+          tag = "sbin";
+          proto = "virtiofs";
+          socket = "sbin.socket";
+        }
       ];
     };
 
