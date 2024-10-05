@@ -38,6 +38,7 @@
       ''
         map $ssl_preread_server_name $targetBackend {
           ${lib.strings.concatStringsSep "\n" mappings}
+          moni.dd-ix.net [2a01:7700:80b0:7002::6]:443;
         }
 
         server {
