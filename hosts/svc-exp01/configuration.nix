@@ -36,7 +36,6 @@
         ../../keys/ssh/fiasko
         ../../keys/ssh/marcel
         ../../keys/ssh/adb
-        ../../keys/ssh/checkmk
       ];
     };
   };

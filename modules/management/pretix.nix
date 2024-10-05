@@ -63,32 +63,34 @@ in
             more_set_headers Referrer-Policy same-origin;
             more_set_headers X-Content-Type-Options nosniff;
           '';
-          locations = let 
-            cfg = config.services.pretix;
-          in{ 
-            "/".proxyPass = "http://pretix";
-            "/media/" = {
-              alias = "${cfg.settings.pretix.datadir}/media/";
-              extraConfig = ''
-                access_log off;
-                expires 7d;
-              '';
+          locations =
+            let
+              cfg = config.services.pretix;
+            in
+            {
+              "/".proxyPass = "http://pretix";
+              "/media/" = {
+                alias = "${cfg.settings.pretix.datadir}/media/";
+                extraConfig = ''
+                  access_log off;
+                  expires 7d;
+                '';
+              };
+              "^~ /media/(cachedfiles|invoices)" = {
+                extraConfig = ''
+                  deny all;
+                  return 404;
+                '';
+              };
+              "/static/" = {
+                alias = "${pkgs.pretix}/${cfg.package.python.sitePackages}/pretix/static.dist/";
+                extraConfig = ''
+                  access_log off;
+                  more_set_headers Cache-Control "public";
+                  expires 365d;
+                '';
+              };
             };
-            "^~ /media/(cachedfiles|invoices)" = {
-              extraConfig = ''
-                deny all;
-                return 404;
-              '';
-            };
-            "/static/" = {
-              alias = "${pkgs.pretix}/${cfg.package.python.sitePackages}/pretix/static.dist/";
-              extraConfig = ''
-                access_log off;
-                more_set_headers Cache-Control "public";
-                expires 365d;
-              '';
-            };
-          };
 
           onlySSL = true;
           useACMEHost = storefront_domain;

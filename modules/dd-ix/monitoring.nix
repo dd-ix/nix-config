@@ -43,10 +43,19 @@ in
         enable = true;
         maxInterval = "10m";
         listenAddress = cfg.smart.host;
-        port = cfg.smart.port;
-        devices = cfg.smart.devices;
+        inherit (cfg.smart) port devices;
       };
     };
+
     networking.firewall.allowedTCPPorts = [ 9100 ] ++ (if cfg.smart.enable then [ 9101 ] else [ ]);
+
+    # checkmk monitoring
+    users.users.root.openssh.authorizedKeys.keys =
+      let
+        checkMkAgent = pkgs.writeShellScriptBin "check_mk_agent.linux" (builtins.readFile ../../resources/check_mk_agent.linux);
+      in
+      [
+        "restrict,pty,command=\"${lib.getExe checkMkAgent}\",from=\"2a01:7700:80b0:7002::6\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL1qKvfDAIuNbMrQ37HHs8Dfo7nn/WKw1zcxv71o55w4 DD-IX Monitoring"
+      ];
   };
 }
