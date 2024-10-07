@@ -84,7 +84,6 @@
             ./hosts/svc-hv01/configuration.nix
             ./modules/management/bookstack.nix
             ./modules/dd-ix
-            ./modules/postgresql.nix
             sops-nix.nixosModules.default
             microvm.nixosModules.host
             nixos-modules.nixosModule
