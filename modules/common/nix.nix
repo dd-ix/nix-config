@@ -31,4 +31,13 @@
   # 100 is the default for user slices and 500 is systemd-coredumpd@
   # We rather want a build to be killed than our precious user sessions as builds can be easily restarted.
   systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 250;
+
+
+
+  # nixos-modules
+  nix = {
+    deleteChannels = true;
+    deleteUserProfiles = true;
+    diffSystem = true;
+  };
 }

@@ -59,9 +59,14 @@
       url = "github:dd-ix/post";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-modules = {
+      url = "github:NuschtOS/nixos-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, ... }: {
 
     nixosModules = {
       common = import ./modules/common;
@@ -82,6 +87,7 @@
             ./modules/postgresql.nix
             sops-nix.nixosModules.default
             microvm.nixosModules.host
+            nixos-modules.nixosModule
           ];
         };
         svc-adm01 = nixpkgs.lib.nixosSystem {
@@ -97,6 +103,7 @@
             sops-nix.nixosModules.default
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
+            nixos-modules.nixosModule
           ];
         };
         svc-mta01 = nixpkgs.lib.nixosSystem {
@@ -111,6 +118,7 @@
             post.nixosModules.default
             { nixpkgs.overlays = [ post.overlays.default ]; }
             ./hosts/svc-mta01
+            nixos-modules.nixosModule
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
@@ -127,6 +135,7 @@
             sops-nix.nixosModules.default
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
+            nixos-modules.nixosModule
           ];
         };
         svc-ns01 = nixpkgs.lib.nixosSystem {
@@ -140,6 +149,7 @@
             ./hosts/svc-ns01
             sops-nix.nixosModules.default
             ./modules/dd-ix
+            nixos-modules.nixosModule
             ./modules/dd-ix-microvm.nix
           ];
         };
@@ -156,6 +166,7 @@
             { nixpkgs.overlays = [ ixp-manager.overlays.default ]; }
             ./hosts/svc-portal01
             ./modules/dd-ix
+            nixos-modules.nixosModule
             ./modules/dd-ix-microvm.nix
           ];
         };
@@ -171,6 +182,7 @@
             ./hosts/svc-clab01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
+            nixos-modules.nixosModule
           ];
         };
         svc-fpx01 = nixpkgs.lib.nixosSystem {
@@ -184,6 +196,7 @@
             sops-nix.nixosModules.default
             ./hosts/svc-fpx01
             ./modules/dd-ix
+            nixos-modules.nixosModule
             ./modules/dd-ix-microvm.nix
           ];
         };
@@ -196,6 +209,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-rpx01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -211,6 +225,7 @@
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             authentik.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-auth01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -225,6 +240,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-pg01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -239,6 +255,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-mari01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -253,6 +270,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-cloud01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -267,6 +285,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-dcim01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -280,6 +299,7 @@
             ifstate.nixosModules.default
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
+            nixos-modules.nixosModule
             sops-nix.nixosModules.default
             ./hosts/svc-lists01
             ./modules/dd-ix
@@ -295,6 +315,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-vault01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -309,6 +330,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-lg01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -323,6 +345,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/ixp-as11201
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -337,6 +360,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-prom01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -351,6 +375,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-prom02
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -368,6 +393,7 @@
             { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
             sops-nix.nixosModules.default
             ./hosts/svc-exp01
+            nixos-modules.nixosModule
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
           ];
@@ -381,6 +407,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-obs01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -406,6 +433,7 @@
             sops-nix.nixosModules.default
             website.nixosModules.default
             website-content-api.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-web01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -420,6 +448,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-bbe01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -434,6 +463,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-crm01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -448,6 +478,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-tix01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix
@@ -462,6 +493,7 @@
             { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
+            nixos-modules.nixosModule
             ./hosts/svc-nms01
             ./modules/dd-ix
             ./modules/dd-ix-microvm.nix

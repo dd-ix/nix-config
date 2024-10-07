@@ -5,7 +5,6 @@
     ./networking.nix
     ./ssh.nix
     ./sudo.nix
-    ./upgrade-diff.nix
     ./zfs.nix
     ./keymap.nix
     ./tools.nix
