@@ -76,7 +76,6 @@
       };
       auth = {
         signout_redirect_url = "https://auth.dd-ix.net/application/o/obs/end-session/";
-        auto_login = true;
       };
       "auth.generic_oauth" = {
         name = "DD-IX Auth";
@@ -84,6 +83,8 @@
         client_id = "0JoW22eMuKF2CPfQUjL1AlnuQ96Bx6fGdJt9iZJa";
         client_secret = "$__file{${config.sops.secrets."obs_auth_secret_key".path}}";
         scopes = "openid email profile";
+        auto_login = true;
+        disable_login_form = true;
         auth_url = "https://auth.dd-ix.net/application/o/authorize/";
         token_url = "https://auth.dd-ix.net/application/o/token/";
         api_url = "https://auth.dd-ix.net/application/o/userinfo/";
