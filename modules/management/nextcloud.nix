@@ -94,9 +94,20 @@ in
     };
   };
 
+  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.1.3.2
   virtualisation.oci-containers.containers.onlyoffice = {
     image = "onlyoffice/documentserver:8.1.3.2";
+    imageFile = pkgs.dockerTools.pullImage {
+      imageName = "onlyoffice/documentserver";
+      imageDigest = "sha256:b9e3c35eab182d3de822a53b109b0f27070f6eacea3b1388b9c50d1182f638f2";
+      sha256 = "1qf8k724lh7z80z6sgwhhn9xkbhncx6bk2cjw75di2ppyn0s7pxd";
+      finalImageName = "onlyoffice/documentserver";
+      finalImageTag = "8.1.3.2";
+    };
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];
   };
+
+  # enable when exists in nixos-modules
+  #virtualisation.podman.aggresiveAutoPrune = true;
 }
