@@ -13,6 +13,7 @@ in
       ../../keys/ssh/marcel
       ../../keys/ssh/adb
       ../../keys/ssh/maurice
+      ../../keys/ssh/robort
     ];
   };
   users.motd = prodMotd;
