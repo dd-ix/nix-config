@@ -1,12 +1,10 @@
-{ ... }:
-
 let
   headers = ''
     # Permissions Policy - gps only
-    add_header Permissions-Policy "geolocation=()";
+    more_set_headers "Permissions-Policy: geolocation=()";
 
     # Minimize information leaked to other domains
-    add_header 'Referrer-Policy' 'origin-when-cross-origin';
+    more_set_headers "Referrer-Policy: origin-when-cross-origin";
 
     # Disable embedding as a frame
     # add_header X-Frame-Options DENY;
@@ -19,7 +17,7 @@ let
     #add_header X-XSS-Protection "1; mode=block";
 
     # STS
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    more_set_headers "Strict-Transport-Security: max-age=31536000; includeSubDomains";
 
     # real ip
     set_real_ip_from 2a01:7700:80b0:6000::443;
@@ -35,6 +33,6 @@ in
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedBrotliSettings = true;
-    commonHttpConfig = headers;
+    commonServerConfig = headers;
   };
 }
