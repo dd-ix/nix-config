@@ -8,6 +8,10 @@
     sopsFile = self + "/secrets/management/obs.yaml";
     owner = config.systemd.services.grafana.serviceConfig.User;
   };
+  sops.secrets."obs_secret_key" = {
+    sopsFile = self + "/secrets/management/obs.yaml";
+    owner = config.systemd.services.grafana.serviceConfig.User;
+  };
 
   services.nginx = {
     enable = true;
@@ -53,6 +57,7 @@
         content_security_policy = true;
         strict_transport_security = true;
         allow_embedding = false;
+        secret_key = "$__file{${config.sops.secrets."obs_secret_key".path}}";
       };
       smtp = {
         enabled = true;
