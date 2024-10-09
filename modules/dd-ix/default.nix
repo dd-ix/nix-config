@@ -13,5 +13,6 @@
     ./restic.nix
     ./mariadb.nix
     ./monitoring.nix
+    ./redis.nix
   ];
 }
