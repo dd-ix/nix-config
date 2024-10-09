@@ -462,11 +462,11 @@
         "search": "search"
       },
       "locked": {
-        "lastModified": 1728427309,
-        "narHash": "sha256-rUTh6NV+wVDPNXqZn4xS6Eiufhdrdpv4byYx7w5cnM4=",
+        "lastModified": 1728500755,
+        "narHash": "sha256-13/8qBi9v2teETEo6NyxIB4zSytYD4RQbj8LCtGJfqM=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "565acac3f07fb42ba2b366bed379a0fc8bbba2d9",
+        "rev": "0159cac8d8dac13515493a1789893f08d9fb346e",
         "type": "github"
       },
       "original": {
@@ -477,17 +477,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1728494091,
-        "narHash": "sha256-wr3RuXGVwYEISrCoQvRoMp02bMflIVmDIaZn/Co4B7c=",
-        "owner": "MarcelCoding",
-        "repo": "nixpkgs",
-        "rev": "92932a7214595acff5cd812bb0a305260f1b1da7",
+        "lastModified": 1728505200,
+        "narHash": "sha256-k7MPpitM1msFNqjlGvziai4lIfpQYLoftzHHSczELvE=",
+        "owner": "NuschtOS",
+        "repo": "nuschtpkgs",
+        "rev": "76218b2b6122653b15c59509e1ca4bc42c99270e",
         "type": "github"
       },
       "original": {
-        "owner": "MarcelCoding",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
+        "owner": "NuschtOS",
+        "ref": "backports-24.05",
+        "repo": "nuschtpkgs",
         "type": "github"
       }
     },
