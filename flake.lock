@@ -462,11 +462,11 @@
         "search": "search"
       },
       "locked": {
-        "lastModified": 1728508934,
-        "narHash": "sha256-xKfMkmwWzl0JC2CjqfzxBv9QuT9b9ER4NmLv0/LGCwU=",
+        "lastModified": 1728511815,
+        "narHash": "sha256-AwNRSJSSZWZvWYZiETFcseHwYlLl3tO7F4ANpo7F0OQ=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "b400ee235f1df2d0df8078c4903bd375cb8e7a4f",
+        "rev": "be772d418be283dd9d08e72857935f25902d8d12",
         "type": "github"
       },
       "original": {
