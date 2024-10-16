@@ -14,7 +14,11 @@ in
       enable = true;
       inherit domain;
       settings = { };
+      addons = [ ];
     };
+
+    # odoo module enables postgresql...
+    postgresql.enable = lib.mkForce false;
 
     nginx = {
       enable = true;

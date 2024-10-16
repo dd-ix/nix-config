@@ -1,8 +1,5 @@
-let
-  prodMotd = ''
-    DD-IX Production System
-  '';
-in
+{ lib, pkgs, ... }:
+
 {
   networking.firewall.allowedTCPPorts = [ 22 ];
   users.users.root = {
@@ -16,6 +13,11 @@ in
       ../../keys/ssh/robort
     ];
   };
-  users.motd = prodMotd;
+  users.motd = ''
+    DD-IX Production System
+  '';
   services.openssh.enable = true;
+
+  # mkDefault is 1000; so we set a default but override other mkDefaults 
+  services.postgresql.package = lib.mkOverride 999 pkgs.postgresql_16;
 }
