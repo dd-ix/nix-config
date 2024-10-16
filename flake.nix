@@ -3,10 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
+    nixpkgs-odoo.url = "github:phanirithvij/nixpkgs/odoo-fix-tests";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ifstate-odoo = {
+      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
+      inputs.nixpkgs.follows = "nixpkgs-odoo";
     };
 
     sops-nix = {
@@ -66,7 +72,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, ifstate-odoo, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-odoo, ... }: {
 
     nixosModules = {
       common = import ./modules/common;
@@ -453,13 +459,13 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-crm01 = nixpkgs.lib.nixosSystem {
+        svc-crm01 = nixpkgs-odoo.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
-            ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
+            ifstate-odoo.nixosModules.default
+            { nixpkgs.overlays = [ ifstate-odoo.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
