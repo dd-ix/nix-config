@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 let
   addr = "2a01:7700:80b0:6001::15";
 in
@@ -33,6 +35,9 @@ in
       enable = true;
     };
   };
+
+  # https://github.com/odoo/odoo/issues/50354
+  time.timeZone = lib.mkForce "UTC";
 
   system.stateVersion = "23.11";
 }
