@@ -22,7 +22,7 @@ keys:
   - &svc-mari01 age1yatz0dnu3644dyzz03w84suzyyf0a25elmprvfudpqpv9s8nr4wsqctdq8
   - &svc-web01 age17z4tnuns8hqjjl9mqqeve3d2vmshw4xxldkcp4h6le6rhal3laqs897jnc
   - &svc-prom02 age1w3t9hz6hqjdhy8y49h42zeqnalew88hsnpekw66y38ckp6mkusgq5shh39
-  - &svc-crm01 age1f9zr5zpev2gev8pd5fgldp83hrdu2uecqfefqv06unh8lh7hudms8ju9e0
+  - &svc-crm01 age1wu6rtznp42sec2q30wvnhl58xul0fnf3529fpukv9082xthtlc5q727duy
   - &svc-mta01 age1dch6m69xayedr76psrdurae3j3jyrw9fgeq4wklt0gnanl6sxqpq2wnf8l
   - &svc-tix01 age1anw95uf4hpyawn7704uhzk9aeqzfnzynpufmjdjvut8tqy3k3dss3cvudj
   - &svc-nms01 age1lsgvx3shakx0ekajppajtkvss78v588ehkwqhpnme0txgptvdc6seqsmwr
