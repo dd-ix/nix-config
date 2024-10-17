@@ -35,4 +35,10 @@ in
       };
     };
   };
+
+  # odoo module configures postgresql as dependency...
+  systemd.services.odoo = {
+    after = lib.mkForce [ "network.target" ];
+    requires = lib.mkForce [ ];
+  };
 }
