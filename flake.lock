@@ -367,11 +367,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726126635,
-        "narHash": "sha256-cbDV/Idk6Kg9WclZwNoG3os6uwetQRkHV80X+9i54Y0=",
+        "lastModified": 1729158139,
+        "narHash": "sha256-v3rcxdjVxFBWU60HDYs1FdwH2SlXhOxgTC56qXE65JY=",
         "ref": "refs/heads/main",
-        "rev": "5b6f45d53a993b188e19474d222b15ceb45cdd83",
-        "revCount": 34,
+        "rev": "9ff05a0f3cd4582cb56c39abf458695aee2cedd8",
+        "revCount": 35,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -388,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726126635,
-        "narHash": "sha256-cbDV/Idk6Kg9WclZwNoG3os6uwetQRkHV80X+9i54Y0=",
+        "lastModified": 1729158139,
+        "narHash": "sha256-v3rcxdjVxFBWU60HDYs1FdwH2SlXhOxgTC56qXE65JY=",
         "ref": "refs/heads/main",
-        "rev": "5b6f45d53a993b188e19474d222b15ceb45cdd83",
-        "revCount": 34,
+        "rev": "9ff05a0f3cd4582cb56c39abf458695aee2cedd8",
+        "revCount": 35,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -516,11 +516,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1728830551,
-        "narHash": "sha256-aUY6P+KfUWVew1E/dncubYgKdWT85Jf8aeghmRJzk5s=",
+        "lastModified": 1729089972,
+        "narHash": "sha256-Ov6g2FdNt8PMvpO1JTPQSdntyTb7ujE+1Q5+OTIHD08=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "d8c9e5f7d66f23c67db15223ce43b444ceba8883",
+        "rev": "89483aa6a44a4bb01de91e280b829f1ab8320aa5",
         "type": "github"
       },
       "original": {
@@ -962,11 +962,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1728028996,
-        "narHash": "sha256-dgHySbWD5SoX9A/Pl9JezYfXjeUNoDOjdinjZWjc5MI=",
+        "lastModified": 1729150424,
+        "narHash": "sha256-9TDurqPrOSAybLfmzumOh/tviW39u4gJtSc6vo1qL5M=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "6b76b9f555c5324c552de05ea946606b7a5a6e1f",
+        "rev": "c2b434d12bc88ca7fd6b6ac2473436758e6c6d52",
         "type": "github"
       },
       "original": {
