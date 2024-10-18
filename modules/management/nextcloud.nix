@@ -64,6 +64,8 @@ in
         inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc onlyoffice;
       };
       extraAppsEnable = true;
+      # NixOS Modules
+      configureImaginary = true;
     };
 
     nginx.virtualHosts = {
