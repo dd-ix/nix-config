@@ -94,15 +94,15 @@ in
     };
   };
 
-  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.1.3.2
+  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.2.0.1
   virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:8.1.3.2";
+    image = "onlyoffice/documentserver:8.2.0.1";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:b9e3c35eab182d3de822a53b109b0f27070f6eacea3b1388b9c50d1182f638f2";
-      sha256 = "1qf8k724lh7z80z6sgwhhn9xkbhncx6bk2cjw75di2ppyn0s7pxd";
+      imageDigest = "sha256:2b0180b8ca27b36f27e0ddea0e9e8a5b1d40fcf478dc31f7e2efcfb9ce1bf42a";
+      sha256 = "1fgf07xxb2i0sf6v1g8limfg7vgzsj1kzq0cbqy6mfkdm1qq2yk8";
       finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "8.1.3.2";
+      finalImageTag = "8.2.0.1";
     };
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];
