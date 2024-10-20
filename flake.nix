@@ -86,7 +86,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             ./hosts/svc-hv01/configuration.nix
             ./modules/management/bookstack.nix
             ./modules/dd-ix
@@ -101,7 +100,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             { nixpkgs.overlays = [ ddix-ansible-ixp.overlays.default ]; }
             ./hosts/svc-adm01
@@ -117,7 +115,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             sops-nix.nixosModules.default
             microvm.nixosModules.microvm
             post.nixosModules.default
@@ -134,7 +131,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             ./hosts/svc-node01
             sops-nix.nixosModules.default
@@ -149,7 +145,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             ./hosts/svc-ns01
             sops-nix.nixosModules.default
@@ -164,7 +159,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
@@ -181,7 +175,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-clab01
@@ -196,7 +189,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-fpx01
@@ -211,7 +203,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -226,7 +217,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             authentik.nixosModules.default
@@ -242,7 +232,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -257,7 +246,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -272,7 +260,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -287,7 +274,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -302,7 +288,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             nixos-modules.nixosModule
             sops-nix.nixosModules.default
@@ -317,7 +302,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -332,7 +316,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -347,7 +330,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -362,7 +344,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -377,7 +358,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -392,7 +372,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sflow-exporter.nixosModules.default
             { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
@@ -409,7 +388,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -426,7 +404,6 @@
             ifstate.nixosModules.default
             {
               nixpkgs.overlays = [
-                ifstate.overlays.default
                 website.overlays.default
                 website-content-api.overlays.default
                 (final: prev: {
@@ -450,7 +427,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -465,7 +441,6 @@
           modules = [
             self.nixosModules.common
             ifstate-odoo.nixosModules.default
-            { nixpkgs.overlays = [ ifstate-odoo.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -480,7 +455,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -495,7 +469,6 @@
           modules = [
             self.nixosModules.common
             ifstate.nixosModules.default
-            { nixpkgs.overlays = [ ifstate.overlays.default ]; }
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
