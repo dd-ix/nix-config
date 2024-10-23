@@ -8,7 +8,7 @@
       enable = true;
 
       mem = 1024 * 2;
-      vcpu = 2;
+      vcpu = 4;
 
       mac = "42:f7:f7:72:24:0f";
       vlan = "a";
