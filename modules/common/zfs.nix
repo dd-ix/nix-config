@@ -2,10 +2,6 @@
 
 {
   config = lib.mkIf config.boot.zfs.enabled {
-    boot = {
-      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    };
-
     services.zfs = {
       autoSnapshot = {
         enable = true;

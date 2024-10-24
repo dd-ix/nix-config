@@ -8,7 +8,7 @@
 
   environment.defaultPackages = lib.mkForce [ ];
 
-  # durring testing only 550K-650K of the tmpfs where used
+  # during testing only 550K-650K of the tmpfs where used
   security.wrapperDirSize = "10M";
 
   boot.enableContainers = false;

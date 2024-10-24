@@ -6,10 +6,11 @@
     ./ssh.nix
     ./sudo.nix
     ./zfs.nix
-    ./keymap.nix
     ./tools.nix
     ./cleanup.nix
     ./time.nix
+    ./i18n.nix
+    ./kernel.nix
 
     ./old.nix
   ];

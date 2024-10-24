@@ -19,5 +19,12 @@
     jq
     nix-tree
     whois
+    screen
   ];
+
+  programs = {
+    git.enable = true;
+    htop.enable = true;
+    strace.withColors = true;
+  };
 }
