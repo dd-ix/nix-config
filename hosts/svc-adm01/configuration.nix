@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ self, lib, config, pkgs, ... }:
 {
   dd-ix = {
     hostName = "svc-adm01";
@@ -62,7 +62,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${pkgs.ddix-ixp-deploy}/bin/ddix-ixp-deploy -D -e engage_config=true
+        ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true
       '';
       # every 6 hours
       startAt = "00/6:20";
@@ -74,15 +74,14 @@
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-failed.service";
+      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
     };
     ddix-ixp-commit = {
       enable = true;
       script = ''
         echo [DD-IX] run ixp commit
-        ${pkgs.ddix-ixp-commit}/bin/ddix-ixp-commit -D
+        ${lib.getExe pkgs.ddix-ixp-commit} -D
       '';
-      # commit at 22:00
       startAt = "22:00";
       serviceConfig = {
         Type = "oneshot";
@@ -92,17 +91,24 @@
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-failed.service";
+      unitConfig.OnFailure = "notify-ddix-ixp-commit-failed.service";
     };
-    notify-ddix-ixp-failed = {
+    notify-ddix-ixp-deploy-failed = {
       enable = true;
       serviceConfig = {
         Type = "oneshot";
-        User = "restic-backup-failed";
-        DynamicUser = true;
       };
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] deployment failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value arouteserver.service`)" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] deployment failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-deploy`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
+      '';
+    };
+    notify-ddix-ixp-commit-failed = {
+      enable = true;
+      serviceConfig = {
+        Type = "oneshot";
+      };
+      script = ''
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] commit failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-commit`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
       '';
     };
   };

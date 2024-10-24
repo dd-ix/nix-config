@@ -66,12 +66,10 @@ in
 
       serviceConfig = {
         Type = "oneshot";
-        User = "restic-backup-failed";
-        DynamicUser = true;
       };
 
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup job ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} failed:\n\n$(systemctl status --full 'restic-backups-${cfg.name}')" | ${pkgs.msmtp}/bin/sendmail noc@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup job ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} failed:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value restic-backups-${cfg.name}`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
       '';
     };
   };
