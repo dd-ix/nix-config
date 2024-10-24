@@ -367,11 +367,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729429585,
-        "narHash": "sha256-6OjLSNRITXnSiQ+kErBkNNGWP7Ey+mj4t8E8+6wOwh4=",
+        "lastModified": 1729713951,
+        "narHash": "sha256-vJ/L/WlDHVV1PnOO4RZ1uejgxjsc9Mofnp4XEyt0lFw=",
         "ref": "refs/heads/main",
-        "rev": "da7e2a71faa8aaaacc091bddf89a7f5743438134",
-        "revCount": 38,
+        "rev": "4a41cc2a84dcf6c9088f1eda961c125cd3dda253",
+        "revCount": 39,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -388,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729429585,
-        "narHash": "sha256-6OjLSNRITXnSiQ+kErBkNNGWP7Ey+mj4t8E8+6wOwh4=",
+        "lastModified": 1729713951,
+        "narHash": "sha256-vJ/L/WlDHVV1PnOO4RZ1uejgxjsc9Mofnp4XEyt0lFw=",
         "ref": "refs/heads/main",
-        "rev": "da7e2a71faa8aaaacc091bddf89a7f5743438134",
-        "revCount": 38,
+        "rev": "4a41cc2a84dcf6c9088f1eda961c125cd3dda253",
+        "revCount": 39,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -529,11 +529,11 @@
         "search": "search"
       },
       "locked": {
-        "lastModified": 1729549835,
-        "narHash": "sha256-TS34a9/Jc/xM0kYWFLeSLewyPK6v0TNvMCQgRdzR5Ds=",
+        "lastModified": 1729744716,
+        "narHash": "sha256-oosHDt0eN7O4utszzIGT03xwFrHCcPbpEu1AU4lmpYw=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "96cbd7e88dfc854bf7d25dcede9a33f2275406fd",
+        "rev": "0f950ab38ad747f5f7e392752735efd2891d756a",
         "type": "github"
       },
       "original": {
@@ -544,11 +544,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1729705858,
-        "narHash": "sha256-DgpaRJ7ZEEiY18WW0Uc62MDUEKgGk/MmGCHuOk300/c=",
+        "lastModified": 1729723328,
+        "narHash": "sha256-v/vZ2fuCZGyDD3uCtMwbEEEc8xx8Ga9Qg2qnP9RYA6E=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "248dd91acdeb925b41effa35839b968f1340f5b8",
+        "rev": "a0314b4ca16d3772c623cf6d66fc03ea618a1cfd",
         "type": "github"
       },
       "original": {
