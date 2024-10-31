@@ -409,16 +409,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1730373100,
-        "narHash": "sha256-XdNru+pl6EdvyRwRMSEmNucguBU+Lhp5cuEGs6kznJc=",
+        "lastModified": 1730370451,
+        "narHash": "sha256-noqIGjLT1xKb4K9EEeu/i2tYr54cHpzUPdYhQfW6AzA=",
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
-        "rev": "82df710a8caf8cdf72cc449e9d4c1ea247389aed",
+        "rev": "41150c721337799a14053ba54f5771a52e28633e",
         "type": "github"
       },
       "original": {
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
+        "rev": "41150c721337799a14053ba54f5771a52e28633e",
         "type": "github"
       }
     },

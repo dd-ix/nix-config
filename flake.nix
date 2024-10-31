@@ -42,7 +42,7 @@
     };
 
     ixp-manager = {
-      url = "github:dd-ix/ixp-manager.nix";
+      url = "github:dd-ix/ixp-manager.nix/41150c721337799a14053ba54f5771a52e28633e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
