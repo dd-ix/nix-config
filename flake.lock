@@ -367,11 +367,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729959834,
-        "narHash": "sha256-i3Rmr/WId86nkgzHlxQXMoynA6r3JH2DHmMh3LMCSH8=",
+        "lastModified": 1730371765,
+        "narHash": "sha256-tRGy7voprc3MKmxEzLudkpqsb9HSkJ0f+vtEI6SGyh8=",
         "ref": "refs/heads/main",
-        "rev": "c61078318ade3be2197e5b93293560edfa5902fe",
-        "revCount": 40,
+        "rev": "83c0dbe7c47dd5aa53529cd1c668cf722aa3aee1",
+        "revCount": 41,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -388,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729959834,
-        "narHash": "sha256-i3Rmr/WId86nkgzHlxQXMoynA6r3JH2DHmMh3LMCSH8=",
+        "lastModified": 1730371765,
+        "narHash": "sha256-tRGy7voprc3MKmxEzLudkpqsb9HSkJ0f+vtEI6SGyh8=",
         "ref": "refs/heads/main",
-        "rev": "c61078318ade3be2197e5b93293560edfa5902fe",
-        "revCount": 40,
+        "rev": "83c0dbe7c47dd5aa53529cd1c668cf722aa3aee1",
+        "revCount": 41,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
