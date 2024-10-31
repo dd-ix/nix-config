@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
-    nixpkgs-odoo.url = "github:phanirithvij/nixpkgs/odoo-fix-tests";
+    nixpkgs-odoo.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";

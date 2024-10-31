@@ -543,16 +543,16 @@
     },
     "nixpkgs-odoo": {
       "locked": {
-        "lastModified": 1729659142,
-        "narHash": "sha256-dxQLVT4wgvpz/GjQjdbXgI1MFstHOMtMNv+jqyFAC0U=",
-        "owner": "phanirithvij",
+        "lastModified": 1730200266,
+        "narHash": "sha256-l253w0XMT8nWHGXuXqyiIC/bMvh1VRszGXgdpQlfhvU=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d48355b29c3b64836a85d79a0b851a2b18751f0a",
+        "rev": "807e9154dcb16384b1b765ebe9cd2bba2ac287fd",
         "type": "github"
       },
       "original": {
-        "owner": "phanirithvij",
-        "ref": "odoo-fix-tests",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
