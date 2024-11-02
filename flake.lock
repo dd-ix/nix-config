@@ -71,7 +71,7 @@
         "arouteserver": "arouteserver",
         "flake-utils": "flake-utils_3",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
@@ -366,21 +366,20 @@
       "inputs": {
         "flake-utils": "flake-utils_5",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1730370451,
-        "narHash": "sha256-noqIGjLT1xKb4K9EEeu/i2tYr54cHpzUPdYhQfW6AzA=",
+        "lastModified": 1730577378,
+        "narHash": "sha256-WDpdqQDri5iVrRAG0cN5xamXvVr6mPOC+e+rCt8B+Ts=",
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
-        "rev": "41150c721337799a14053ba54f5771a52e28633e",
+        "rev": "086143216b44287254e224adb35fd0196fbd7a37",
         "type": "github"
       },
       "original": {
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
-        "rev": "41150c721337799a14053ba54f5771a52e28633e",
         "type": "github"
       }
     },
@@ -503,7 +502,7 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
       }
     },
-    "nixpkgs-odoo": {
+    "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1730200266,
         "narHash": "sha256-l253w0XMT8nWHGXuXqyiIC/bMvh1VRszGXgdpQlfhvU=",
@@ -602,7 +601,7 @@
         "microvm": "microvm",
         "nixos-modules": "nixos-modules",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-odoo": "nixpkgs-odoo",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "post": "post",
         "sflow-exporter": "sflow-exporter",
         "sops-nix": "sops-nix",

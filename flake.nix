@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
-    nixpkgs-odoo.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -37,8 +37,8 @@
     };
 
     ixp-manager = {
-      url = "github:dd-ix/ixp-manager.nix/41150c721337799a14053ba54f5771a52e28633e";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:dd-ix/ixp-manager.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     authentik = {
@@ -48,7 +48,7 @@
 
     ddix-ansible-ixp = {
       url = "github:dd-ix/ddix-ansible-ixp";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     sflow-exporter = {
@@ -67,7 +67,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-odoo, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-unstable, ... }: {
 
     nixosModules = {
       common = import ./modules/common;
@@ -148,7 +148,7 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-portal01 = nixpkgs.lib.nixosSystem {
+        svc-portal01 = nixpkgs-unstable.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
@@ -430,7 +430,7 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-crm01 = nixpkgs-odoo.lib.nixosSystem {
+        svc-crm01 = nixpkgs-unstable.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
