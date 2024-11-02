@@ -10,11 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ifstate-odoo = {
-      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
-      inputs.nixpkgs.follows = "nixpkgs-odoo";
-    };
-
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,7 +67,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, ifstate-odoo, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-odoo, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-odoo, ... }: {
 
     nixosModules = {
       common = import ./modules/common;
@@ -440,7 +435,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
-            ifstate-odoo.nixosModules.default
+            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
