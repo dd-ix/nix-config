@@ -29,20 +29,19 @@
         useACMEHost = config.dd-ix.domain;
 
         locations = {
-          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
-          "/g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
-          "/g/opening".return = "301 https://dd-ix.net/event/opening";
+          "= /robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
+          "= /g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
+          "= /g/opening".return = "301 https://dd-ix.net/event/opening";
 
           # legacy
-          "/g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/de/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/en/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/de/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/en/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
-          "/event".return = "301 https://dd-ix.net/blog";
+          "= /g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /de/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /en/news/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /de/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
+          "= /en/blog/subscribe".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
         };
       };
       "content.${config.dd-ix.domain}" = {
