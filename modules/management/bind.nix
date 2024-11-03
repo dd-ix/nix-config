@@ -45,6 +45,7 @@ let
     "content.dd-ix.net"
     "talks.dd-ix.net"
     "nms.dd-ix.net"
+    "opening.dd-ix.net"
   ];
 in
 {
