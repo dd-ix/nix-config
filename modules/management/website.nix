@@ -32,6 +32,7 @@
           "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
           "/g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "/g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
+          "/g/opening".return = "301 https://dd-ix.net/event/opening";
 
           # legacy
           "/g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
@@ -90,13 +91,8 @@
         onlySSL = true;
         useACMEHost = "opening.${config.dd-ix.domain}";
 
-        locations = {
-          "= /" = {
-            alias = self + /resources/static;
-            tryFiles = "/opening.html =404";
-          };
-          "= /robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
-        };
+        # im Kontakt mit Heise genutzt, @Matthias
+        locations."/".return = "301 https://dd-ix.net/event/opening";
       };
     };
   };
