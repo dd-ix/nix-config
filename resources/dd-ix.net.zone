@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024110300  ; Serial
+               2024100700  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -114,7 +114,6 @@ lg             CNAME  svc-rpx01
 obs            CNAME  svc-rpx01
 talks          CNAME  svc-rpx01
 nms            CNAME  svc-rpx01
-opening        CNAME  svc-rpx01
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
@@ -164,4 +163,3 @@ _acme-challenge.svc-mta01      CNAME  svc-mta01.acme-dns
 _acme-challenge.tickets        CNAME  tickets.acme-dns
 _acme-challenge.events         CNAME  events.acme-dns
 _acme-challenge.nms            CNAME  nms.acme-dns
-_acme-challenge.opening        CNAME  opening.acme-dns

@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services.nginx = {
@@ -54,7 +54,7 @@
         onlySSL = true;
         useACMEHost = "content.${config.dd-ix.domain}";
         locations = {
-          "= /robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
+          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
         };
       };
       "talks.${config.dd-ix.domain}" = {
@@ -77,25 +77,7 @@
         };
 
         locations = {
-          "= /robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
-        };
-      };
-      "opening.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
-
-        onlySSL = true;
-        useACMEHost = "opening.${config.dd-ix.domain}";
-
-        locations = {
-          "= /" = {
-            alias = self + /resources/static;
-            tryFiles = "/opening.html =404";
-          };
-          "= /robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
+          "/robots.txt".return = "200 \"User-agent: *\\nAllow: /\"";
         };
       };
     };
@@ -104,7 +86,7 @@
   dd-ix = {
     website = {
       enable = true;
-      inherit (config.dd-ix) domain;
+      domain = config.dd-ix.domain;
       contentApi = "https://content.${config.dd-ix.domain}";
     };
     website-content-api = {
