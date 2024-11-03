@@ -38,7 +38,7 @@
 
     ixp-manager = {
       url = "github:dd-ix/ixp-manager.nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     authentik = {
@@ -148,7 +148,7 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-portal01 = nixpkgs-unstable.lib.nixosSystem {
+        svc-portal01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
