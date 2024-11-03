@@ -325,15 +325,15 @@
       "inputs": {
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1730577378,
-        "narHash": "sha256-WDpdqQDri5iVrRAG0cN5xamXvVr6mPOC+e+rCt8B+Ts=",
+        "lastModified": 1730663324,
+        "narHash": "sha256-zn9q+wB5F3SGsuowqWiplk/vY1VkgT8Ww/iiq4RcwsM=",
         "owner": "dd-ix",
         "repo": "ixp-manager.nix",
-        "rev": "086143216b44287254e224adb35fd0196fbd7a37",
+        "rev": "d630923631c53330785aac5f1777be536fe182d7",
         "type": "github"
       },
       "original": {
@@ -435,11 +435,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1730650620,
-        "narHash": "sha256-fYVRdmFyEMgSw/Z5HVUlbbGk8EYT5K5WjL1jiqMcUdY=",
+        "lastModified": 1730662074,
+        "narHash": "sha256-O4LZ0S+6vogNtsS84U2advyZ9sdS5XCOO8shdAejOps=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "bf1abcde7b938ed8b8639987aa002479a7b18c18",
+        "rev": "810dea8f032a841059ebe4d2bd251a24be85b3a2",
         "type": "github"
       },
       "original": {
@@ -825,11 +825,11 @@
         "pnpm2nix": "pnpm2nix"
       },
       "locked": {
-        "lastModified": 1730641356,
-        "narHash": "sha256-7NZe8VdTvmBb7QZyH/umYHbrNgJ4Iv793FJqX4gDF/k=",
+        "lastModified": 1730674088,
+        "narHash": "sha256-0+h450j34826koZkabD8YMvreE9GLg0QzH9nfj2TaOQ=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "c6b4568a083d18f52158bd492c3f821f97274757",
+        "rev": "1b39376a37078fe6e2ca8c713f3fa84307caf075",
         "type": "github"
       },
       "original": {
@@ -841,11 +841,11 @@
     "website-content": {
       "flake": false,
       "locked": {
-        "lastModified": 1730641363,
-        "narHash": "sha256-oMNTS0nvDJxwgZQzQuSfJmLBwkImqogaI4mPIa+Zrv0=",
+        "lastModified": 1730674026,
+        "narHash": "sha256-FoMegYuASk2IJScimLYTs9G1vk/hiZqq+iFHQc2Dpdw=",
         "owner": "dd-ix",
         "repo": "website-content",
-        "rev": "1461be86990d452ee6e53ed2b88343177a9424a0",
+        "rev": "1b5427e1889818d7556a7881391af36251f97987",
         "type": "github"
       },
       "original": {
