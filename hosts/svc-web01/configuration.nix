@@ -1,6 +1,13 @@
 { pkgs, ... }:
 let
   addr = "2a01:7700:80b0:6001::13";
+  domains = [
+    "dd-ix.net"
+    "www.dd-ix.net"
+    "content.dd-ix.net"
+    "talks.dd-ix.net"
+    "opening.dd-ix.net"
+  ];
 in
 {
   dd-ix = {
@@ -19,27 +26,10 @@ in
       v6Addr = "${addr}/64";
     };
 
-    acme = [
-      {
-        name = "dd-ix.net";
-        group = "nginx";
-      }
-      {
-        name = "www.dd-ix.net";
-        group = "nginx";
-      }
-      {
-        name = "content.dd-ix.net";
-        group = "nginx";
-      }
-      {
-        name = "talks.dd-ix.net";
-        group = "nginx";
-      }
-    ];
+    acme = map (name: { inherit name; group = "nginx"; }) domains;
 
     rpx = {
-      domains = [ "dd-ix.net" "www.dd-ix.net" "content.dd-ix.net" "talks.dd-ix.net" ];
+      inherit domains;
       addr = "[${addr}]:443";
     };
 
