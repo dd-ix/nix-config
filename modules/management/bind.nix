@@ -16,37 +16,9 @@ let
     "2a01:4f9:c012:61fd::1"
   ];
   systems = lib.attrValues self.nixosConfigurations;
-  ## this is not declarative but imperative - let's "fix" it for now 🤷
-  # acmeSystems = lib.filter (system: (lib.length system.config.dd-ix.acme) != 0) systems;
-  # acmeDomains = lib.flatten (map (system: system.config.dd-ix.acme) acmeSystems);
-  # domains = map (domain: domain.name) acmeDomains ++ [ moni.dd-ix.net ];
-  domains = [
-    "auth.dd-ix.net"
-    "cloud.dd-ix.net"
-    "office.dd-ix.net"
-    "crm.dd-ix.net"
-    "dcim.dd-ix.net"
-    "wiki.dd-ix.net"
-    "lg.dd-ix.net"
-    "lists.dd-ix.net"
-    "moni.dd-ix.net"
-    "svc-mari01.dd-ix.net"
-    "svc-mta01.dd-ix.net"
-    "obs.dd-ix.net"
-    "svc-pg01.dd-ix.net"
-    "portal.dd-ix.net"
-    "svc-prom01.dd-ix.net"
-    "svc-prom02.dd-ix.net"
-    "tickets.dd-ix.net"
-    "events.dd-ix.net"
-    "vault.dd-ix.net"
-    "dd-ix.net"
-    "www.dd-ix.net"
-    "content.dd-ix.net"
-    "talks.dd-ix.net"
-    "nms.dd-ix.net"
-    "opening.dd-ix.net"
-  ];
+  acmeSystems = lib.filter (system: (lib.length system.config.dd-ix.acme) != 0) systems;
+  acmeDomains = lib.flatten (map (system: system.config.dd-ix.acme) acmeSystems);
+  domains = map (domain: domain.name) acmeDomains;
 in
 {
   networking.firewall = {
