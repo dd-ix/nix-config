@@ -2,8 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    #nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
-    nixpkgs.url = "github:NuschtOS/nuschtpkgs/bf1abcde7b938ed8b8639987aa002479a7b18c18";
+    nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     ifstate = {
