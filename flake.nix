@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NuschtOS/nuschtpkgs/backports-24.11";
 
     ifstate = {
       url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
@@ -13,7 +13,6 @@
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
     microvm = {
