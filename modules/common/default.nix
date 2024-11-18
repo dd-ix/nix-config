@@ -11,6 +11,8 @@
     ./time.nix
     ./i18n.nix
     ./kernel.nix
+    ./tmux.nix
+    ./neovim.nix
 
     ./old.nix
   ];
