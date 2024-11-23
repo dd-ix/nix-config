@@ -83,7 +83,8 @@
   outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, ... }: {
 
     nixosModules = {
-      common = import ./modules/common;
+      common = ./modules/common;
+      data = ./modules/data;
     };
 
     nixosConfigurations =
@@ -93,6 +94,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             ./hosts/svc-hv01/configuration.nix
             ./modules/management/bookstack.nix
@@ -107,6 +109,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             { nixpkgs.overlays = [ ddix-ansible-ixp.overlays.default ]; }
@@ -122,6 +125,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             sops-nix.nixosModules.default
             microvm.nixosModules.microvm
@@ -138,6 +142,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             ./hosts/svc-node01
@@ -152,6 +157,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             ./hosts/svc-ns01
@@ -166,6 +172,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -182,6 +189,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -196,6 +204,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -210,6 +219,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -224,6 +234,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -239,6 +250,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -253,6 +265,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -267,6 +280,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -281,6 +295,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -295,6 +310,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             nixos-modules.nixosModule
@@ -309,6 +325,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -323,6 +340,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -337,6 +355,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -351,6 +370,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -365,6 +385,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -379,6 +400,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sflow-exporter.nixosModules.default
@@ -395,6 +417,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -409,6 +432,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             {
               nixpkgs.overlays = [
@@ -434,6 +458,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -448,6 +473,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -462,6 +488,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
@@ -476,6 +503,7 @@
           specialArgs = { inherit inputs self; };
           modules = [
             self.nixosModules.common
+            self.nixosModules.data
             ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default

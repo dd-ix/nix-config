@@ -1,48 +1,30 @@
 { lib, config, options, ... }:
+
 let
   cfg = config.dd-ix.microvm;
 in
 {
-  options = {
-    dd-ix = {
+  options.dd-ix.microvm = {
+    enable = lib.mkEnableOption (lib.mkDoc "Whether to enable microvm settings.");
 
-      microvm = {
-        enable = lib.mkEnableOption (lib.mkDoc "Whether to enable microvm settings.");
+    inherit (options.microvm) vcpu mem;
 
-        vcpu = options.microvm.vcpu;
-        mem = options.microvm.mem;
-
-
-        mac = lib.mkOption {
-          type = lib.types.str;
-        };
-
-        vlan = lib.mkOption {
-          type = lib.types.str; #lib.types.oneOf [ "i" "s" "l" ];
-        };
-
-        v6Addr = lib.mkOption {
-          type = lib.types.str;
-        };
-
-        v4Addr = lib.mkOption {
-          type = lib.types.nullOr lib.types.str;
-          default = null;
-        };
-      };
+    v4Addr = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
     };
   };
 
   config = lib.mkIf cfg.enable {
     microvm = {
       hypervisor = "cloud-hypervisor";
-      vcpu = cfg.vcpu;
-      mem = cfg.mem;
+
+      inherit (cfg) vcpu mem;
 
       interfaces = [{
         type = "tap";
-        id = "${cfg.vlan}-${config.dd-ix.hostName}";
-        mac = cfg.mac;
+        id = config.networking.hostName;
+        inherit (config.dd-ix.host) mac;
       }];
 
       virtiofsd.threadPoolSize = 16;
@@ -56,14 +38,14 @@ in
           socket = "store.socket";
         }
         {
-          source = "/var/lib/microvms/${config.dd-ix.hostName}/etc";
+          source = "/var/lib/microvms/${config.networking.hostName}/etc";
           mountPoint = "/etc";
           tag = "etc";
           proto = "virtiofs";
           socket = "etc.socket";
         }
         {
-          source = "/var/lib/microvms/${config.dd-ix.hostName}/var";
+          source = "/var/lib/microvms/${config.networking.hostName}/var";
           mountPoint = "/var";
           tag = "var";
           proto = "virtiofs";
@@ -77,19 +59,19 @@ in
       settings = {
         interfaces = [{
           name = "eth0";
-          addresses = [ cfg.v6Addr ]
+          addresses = [ "${config.dd-ix.host.networking.addr}/${builtins.toString config.dd-ix.nets.${config.dd-ix.host.networking.net}.cidr}" ]
             ++ (lib.optional (cfg.v4Addr != null) cfg.v4Addr);
           link = {
             state = "up";
             kind = "physical";
-            address = cfg.mac;
+            address = config.dd-ix.host.networking.mac;
           };
         }];
         routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
           ++ (lib.optional (cfg.v4Addr != null) {
           to = "0.0.0.0/0";
           dev = "eth0";
-          via = if cfg.vlan == "s" then "10.96.1.1" else "212.111.245.177";
+          via = if config.dd-ix.host.networking.net == "services" then "10.96.1.1" else "212.111.245.177";
         });
       };
     };

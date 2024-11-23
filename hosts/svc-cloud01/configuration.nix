@@ -13,10 +13,6 @@ in
       mem = 4096;
       vcpu = 4;
 
-      mac = "e2:d0:2f:67:dd:ae";
-      vlan = "s";
-
-      v6Addr = "${addr}/64";
       v4Addr = "10.96.1.6/24";
     };
 

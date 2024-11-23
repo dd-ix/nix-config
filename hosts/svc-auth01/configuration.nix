@@ -12,11 +12,6 @@ in
 
       mem = 2048;
       vcpu = 2;
-
-      mac = "72:05:50:30:38:6d";
-      vlan = "s";
-
-      v6Addr = "${addr}/64";
     };
 
     acme = [{
