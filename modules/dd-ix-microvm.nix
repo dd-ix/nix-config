@@ -1,11 +1,11 @@
-{ lib, config, options, ... }:
+{ lib, pkgs, config, options, ... }:
 
 let
   cfg = config.dd-ix.microvm;
 in
 {
   options.dd-ix.microvm = {
-    enable = lib.mkEnableOption (lib.mkDoc "Whether to enable microvm settings.");
+    enable = lib.mkEnableOption "Whether to enable microvm settings.";
 
     inherit (options.microvm) vcpu mem;
 
@@ -23,11 +23,16 @@ in
 
       interfaces = [{
         type = "tap";
-        id = config.networking.hostName;
-        inherit (config.dd-ix.host) mac;
+        id = "vm-${config.networking.hostName}";
+        inherit (config.dd-ix.host.networking) mac;
       }];
 
       virtiofsd.threadPoolSize = 16;
+
+      binScripts.tap-up = lib.mkAfter ''
+        ${lib.getExe' pkgs.iproute2 "ip"} link set 'vm-${config.networking.hostName}' up
+        ${lib.getExe' pkgs.iproute2 "ip"} link set dev 'vm-${config.networking.hostName}' master '${config.dd-ix.nets.${config.dd-ix.host.networking.net}.bridge}'
+      '';
 
       shares = [
         {
