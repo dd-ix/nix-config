@@ -1,4 +1,4 @@
-{ self, lib, ... }:
+{ lib, config, ... }:
 {
   dd-ix = {
     hostName = "svc-rpx01";
@@ -25,11 +25,8 @@
 
     streamConfig =
       let
-        systems = lib.attrValues self.nixosConfigurations;
-        rpxEnabled = system: (lib.length system.config.dd-ix.rpx.domains) != 0;
-        rpxEnabledSystems = lib.filter rpxEnabled systems;
-        buildMapping = system: let cfg = system.config.dd-ix.rpx; in map (domain: "${domain} ${cfg.addr};") cfg.domains;
-        mappings = lib.flatten (map buildMapping rpxEnabledSystems);
+        buildMapping = host: map (domain: "${domain} [${host.networking.addr}]:443;") host.rpx.domains;
+        mappings = lib.flatten (map buildMapping (lib.attrValues config.dd-ix.hosts));
       in
       ''
         map $ssl_preread_server_name $targetBackend {

@@ -1,4 +1,3 @@
-{ ... }:
 {
   imports = [
     ./base.nix
@@ -7,7 +6,6 @@
     ./time.nix
     ./acme.nix
     ./fpx.nix
-    ./rpx.nix
     ./postgres.nix
     ./nginx.nix
     ./restic.nix

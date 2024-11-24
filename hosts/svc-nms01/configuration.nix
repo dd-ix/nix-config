@@ -1,8 +1,3 @@
-{ ... }:
-
-let
-  addr = "2a01:7700:80b0:7002::7";
-in
 {
   dd-ix = {
     hostName = "svc-nms01";
@@ -18,11 +13,6 @@ in
       name = "nms.dd-ix.net";
       group = "nginx";
     }];
-
-    rpx = {
-      domains = [ "nms.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     mariadb = [ "librenms" ];
 

@@ -1,7 +1,3 @@
-{ ... }:
-let
-  addr = "2a01:7700:80b0:6001::8";
-in
 {
   dd-ix = {
     hostName = "svc-lists01";
@@ -18,11 +14,6 @@ in
       name = "lists.dd-ix.net";
       group = "nginx";
     }];
-
-    rpx = {
-      domains = [ "lists.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     postgres = [ "mailman" "mailman_web" ];
 

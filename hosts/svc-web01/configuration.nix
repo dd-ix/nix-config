@@ -1,6 +1,6 @@
 { pkgs, ... }:
+
 let
-  addr = "2a01:7700:80b0:6001::13";
   domains = [
     "dd-ix.net"
     "www.dd-ix.net"
@@ -22,11 +22,6 @@ in
     };
 
     acme = map (name: { inherit name; group = "nginx"; }) domains;
-
-    rpx = {
-      inherit domains;
-      addr = "[${addr}]:443";
-    };
 
     monitoring = {
       enable = true;
