@@ -23,13 +23,12 @@ in
   services = {
     postgresql = {
       enable = lib.mkForce false;
-      package = pkgs.postgresql_16;
     };
     nextcloud = {
       enable = true;
       hostName = domain;
       https = true;
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud30;
       configureRedis = true;
       config = {
         dbtype = "pgsql";
