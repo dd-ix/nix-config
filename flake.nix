@@ -2,8 +2,8 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.05";
-    nixpkgs-unstable.url = "github:NuschtOS/nuschtpkgs/backports-24.11";
+    nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-24.11";
+    #nixpkgs-unstable.url = "github:NuschtOS/nuschtpkgs/backports-24.11";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -79,7 +79,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, nixpkgs-unstable, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, ... }: {
 
     nixosModules = {
       common = import ./modules/common;
@@ -442,7 +442,7 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-crm01 = nixpkgs-unstable.lib.nixosSystem {
+        svc-crm01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [

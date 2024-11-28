@@ -19,5 +19,5 @@
   services.openssh.enable = true;
 
   # mkDefault is 1000; so we set a default but override other mkDefaults 
-  services.postgresql.package = lib.mkOverride 999 pkgs.postgresql_16;
+  services.postgresql.package = lib.mkOverride 999 pkgs.postgresql_17;
 }
