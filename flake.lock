@@ -188,6 +188,7 @@
       "original": {
         "owner": "astro",
         "repo": "microvm.nix",
+        "rev": "e8d5f12b834a59187c7ec147a8952a0567f97939",
         "type": "github"
       }
     },

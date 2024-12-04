@@ -19,7 +19,8 @@
     };
 
     microvm = {
-      url = "github:astro/microvm.nix";
+      # update involes downtime of all vm's
+      url = "github:astro/microvm.nix/e8d5f12b834a59187c7ec147a8952a0567f97939";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
