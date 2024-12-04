@@ -1,4 +1,5 @@
-from django.contrib.auth.models import Group
+# from django.contrib.auth.models import Group # For Netbox < 4.0.0
+from netbox.authentication import Group # For Netbox >= 4.0.0
 
 class AuthFailed(Exception):
     pass
@@ -12,7 +13,8 @@ def add_groups(response, user, backend, *args, **kwargs):
     # Add all groups from oAuth token
     for group in groups:
         group, created = Group.objects.get_or_create(name=group)
-        group.user_set.add(user)
+        # group.user_set.add(user) # For Netbox < 4.0.0
+        user.groups.add(group) # For Netbox >= 4.0.0
 
 def remove_groups(response, user, backend, *args, **kwargs):
     try:
@@ -30,7 +32,8 @@ def remove_groups(response, user, backend, *args, **kwargs):
     # Delete non oAuth token groups
     for delete_group in delete_groups:
         group = Group.objects.get(name=delete_group)
-        group.user_set.remove(user)
+        # group.user_set.remove(user) # For Netbox < 4.0.0
+        user.groups.remove(group) # For Netbox >= 4.0.0
 
 
 def set_roles(response, user, backend, *args, **kwargs):
