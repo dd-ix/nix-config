@@ -97,13 +97,13 @@ in
 
   # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.2.0.1
   virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:8.2.0.1";
+    image = "onlyoffice/documentserver:8.2.2.1";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:2b0180b8ca27b36f27e0ddea0e9e8a5b1d40fcf478dc31f7e2efcfb9ce1bf42a";
-      sha256 = "1fgf07xxb2i0sf6v1g8limfg7vgzsj1kzq0cbqy6mfkdm1qq2yk8";
+      imageDigest = "sha256:3489a54c581414055dd9bfa3890435e5e6fc8c4ce0ffdd65cf3c7869f680cf81";
+      sha256 = "1sjdb99a13y1m8k3awnf5cqy3r18kjs8k6b3vd8bn64yvkhdgxhp";
       finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "8.2.0.1";
+      finalImageTag = "8.2.2.1";
     };
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];

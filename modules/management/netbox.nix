@@ -21,7 +21,7 @@
     postgresql.enable = lib.mkForce false;
     netbox = {
       enable = true;
-      package = pkgs.netbox_3_7.overrideAttrs (old: {
+      package = pkgs.netbox_4_1.overrideAttrs (old: {
         installPhase = old.installPhase + ''
           ln -s ${self + "/resources/netbox/pipeline.py"} $out/opt/netbox/netbox/netbox/ddix_pipeline.py
         '';

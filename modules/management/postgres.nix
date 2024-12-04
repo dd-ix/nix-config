@@ -3,21 +3,24 @@ let
   systems = lib.attrValues self.nixosConfigurations;
   users = lib.flatten (map (system: system.config.dd-ix.postgres) systems);
 
-  # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/databases/postgresql.nix#L30C1-L44
+  # https://github.com/NixOS/nixpkgs/blob/nixos-24.11/nixos/modules/services/databases/postgresql.nix#L34-L48
   cfg = config.services.postgresql;
+
+  # ensure that
+  #   services.postgresql = {
+  #     enableJIT = true;
+  #     package = pkgs.postgresql_<major>;
+  #   };
+  # works.
+  basePackage =
+    if cfg.enableJIT
+    then cfg.package.withJIT
+    else cfg.package.withoutJIT;
+
   postgresql =
-    let
-      # ensure that
-      #   services.postgresql = {
-      #     enableJIT = true;
-      #     package = pkgs.postgresql_<major>;
-      #   };
-      # works.
-      base = if cfg.enableJIT then cfg.package.withJIT else cfg.package.withoutJIT;
-    in
-    if cfg.extraPlugins == [ ]
-    then base
-    else base.withPackages cfg.extraPlugins;
+    if cfg.extensions == [ ]
+    then basePackage
+    else basePackage.withPackages cfg.extensions;
 
   startPostgres = pkgs.writeShellScript "postgres.sh" ''
     exec ${postgresql}/bin/postgres \
