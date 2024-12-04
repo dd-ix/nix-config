@@ -470,20 +470,20 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-nms01 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
-          modules = [
-            self.nixosModules.common
-            ifstate.nixosModules.default
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
-            nixos-modules.nixosModule
-            ./hosts/svc-nms01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
-          ];
-        };
+        # svc-nms01 = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   specialArgs = { inherit inputs self; };
+        #   modules = [
+        #     self.nixosModules.common
+        #     ifstate.nixosModules.default
+        #     microvm.nixosModules.microvm
+        #     sops-nix.nixosModules.default
+        #     nixos-modules.nixosModule
+        #     ./hosts/svc-nms01
+        #     ./modules/dd-ix
+        #     ./modules/dd-ix-microvm.nix
+        #   ];
+        # };
       };
   };
 }
