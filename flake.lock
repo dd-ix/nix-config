@@ -16,16 +16,17 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1732215451,
-        "narHash": "sha256-P2VVlzRGKBNsiHsN1yMZcSMXpwtIx9ysMFZAqKFJ14o=",
+        "lastModified": 1733359401,
+        "narHash": "sha256-j1BxzpZdK8MOrij9lb3Ph0O8vDCZG/dnvKa0nTYGqCg=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "9d9c0a3a94a91cfed654a18239e27cf56970daa4",
+        "rev": "24907f67ee4850179e46c19ce89334568d2b05c6",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "authentik-nix",
+        "rev": "24907f67ee4850179e46c19ce89334568d2b05c6",
         "type": "github"
       }
     },
