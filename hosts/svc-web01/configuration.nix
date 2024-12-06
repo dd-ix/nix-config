@@ -19,11 +19,6 @@ in
 
       mem = 2048;
       vcpu = 2;
-
-      mac = "82:5a:db:e0:53:63";
-      vlan = "s";
-
-      v6Addr = "${addr}/64";
     };
 
     acme = map (name: { inherit name; group = "nginx"; }) domains;

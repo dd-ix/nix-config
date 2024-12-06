@@ -9,11 +9,6 @@
 
       mem = 1024 * 2;
       vcpu = 2;
-
-      mac = "d2:7b:c0:b2:42:0f";
-      vlan = "im";
-
-      v6Addr = "2a01:7700:80b0:4101::3/64";
     };
 
     monitoring = {

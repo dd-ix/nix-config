@@ -12,11 +12,6 @@ in
 
       mem = 2048;
       vcpu = 2;
-
-      mac = "f2:8b:16:7e:6c:6b";
-      vlan = "s";
-
-      v6Addr = "${addr}/64";
     };
 
     acme = [{ name = "svc-pg01.dd-ix.net"; }];
