@@ -179,17 +179,16 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1733003272,
-        "narHash": "sha256-ratU5qCcRuOojgPWM90gda4qrxukNqbyFi+kan2Ln04=",
+        "lastModified": 1733426532,
+        "narHash": "sha256-k1g5MbTrURnYeb2XPwz3uLLKZJon7khTig2KvGv5pgs=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "e8d5f12b834a59187c7ec147a8952a0567f97939",
+        "rev": "5f0ab7953380a565c4e02083669bc529036970c7",
         "type": "github"
       },
       "original": {
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "e8d5f12b834a59187c7ec147a8952a0567f97939",
         "type": "github"
       }
     },
@@ -410,11 +409,11 @@
     "spectrum": {
       "flake": false,
       "locked": {
-        "lastModified": 1729945407,
-        "narHash": "sha256-iGNMamNOAnVTETnIVqDWd6fl74J8fLEi1ejdZiNjEtY=",
+        "lastModified": 1733308308,
+        "narHash": "sha256-+RcbMAjSxV1wW5UpS9abIG1lFZC8bITPiFIKNnE7RLs=",
         "ref": "refs/heads/main",
-        "rev": "f1d94ee7029af18637dbd5fdf4749621533693fa",
-        "revCount": 764,
+        "rev": "80c9e9830d460c944c8f730065f18bb733bc7ee2",
+        "revCount": 792,
         "type": "git",
         "url": "https://spectrum-os.org/git/spectrum"
       },
