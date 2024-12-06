@@ -45,6 +45,8 @@ in
         mac = cfg.mac;
       }];
 
+      virtiofsd.threadPoolSize = 16;
+
       shares = [
         {
           source = "/nix/store";
