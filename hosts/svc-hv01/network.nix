@@ -119,18 +119,8 @@ in
         networkConfig.Bridge = "svc-internet";
       };
 
-      "30-microvm-svc-internet" = {
-        matchConfig.Name = "i-*";
-        networkConfig.Bridge = "svc-internet";
-      };
-
       "10-${bond_device_name}.101" = {
         matchConfig.Name = "${bond_device_name}.101";
-        networkConfig.Bridge = "svc-services";
-      };
-
-      "30-microvm-svc-services" = {
-        matchConfig.Name = "s-*";
         networkConfig.Bridge = "svc-services";
       };
 
@@ -150,18 +140,8 @@ in
         networkConfig.Bridge = "svc-lab";
       };
 
-      "30-microvm-svc-lab" = {
-        matchConfig.Name = "l-*";
-        networkConfig.Bridge = "svc-lab";
-      };
-
       "10-${bond_device_name}.104" = {
         matchConfig.Name = "${bond_device_name}.104";
-        networkConfig.Bridge = "svc-admin";
-      };
-
-      "30-microvm-svc-admin" = {
-        matchConfig.Name = "a-*";
         networkConfig.Bridge = "svc-admin";
       };
 
@@ -170,28 +150,13 @@ in
         networkConfig.Bridge = "svc-ixp-mgmt";
       };
 
-      "30-microvm-svc-ixp-mgmt" = {
-        matchConfig.Name = "im-*";
-        networkConfig.Bridge = "svc-ixp-mgmt";
-      };
-
       "10-${bond_device_name}.601" = {
         matchConfig.Name = "${bond_device_name}.601";
         networkConfig.Bridge = "prj-linklab";
       };
-
-      "30-microvm-prj-linklab" = {
-        matchConfig.Name = "prj-llb-*";
-        networkConfig.Bridge = "prj-linklab";
-      };
-
+      
       "10-${ixp_peering_device_name}" = {
         matchConfig.Name = "${ixp_peering_device_name}";
-        networkConfig.Bridge = "ixp-peering";
-      };
-
-      "30-microvm-ixp-peering" = {
-        matchConfig.Name = "p-*";
         networkConfig.Bridge = "ixp-peering";
       };
 
