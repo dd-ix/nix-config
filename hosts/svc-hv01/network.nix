@@ -1,18 +1,10 @@
-{ pkgs, ... }:
+{ lib, config, ... }:
+
 let
   bond_device_name = "bond"; # name of the bond interface
   first_device_name = "enp144s0"; # first port that should be part of the LAG
   second_device_name = "enp144s0d1"; # second port that should be part of the LAG
   ixp_peering_device_name = "eno2";
-  mkVlan = id: {
-    netdevConfig = {
-      Name = "${bond_device_name}.${toString id}";
-      Kind = "vlan";
-    };
-    vlanConfig = {
-      Id = id;
-    };
-  };
 in
 {
   networking = {
@@ -25,73 +17,48 @@ in
   systemd.network = {
     enable = true;
 
-    netdevs = {
-      "10-${bond_device_name}" = {
-        netdevConfig = {
-          Name = "${bond_device_name}";
-          Kind = "bond";
+    netdevs = lib.mkMerge [
+      {
+        "10-${bond_device_name}" = {
+          netdevConfig = {
+            Name = "${bond_device_name}";
+            Kind = "bond";
+          };
+          bondConfig = {
+            Mode = "802.3ad"; # LACP 
+            MIIMonitorSec = "250ms";
+            LACPTransmitRate = "fast";
+          };
         };
-        bondConfig = {
-          Mode = "802.3ad"; # LACP 
-          MIIMonitorSec = "250ms";
-          LACPTransmitRate = "fast";
+        "20-ixp-peering".netdevConfig = {
+          Name = "ixp-peering";
+          Kind = "bridge";
         };
-      };
-
-      "20-${bond_device_name}.100" = mkVlan 100;
-
-      "20-svc-internet".netdevConfig = {
-        Name = "svc-internet";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.101" = mkVlan 101;
-
-      "20-svc-services".netdevConfig = {
-        Name = "svc-services";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.102" = mkVlan 102;
-
-      "20-svc-management".netdevConfig = {
-        Name = "svc-management";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.103" = mkVlan 103;
-
-      "20-svc-lab".netdevConfig = {
-        Name = "svc-lab";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.104" = mkVlan 104;
-
-      "20-svc-admin".netdevConfig = {
-        Name = "svc-admin";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.301" = mkVlan 301;
-
-      "20-svc-ixp-mgmt".netdevConfig = {
-        Name = "svc-ixp-mgmt";
-        Kind = "bridge";
-      };
-
-      "20-${bond_device_name}.601" = mkVlan 601;
-
-      "20-prj-linklab".netdevConfig = {
-        Name = "prj-linklab";
-        Kind = "bridge";
-      };
-
-      "20-ixp-peering".netdevConfig = {
-        Name = "ixp-peering";
-        Kind = "bridge";
-      };
-    };
+      }
+      (builtins.listToAttrs (lib.flatten (
+        lib.mapAttrsToList
+          (name: value: [
+            {
+              name = "20-${bond_device_name}.${builtins.toString value.vlan}";
+              value = {
+                netdevConfig = {
+                  Name = "${bond_device_name}.${toString value.vlan}";
+                  Kind = "vlan";
+                };
+                vlanConfig.Id = value.vlan;
+              };
+            }
+            {
+              name = "20-${value.bridge}";
+              value.netdevConfig = {
+                Name = value.bridge;
+                Kind = "bridge";
+              };
+            }
+          ])
+          config.dd-ix.nets
+      )))
+    ];
 
     networks = {
       "10-${bond_device_name}" = {
@@ -154,7 +121,7 @@ in
         matchConfig.Name = "${bond_device_name}.601";
         networkConfig.Bridge = "prj-linklab";
       };
-      
+
       "10-${ixp_peering_device_name}" = {
         matchConfig.Name = "${ixp_peering_device_name}";
         networkConfig.Bridge = "ixp-peering";

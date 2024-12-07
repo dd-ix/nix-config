@@ -36,5 +36,12 @@
       vlan = 301;
       #gw.hostId = "1";
     };
+    linklab = {
+      netId = "2a01:7700:80b0:f001";
+      cidr = 64;
+      vlan = 601;
+      #gw.hostId = "1";
+      bridge = "prj-linklab";
+    };
   };
 }
