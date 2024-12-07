@@ -1,8 +1,5 @@
 { lib, ... }:
 
-let
-  addr = "2a01:7700:80b0:6001::15";
-in
 {
   dd-ix = {
     useFpx = true;
@@ -18,11 +15,6 @@ in
     acme = [
       { name = "crm.dd-ix.net"; group = "nginx"; }
     ];
-
-    rpx = {
-      domains = [ "crm.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     postgres = [ "odoo" ];
 

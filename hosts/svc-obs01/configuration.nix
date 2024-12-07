@@ -1,7 +1,3 @@
-{ ... }:
-let
-  addr = "2a01:7700:80b0:6001::11";
-in
 {
   dd-ix = {
     useFpx = true;
@@ -19,13 +15,7 @@ in
       group = "nginx";
     }];
 
-    rpx = {
-      domains = [ "obs.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
-
     postgres = [ "grafana" ];
-
 
     monitoring = {
       enable = true;

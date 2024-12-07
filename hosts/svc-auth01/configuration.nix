@@ -1,7 +1,5 @@
 { lib, ... }:
-let
-  addr = "2a01:7700:80b0:6001::4";
-in
+
 {
   dd-ix = {
     useFpx = true;
@@ -18,11 +16,6 @@ in
       name = "auth.dd-ix.net";
       group = "nginx";
     }];
-
-    rpx = {
-      domains = [ "auth.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     postgres = [ "authentik" ];
 

@@ -1,7 +1,3 @@
-{ ... }:
-let
-  addr = "2a01:7700:80b0:6001::10";
-in
 {
   dd-ix = {
     useFpx = true;
@@ -18,11 +14,6 @@ in
       name = "lg.dd-ix.net";
       group = "nginx";
     }];
-
-    rpx = {
-      domains = [ "lg.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     monitoring = {
       enable = true;

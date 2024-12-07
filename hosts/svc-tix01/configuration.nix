@@ -1,8 +1,5 @@
 { config, ... }:
 
-let
-  addr = "2a01:7700:80b0:6001::16";
-in
 {
   dd-ix = {
     useFpx = true;
@@ -25,11 +22,6 @@ in
         group = "nginx";
       }
     ];
-
-    rpx = {
-      domains = [ "tickets.dd-ix.net" "events.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     postgres = [ config.services.pretix.settings.database.name ];
 

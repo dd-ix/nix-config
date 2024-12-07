@@ -36,11 +36,6 @@ in
       useFpx = true;
       hostName = "svc-hv01";
 
-      rpx = {
-        inherit domains;
-        addr = "${addr}:443";
-      };
-
       acme = map
         (domain: {
           name = domain;

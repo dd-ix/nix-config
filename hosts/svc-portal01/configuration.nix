@@ -1,7 +1,3 @@
-{ ... }:
-let
-  addr = "2a01:7700:80b0:6001::2";
-in
 {
   dd-ix = {
     useFpx = true;
@@ -20,11 +16,6 @@ in
       name = "portal.dd-ix.net";
       group = "nginx";
     }];
-
-    rpx = {
-      domains = [ "portal.dd-ix.net" ];
-      addr = "[${addr}]:443";
-    };
 
     mariadb = [ "ixp_manager" ];
 

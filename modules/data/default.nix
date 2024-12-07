@@ -78,6 +78,11 @@ in
               default = "${globalConfig.dd-ix.nets.${config.networking.net}.netId}::${config.networking.interfaceId}";
             };
           };
+
+          rpx.domains = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
         };
       });
     };
