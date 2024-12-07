@@ -10,15 +10,31 @@ in
   networking.ifstate = {
     enable = true;
     settings = {
+      # TODO: probably remove with ifstate v2
+      defaults = [{
+        # list of defaults settings
+        match = [{
+          # regex matching all interfaces
+          ifname = "";
+        }];
+        # remove any ip addresses if an interface has no `addresses:` setting
+        clear_addresses = true;
+        # add some implicit link settings
+        link = {
+          state = "down";
+          ifalias = "";
+        };
+      }];
+
       # ignore vm tap interfaces
-      ignore.ifname = [ "^vm-.+$" ];
+      ignore.ifname = [ "^vm-.+$" "^vnet\d+$" "^macvtap\d+$" ];
       interfaces = [
-        { name = "enp0s29u1u1u5"; link = { state = "down"; kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
+        { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
         { name = "bond"; link = { state = "up"; kind = "bond"; }; }
         { name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
-        { name = "eno3"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.1"; }; }
-        { name = "eno4"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.2"; }; }
-        { name = "eno5"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.3"; }; }
+        { name = "eno3"; link = { kind = "physical"; businfo = "0000:06:00.1"; }; }
+        { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
+        { name = "eno5"; link = { kind = "physical"; businfo = "0000:06:00.3"; }; }
         (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
         (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
         { name = "ixp-peering"; link = { state = "up"; kind = "bridge"; }; }
