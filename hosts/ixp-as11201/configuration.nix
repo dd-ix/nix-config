@@ -1,3 +1,8 @@
+{ lib, pkgs, ... }:
+
+let
+  macPeering = "12:6d:81:f8:61:de";
+in
 {
   dd-ix = {
     useFpx = true;
@@ -12,11 +17,21 @@
     };
   };
 
-  # device in peering vlan
-  microvm.devices = [{
-    bus = "pci";
-    path = "0000:06:00.0";
-  }];
+  microvm = {
+    # TODO: change to macvtap
+    # this is the interface connected to the peering lan
+    # the mac is configured in ixp manager
+    interfaces = [{
+      type = "tap";
+      id = "vm-ixp-as11201p";
+      mac = macPeering;
+    }];
+
+    binScripts.tap-up = lib.mkAfter ''
+      ${lib.getExe' pkgs.iproute2 "ip"} link set 'vm-ixp-as11201p' up
+      ${lib.getExe' pkgs.iproute2 "ip"} link set dev 'vm-ixp-as11201p' master 'ixp-peering'
+    '';
+  };
 
   networking.ifstate.settings.namespaces.ixp-peering = {
     options.sysctl =
@@ -69,18 +84,18 @@
           "2001:4:112::1/48" #  blackhole.as112.arpa (anycast)
         ];
       }
-      # {
-      #     name = "ixp-peering";
-      #     link = {
-      #       state = "up";
-      #       kind = "physical";
-      #       permaddr = macPeering;
-      #     };
-      #     addresses = [
-      #       "2001:7f8:79::70:1/64"
-      #       "193.201.151.70/26"
-      #     ];
-      #   }
+      {
+        name = "ixp-peering";
+        link = {
+          state = "up";
+          kind = "physical";
+          permaddr = macPeering;
+        };
+        addresses = [
+          "2001:7f8:79::70:1/64"
+          "193.201.151.70/26"
+        ];
+      }
     ];
   };
 

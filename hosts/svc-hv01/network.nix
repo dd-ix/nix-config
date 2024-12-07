@@ -30,6 +30,10 @@ in
             LACPTransmitRate = "fast";
           };
         };
+        "20-ixp-peering".netdevConfig = {
+          Name = "ixp-peering";
+          Kind = "bridge";
+        };
       }
       (builtins.listToAttrs (lib.flatten (
         lib.mapAttrsToList
@@ -82,6 +86,11 @@ in
           matchConfig.Name = "svc-management";
           address = [ "2a01:7700:80b0:7000::2/64" ];
           routes = [{ routeConfig.Gateway = "fe80::1"; }];
+        };
+
+        "10-${ixp_peering_device_name}" = {
+          matchConfig.Name = "${ixp_peering_device_name}";
+          networkConfig.Bridge = "ixp-peering";
         };
 
         "40-bring-svc-up-bridges" = {
