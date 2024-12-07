@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   macPeering = "12:6d:81:f8:61:de";
@@ -27,45 +27,15 @@ in
       mac = macPeering;
     }];
 
-    binScripts.tap-up = lib.mkAfter ''
+    binScripts.tap-up = lib.mkAfter /* bash */ ''
       ${lib.getExe' pkgs.iproute2 "ip"} link set 'vm-ixp-as11201p' up
       ${lib.getExe' pkgs.iproute2 "ip"} link set dev 'vm-ixp-as11201p' master 'ixp-peering'
     '';
   };
 
   networking.ifstate.settings.namespaces.ixp-peering = {
-    options.sysctl =
-      let
-        options = {
-          ipv6 = {
-            # this machine should not participate in SLAAC
-            accept_ra = 0;
-            autoconf = 0;
-            # no redirects nor evil RH0
-            accept_redirects = 0;
-            accept_source_route = 0;
-            # no forwarding
-            forwarding = 0;
-          };
-          ipv4 = {
-            # no redirects nor source route
-            accept_redirects = 0;
-            send_redirects = 0;
-            accept_source_route = 0;
-            # handle arp requests strict
-            arp_ignore = 1;
-            arp_notify = 1;
-            # do strict rp filtering
-            rp_filter = 1;
-            # no forwarding
-            forwarding = 0;
-          };
-        };
-      in
-      {
-        all = options;
-        default = options;
-      };
+    # copy sysctl from default netns
+    options.sysctl = config.networking.ifstate.settings.options.sysctl;
     interfaces = [
       {
         name = "any112";
