@@ -2,7 +2,7 @@
 
 let
   mkBondedInterface = name: permaddr: bond: {
-    inherit name; addresses = [ ];
+    inherit name;
     link = { inherit permaddr; state = "up"; kind = "physical"; master = bond; };
   };
 in
@@ -13,26 +13,25 @@ in
       # ignore vm tap interfaces
       ignore.ifname = [ "^vm-.+$" ];
       interfaces = [
-        { name = "enp0s29u1u1u5"; addresses = [ ]; link = { state = "down"; kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
-        { name = "bond"; addresses = [ ]; link = { state = "up"; kind = "bond"; }; }
-        { name = "eno2"; addresses = [ ]; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
-        { name = "eno3"; addresses = [ ]; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.1"; }; }
-        { name = "eno4"; addresses = [ ]; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.2"; }; }
-        { name = "eno5"; addresses = [ ]; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.3"; }; }
+        { name = "enp0s29u1u1u5"; link = { state = "down"; kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
+        { name = "bond"; link = { state = "up"; kind = "bond"; }; }
+        { name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
+        { name = "eno3"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.1"; }; }
+        { name = "eno4"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.2"; }; }
+        { name = "eno5"; link = { state = "down"; kind = "physical"; businfo = "0000:06:00.3"; }; }
         (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
         (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
-        { name = "ixp-peering"; addresses = [ ]; link = { state = "up"; kind = "bridge"; }; }
+        { name = "ixp-peering"; link = { state = "up"; kind = "bridge"; }; }
       ] ++
       (lib.flatten (lib.mapAttrsToList
         (name: value: [
           {
             name = value.bridge;
-            addresses = lib.optional (name == "management") "2a01:7700:80b0:7000::2/64";
+            addresses = lib.mkIf (name == "management") [ "2a01:7700:80b0:7000::2/64" ];
             link = { state = "up"; kind = "bridge"; };
           }
           {
             name = "bond.${builtins.toString value.vlan}";
-            addresses = [ ];
             link = { state = "up"; kind = "vlan"; link = "bond"; vlan_id = value.vlan; master = value.bridge; };
           }
         ])
