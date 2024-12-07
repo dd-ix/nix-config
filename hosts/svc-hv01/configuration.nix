@@ -72,6 +72,11 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.zfs.requestEncryptionCredentials = true;
 
+  boot.kernelParams = [
+    # allows passing pci devices into microvm's
+    "intel_iommu=on"
+  ];
+
   # zfs emails
   nixpkgs.config.packageOverrides = pkgs: {
     zfsStable = pkgs.zfsStable.override { enableMail = true; };
