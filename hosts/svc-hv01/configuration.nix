@@ -72,6 +72,18 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.zfs.requestEncryptionCredentials = true;
 
+  # zfs emails
+  nixpkgs.config.packageOverrides = pkgs: {
+    zfsStable = pkgs.zfsStable.override { enableMail = true; };
+  };
+  services.zfs.zed = {
+    enableMail = true;
+    settings = {
+      ZED_EMAIL_ADDR = [ "noc@dd-ix.net" ];
+      ZED_NOTIFY_VERBOSE = true;
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
