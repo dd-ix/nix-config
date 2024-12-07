@@ -12,5 +12,6 @@
     ./mariadb.nix
     ./monitoring.nix
     ./redis.nix
+    ./sysctl.nix
   ];
 }
