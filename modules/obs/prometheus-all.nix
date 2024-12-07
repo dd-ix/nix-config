@@ -94,7 +94,7 @@ in
           targets = [
             "https://dd-ix.net/en/"
             "https://cloud.dd-ix.net/status.php"
-            "https://dcim.dd-ix.net/"
+            "https://dcim.dd-ix.net/login/"
             "https://lg.dd-ix.net"
             "https://portal.dd-ix.net/login"
             "https://wiki.dd-ix.net/status"
