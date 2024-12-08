@@ -168,7 +168,7 @@
         };
         unitConfig.OnFailure = "ddix-ixp-deploy-sw-failed@%i.service";
       };
-      "ddix-ixp-deploy-sw-failed@" = mkFailureUnit "rs$SWITCH_NAME deploy" "DEPLOY" "ddix-ixp-deploy-sw@$SWITCH_NAME" // {
+      "ddix-ixp-deploy-sw-failed@" = mkFailureUnit { name = "rs$SWITCH_NAME deploy"; prefix = "DEPLOY"; unit = "ddix-ixp-deploy-sw@$SWITCH_NAME"; } // {
         environment.SWITCH_NAME = "%i";
       };
       "ddix-ixp-sw@ixp-c2-sw01.dd-ix.net" = {
@@ -195,7 +195,7 @@
         };
         unitConfig.OnFailure = "ddix-ixp-commit-failed.service";
       };
-      "ddix-ixp-commit-failed" = mkFailureUnit "commit" "COMMIT" "ddix-ixp-commit";
+      "ddix-ixp-commit-failed" = mkFailureUnit { name = "commit"; prefix = "COMMIT"; unit = "ddix-ixp-commit"; };
     };
 
   environment.systemPackages = with pkgs; [
