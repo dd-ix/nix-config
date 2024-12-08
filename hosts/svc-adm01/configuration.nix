@@ -57,7 +57,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp deployment
-        ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true
+        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true
       '';
       # every 6 hours
       startAt = "00/6:20";
@@ -75,7 +75,7 @@
       enable = true;
       script = ''
         echo [DD-IX] run ixp commit
-        ${lib.getExe pkgs.ddix-ixp-commit} -D
+        exec ${lib.getExe pkgs.ddix-ixp-commit} -D
       '';
       startAt = "22:00";
       serviceConfig = {
