@@ -52,16 +52,8 @@
     };
   };
 
-  systemd.services = {
-    # build configs
-    "ddix-ixp-build" = {
-      enable = true;
-      script = ''
-        echo [DD-IX] run IXP route server config build
-        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -t sflow_build,bird_build,eos_build,rdns_build
-      '';
-      # every 4 hours
-      startAt = "00/4:07";
+  systemd.services =
+    let
       serviceConfig = {
         Type = "oneshot";
         User = "arouteserver";
@@ -70,153 +62,137 @@
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
-    };
+    in
+    {
+      # build configs
+      "ddix-ixp-build" = {
+        enable = true;
+        script = ''
+          echo [DD-IX] run IXP route server config build
+          exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -t sflow_build,bird_build,eos_build,rdns_build
+        '';
+        # every 4 hours
+        startAt = "00/4:07";
+        inherit serviceConfig;
+        unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
+      };
 
-    # deploy rdns service
-    "ddix-ixp-rdns" = {
-      enable = true;
-      conditionPathExists = "/var/lib/arouteserver/kill/rdns";
-      # every 4 hours
-      startAt = "03/4:15";
-      after = [ "ddix-ixp-build.service" ];
-      requisite = [ "ddix-ixp-build.service" ];
-      script = ''
-        echo [DD-IX] run RDNS deployment
-        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t rdns_push,rdns_engage
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "arouteserver";
-        Environment = [
-          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-        ];
+      # deploy rdns service
+      "ddix-ixp-rdns" = {
+        enable = true;
+        conditionPathExists = "/var/lib/arouteserver/kill/rdns";
+        # every 4 hours
+        startAt = "03/4:15";
+        after = [ "ddix-ixp-build.service" ];
+        requisite = [ "ddix-ixp-build.service" ];
+        script = ''
+          echo [DD-IX] run RDNS deployment
+          exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t rdns_push,rdns_engage
+        '';
+        inherit serviceConfig;
+        unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
-    };
 
-    # deploy sflow service
-    "ddix-ixp-sflow" = {
-      enable = true;
-      conditionPathExists = "/var/lib/arouteserver/kill/sflow";
-      # every 4 hours
-      startAt = "03/4:15";
-      after = [ "ddix-ixp-build.service" ];
-      requisite = [ "ddix-ixp-build.service" ];
-      script = ''
-        echo [DD-IX] run sflow deployment
-        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t sflow_push
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "arouteserver";
-        Environment = [
-          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-        ];
+      # deploy sflow service
+      "ddix-ixp-sflow" = {
+        enable = true;
+        conditionPathExists = "/var/lib/arouteserver/kill/sflow";
+        # every 4 hours
+        startAt = "03/4:15";
+        after = [ "ddix-ixp-build.service" ];
+        requisite = [ "ddix-ixp-build.service" ];
+        script = ''
+          echo [DD-IX] run sflow deployment
+          exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t sflow_push
+        '';
+        serviceConfig = {
+          Type = "oneshot";
+          User = "arouteserver";
+          Environment = [
+            "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
+            "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
+          ];
+        };
+        unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
-    };
 
-    # deploy route server configs
-    "ddix-ixp-rs@" = {
-      after = [ "ddix-ixp-build.service" ];
-      requisite = [ "ddix-ixp-build.service" ];
-      conditionPathExists = "/var/lib/arouteserver/kill/%i";
-      script = ''
-        echo [DD-IX] run IXP route server deployment
-        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t bird_push,bird_engage -l %i,
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "arouteserver";
-        Environment = [
-          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-        ];
+      # deploy route server configs
+      "ddix-ixp-rs@" = {
+        after = [ "ddix-ixp-build.service" ];
+        requisite = [ "ddix-ixp-build.service" ];
+        conditionPathExists = "/var/lib/arouteserver/kill/%i";
+        script = ''
+          echo [DD-IX] run IXP route server deployment
+          exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t bird_push,bird_engage -l %i,
+        '';
+        inherit serviceConfig;
+        unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
-    };
-    "ddix-ixp-rs@ixp-rs01.dd-ix.net" = {
-      enable = true;
-      # every 4 hours
-      startAt = "00/4:30";
-    };
-    "ddix-ixp-rs@ixp-rs02.dd-ix.net" = {
-      enable = true;
-      # every 4 hours
-      startAt = "02/4:30";
-    };
+      "ddix-ixp-rs@ixp-rs01.dd-ix.net" = {
+        enable = true;
+        # every 4 hours
+        startAt = "00/4:30";
+      };
+      "ddix-ixp-rs@ixp-rs02.dd-ix.net" = {
+        enable = true;
+        # every 4 hours
+        startAt = "02/4:30";
+      };
 
-    # deploy switches
-    "ddix-ixp-sw@" = {
-      after = [ "ddix-ixp-build.service" ];
-      requisite = [ "ddix-ixp-build.service" ];
-      conditionPathExists = "/var/lib/arouteserver/kill/%i";
-      script = ''
-        echo [DD-IX] run IXP switch deployment
-        exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t eos_push,eos_engage -l localhost,%i
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "arouteserver";
-        Environment = [
-          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-        ];
+      # deploy switches
+      "ddix-ixp-sw@" = {
+        after = [ "ddix-ixp-build.service" ];
+        requisite = [ "ddix-ixp-build.service" ];
+        conditionPathExists = "/var/lib/arouteserver/kill/%i";
+        script = ''
+          echo [DD-IX] run IXP switch deployment
+          exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t eos_push,eos_engage -l localhost,%i
+        '';
+        inherit serviceConfig;
+        unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
-    };
-    "ddix-ixp-sw@ixp-c2-sw01.dd-ix.net" = {
-      enable = true;
-      # every 4 hours
-      startAt = "03/4:20";
-    };
-    "ddix-ixp-sw@ixp-cc-sw01.dd-ix.net" = {
-      enable = true;
-      # every 4 hours
-      startAt = "03/4:30";
-    };
+      "ddix-ixp-sw@ixp-c2-sw01.dd-ix.net" = {
+        enable = true;
+        # every 4 hours
+        startAt = "03/4:20";
+      };
+      "ddix-ixp-sw@ixp-cc-sw01.dd-ix.net" = {
+        enable = true;
+        # every 4 hours
+        startAt = "03/4:30";
+      };
 
-    # save configs
-    "ddix-ixp-commit" = {
-      enable = true;
-      conditionPathExists = "/var/lib/arouteserver/kill/commit";
-      script = ''
-        echo [DD-IX] run ixp commit
-        exec ${lib.getExe pkgs.ddix-ixp-commit} -D
-      '';
-      startAt = "22:00";
-      serviceConfig = {
-        Type = "oneshot";
-        User = "arouteserver";
-        Environment = [
-          "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-          "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-        ];
+      # save configs
+      "ddix-ixp-commit" = {
+        enable = true;
+        conditionPathExists = "/var/lib/arouteserver/kill/commit";
+        script = ''
+          echo [DD-IX] run ixp commit
+          exec ${lib.getExe pkgs.ddix-ixp-commit} -D
+        '';
+        startAt = "22:00";
+        inherit serviceConfig;
+        unitConfig.OnFailure = "notify-ddix-ixp-commit-failed.service";
       };
-      unitConfig.OnFailure = "notify-ddix-ixp-commit-failed.service";
-    };
-    notify-ddix-ixp-deploy-failed = {
-      enable = true;
-      serviceConfig = {
-        Type = "oneshot";
+      notify-ddix-ixp-deploy-failed = {
+        enable = true;
+        serviceConfig = {
+          Type = "oneshot";
+        };
+        script = ''
+          echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] deployment failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-deploy`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
+        '';
       };
-      script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] deployment failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-deploy`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
-      '';
-    };
-    notify-ddix-ixp-commit-failed = {
-      enable = true;
-      serviceConfig = {
-        Type = "oneshot";
+      notify-ddix-ixp-commit-failed = {
+        enable = true;
+        serviceConfig = {
+          Type = "oneshot";
+        };
+        script = ''
+          echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] commit failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-commit`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
+        '';
       };
-      script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-DEPLOY] commit failed\r\n\r\ndeployment logs:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value ddix-ixp-commit`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
-      '';
     };
-  };
 
   environment.systemPackages = with pkgs; [
     git
