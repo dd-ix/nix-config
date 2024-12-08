@@ -61,6 +61,7 @@
           "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
+        RemainAfterExit = "yes";
       };
       mkFailureUnit = { name, prefix, unit }: {
         enable = true;
