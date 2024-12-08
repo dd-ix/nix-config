@@ -67,7 +67,7 @@
         enable = true;
         serviceConfig = {
           Type = "oneshot";
-          User = "ddix-ix-failed-notification";
+          User = "ddix-ixp-failed-notification";
           DynamicUser = true;
         };
         script = ''
@@ -138,12 +138,12 @@
         environment.ROUTE_SERVER_NAME = "%i";
       };
 
-      "ddix-ixp-rs@ixp-rs01.dd-ix.net" = {
+      "ddix-ixp-deploy-rs@ixp-rs01.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "00/4:30";
       };
-      "ddix-ixp-rs@ixp-rs02.dd-ix.net" = {
+      "ddix-ixp-deploy-rs@ixp-rs02.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "02/4:30";
@@ -164,12 +164,12 @@
       "ddix-ixp-deploy-sw-failed@" = mkFailureUnit { name = "rs$SWITCH_NAME deploy"; prefix = "DEPLOY"; unit = "ddix-ixp-deploy-sw@$SWITCH_NAME"; } // {
         environment.SWITCH_NAME = "%i";
       };
-      "ddix-ixp-sw@ixp-c2-sw01.dd-ix.net" = {
+      "ddix-ixp-deploy-sw@ixp-c2-sw01.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "03/4:20";
       };
-      "ddix-ixp-sw@ixp-cc-sw01.dd-ix.net" = {
+      "ddix-ixp-deploy-sw@ixp-cc-sw01.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "03/4:30";
