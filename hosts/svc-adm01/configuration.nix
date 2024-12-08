@@ -99,7 +99,7 @@
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t rdns_push,rdns_engage";
         };
         unitConfig = {
-          ConditionPathExists = "/var/lib/arouteserver/kill/rdns";
+          ConditionPathExists = "!/var/lib/arouteserver/kill/rdns";
           OnFailure = "ddix-ixp-deploy-rdns-failed.service";
         };
       };
@@ -116,7 +116,7 @@
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t sflow_push";
         };
         unitConfig = {
-          ConditionPathExists = "/var/lib/arouteserver/kill/sflow";
+          ConditionPathExists = "!/var/lib/arouteserver/kill/sflow";
           OnFailure = "notify-ddix-ixp-deploy-failed.service";
         };
       };
@@ -130,7 +130,7 @@
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t bird_push,bird_engage -l %i,";
         };
         unitConfig = {
-          ConditionPathExists = "/var/lib/arouteserver/kill/%i";
+          ConditionPathExists = "!/var/lib/arouteserver/kill/%i";
           OnFailure = "ddix-ixp-deploy-rs-failed@%i.service";
         };
       };
@@ -157,7 +157,7 @@
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t eos_push,eos_engage -l localhost,%i";
         };
         unitConfig = {
-          ConditionPathExists = "/var/lib/arouteserver/kill/%i";
+          ConditionPathExists = "!/var/lib/arouteserver/kill/%i";
           OnFailure = "ddix-ixp-deploy-sw-failed@%i.service";
         };
       };
@@ -183,8 +183,8 @@
           ExecStart = "${lib.getExe pkgs.ddix-ixp-commit} -D";
         };
         unitConfig = {
+          ConditionPathExists = "!/var/lib/arouteserver/kill/commit";
           OnFailure = "ddix-ixp-commit-failed.service";
-          ConditionPathExists = "/var/lib/arouteserver/kill/commit";
         };
       };
       ddix-ixp-commit-failed = mkFailureUnit { name = "commit"; prefix = "COMMIT"; unit = "ddix-ixp-commit"; };
