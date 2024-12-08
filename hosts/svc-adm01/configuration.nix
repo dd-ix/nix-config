@@ -142,11 +142,13 @@
         enable = true;
         # every 4 hours
         startAt = "00/4:30";
+        overrideStrategy = "asDropin";
       };
       "ddix-ixp-deploy-rs@ixp-rs02.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "02/4:30";
+        overrideStrategy = "asDropin";
       };
 
       # deploy switches
@@ -168,11 +170,13 @@
         enable = true;
         # every 4 hours
         startAt = "03/4:20";
+        overrideStrategy = "asDropin";
       };
       "ddix-ixp-deploy-sw@ixp-cc-sw01.dd-ix.net" = {
         enable = true;
         # every 4 hours
         startAt = "03/4:30";
+        overrideStrategy = "asDropin";
       };
 
       # save configs
