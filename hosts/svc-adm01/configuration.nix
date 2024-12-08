@@ -80,7 +80,6 @@
       # deploy rdns service
       "ddix-ixp-rdns" = {
         enable = true;
-        conditionPathExists = "/var/lib/arouteserver/kill/rdns";
         # every 4 hours
         startAt = "03/4:15";
         after = [ "ddix-ixp-build.service" ];
@@ -89,14 +88,15 @@
           echo [DD-IX] run RDNS deployment
           exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t rdns_push,rdns_engage
         '';
-        inherit serviceConfig;
+        serviceConfig = serviceConfig // {
+          ConditionPathExists = "/var/lib/arouteserver/kill/rdns";
+        };
         unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
 
       # deploy sflow service
       "ddix-ixp-sflow" = {
         enable = true;
-        conditionPathExists = "/var/lib/arouteserver/kill/sflow";
         # every 4 hours
         startAt = "03/4:15";
         after = [ "ddix-ixp-build.service" ];
@@ -105,13 +105,8 @@
           echo [DD-IX] run sflow deployment
           exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t sflow_push
         '';
-        serviceConfig = {
-          Type = "oneshot";
-          User = "arouteserver";
-          Environment = [
-            "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
-            "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
-          ];
+        serviceConfig = serviceConfig // {
+          ConditionPathExists = "/var/lib/arouteserver/kill/sflow";
         };
         unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
@@ -120,12 +115,13 @@
       "ddix-ixp-rs@" = {
         after = [ "ddix-ixp-build.service" ];
         requisite = [ "ddix-ixp-build.service" ];
-        conditionPathExists = "/var/lib/arouteserver/kill/%i";
         script = ''
           echo [DD-IX] run IXP route server deployment
           exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t bird_push,bird_engage -l %i,
         '';
-        inherit serviceConfig;
+        serviceConfig = serviceConfig // {
+          conditionPathExists = "/var/lib/arouteserver/kill/%i";
+        };
         unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
       "ddix-ixp-rs@ixp-rs01.dd-ix.net" = {
@@ -143,12 +139,13 @@
       "ddix-ixp-sw@" = {
         after = [ "ddix-ixp-build.service" ];
         requisite = [ "ddix-ixp-build.service" ];
-        conditionPathExists = "/var/lib/arouteserver/kill/%i";
         script = ''
           echo [DD-IX] run IXP switch deployment
           exec ${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t eos_push,eos_engage -l localhost,%i
         '';
-        inherit serviceConfig;
+        serviceConfig = serviceConfig // {
+          ConditionPathExists = "/var/lib/arouteserver/kill/%i";
+        };
         unitConfig.OnFailure = "notify-ddix-ixp-deploy-failed.service";
       };
       "ddix-ixp-sw@ixp-c2-sw01.dd-ix.net" = {
@@ -165,13 +162,14 @@
       # save configs
       "ddix-ixp-commit" = {
         enable = true;
-        conditionPathExists = "/var/lib/arouteserver/kill/commit";
         script = ''
           echo [DD-IX] run ixp commit
           exec ${lib.getExe pkgs.ddix-ixp-commit} -D
         '';
         startAt = "22:00";
-        inherit serviceConfig;
+        serviceConfig = serviceConfig // {
+          ConditionPathExists = "/var/lib/arouteserver/kill/commit";
+        };
         unitConfig.OnFailure = "notify-ddix-ixp-commit-failed.service";
       };
       notify-ddix-ixp-deploy-failed = {
