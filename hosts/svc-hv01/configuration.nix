@@ -84,7 +84,7 @@ in
   services.zfs.zed = {
     enableMail = true;
     settings = {
-      ZED_EMAIL_ADDR = [ "noc@dd-ix.net" ];
+      ZED_EMAIL_ADDR = [ "marcel.koch@dd-ix.net" ];
       ZED_NOTIFY_VERBOSE = true;
     };
   };
