@@ -10,7 +10,7 @@ UNITS="build
        sw@ixp-cc-sw01.dd-ix.net
        commit"
 
-ANSI_BLUE=$(echo -e "\e[34m")
+#ANSI_BLUE=$(echo -e "\e[34m")
 ANSI_GREEN=$(echo -e "\e[42;37m")
 ANSI_YELLOW=$(echo -e "\e[103;30m")
 ANSI_RED=$(echo -e "\e[5m\e[101;37m")

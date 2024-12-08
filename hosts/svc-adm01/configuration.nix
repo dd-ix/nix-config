@@ -190,14 +190,26 @@
       ddix-ixp-commit-failed = mkFailureUnit { name = "commit"; prefix = "COMMIT"; unit = "ddix-ixp-commit"; };
     };
 
-  environment.systemPackages = with pkgs; [
-    git
-    fping
-    inetutils
-    mc
-    vim
-    net-snmp
-  ];
+  environment.systemPackages =
+    let
+      ddix-ixp-ctl = pkgs.writeShellApplication {
+        name = "ddix-ixp-ctl";
+
+        # NOTE: add dependencies as needed
+        # runtimeInputs = with pkgs; [ ];
+
+        text = builtins.readFile (self + /resources/ddix-ixp-ctl.sh);
+      };
+    in
+    with pkgs; [
+      git
+      fping
+      inetutils
+      mc
+      vim
+      net-snmp
+      ddix-ixp-ctl
+    ];
 
   system.stateVersion = "23.11";
 }
