@@ -117,7 +117,7 @@
         };
         unitConfig = {
           ConditionPathExists = "!/var/lib/arouteserver/kill/sflow";
-          OnFailure = "notify-ddix-ixp-deploy-failed.service";
+          OnFailure = "ddix-ixp-deploy-sflow-failed.service";
         };
       };
       ddix-ixp-deploy-sflow-failed = mkFailureUnit { name = "sflow deploy"; prefix = "DEPLOY"; unit = "ddix-ixp-deploy-sflow"; };
