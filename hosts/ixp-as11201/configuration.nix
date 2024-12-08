@@ -28,7 +28,6 @@ in
     }];
 
     binScripts.tap-up = lib.mkAfter ''
-      ${lib.getExe' pkgs.iproute2 "ip"} link set 'vm-ixp-as11201p' up
       ${lib.getExe' pkgs.iproute2 "ip"} link set dev 'vm-ixp-as11201p' master 'ixp-peering'
     '';
   };
