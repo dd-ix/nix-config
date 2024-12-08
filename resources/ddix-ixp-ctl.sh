@@ -12,7 +12,7 @@ UNITS="build
 
 #ANSI_BLUE=$(echo -e "\e[34m")
 ANSI_GREEN=$(echo -e "\e[42;37m")
-ANSI_YELLOW=$(echo -e "\e[103;30m")
+ANSI_YELLOW=$(echo -e "\e[43;30m")
 ANSI_RED=$(echo -e "\e[5m\e[101;37m")
 ANSI_BOLD=$(echo -e "\e[1m")
 ANSI_NORMAL=$(echo -e "\e[0m")
