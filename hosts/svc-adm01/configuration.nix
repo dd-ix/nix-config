@@ -100,7 +100,7 @@
         };
         unitConfig.OnFailure = "ddix-ixp-deploy-rdns-failed.service";
       };
-      ddix-ixp-deploy-rdns-failed = mkFailureUnit "rdns deploy" "DEPLOY" "ddix-ixp-deploy-rdns";
+      ddix-ixp-deploy-rdns-failed = mkFailureUnit { name = "rdns deploy"; prefix = "DEPLOY"; unit = "ddix-ixp-deploy-rdns"; };
 
       # deploy sflow service
       ddix-ixp-deploy-sflow = {
