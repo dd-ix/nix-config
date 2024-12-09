@@ -19,7 +19,6 @@
     jq
     nix-tree
     whois
-    screen
   ];
 
   programs = {
