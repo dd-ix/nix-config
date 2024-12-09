@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733491299,
-        "narHash": "sha256-0SMr8B/2u905WVW8ucJgspZUAN6qV93/buxtfEk0FhU=",
+        "lastModified": 1733773074,
+        "narHash": "sha256-iJOZRiAL2jlyNl0raMuDMcH2icndvMn2i2E+B+rxwpc=",
         "ref": "refs/heads/main",
-        "rev": "895b03c83a77be39db183ca7661b9f10ff772d3e",
-        "revCount": 50,
+        "rev": "62b892fb5d006dfe8dfc05f933687a8eec662212",
+        "revCount": 52,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -265,11 +265,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1733582159,
-        "narHash": "sha256-oZOQxIWeK210fC9dROuzmd+cFjD6PIWPHVOlh3Q9QtY=",
+        "lastModified": 1733755190,
+        "narHash": "sha256-GAejwEjzzuEhVTDAJCCJk/OpJZS5ltGE5UrBbfhZjbA=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "4d28ce918594885de8d1f85d5485e8f68a159fea",
+        "rev": "f4307c911f5234c583f78fc01339ccba8e3ea813",
         "type": "github"
       },
       "original": {
