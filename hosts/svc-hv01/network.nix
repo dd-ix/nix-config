@@ -27,7 +27,7 @@ in
       }];
 
       # ignore vm tap interfaces
-      ignore.ifname = [ "^vm-.+$" "^vnet\d+$" "^macvtap\d+$" ];
+      ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" "^macvtap\\d+$" ];
       interfaces = [
         { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
         { name = "bond"; link = { state = "up"; kind = "bond"; }; }
