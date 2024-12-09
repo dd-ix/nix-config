@@ -28,6 +28,4 @@
       useACMEHost = "nms.${config.dd-ix.domain}";
     };
   };
-
-  systemd.services.librenms-setup.after = [ "network.target" ];
 }
