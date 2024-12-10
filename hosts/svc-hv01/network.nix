@@ -9,6 +9,8 @@ in
 {
   networking.ifstate = {
     enable = true;
+    initrd.enable = true;
+
     settings = {
       # TODO: probably remove with ifstate v2
       defaults = [{
@@ -32,7 +34,7 @@ in
         { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
         { name = "bond"; link = { state = "up"; kind = "bond"; }; }
         { name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
-        { name = "eno3"; link = { kind = "physical"; businfo = "0000:06:00.1"; }; }
+        { name = "eno3"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.1"; }; }
         { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
         { name = "eno5"; link = { kind = "physical"; businfo = "0000:06:00.3"; }; }
         (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
