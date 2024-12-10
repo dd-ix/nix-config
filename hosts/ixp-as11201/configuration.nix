@@ -69,18 +69,18 @@
           "2001:4:112::1/48" #  blackhole.as112.arpa (anycast)
         ];
       }
-      # {
-      #     name = "ixp-peering";
-      #     link = {
-      #       state = "up";
-      #       kind = "physical";
-      #       permaddr = macPeering;
-      #     };
-      #     addresses = [
-      #       "2001:7f8:79::70:1/64"
-      #       "193.201.151.70/26"
-      #     ];
-      #   }
+      {
+        name = "ixp-peering";
+        link = {
+          state = "up";
+          kind = "physical";
+          permaddr = "40:f2:e9:2d:d6:6a";
+        };
+        addresses = [
+          "2001:7f8:79::70:1/64"
+          "193.201.151.70/26"
+        ];
+      }
     ];
   };
 

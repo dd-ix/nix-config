@@ -46,13 +46,13 @@ in
             bond_updelay = 300;
           };
         }
-        { name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
+        #{ name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
         { name = "eno3"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.1"; }; }
         { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
         { name = "eno5"; link = { kind = "physical"; businfo = "0000:06:00.3"; }; }
         (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
         (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
-        { name = "ixp-peering"; link = { state = "up"; kind = "bridge"; }; }
+        #{ name = "ixp-peering"; link = { state = "up"; kind = "bridge"; }; }
       ] ++
       (lib.flatten (lib.mapAttrsToList
         (name: value: [
