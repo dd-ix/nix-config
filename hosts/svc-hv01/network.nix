@@ -32,7 +32,20 @@ in
       ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" "^macvtap\\d+$" ];
       interfaces = [
         { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
-        { name = "bond"; link = { state = "up"; kind = "bond"; }; }
+        {
+          name = "bond";
+          link = {
+            state = "up";
+            kind = "bond";
+            # 802.3ad
+            bond_mode = 4;
+            bond_ad_lacp_rate = 1;
+            # layer3+4
+            bond_xmit_hash_policy = 1;
+            bond_miimon = 100;
+            bond_updelay = 300;
+          };
+        }
         { name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
         { name = "eno3"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.1"; }; }
         { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
