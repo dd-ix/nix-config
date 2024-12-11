@@ -57,11 +57,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733682445,
-        "narHash": "sha256-/mdwujjkfjJw0FMpNXQ2aXFknE68Hr6IPgyYbzzqSRI=",
+        "lastModified": 1733950433,
+        "narHash": "sha256-VkqDF0eSttWLosV4T3CNWd7u7XAva7oCkUrMcj54rFk=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "9c62c507ec2e7088ba2d4929d8558729398d4266",
+        "rev": "79f0723b81462742d8a6b998a459f341527cdd7f",
         "type": "github"
       },
       "original": {
