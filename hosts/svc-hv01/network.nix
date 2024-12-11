@@ -24,12 +24,13 @@ in
         # add some implicit link settings
         link = {
           state = "down";
-          ifalias = "";
+          # TODO: never gets the interfaces into a clean state
+          #ifalias = "";
         };
       }];
 
       # ignore vm tap interfaces
-      ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" "^macvtap\\d+$" ];
+      ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" ];
       interfaces = [
         { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
         {
@@ -46,13 +47,14 @@ in
             bond_updelay = 300;
           };
         }
-        #{ name = "eno2"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.0"; master = "ixp-peering"; }; }
-        { name = "eno3"; link = { state = "up"; kind = "physical"; businfo = "0000:06:00.1"; }; }
+        # used in ixp-as11201
+        { name = "eno2"; link = { kind = "physical"; businfo = "0000:06:00.0"; }; }
+        # used in prj-llb01
+        { name = "eno3"; link = { kind = "physical"; businfo = "0000:06:00.1"; }; }
         { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
         { name = "eno5"; link = { kind = "physical"; businfo = "0000:06:00.3"; }; }
         (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
         (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
-        #{ name = "ixp-peering"; link = { state = "up"; kind = "bridge"; }; }
       ] ++
       (lib.flatten (lib.mapAttrsToList
         (name: value: [
