@@ -101,6 +101,7 @@
         type = "redis";
         connstr = "addr=${config.services.redis.servers.grafana.bind}:${builtins.toString config.services.redis.servers.grafana.port},pool_size=100,db=0,ssl=false";
       };
+      metrics.enabled = false;
     };
     provision = {
       enable = true;
