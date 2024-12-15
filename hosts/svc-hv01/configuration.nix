@@ -23,9 +23,6 @@ in
     #./initrd_network.nix
   ];
 
-  # zfs is not compatible using 6.11 yet
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
-
   dd-ix =
     let
       domains = [
