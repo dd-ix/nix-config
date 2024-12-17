@@ -49,8 +49,7 @@
 
     authentik = {
       # TODO: bump to latest again, after https://tracker.nixos.c3d2.de/?pr=362304
-      # https://github.com/fpletz/authentik-nix/commit/24907f67ee4850179e46c19ce89334568d2b05c6
-      url = "github:nix-community/authentik-nix/24907f67ee4850179e46c19ce89334568d2b05c6";
+      url = "github:fpletz/authentik-nix/24.11";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };

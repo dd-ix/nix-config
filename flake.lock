@@ -16,33 +16,33 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1733359401,
-        "narHash": "sha256-j1BxzpZdK8MOrij9lb3Ph0O8vDCZG/dnvKa0nTYGqCg=",
-        "owner": "nix-community",
+        "lastModified": 1734115107,
+        "narHash": "sha256-0Rz8OZNMH1/a06Mw6TprwSw93PH6y3WyFTWJ2UJERvw=",
+        "owner": "fpletz",
         "repo": "authentik-nix",
-        "rev": "24907f67ee4850179e46c19ce89334568d2b05c6",
+        "rev": "f6742fc5dd624ad3bfae2cf6daef24ce49e1432b",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "fpletz",
+        "ref": "24.11",
         "repo": "authentik-nix",
-        "rev": "24907f67ee4850179e46c19ce89334568d2b05c6",
         "type": "github"
       }
     },
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1732213300,
-        "narHash": "sha256-4Pv35cnZGiTxe6j2O0F9L9sHzxVIC1SazeAUD5kWeBs=",
+        "lastModified": 1733849292,
+        "narHash": "sha256-gJYgrRxytoGHkjeEsiKY/tl06D8XOnZZ9SDpK1WSyUw=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "527e584699abc93712114b05f70f59c5187caa66",
+        "rev": "0edd7531a152910e6bdd4f7d3d0cde3ed5fdd956",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2024.10.4",
+        "ref": "version/2024.10.5",
         "repo": "authentik",
         "type": "github"
       }
