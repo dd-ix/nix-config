@@ -25,7 +25,7 @@
     };
 
     website = {
-      url = "github:dd-ix/website";
+      url = "github:dd-ix/website/19103262ac6a76ef2eda5a7baf708f476365dfd0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
