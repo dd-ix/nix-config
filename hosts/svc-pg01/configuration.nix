@@ -1,7 +1,3 @@
-{ config, ... }:
-let
-  addr = "2a01:7700:80b0:6001::5";
-in
 {
   dd-ix = {
     useFpx = true;
