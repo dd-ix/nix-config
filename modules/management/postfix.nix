@@ -24,11 +24,12 @@ let
     "[2a01:7700:80b0:6001::2]/128"
     # svc-tix01
     "[2a01:7700:80b0:6001::16]/128"
-
+    # svc-trans01
+    "[2a01:7700:80b0:6001::17]/128"
   ];
 
   # enable virtual aliases for those domains
-  virtual_alias_domains = "cloud.dd-ix.net vault.dd-ix.net wiki.dd-ix.net auth.dd-ix.net svc-hv01.dd-ix.net svc-adm01.dd-ix.net portal.dd-ix.net obs.dd-ix.net tickets.dd-ix.net";
+  virtual_alias_domains = "cloud.dd-ix.net vault.dd-ix.net wiki.dd-ix.net auth.dd-ix.net svc-hv01.dd-ix.net svc-adm01.dd-ix.net portal.dd-ix.net obs.dd-ix.net tickets.dd-ix.net translate.dd-ix.net";
 
   # virtual alias map for $virtual_alias_domains
   virtual_alias_map =
@@ -42,6 +43,7 @@ let
       noreply@portal.dd-ix.net       noc@dd-ix.net
       noreply@obs.dd-ix.net          noc@dd-ix.net
       noreply@tickets.dd-ix.net      noc@dd-ix.net
+      noreply@translate.dd-ix.net    noc@dd-ix.net
     '';
 in
 {
