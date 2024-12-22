@@ -1,9 +1,15 @@
-{ self, lib, config, ... }:
+{ self, lib, config, pkgs, ... }:
 
 {
   sops.secrets."weblate/django_secret_key" = {
     sopsFile = self + /secrets/management/translate.yaml;
     owner = config.systemd.services.weblate.serviceConfig.User;
+  };
+
+  systemd.services.weblate-postgresql-setup.serviceConfig = {
+    ExecStart = lib.mkForce (lib.getExe' pkgs.coreutils "true");
+    User = lib.mkForce "nobody";
+    Group = lib.mkForce "nobody";
   };
 
   services = {
