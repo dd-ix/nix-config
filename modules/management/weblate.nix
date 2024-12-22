@@ -48,6 +48,7 @@
       smtp = {
         enable = true;
         host = "svc-mta01.dd-ix.net";
+        port = 25;
         from = "noreply@translate.dd-ix.net";
       };
       extraConfig = /* python */ ''
