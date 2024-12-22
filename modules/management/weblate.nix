@@ -1,4 +1,4 @@
-{self, lib, config, ... }:
+{ self, lib, config, ... }:
 
 {
   sops.secrets."weblate/django_secret_key" = {
@@ -6,14 +6,29 @@
     owner = config.systemd.services.weblate.serviceConfig.User;
   };
 
-  services.weblate = {
-    enable = true;
-    localDomain = "weblate.${config.dd-ix.domain}";
-    djangoSecretKeyFile = config.sops.secrets."weblate/django_secret_key".path;
-    smtp = {
+  services = {
+    weblate = {
       enable = true;
-      host = "svc-mta01.dd-ix.net";
-      user = "noreply@translate.dd-ix.net";
+      localDomain = "translate.${config.dd-ix.domain}";
+      djangoSecretKeyFile = config.sops.secrets."weblate/django_secret_key".path;
+      smtp = {
+        enable = true;
+        host = "svc-mta01.dd-ix.net";
+        user = "noreply@translate.dd-ix.net";
+      };
+    };
+    nginx.virtualHosts. "translate.${config.dd-ix.domain}" = {
+      listen = [{
+        addr = "[::]:443";
+        proxyProtocol = true;
+        ssl = true;
+      }];
+
+      onlySSL = true;
+      useACMEHost = "translate.${config.dd-ix.domain}";
+
+      forceSSL = lib.mkForce false;
+      enableACME = lib.mkForce false;
     };
   };
 

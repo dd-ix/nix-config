@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024122000  ; Serial
+               2024122200  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -167,3 +167,4 @@ _acme-challenge.tickets        CNAME  tickets.acme-dns
 _acme-challenge.events         CNAME  events.acme-dns
 _acme-challenge.nms            CNAME  nms.acme-dns
 _acme-challenge.opening        CNAME  opening.acme-dns
+_acme-challenge.translate      CNAME  translate.acme-dns
