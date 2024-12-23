@@ -99,6 +99,7 @@ in
             "https://portal.dd-ix.net/login"
             "https://wiki.dd-ix.net/status"
             "https://auth.dd-ix.net/-/health/ready/"
+            "https://translate.dd-ix.net/healthz/"
           ];
         }];
       }
