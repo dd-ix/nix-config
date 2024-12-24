@@ -10,7 +10,6 @@ in
   services = {
     alice-lg = {
       enable = true;
-      package = pkgs.callPackage ../../resources/alice.nix { };
       settings = lib.mkMerge [
         {
           server = {
@@ -58,7 +57,7 @@ in
             "57328:64512:21" = "Origin ASN is included in client's AS-SET";
             "57328:64512:20" = "Origin ASN is NOT included in client's AS-SET";
             "57328:64512:31" = "Prefix matched by a RPKI ROA for the authorized origin ASN";
-            "57328:64512:41" = "Route authorized soley because of a client white list entry";
+            "57328:64512:41" = "Route authorized solely because of a client white list entry";
             "57328:1000:1" = "RPKI Valid";
             "57328:1000:2" = "RPKI Unknown";
             "57328:1000:4" = "RPKI Invalid";
@@ -161,7 +160,7 @@ in
     };
   };
 
-  environment .etc."alice-lg/alice.conf".source = lib.mkForce (pkgs.writeText "alice.conf" ''
+  environment.etc."alice-lg/alice.conf".source = lib.mkForce (pkgs.writeText "alice.conf" ''
     ${lib.generators.toINI {} config.services.alice-lg.settings}
   
     [neighbors_columns]
