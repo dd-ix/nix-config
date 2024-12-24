@@ -33,6 +33,7 @@
           "= /g/news".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
           "= /g/ddnog".return = "301 https://lists.dd-ix.net/postorius/lists/ddnog.lists.dd-ix.net/";
           "= /g/opening".return = "301 https://dd-ix.net/event/opening";
+          "= /g/vint".return = "301 https://videocampus.sachsen.de/video/opening-message-from-vint-cerf-dd-ix-opening-november-25-2024/698/815b60bd0c94e0274ad28fc8c177ff64";
 
           # legacy
           "= /g/ml".return = "301 https://lists.dd-ix.net/postorius/lists/news.lists.dd-ix.net/";
