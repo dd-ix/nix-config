@@ -4,7 +4,8 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
   users.users.root = {
     openssh.authorizedKeys.keyFiles = [
-      ../../keys/ssh/tassilo
+      ../../keys/ssh/tassilo_1
+      ../../keys/ssh/tassilo_2
       ../../keys/ssh/melody
       ../../keys/ssh/fiasko
       ../../keys/ssh/marcel
