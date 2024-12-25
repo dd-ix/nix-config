@@ -13,6 +13,7 @@
     ./kernel.nix
     ./tmux.nix
     ./neovim.nix
+    ./docker.nix
 
     ./old.nix
   ];

@@ -1,6 +1,7 @@
 { lib, pkgs, config, ... }:
 
 let
+  # original source: https://github.com/nix-community/srvos/blob/main/nixos/mixins/latest-zfs-kernel.nix
   isUnstable = config.boot.zfs.package == pkgs.zfsUnstable;
   zfsCompatibleKernelPackages = lib.filterAttrs
     (

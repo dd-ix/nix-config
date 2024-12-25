@@ -25,7 +25,7 @@
       # If one connection to a remote builder failed, don't cancel already running builds!
       keep-going = true;
 
-      substituters = [ "https://nix-community.cachix.org/?priority=10" ];
+      substituters = [ "https://nix-community.cachix.org/?priority=45" ];
       trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
       trusted-users = [ "@wheel" ];
     };
