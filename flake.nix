@@ -48,8 +48,7 @@
     };
 
     authentik = {
-      # TODO: bump to latest again, after https://tracker.nixos.c3d2.de/?pr=362304
-      url = "github:fpletz/authentik-nix/24.11";
+      url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
