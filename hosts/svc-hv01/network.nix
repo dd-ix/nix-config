@@ -24,8 +24,7 @@ in
         # add some implicit link settings
         link = {
           state = "down";
-          # TODO: never gets the interfaces into a clean state
-          #ifalias = "";
+          ifalias = "";
         };
       }];
 
