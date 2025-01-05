@@ -131,11 +131,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733773074,
-        "narHash": "sha256-iJOZRiAL2jlyNl0raMuDMcH2icndvMn2i2E+B+rxwpc=",
+        "lastModified": 1736087207,
+        "narHash": "sha256-nN0YGaRURfIu9VoA/m68YUZYw0jVoIAIdoZ0Lr5OmtE=",
         "ref": "refs/heads/main",
-        "rev": "62b892fb5d006dfe8dfc05f933687a8eec662212",
-        "revCount": 52,
+        "rev": "b7ce1308175d5ad4218cb4d90f4a88939ef72329",
+        "revCount": 54,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -392,11 +392,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735844895,
-        "narHash": "sha256-CIRlqX9tBK2awJkmVu2cKuap/0QziDXStQZ/u/+e8Z4=",
+        "lastModified": 1736064798,
+        "narHash": "sha256-xJRN0FmX9QJ6+w8eIIIxzBU1AyQcLKJ1M/Gp6lnSD20=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "24d89184adf76d7ccc99e659dc5f3838efb5ee32",
+        "rev": "5dc08f9cc77f03b43aacffdfbc8316807773c930",
         "type": "github"
       },
       "original": {
