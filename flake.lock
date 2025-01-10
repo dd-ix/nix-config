@@ -16,11 +16,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1736005916,
-        "narHash": "sha256-a/sqKV5GvqEcQEGfUGQkhWaUnqIRi8oiDAHbBG1oFZg=",
+        "lastModified": 1736445563,
+        "narHash": "sha256-+f1MWPtja+LRlTHJP/i/3yxmnzo2LGtZmxtJJTdAp8o=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "5db6f7711a28abd4b6bbe152c8a7de9d00b1e30d",
+        "rev": "bf5a5bf42189ff5f468f0ff26c9296233a97eb6c",
         "type": "github"
       },
       "original": {
@@ -32,16 +32,16 @@
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1734959339,
-        "narHash": "sha256-CkUmsVKzAQ/VWIhtxWxlcGtrWVa8hxqsMqvfcsG5ktA=",
+        "lastModified": 1736440980,
+        "narHash": "sha256-Z3rFFrXrOKaF9NpY/fInsEbzdOWnWqLfEYl7YX9hFEU=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "e87a17fd8169d3fa92bcc47eb2743928df83bc95",
+        "rev": "9d81f0598c7735e2b4616ee865ab896056a67408",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2024.12.1",
+        "ref": "version/2024.12.2",
         "repo": "authentik",
         "type": "github"
       }
@@ -56,11 +56,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734288564,
-        "narHash": "sha256-uVVDEt+SHWJak8YpFvRUjKc1Eh7f7oLqNj+cDk47UlI=",
+        "lastModified": 1736536139,
+        "narHash": "sha256-f2Yrhmp7xofcpXs7eGiIZeflTamlfwP3ewk8y7MD5FE=",
         "owner": "dd-ix",
         "repo": "ddix-ansible-ixp",
-        "rev": "659184b2603fbb8fb8936d86f56a033f872a6be4",
+        "rev": "16742330eccaa7953a83adc956efbe3ff5101eab",
         "type": "github"
       },
       "original": {
@@ -178,11 +178,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1735074045,
-        "narHash": "sha256-CeYsC8J2dNiV2FCQOxK1oZ/jNpOF2io7aCEFHmfi95U=",
+        "lastModified": 1736383159,
+        "narHash": "sha256-oNIfJUvQFhFKmNp7MfKw0IghOoKBLBgPPrVolN2M18A=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "2ae08de8e8068b00193b9cfbc0acc9dfdda03181",
+        "rev": "3394c37bc8105c54f45b2b5395428a09647c1f57",
         "type": "github"
       },
       "original": {
@@ -264,11 +264,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736002057,
-        "narHash": "sha256-o9qrfpnEuEjSNRnZPGo28aPuyLy9eDpLfQOtRzn6HRA=",
+        "lastModified": 1736535607,
+        "narHash": "sha256-owPg51O55wiALkwjh59xxGv2Jf8x9eWAPVBgdvPaeNw=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "6774e47f546e08ab9f4b6240f9b7da9dee36759d",
+        "rev": "48d3d30043ba045da2028e80645e36c04a6a9320",
         "type": "github"
       },
       "original": {
@@ -392,11 +392,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736064798,
-        "narHash": "sha256-xJRN0FmX9QJ6+w8eIIIxzBU1AyQcLKJ1M/Gp6lnSD20=",
+        "lastModified": 1736515725,
+        "narHash": "sha256-4P99yL8vGehwzytkpP87eklBePt6aqeEC5JFsIzhfUs=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "5dc08f9cc77f03b43aacffdfbc8316807773c930",
+        "rev": "f214c1b76c347a4e9c8fb68c73d4293a6820d125",
         "type": "github"
       },
       "original": {
@@ -483,11 +483,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735603490,
-        "narHash": "sha256-YMVwVQVXR8o3enmBQuHkhSL7Jl+cTFmqaUi7gJL3DKA=",
+        "lastModified": 1736228168,
+        "narHash": "sha256-q0ovJGS8d4sQDoWngagYbvrb3wnQzDv3JSQQPIzLBX8=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "f8a4a73cd8f561c3835cd354d568b508a6587983",
+        "rev": "80d0a34d88a50074c569a0cb54f85453f829a9e0",
         "type": "github"
       },
       "original": {
