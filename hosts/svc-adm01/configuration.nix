@@ -75,11 +75,20 @@
       };
     in
     {
-      # build configs
-      ddix-ixp-build = {
+      # NOTE: workaround because RemainAfterExit does not work with timers
+      ddix-ixp-build-trigger = {
         enable = true;
         # every 4 hours
         startAt = "00/4:07";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "systemctl restart ddix-ixp-build";
+        };
+      };
+
+      # build configs
+      ddix-ixp-build = {
+        enable = true;
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -t sflow_build,bird_build,eos_build,rdns_build";
           RemainAfterExit = "yes";
