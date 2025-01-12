@@ -61,7 +61,6 @@
           "AROUTESERVER_WORKDIR=/var/lib/arouteserver"
           "AROUTESERVER_SECRETS_FILE=${config.sops.secrets.arouteserver_config.path}"
         ];
-        RemainAfterExit = "yes";
       };
       mkFailureUnit = { name, prefix, unit }: {
         enable = true;
@@ -83,6 +82,7 @@
         startAt = "00/4:07";
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -t sflow_build,bird_build,eos_build,rdns_build";
+          RemainAfterExit = "yes";
         };
         unitConfig.OnFailure = "ddix-ixp-build-failed.service";
       };
