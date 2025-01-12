@@ -94,7 +94,7 @@
         # every 4 hours
         startAt = "03/4:15";
         after = [ "ddix-ixp-build.service" ];
-        requisite = [ "ddix-ixp-build.service" ];
+        bindsTo = [ "ddix-ixp-build.service" ];
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t rdns_push,rdns_engage";
         };
@@ -111,7 +111,7 @@
         # every 4 hours
         startAt = "03/4:15";
         after = [ "ddix-ixp-build.service" ];
-        requisite = [ "ddix-ixp-build.service" ];
+        bindsTo = [ "ddix-ixp-build.service" ];
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t sflow_push";
         };
@@ -125,7 +125,7 @@
       # deploy route server configs
       "ddix-ixp-deploy-rs@" = {
         after = [ "ddix-ixp-build.service" ];
-        requisite = [ "ddix-ixp-build.service" ];
+        bindsTo = [ "ddix-ixp-build.service" ];
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t bird_push,bird_engage -l %i,";
         };
@@ -154,7 +154,7 @@
       # deploy switches
       "ddix-ixp-deploy-sw@" = {
         after = [ "ddix-ixp-build.service" ];
-        requisite = [ "ddix-ixp-build.service" ];
+        bindsTo = [ "ddix-ixp-build.service" ];
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -e engage_config=true -t eos_push,eos_engage -l localhost,%i";
         };
