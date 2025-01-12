@@ -82,7 +82,7 @@
         startAt = "00/4:07";
         serviceConfig = serviceConfig // {
           ExecStart = "${lib.getExe pkgs.ddix-ixp-deploy} -D -t sflow_build,bird_build,eos_build,rdns_build";
-          RemainAfterExit = "yes";
+          #RemainAfterExit = "yes";
         };
         unitConfig.OnFailure = "ddix-ixp-build-failed.service";
       };
