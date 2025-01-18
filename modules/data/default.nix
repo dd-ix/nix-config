@@ -94,7 +94,7 @@ in
 
   imports =
     let
-      hosts = builtins.attrNames (builtins.readDir (self + /hosts));
+      hosts = builtins.attrNames self.nixosConfigurations;
     in
     [
       ./nets.nix

@@ -481,21 +481,21 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-tix01 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
-          modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            ifstate.nixosModules.default
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
-            nixos-modules.nixosModule
-            ./hosts/svc-tix01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
-          ];
-        };
+        #svc-tix01 = nixpkgs.lib.nixosSystem {
+        #  system = "x86_64-linux";
+        #  specialArgs = { inherit inputs self; };
+        #  modules = [
+        #    self.nixosModules.common
+        #    self.nixosModules.data
+        #    ifstate.nixosModules.default
+        #    microvm.nixosModules.microvm
+        #    sops-nix.nixosModules.default
+        #    nixos-modules.nixosModule
+        #    ./hosts/svc-tix01
+        #    ./modules/dd-ix
+        #    ./modules/dd-ix-microvm.nix
+        #  ];
+        #};
         svc-trans01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
