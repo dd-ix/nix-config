@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2024122200  ; Serial
+               2025012500  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -31,7 +31,7 @@ $TTL    1h         ; default TTL for zone
          TXT   "google-site-verification=No_02ml9q6j8O_GazUl-gHKDyVQv-HrafEq3MgmCIEI"
 
          TXT   "v=DMARC1; p=none; rua=mailto:postmaster@dd-ix.net"
-         
+
          MX  10  mail.netarix.net.
 
 ;; Delegations
@@ -124,6 +124,9 @@ svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
 svc-rs01 AAAA 2a01:7700:80b0:4001::2
 svc-rs02 AAAA 2a01:7700:80b0:4002::2
 
+
+;; External Sites (i.e. Codeberg Pages)
+audix          CNAME  audix.dd-ix.codeberg.page.
 
 ;; IXP
 ixp-cc-sw01    AAAA  2a01:7700:80b0:4000::1
