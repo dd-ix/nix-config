@@ -19,7 +19,8 @@
     };
 
     microvm = {
-      url = "github:astro/microvm.nix";
+      # currently broken again
+      url = "github:astro/microvm.nix/abab3cf7fce02e407e427d406e80f7b4e67b25a4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
