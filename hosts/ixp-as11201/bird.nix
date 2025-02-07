@@ -1,7 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
+
 {
   services.bird2 = {
     enable = true;
+    package = pkgs.bird3;
     config = ''
       # log to stderr
       log stderr all;
