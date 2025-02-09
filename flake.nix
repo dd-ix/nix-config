@@ -19,8 +19,7 @@
     };
 
     microvm = {
-      # currently broken again
-      url = "github:astro/microvm.nix/abab3cf7fce02e407e427d406e80f7b4e67b25a4";
+      url = "github:MarcelCoding/microvm.nix/fix-cloud-hypervisor-pci";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
