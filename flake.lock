@@ -178,16 +178,15 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1739100396,
-        "narHash": "sha256-Nrja49QC+61E83srVx2XXG66T7Yf/8eI/X0pp9qm7rY=",
-        "owner": "MarcelCoding",
+        "lastModified": 1739104176,
+        "narHash": "sha256-bNvtud2PUcbYM0i5Uq1v01Dcgq7RuhVKfjaSKkW2KRI=",
+        "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "267795140c17323b3a2ac458e7548a9af03d7231",
+        "rev": "d3a9b7504d420a1ffd7c83c1bb8fe57deaf939d2",
         "type": "github"
       },
       "original": {
-        "owner": "MarcelCoding",
-        "ref": "fix-cloud-hypervisor-pci",
+        "owner": "astro",
         "repo": "microvm.nix",
         "type": "github"
       }

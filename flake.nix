@@ -19,7 +19,7 @@
     };
 
     microvm = {
-      url = "github:MarcelCoding/microvm.nix/fix-cloud-hypervisor-pci";
+      url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
