@@ -76,9 +76,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    alice-lg = {
+      url = "github:MarcelCoding/alice-lg/vite";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, ... }: {
+  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, alice-lg, ... }: {
 
     nixosModules = {
       common = ./modules/common;
@@ -337,6 +343,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
+            { nixpkgs.overlays = [ alice-lg.overlays.default ]; }
             self.nixosModules.common
             self.nixosModules.data
             ifstate.nixosModules.default
