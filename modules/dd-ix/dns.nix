@@ -1,4 +1,3 @@
-{ ... }:
 {
   networking.nameservers = [
     # rns-01.ibh.net
@@ -8,7 +7,9 @@
   ];
 
   services.resolved = {
+    enable = true;
     dnssec = "true";
+    llmnr = "false";
     extraConfig = ''
       FallbackDNS=
     '';
