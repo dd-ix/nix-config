@@ -60,7 +60,7 @@ in
         "opcache.interned_strings_buffer" = "16";
       };
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc onlyoffice;
+        inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc onlyoffice forms;
       };
       extraAppsEnable = true;
       # NixOS Modules
