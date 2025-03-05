@@ -103,6 +103,33 @@ in
           ];
         }];
       }
+      {
+        job_name = "snmp";
+        metrics_path = "/snmp";
+        params = {
+          module = [ "arista_sw" ];
+        };
+        relabel_configs = [
+          {
+            "source_labels" = [ "__address__" ];
+            "target_label" = "__param_target";
+          }
+          {
+            "source_labels" = [ "__param_target" ];
+            "target_label" = "instance";
+          }
+          {
+            "target_label" = "__address__";
+            "replacement" = "svc-exp01.dd-ix.net:9116";
+          }
+        ];
+        static_configs = [{
+          targets = [
+            "ixp-c2-sw01.dd-ix.net"
+            "ixp-cc-sw01.dd-ix.net"
+          ];
+        }];
+      }
     ];
   };
 
