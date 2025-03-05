@@ -6,6 +6,11 @@ let
     version = "1.1.3";
     zipHash = "sha256-HUFJcolJqdveAB5e4kjBnEXd3+ZbyXgAHawlEHDGtrw=";
   };
+  network-weathermap-plugin = pkgs.grafanaPlugins.grafanaPlugin {
+    pname = "knightss27-weathermap-panel";
+    version = "0.4.3";
+    zipHash = "sha256-N0jhFKYEgU8dZCJ1txcYg0rr17+FkGJjXjwyq2TSa74=";
+  };
 in
 {
   sops.secrets = {
@@ -45,7 +50,7 @@ in
 
     grafana = {
       enable = true;
-      declarativePlugins = [ sankey-panel-plugin ];
+      declarativePlugins = [ sankey-panel-plugin network-weathermap-plugin ];
       settings = {
         server = {
           enforce_domain = true;
