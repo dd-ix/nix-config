@@ -26,6 +26,7 @@ keys:
   - &svc-tix01 age1anw95uf4hpyawn7704uhzk9aeqzfnzynpufmjdjvut8tqy3k3dss3cvudj
   - &svc-nms01 age1lsgvx3shakx0ekajppajtkvss78v588ehkwqhpnme0txgptvdc6seqsmwr
   - &svc-trans01 age1merkqjavxllcv5urgm2cfgxg7mh8cnvwunlnyvk49dllnt5hwugsgcpllw
+  - &svc-exp01 age12eeaqsw8w5lj8u064tnuq5nat87vr0nnjqjnlart5r8ge8pszg0sp08x3p
 creation_rules:
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
@@ -266,4 +267,15 @@ creation_rules:
         - *admin_marcel
         - *admin_maurice
         age:
-        - *svc-trans01 
+        - *svc-trans01
+  - path_regex: secrets/management/exp.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        - *admin_maurice
+        age:
+        - *svc-exp01
+

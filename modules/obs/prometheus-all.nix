@@ -107,7 +107,7 @@ in
         job_name = "snmp";
         metrics_path = "/snmp";
         params = {
-          module = [ "arista_sw" ];
+          module = [ "if_mib" ];
         };
         relabel_configs = [
           {
