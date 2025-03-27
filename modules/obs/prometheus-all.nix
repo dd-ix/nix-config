@@ -52,6 +52,24 @@ in
         }];
       }
       {
+        job_name = "nginxlog_exporter";
+        static_configs = [{
+          targets =
+            let
+              # filters out all the systems where monitoring is turned off
+              monitoredSystems = builtins.filter (x: x.config.services.prometheus.exporters.nginxlog.enable) allSystems;
+
+              # turns the hostname into an address
+              extractAddress = host: "${host.config.dd-ix.hostName}.dd-ix.net:9117";
+
+              # list of addresses
+              listAddress = builtins.map extractAddress monitoredSystems;
+
+            in
+            listAddress;
+        }];
+      }
+      {
         job_name = "openrc_exporter";
         static_configs = [{
           targets = [

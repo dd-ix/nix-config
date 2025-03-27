@@ -1,4 +1,7 @@
+{ lib, config, ... }:
+
 let
+  enable = config.services.nginx.enable;
   headers = ''
     # Permissions Policy - gps only
     more_set_headers "Permissions-Policy: geolocation=()";
@@ -25,14 +28,28 @@ let
   '';
 in
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  services.nginx = {
-    recommendedZstdSettings = true;
-    recommendedTlsSettings = true;
-    recommendedProxySettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    recommendedBrotliSettings = true;
-    commonServerConfig = headers;
+  networking.firewall.allowedTCPPorts = lib.mkIf enable [ 80 443 ];
+  services = {
+    nginx = {
+      recommendedZstdSettings = true;
+      recommendedTlsSettings = true;
+      recommendedProxySettings = true;
+      recommendedOptimisation = true;
+      recommendedGzipSettings = true;
+      recommendedBrotliSettings = true;
+      commonServerConfig = headers;
+    };
+    prometheus.exporters.nginxlog = lib.mkIf enable {
+      enable = true;
+      group = "nginx";
+      openFirewall = true;
+      settings.namespaces = [{
+        name = "nginx";
+        source.files = [ "/var/log/nginx/access.log" ];
+        # default value extracted from:
+        # https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format
+        format = "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\"";
+      }];
+    };
   };
 }
