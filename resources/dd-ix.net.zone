@@ -64,7 +64,6 @@ svc-hv01      AAAA  2a01:7700:80b0:7000::2
               TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
 svc-adm01     AAAA  2a01:7700:80b0:7002::2
-svc-node01    AAAA  2a01:7700:80b0:7002::3
 ixp-as11201   AAAA  2a01:7700:80b0:4101::2
 svc-prom01    AAAA  2a01:7700:80b0:7002::4
 svc-prom02    AAAA  2a01:7700:80b0:7002::5

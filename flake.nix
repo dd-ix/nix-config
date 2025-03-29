@@ -141,21 +141,6 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-node01 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
-          modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            ifstate.nixosModules.default
-            microvm.nixosModules.microvm
-            ./hosts/svc-node01
-            sops-nix.nixosModules.default
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
-            nixos-modules.nixosModule
-          ];
-        };
         svc-ns01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
