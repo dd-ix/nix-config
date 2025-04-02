@@ -2,8 +2,9 @@
 
 let
   defaultSnmpConfig = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/prometheus/snmp_exporter/main/snmp.yml";
-    sha256 = "sha256:16w3zgi8dgwx72a47y8qywxg6dfs0p032v233m8vrn2f5biy5n25";
+    # last update: 2025-03-31
+    url = "https://raw.githubusercontent.com/prometheus/snmp_exporter/3983af3304147ae54e63671cc3c0acd6cdc39664/snmp.yml";
+    sha256 = "sha256:1dyggchank04jf9vdvhc00ylxdi8fl7mwww18zyfv7iaibfgkvy6";
   };
   preStartScript = pkgs.writeShellApplication {
     name = "prometheus-snmp-exporter-pre-start";
