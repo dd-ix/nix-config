@@ -14,9 +14,6 @@ in
   services = {
     pretix = {
       enable = true;
-      plugins = with config.services.pretix.package.plugins; [
-        passbook
-      ];
       settings = {
         pretix = {
           url = "https://${pretix_domain}";
