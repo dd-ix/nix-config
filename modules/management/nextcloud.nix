@@ -3,27 +3,30 @@ let
   domain = "cloud.${config.dd-ix.domain}";
 in
 {
-  sops.secrets."cloud_admin_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+  sops.secrets = {
+    "cloud_admin_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
+
+    "cloud_db_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
+
+    "office_env" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = "root";
+    };
   };
 
-  sops.secrets."cloud_db_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+  systemd.services.nextcloud-setup = {
+    after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
   };
-
-  sops.secrets."office_env" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = "root";
-  };
-
-  systemd.services.nextcloud-setup.after = [ "network.target" ];
 
   services = {
-    postgresql = {
-      enable = lib.mkForce false;
-    };
+    postgresql.enable = lib.mkForce false;
     nextcloud = {
       enable = true;
       hostName = domain;
@@ -100,10 +103,10 @@ in
     image = "onlyoffice/documentserver:8.3.0.1";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:7bf6a672e1743d62002aa518ea880f486f642c238ee93aa6d572f899a05da486";
-      sha256 = "1f26jhczd9p0g17y7r4fl1pnhsj9bisfaggcm2pyfjnqlcyzgdgl";
+      imageDigest = "sha256:9c76330ee4be00623e204c5305b20f8868c37e0e90c88e351c27feb148aada80";
+      sha256 = "0kxx21ax4y8j5jlhfi6qfrv2iahnsfxc0pzspbp483l4x45fi2vg";
       finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "8.3.0.1";
+      finalImageTag = "8.3.2.1";
     };
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];
