@@ -3,27 +3,30 @@ let
   domain = "cloud.${config.dd-ix.domain}";
 in
 {
-  sops.secrets."cloud_admin_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+  sops.secrets = {
+    "cloud_admin_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
+
+    "cloud_db_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
+
+    "office_env" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = "root";
+    };
   };
 
-  sops.secrets."cloud_db_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+  systemd.services.nextcloud-setup = {
+    after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
   };
-
-  sops.secrets."office_env" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = "root";
-  };
-
-  systemd.services.nextcloud-setup.after = [ "network.target" ];
 
   services = {
-    postgresql = {
-      enable = lib.mkForce false;
-    };
+    postgresql.enable = lib.mkForce false;
     nextcloud = {
       enable = true;
       hostName = domain;
