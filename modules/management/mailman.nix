@@ -147,9 +147,5 @@
     enable = true;
     openFirewall = true;
     listenAddress = "::";
-    mailman = {
-      user = "restadmin";
-      passFile = config.sops.secrets."lists_rest_api_pass".path;
-    };
   };
 }
