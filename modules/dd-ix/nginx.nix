@@ -1,6 +1,11 @@
 { lib, config, ... }:
 
 let
+  blockedNetworks = [
+    # cheapy.host LLC - mailman spam - 2025-04-12
+    "196.251.81.0/24"
+  ];
+
   enable = config.services.nginx.enable;
   headers = ''
     # Permissions Policy - gps only
@@ -25,6 +30,8 @@ let
     # real ip
     set_real_ip_from 2a01:7700:80b0:6000::443;
     real_ip_header proxy_protocol;
+
+    ${lib.concatStringsSep "\n" (map (network: "deny ${network};") blockedNetworks)}
   '';
 in
 {
