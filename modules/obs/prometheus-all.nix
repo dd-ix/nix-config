@@ -148,6 +148,14 @@ in
           ];
         }];
       }
+      {
+        job_name = "mailman3";
+        static_configs = [{
+          targets = [
+            "svc-lists01.dd-ix.net:9934"
+          ];
+        }];
+      }
     ];
   };
 

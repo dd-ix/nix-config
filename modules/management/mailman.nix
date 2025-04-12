@@ -36,6 +36,13 @@
     mode = "0440";
   };
 
+  sops.secrets."lists_rest_api_pass" = {
+    sopsFile = self + "/secrets/management/lists.yaml";
+    owner = config.systemd.services.mailman.serviceConfig.User;
+    group = config.systemd.services.mailman.serviceConfig.Group;
+    mode = "0440";
+  };
+
   services.mailman = {
     enable = true;
     serve.enable = true;
@@ -44,6 +51,7 @@
     siteOwner = "noc@dd-ix.net";
     enablePostfix = false;
     dbPassFile = config.sops.secrets."lists_db_pass".path;
+    restApiPassFile = config.sops.secrets."lists_rest_api_pass".path;
     settings = {
       mta = {
         incoming = "mailman.mta.postfix.LMTP";
@@ -130,4 +138,18 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 8024 ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "mailman3-exporter"
+  ];
+
+  services.prometheus.exporters.mailman3 = {
+    enable = true;
+    openFirewall = true;
+    listenAddress = "::";
+    mailman = {
+      user = "restadmin";
+      passFile = config.sops.secrets."lists_rest_api_pass".path;
+    };
+  };
 }
