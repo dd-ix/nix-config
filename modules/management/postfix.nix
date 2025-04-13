@@ -49,9 +49,9 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25 ];
 
-  security.acme.certs.${domain}.postRun = ''
-    systemctl reload postfix.service 
-  '';
+  security.acme.certs.${domain}.reloadServices = [
+    "postfix.service"
+  ];
 
   services.postfix = {
     enable = true;

@@ -19,6 +19,9 @@
     jq
     nix-tree
     whois
+    killall
+    wireguard-tools
+    rsync
   ];
 
   programs = {

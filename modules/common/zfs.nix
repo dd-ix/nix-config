@@ -1,7 +1,9 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   config = lib.mkIf config.boot.zfs.enabled {
+    boot.zfs.package = pkgs.zfs_2_3;
+
     services.zfs = {
       autoSnapshot = {
         enable = true;
