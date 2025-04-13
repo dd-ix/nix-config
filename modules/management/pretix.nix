@@ -18,6 +18,8 @@ in
         pretix = {
           url = "https://${pretix_domain}";
           instance_name = pretix_domain;
+          # this system is air-gapped - the api can therefore not be reached
+          ecb_rates = false;
         };
         database = {
           name = "pretix";
