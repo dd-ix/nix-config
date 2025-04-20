@@ -28,7 +28,7 @@ in
       enable = true;
       hostName = domain;
       https = true;
-      package = pkgs.nextcloud30;
+      package = pkgs.nextcloud31;
       configureRedis = true;
       config = {
         dbtype = "pgsql";
