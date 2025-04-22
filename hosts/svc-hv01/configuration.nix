@@ -1,4 +1,5 @@
-{ self, pkgs, lib, config, ... }:
+{ self, pkgs, lib, ... }:
+
 let
   addr = "[2a01:7700:80b0:7000::2]";
 
@@ -65,46 +66,50 @@ in
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.zfs.requestEncryptionCredentials = true;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        editor = false;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+    zfs.requestEncryptionCredentials = true;
+  };
 
   boot.kernelParams = [
     # allows passing pci devices into microvm's
     "intel_iommu=on"
   ];
 
+  boot.supportedFilesystems = [ "zfs" ];
+
+  networking = {
+    hostId = "eeb0e9de";
+    hostName = "svc-hv01";
+  };
+
   # zfs emails
   nixpkgs.config.packageOverrides = pkgs: {
     zfsStable = pkgs.zfsStable.override { enableMail = true; };
   };
-  services.zfs.zed = {
-    enableMail = true;
-    settings = {
-      ZED_EMAIL_ADDR = [ "marcel.koch@dd-ix.net" ];
-      ZED_NOTIFY_VERBOSE = true;
+
+  services.zfs = {
+    autoSnapshot.enable = true;
+    autoScrub.enable = true;
+    zed = {
+      enableMail = true;
+      settings = {
+        ZED_EMAIL_ADDR = [ "marcel.koch@dd-ix.net" ];
+        ZED_NOTIFY_VERBOSE = true;
+      };
     };
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  boot.supportedFilesystems = [ "zfs" ];
-
-  networking.hostId = "eeb0e9de";
-  networking.hostName = "svc-hv01";
-
-  services.zfs.autoSnapshot.enable = true;
-  services.zfs.autoScrub.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    ethtool
-  ];
-
-  sops.defaultSopsFile = self + /secrets/management/secrets.yaml;
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops = {
+    defaultSopsFile = self + /secrets/management/secrets.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  };
 
   virtualisation.libvirtd = {
     enable = true;
@@ -114,18 +119,6 @@ in
   # required by libvirtd
   security.polkit.enable = true;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  system.stateVersion = "23.05";
 }
 
