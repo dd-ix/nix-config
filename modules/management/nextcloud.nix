@@ -100,10 +100,10 @@ in
     image = "onlyoffice/documentserver:8.3.0.1";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:7bf6a672e1743d62002aa518ea880f486f642c238ee93aa6d572f899a05da486";
-      sha256 = "1f26jhczd9p0g17y7r4fl1pnhsj9bisfaggcm2pyfjnqlcyzgdgl";
+      imageDigest = "sha256:0daa2d1d414d49286bfa9495fc0c936e7e73edaf8944a61102a7a6353a952297";
+      sha256 = "0131y1c83vg24gz9c7j14ap467hmxli4g13dcpf47rgf82alrawi";
       finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "8.3.0.1";
+      finalImageTag = "8.3.3.1";
     };
     environmentFiles = [ config.sops.secrets."office_env".path ];
     extraOptions = [ "--network=host" ];
