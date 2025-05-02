@@ -7,6 +7,7 @@
     services.zfs = {
       autoSnapshot = {
         enable = true;
+        flags = "-k -p --utc";
         frequent = 4;
         hourly = 7;
         daily = 6;
