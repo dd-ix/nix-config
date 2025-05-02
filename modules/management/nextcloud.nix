@@ -97,7 +97,7 @@ in
 
   # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.2.0.1
   virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:8.3.0.1";
+    image = "onlyoffice/documentserver:8.3.3.1";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
       imageDigest = "sha256:0daa2d1d414d49286bfa9495fc0c936e7e73edaf8944a61102a7a6353a952297";
