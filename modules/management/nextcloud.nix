@@ -1,21 +1,19 @@
 { self, config, pkgs, lib, ... }:
+
 let
   domain = "cloud.${config.dd-ix.domain}";
 in
 {
-  sops.secrets."cloud_admin_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
-  };
+  sops.secrets = {
+    "cloud_admin_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
 
-  sops.secrets."cloud_db_pw" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
-  };
-
-  sops.secrets."office_env" = {
-    sopsFile = self + "/secrets/management/cloud.yaml";
-    owner = "root";
+    "cloud_db_pw" = {
+      sopsFile = self + "/secrets/management/cloud.yaml";
+      owner = config.systemd.services.nextcloud-setup.serviceConfig.User;
+    };
   };
 
   systemd.services.nextcloud-setup.after = [ "network.target" ];
@@ -52,6 +50,7 @@ in
         defaultapp = "files";
         appstoreenabled = true;
         overwriteprotocol = "https";
+        #loglevel = 0;
       };
       phpOptions = {
         "opcache.jit" = "tracing";
@@ -60,7 +59,7 @@ in
         "opcache.interned_strings_buffer" = "16";
       };
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc onlyoffice forms;
+        inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc richdocuments forms;
       };
       extraAppsEnable = true;
       # NixOS Modules
@@ -69,46 +68,66 @@ in
 
     nginx.virtualHosts = {
       "cloud.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "cloud.${config.dd-ix.domain}";
       };
       "office.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "office.${config.dd-ix.domain}";
         locations."/" = {
-          proxyPass = "http://127.0.0.1:80";
+          proxyPass = "http://[::1]:${builtins.toString config.services.collabora-online.port}";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_read_timeout 36000s;
+          '';
+        };
+      };
+    };
+
+    collabora-online = {
+      enable = true;
+
+      aliasGroups = [{
+        host = "https://office.${config.dd-ix.domain}";
+        aliases = [ "https://${config.services.nextcloud.hostName}" ];
+      }];
+
+      settings = {
+        # Rely on reverse proxy for SSL
+        ssl = {
+          enable = false;
+          termination = true;
         };
       };
     };
   };
-
-  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 8.2.0.1
-  virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:8.3.3.1";
-    imageFile = pkgs.dockerTools.pullImage {
-      imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:0daa2d1d414d49286bfa9495fc0c936e7e73edaf8944a61102a7a6353a952297";
-      sha256 = "0131y1c83vg24gz9c7j14ap467hmxli4g13dcpf47rgf82alrawi";
-      finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "8.3.3.1";
-    };
-    environmentFiles = [ config.sops.secrets."office_env".path ];
-    extraOptions = [ "--network=host" ];
-  };
-
-  # enable when exists in nixos-modules
-  #virtualisation.podman.aggresiveAutoPrune = true;
 }

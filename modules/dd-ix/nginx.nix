@@ -84,4 +84,10 @@ in
       }];
     };
   };
+
+  networking.hosts = {
+    # add all nginx hosts as localhost to hosts file, avoid connection through rpx when using local services
+    "::1" = builtins.attrNames config.services.nginx.virtualHosts;
+    "127.0.0.1" = builtins.attrNames config.services.nginx.virtualHosts;
+  };
 }
