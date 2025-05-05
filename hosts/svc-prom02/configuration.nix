@@ -1,4 +1,3 @@
-{ ... }:
 {
   dd-ix = {
     useFpx = true;
@@ -7,8 +6,8 @@
     microvm = {
       enable = true;
 
-      mem = 1024 * 2;
-      vcpu = 4;
+      mem = 1024 * 8;
+      vcpu = 16;
     };
 
     acme = [{
