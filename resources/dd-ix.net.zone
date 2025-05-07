@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2025012500  ; Serial
+               2025050700  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -125,7 +125,8 @@ svc-rs02 AAAA 2a01:7700:80b0:4002::2
 
 
 ;; External Sites (i.e. Codeberg Pages)
-audix          CNAME  audix.dd-ix.codeberg.page.
+audix          CNAME  ixpect.dd-ix.codeberg.page.
+ixpect         CNAME  ixpect.dd-ix.codeberg.page.
 
 ;; IXP
 ixp-cc-sw01    AAAA  2a01:7700:80b0:4000::1
