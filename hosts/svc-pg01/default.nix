@@ -10,8 +10,8 @@
     microvm = {
       enable = true;
 
-      mem = 2048;
-      vcpu = 2;
+      mem = 1024 * 4;
+      vcpu = 4;
     };
 
     acme = [{ name = "svc-pg01.dd-ix.net"; }];
