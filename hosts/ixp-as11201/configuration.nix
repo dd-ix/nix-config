@@ -85,7 +85,7 @@
   };
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
-  systemd.services.bird2.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
+  systemd.services.bird.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
 
   system.stateVersion = "23.11";
 }

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  services.bird2 = {
+  services.bird = {
     enable = true;
     package = pkgs.bird2;
     config = ''
@@ -89,7 +89,7 @@
   };
 
   # fix bird2 starting before netns is created
-  systemd.services.bird2 = {
+  systemd.services.bird = {
     wants = [ "network.target" ];
     after = [ "network.target" ];
   };
