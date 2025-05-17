@@ -63,7 +63,7 @@ in
       };
       extraAppsEnable = true;
       # NixOS Modules
-      configureImaginary = true;
+      #configureImaginary = true;
     };
 
     nginx.virtualHosts = {
