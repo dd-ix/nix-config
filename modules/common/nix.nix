@@ -34,6 +34,11 @@
     deleteChannels = true;
     deleteUserProfiles = true;
     diffSystem = true;
+    
+    # lower nix-daemon system resources priority
+    daemonCPUSchedPolicy = "batch";
+    daemonIOSchedClass = "idle";
+    daemonIOSchedPriority = 7;
   };
 
   environment.variables = {

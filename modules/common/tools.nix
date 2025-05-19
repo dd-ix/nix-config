@@ -11,6 +11,7 @@
     iperf3 # speedtest
     bmon # network monitor
     pciutils # pci debugger
+    ethtool
     p7zip
     file
     zip
