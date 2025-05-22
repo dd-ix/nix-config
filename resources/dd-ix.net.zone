@@ -5,7 +5,7 @@ $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
                ; serial is broken again
-               2025050700  ; Serial
+               2025052200  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -43,14 +43,19 @@ acme-dns  NS  ans-01.ibh.de.
 
 
 ;; Hosts
+
+ixp-as11201   AAAA  2a01:7700:80b0:4101::2
+svc-exp01     AAAA  2a01:7700:80b0:4101::3
+
 svc-fw01      A     212.111.245.177
               AAAA  2a01:7700:80b0:6000::1
 svc-mta01     A     212.111.245.180
               AAAA  2a01:7700:80b0:6000::25
+svc-ns01      AAAA  2a01:7700:80b0:6000::53
 svc-rpx01     A     212.111.245.178
               AAAA  2a01:7700:80b0:6000::443
               TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
-svc-ns01      AAAA  2a01:7700:80b0:6000::53
+
 svc-portal01  AAAA  2a01:7700:80b0:6001::2
 svc-fpx01     AAAA  2a01:7700:80b0:6001::3
 svc-auth01    AAAA  2a01:7700:80b0:6001::4
@@ -60,24 +65,26 @@ svc-dcim01    AAAA  2a01:7700:80b0:6001::7
 svc-lists01   AAAA  2a01:7700:80b0:6001::8
 svc-vault01   AAAA  2a01:7700:80b0:6001::9
 svc-lg01      AAAA  2a01:7700:80b0:6001::10
-svc-hv01      AAAA  2a01:7700:80b0:7000::2
-              TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
-svc-clab01    AAAA  2a01:7700:80b0:7001::2
-svc-adm01     AAAA  2a01:7700:80b0:7002::2
-ixp-as11201   AAAA  2a01:7700:80b0:4101::2
-svc-prom01    AAAA  2a01:7700:80b0:7002::4
-svc-prom02    AAAA  2a01:7700:80b0:7002::5
-svc-cmk01     AAAA  2a01:7700:80b0:7002::6
-svc-exp01     AAAA  2a01:7700:80b0:4101::3
 svc-obs01     AAAA  2a01:7700:80b0:6001::11
 svc-mari01    AAAA  2a01:7700:80b0:6001::12
 svc-web01     AAAA  2a01:7700:80b0:6001::13
 svc-bbe01     AAAA  2a01:7700:80b0:6001::14
 svc-crm01     AAAA  2a01:7700:80b0:6001::15
 svc-tix01     AAAA  2a01:7700:80b0:6001::16
-prj-llb01     AAAA  2a01:7700:80b0:f001::2
+svc-trans01   AAAA  2a01:7700:80b0:6001::17
+
+svc-hv01      AAAA  2a01:7700:80b0:7000::2
+              TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
+
+svc-clab01    AAAA  2a01:7700:80b0:7001::2
+
+svc-adm01     AAAA  2a01:7700:80b0:7002::2
+svc-prom01    AAAA  2a01:7700:80b0:7002::4
+svc-prom02    AAAA  2a01:7700:80b0:7002::5
 svc-nms01     AAAA  2a01:7700:80b0:7002::7
-svc-trans01     AAAA  2a01:7700:80b0:6001::17
+svc-log01     AAAA  2a01:7700:80b0:7002::6
+
+prj-llb01     AAAA  2a01:7700:80b0:f001::2
 
 ;; til rename is done
 mno001  CNAME svc-hv01
@@ -171,3 +178,4 @@ _acme-challenge.events         CNAME  events.acme-dns
 _acme-challenge.nms            CNAME  nms.acme-dns
 _acme-challenge.opening        CNAME  opening.acme-dns
 _acme-challenge.translate      CNAME  translate.acme-dns
+_acme-challenge.svc-log01      CNAME  svc-log01.acme-dns

@@ -518,6 +518,21 @@
             ./modules/dd-ix-microvm.nix
           ];
         };
+        svc-log01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            self.nixosModules.common
+            self.nixosModules.data
+            ifstate.nixosModules.default
+            microvm.nixosModules.microvm
+            sops-nix.nixosModules.default
+            nixos-modules.nixosModule
+            ./hosts/svc-log01
+            ./modules/dd-ix
+            ./modules/dd-ix-microvm.nix
+          ];
+        };
       };
   };
 }
