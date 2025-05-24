@@ -158,6 +158,14 @@ in
               enable = true;
               jsonData.timeInterval = "1m";
             }
+            {
+              name = "svc-log01";
+              uid = "svc-log01";
+              url = "https://svc-log01.dd-ix.net:443";
+              type = "loki";
+              access = "proxy";
+              enable = true;
+            }
           ];
         };
       };
