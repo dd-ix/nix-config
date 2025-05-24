@@ -50,7 +50,8 @@ in
 
     grafana = {
       enable = true;
-      declarativePlugins = [ sankey-panel-plugin network-weathermap-plugin ];
+      declarativePlugins = [ sankey-panel-plugin network-weathermap-plugin ]
+        ++ (with pkgs.grafanaPlugins; [ grafana-lokiexplore-app grafana-metricsdrilldown-app ]);
       settings = {
         server = {
           enforce_domain = true;
