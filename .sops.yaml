@@ -279,7 +279,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-exp01
-  - path_regex: secrets/management/rfc2136/svc-log01.dd-ix.net.yaml
+  - path_regex: secrets/management/(rfc2136/svc-log01.dd-ix.net|log).yaml
     key_groups:
       - pgp:
         - *admin_tassilo

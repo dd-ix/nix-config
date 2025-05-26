@@ -1,0 +1,28 @@
+loki.source.syslog "syslog_tls_tcp_listener" {
+  listener {
+    address = "[::]:6514"
+    protocol = "tcp"
+
+    tls_config {
+      cert_file = sys.env("CRT_FILE")
+			key_file  = sys.env("KEY_FILE")
+    }
+  }
+
+  forward_to = [loki.write.local_loki.receiver]
+}
+
+loki.source.syslog "syslog_udp_listener" {
+  listener {
+    address = "[::1]:514"
+    protocol = "udp"
+  }
+
+  forward_to = [loki.write.local_loki.receiver]
+}
+
+loki.write "local_loki" {
+  endpoint {
+    url = "http://[::1]:3100/loki/api/v1/push"
+  }
+}
