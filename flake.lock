@@ -204,11 +204,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1747859546,
-        "narHash": "sha256-tDu6JFzM86y5L2eLAkkw5Aklzz0DwfohtcxRXw+fCHA=",
+        "lastModified": 1748260747,
+        "narHash": "sha256-V3ONd70wm55JxcUa1rE0JU3zD+Cz7KK/iSVhRD7lq68=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "91ba136db1a3dd73168639c185fa802eb1157ec1",
+        "rev": "b6c5dfc2a1c7614c94fd2c5d2e8578fd52396f3b",
         "type": "github"
       },
       "original": {
@@ -268,11 +268,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1748119216,
-        "narHash": "sha256-/62hmvEwmxAYXWhMYq6qUh+3R4fw4g0Q6hNCpQ33Z4k=",
+        "lastModified": 1748257032,
+        "narHash": "sha256-lJrIMquyFwvs/hFw89uuPrQgbFnn5Oryk3nbCzXoyAY=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "879d66162986003f4e7b87b2f11e150d0819534a",
+        "rev": "6c2f11bec25fc3ddfd7c00f114fa636f7cd7ba80",
         "type": "github"
       },
       "original": {
@@ -513,11 +513,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748257091,
+        "lastModified": 1748257385,
         "narHash": "sha256-9FBIkv6H1+9F8o0OHHyQLc6FhUD47794Vgs1XiW1TB4=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "9efb675295c80cb27317b47a82f98621c4cd92a1",
+        "rev": "3133e2860287c3b449583bdc0d959fe933e9146e",
         "type": "github"
       },
       "original": {
