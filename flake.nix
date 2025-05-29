@@ -108,6 +108,19 @@
             nixos-modules.nixosModule
           ];
         };
+        ext-mon01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            self.nixosModules.common
+            self.nixosModules.data
+            ifstate.nixosModules.default
+            ./hosts/ext-mon01
+            ./modules/dd-ix
+            sops-nix.nixosModules.default
+            nixos-modules.nixosModule
+          ];
+        };
         svc-adm01 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
