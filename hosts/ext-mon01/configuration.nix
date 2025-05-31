@@ -1,20 +1,32 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   dd-ix.hostName = "ext-mon01";
 
   networking = {
-    nameservers = lib.mkForce [ "194.29.226.55" "194.29.230.55" ];
+    nameservers = lib.mkForce [
+      # rns0.ipberlin.com
+      "2a02:f28:2:0:194:29:226:55"
+      "194.29.226.55"
+      # rns1.ipberlin.com
+      "2a02:f28:2:1:194:29:230:55"
+      "194.29.230.55"
+    ];
+
     timeServers = lib.mkForce [
       "0.de.pool.ntp.org"
+      "1.de.pool.ntp.org"
+      "2.de.pool.ntp.org"
+      "3.de.pool.ntp.org"
     ];
 
     interfaces.ens18 = {
@@ -27,15 +39,16 @@
         prefixLength = 29;
       }];
     };
-    defaultGateway = {
-      address = "91.102.12.185";
-      interface = "ens18";
-    };
     defaultGateway6 = {
       address = "2a02:f28:1:70::1";
       interface = "ens18";
     };
+    defaultGateway = {
+      address = "91.102.12.185";
+      interface = "ens18";
+    };
   };
+
   users.users.ddadmin = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
@@ -49,8 +62,12 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6NLB8EHnUgl2GO2uaojdf3p3YpsHH6px6CZleif8klhLN+ro5KeFK2OXC2SO3Vo4qgF/NySdsoInV9JEsssELZ2ttVbeKxI6f76V5dZgGI7qoSf4E0TXIgpS9n9K2AEmRKr65uC2jgkSJuo/T1mF+4/Nzyo706FT/GGVoiBktgq9umbYX0vIQkTMFAcw921NwFCWFQcMYRruaH01tLu6HIAdJ9FVG8MAt84hCr4D4PobD6b029bHXTzcixsguRtl+q4fQAl3WK3HAxT+txN91CDoP2eENo3gbmdTBprD2RcB/hz5iI6IaY3p1+8fTX2ehvI3loRA8Qjr/xzkzMUlpA/8NLKbJD4YxNGgFbauEmEnlC8Evq2vMrxdDr2SjnBAUwzZ63Nq+pUoBNYG/c+h+eO/s7bjnJVe0m2/2ZqPj1jWQp4hGoNzzU1cQmy6TdEWJcg2c8ints5068HN3o0gQKkp1EseNrdB8SuG+me/c/uIOX8dPASgo3Yjv9IGLhhx8GOGQxHEQN9QFC4QyZt/rrAyGmlX342PBNYmmStgVWHiYCcMVUWGlsG0XvG6bvGgmMeHNVsDf6WdMQuLj9luvxJzrd4FlKX6O0X/sIaqMVSkhIbD2+vvKNqrii7JdUTntUPs89L5h9DoDqQWkL13Plg1iQt4/VYeKTbUhYYz1lw== revo-xut@plank"
     ];
   };
-  services.openssh.enable = true;
-  services.qemuGuest.enable = true;
-  system.stateVersion = "24.11"; # Did you read the comment?
+
+  services = {
+    openssh.enable = true;
+    qemuGuest.enable = true;
+  };
+
+  system.stateVersion = "24.11";
 }
 
