@@ -1,6 +1,9 @@
 { lib, ... }:
 
 {
+  # timeServers contain dns names
+  systemd.services.chronyd.after = [ "ifstate.service" "systemd-resolved.service" ];
+
   networking = {
     # force: override IBH default nameservers
     nameservers = lib.mkForce [
