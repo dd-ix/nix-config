@@ -5,7 +5,7 @@ let
   customScope = (inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
     (final: prev: prev.authentikComponents // {
       frontend = prev.authentikComponents.frontend.overrideAttrs (_: {
-        patches = [ (self + /resouces/authentik-logo.pathc) ];
+        patches = [ (self + /resouces/authentik-logo.patch) ];
       });
     });
 in
