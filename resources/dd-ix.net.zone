@@ -4,8 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               ; serial is broken again
-               2025052200  ; Serial
+               2025053100  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -85,6 +84,9 @@ svc-nms01     AAAA  2a01:7700:80b0:7002::7
 svc-log01     AAAA  2a01:7700:80b0:7002::6
 
 prj-llb01     AAAA  2a01:7700:80b0:f001::2
+
+ext-mon01     A     91.102.12.190
+              AAAA  2a02:f28:1:70::10
 
 ;; til rename is done
 mno001  CNAME svc-hv01
