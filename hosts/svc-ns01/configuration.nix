@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   dd-ix = {
@@ -20,17 +20,10 @@
     isNormalUser = true;
     openssh.authorizedKeys = {
       keys = [
+        # arouteserver@svc-adm01
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH0vuZeitSJiVxdACcwB8s1Cj2hi0wXjDMbhLelEJmIv"
       ];
-      keyFiles = [
-        ../../keys/ssh/tassilo_1
-        ../../keys/ssh/tassilo_2
-        ../../keys/ssh/melody
-        ../../keys/ssh/fiasko
-        ../../keys/ssh/marcel
-        ../../keys/ssh/adb
-        ../../keys/ssh/robort
-      ];
+      inherit (config.users.users.root.openssh.authorizedKeys) keyFiles;
     };
   };
 

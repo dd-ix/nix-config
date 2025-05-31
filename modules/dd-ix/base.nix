@@ -12,6 +12,7 @@
       ../../keys/ssh/adb
       ../../keys/ssh/maurice
       ../../keys/ssh/robort
+      ../../keys/ssh/gedeon
     ];
   };
   users.motd = ''
