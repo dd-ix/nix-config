@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services.nginx = {
@@ -73,8 +73,8 @@
           owner = "dd-ix";
           repo = "ddix-talks";
           fetchSubmodules = true;
-          rev = "eeb138084cf314ce13e126da5625e46849047b2b";
-          hash = "sha256-jk+z6A+vGUh0wu5lF3oUOHKtZ1UsjejQNcPAcj43SGw=";
+          rev = "1b55aca651543da88866dd2205264a733b8638c4";
+          hash = "sha256-EhSYgdG48SQuFq+kMWYmVaQkUc3Cl1yOJ4dDFjalehU=";
         };
 
         locations = {
