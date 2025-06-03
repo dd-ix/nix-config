@@ -17,10 +17,11 @@
 
     # force: override IBH default timeServers
     timeServers = lib.mkForce [
-      "0.de.pool.ntp.org"
-      "1.de.pool.ntp.org"
-      "2.de.pool.ntp.org"
-      "3.de.pool.ntp.org"
+      "ntps1-0.cs.tu-berlin.de"
+      "ntps1-1.cs.tu-berlin.de"
+      "zeit.fu-berlin.de"
+      "time.fu-berlin.de"
+      "ntp.nic.cz"
     ];
 
     ifstate = {
