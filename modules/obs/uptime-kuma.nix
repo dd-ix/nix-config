@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ config, ... }:
 
 let
   kuma_domain = "status.${config.dd-ix.domain}";
@@ -18,9 +18,9 @@ in
       enable = true;
       virtualHosts = {
         "${kuma_domain}" = {
-	  locations."/" = {
+          locations."/" = {
             proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
-	  };
+          };
           forceSSL = true;
           enableACME = true;
         };
