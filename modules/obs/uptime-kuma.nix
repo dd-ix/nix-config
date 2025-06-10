@@ -9,26 +9,20 @@ in
       enable = true;
       settings = {
         DATA_DIR = "/var/lib/uptime-kuma/";
-        NODE_ENV = lib.mkDefault "production";
-        HOST = lib.mkDefault "127.0.0.1";
-        PORT = lib.mkDefault "3001";
+        NODE_ENV = "production";
+        HOST = "127.0.0.1";
+        PORT = "3001";
       };
     };
     nginx = {
       enable = true;
       virtualHosts = {
         "${kuma_domain}" = {
-          listen = [{
-            addr = "[::]:443";
-            proxyProtocol = true;
-            ssl = true;
-          }];
 	  locations."/" = {
-            proxyPass = "http://127.0.0.1:3001";
+            proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
 	  };
-
-          onlySSL = true;
-          useACMEHost = kuma_domain;
+          forceSSL = true;
+          enableACME = true;
         };
       };
     };
