@@ -4,6 +4,7 @@ let
   kuma_domain = "status.${config.dd-ix.domain}";
 in
 {
+  security.acme.certs.${kuma_domain}.email = "${config.security.acme.defaults.email}";
   services = {
     uptime-kuma = {
       enable = true;
