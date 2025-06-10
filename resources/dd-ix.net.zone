@@ -125,6 +125,7 @@ talks          CNAME  svc-rpx01
 nms            CNAME  svc-rpx01
 opening        CNAME  svc-rpx01
 translate      CNAME  svc-rpx01
+status 	       CNAME  ext-mon01
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
