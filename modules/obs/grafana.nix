@@ -3,8 +3,8 @@
 let
   sankey-panel-plugin = pkgs.grafanaPlugins.grafanaPlugin {
     pname = "netsage-sankey-panel";
-    version = "1.1.3";
-    zipHash = "sha256-HUFJcolJqdveAB5e4kjBnEXd3+ZbyXgAHawlEHDGtrw=";
+    version = "1.1.4";
+    zipHash = "sha256-z5Np45xdv3zXww+uvmMlN/brRgwT9yCjl+pNpWH7Ky4=";
   };
   network-weathermap-plugin = pkgs.grafanaPlugins.grafanaPlugin {
     pname = "knightss27-weathermap-panel";
