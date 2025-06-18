@@ -5,11 +5,21 @@
     enable = true;
     virtualHosts = {
       "www.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "www.${config.dd-ix.domain}";
@@ -19,11 +29,21 @@
         };
       };
       "${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = config.dd-ix.domain;
@@ -46,11 +66,21 @@
         };
       };
       "content.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "content.${config.dd-ix.domain}";
@@ -59,11 +89,21 @@
         };
       };
       "talks.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "talks.${config.dd-ix.domain}";
@@ -82,11 +122,21 @@
         };
       };
       "opening.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]:443";
-          proxyProtocol = true;
-          ssl = true;
-        }];
+        listen = [
+          {
+            addr = "[::]:443";
+            proxyProtocol = true;
+            ssl = true;
+          }
+          {
+            addr = "[::1]:443";
+            ssl = true;
+          }
+          {
+            addr = "127.0.0.1:443";
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
         useACMEHost = "opening.${config.dd-ix.domain}";
