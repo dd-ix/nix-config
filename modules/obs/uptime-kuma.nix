@@ -14,12 +14,14 @@ in
         PORT = "3001";
       };
     };
+
     nginx = {
       enable = true;
       virtualHosts = {
         "${kuma_domain}" = {
-          locations."/" = {
-            proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
+          locations = {
+            "/".proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
+            "= /".return = "302 https://${kuma_domain}/status/dd-ix";
           };
           forceSSL = true;
           enableACME = true;
