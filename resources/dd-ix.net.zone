@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2025053100  ; Serial
+               2025061100  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -125,6 +125,7 @@ talks          CNAME  svc-rpx01
 nms            CNAME  svc-rpx01
 opening        CNAME  svc-rpx01
 translate      CNAME  svc-rpx01
+status 	       CNAME  ext-mon01
 
 ;; Management
 svc-c2-sw01    AAAA  2a01:7700:80b0:7000::2:1
