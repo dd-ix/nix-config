@@ -18,8 +18,11 @@ in
       enable = true;
       virtualHosts = {
         "${kuma_domain}" = {
-          locations."/" = {
-            proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
+          locations = {
+            "/" = {
+              proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
+            };
+            "= /".return = "301 /status/dd-ix";
           };
           forceSSL = true;
           enableACME = true;
