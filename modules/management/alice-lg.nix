@@ -39,7 +39,7 @@ in
             invalid = "57328:1000:4";
           };
 
-          reject_reasons = {
+          rejection_reasons = {
             "57328:1101:3" = "Prefix is bogon";
             "57328:1101:4" = "Invalid ASN in AS_PATH";
             "57328:1101:5" = "Invalid AS_PATH length";
