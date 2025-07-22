@@ -42,11 +42,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1751033152,
-        "narHash": "sha256-0ANu9OLQJszcEyvnfDB7G957uqskZwCrTzRXz/yfAmE=",
+        "lastModified": 1753196155,
+        "narHash": "sha256-IKl9hqWsjAAQrqu5frJTs5+4byrRKQT38TKTNFimDGA=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "1a4d6a5dd6fef39b99eb7ea4db79c5d5c7d7f1bf",
+        "rev": "7bb4dfd0678afc8ed0f70f0f8e074f76d9511f42",
         "type": "github"
       },
       "original": {
@@ -58,16 +58,16 @@
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1751031262,
-        "narHash": "sha256-SNgRMQUjL3DTlWkMyRMan+pY1FfIV+DMeq5BiTM0N0k=",
+        "lastModified": 1753187283,
+        "narHash": "sha256-sJQ1crUhw8CsafTgMacF8bJx6OdVSo8qYam3a4dWp2Q=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "b34665fabd8d938d81ce871a4e86ca528c5f253b",
+        "rev": "e10dfdb33f8c41486726fad6087fffa1afd0c428",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2025.4.3",
+        "ref": "version/2025.4.4",
         "repo": "authentik",
         "type": "github"
       }
@@ -204,11 +204,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1752843889,
-        "narHash": "sha256-WSvdkO80w6fwtKAj3ePTnl9zD8+0i12fd7hL9Enj9Gg=",
+        "lastModified": 1753211561,
+        "narHash": "sha256-TGa/Wk0W8KlKihx3znpi5leNO0/ZfsuRGux4047YGf4=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "bde4522ae5eb358c05d1dfd6b23abaa9988be3ff",
+        "rev": "f0e65eb137d66bf3e4fe1e0aac70765470a8b6d0",
         "type": "github"
       },
       "original": {
@@ -268,11 +268,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1752941965,
-        "narHash": "sha256-KD/vqz4rjBgTOPSZH3U+Qc8qCKl8gj+JtHXLSOysaDw=",
+        "lastModified": 1753183762,
+        "narHash": "sha256-sTzznzYv0iQs08584THpvtGElaxPJ9LwJGkhqKUh2Pg=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "deb53fdf475480f6f0f09d0cbedb02b9fe100227",
+        "rev": "b1295e1c7bd04329ca2688d91f37ef3f9926b119",
         "type": "github"
       },
       "original": {
