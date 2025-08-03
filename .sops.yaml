@@ -5,6 +5,8 @@ keys:
   - &admin_marcel 46D4682470DBE26790DF9433446F3B093DF81C6A
   - &admin_maurice 5CEA328E2A000F3834ECED462DC4542D86651C1E
 
+  - &ixp-as11201 age1mz9v3d935v5scu50999mg43adcg0suudknxnfdsgzxf9vt64lqxs62354z
+
   - &svc-hv01 age1h5zuv4pxjv94gpmjgfahkzmd6c5hfcdmk48vegzagze24a8x6p3q2muxh0
   - &svc-ns01 age19nann8gw4mnmnjzq0ztg0vsjsf8kafehhygqpccww5yqjnmdqgmqyp3nm4
   - &svc-portal01 age18s3336el6n7txkpcqpugp0yy9a3d4rv8qcrjnrf505anehs0pycqx3u6m6
@@ -29,6 +31,16 @@ keys:
   - &svc-exp01 age12eeaqsw8w5lj8u064tnuq5nat87vr0nnjqjnlart5r8ge8pszg0sp08x3p
   - &svc-log01 age1uq77z3q50c0wyt6j9vh7ay0n4zvsp99kzrgkm0nu8rxtucnr2erqduge7h
 creation_rules:
+  - path_regex: secrets/ixp/as112.yaml
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_fiasko
+        - *admin_adb
+        - *admin_marcel
+        - *admin_maurice
+        age:
+        - *ixp-as11201
   - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
     key_groups:
       - pgp:
