@@ -124,6 +124,12 @@ in
         file = "/var/lib/bind/ixp-deploy/64-127.151.201.193.in-addr.arpa.db";
         slaves = ibh_ans_ip;
       };
+
+      "ixpect.net" = {
+        master = true;
+        file = self + "/resources/ixpect.net.zone";
+        slaves = ibh_ans_ip;
+      };
     };
 
     extraOptions = ''    
