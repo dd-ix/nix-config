@@ -51,9 +51,8 @@
         all = options;
         default = options;
       };
-    interfaces = [
-      {
-        name = "any112";
+    interfaces = {
+      any112 = {
         link = {
           state = "up";
           kind = "dummy";
@@ -68,9 +67,8 @@
           "192.31.196.1/24" #  blackhole.as112.arpa (anycast)
           "2001:4:112::1/48" #  blackhole.as112.arpa (anycast)
         ];
-      }
-      {
-        name = "ixp-peering";
+      };
+      ixp-peering = {
         link = {
           state = "up";
           kind = "physical";
@@ -80,8 +78,8 @@
           "2001:7f8:79::70:1/64"
           "193.201.151.70/26"
         ];
-      }
-    ];
+      };
+    };
   };
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";

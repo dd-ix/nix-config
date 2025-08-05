@@ -2,14 +2,14 @@
 
 let
   mkBondedInterface = name: permaddr: bond: {
-    inherit name;
-    link = { inherit permaddr; state = "up"; kind = "physical"; master = bond; };
+    "${name}" = {
+      link = { inherit permaddr; state = "up"; kind = "physical"; master = bond; };
+    };
   };
 in
 {
   networking.ifstate = {
     enable = true;
-    initrd.enable = true;
 
     settings = {
       # TODO: probably remove with ifstate v2
@@ -30,43 +30,36 @@ in
 
       # ignore vm tap interfaces
       ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" ];
-      interfaces = [
-        { name = "enp0s29u1u1u5"; link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; }; }
-        {
-          name = "bond";
-          link = {
-            state = "up";
-            kind = "bond";
-            # 802.3ad
-            bond_mode = 4;
-            bond_ad_lacp_rate = 1;
-            # layer3+4
-            bond_xmit_hash_policy = 1;
-            bond_miimon = 100;
-            bond_updelay = 300;
-          };
-        }
+      interfaces = {
+        enp0s29u1u1u5.link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; };
+        bond.link = {
+          state = "up";
+          kind = "bond";
+          # 802.3ad
+          bond_mode = 4;
+          bond_ad_lacp_rate = 1;
+          # layer3+4
+          bond_xmit_hash_policy = 1;
+          bond_miimon = 100;
+          bond_updelay = 300;
+        };
         # used in ixp-as11201
-        { name = "eno2"; link = { kind = "physical"; businfo = "0000:06:00.0"; }; }
+        eno2.link = { kind = "physical"; businfo = "0000:06:00.0"; };
         # used in prj-llb01
-        { name = "eno3"; link = { kind = "physical"; businfo = "0000:06:00.1"; }; }
-        { name = "eno4"; link = { kind = "physical"; businfo = "0000:06:00.2"; }; }
-        { name = "eno5"; link = { kind = "physical"; businfo = "0000:06:00.3"; }; }
-        (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
-        (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
-      ] ++
-      (lib.flatten (lib.mapAttrsToList
-        (name: value: [
-          {
-            name = value.bridge;
+        eno3.link = { kind = "physical"; businfo = "0000:06:00.1"; };
+        eno4.link = { kind = "physical"; businfo = "0000:06:00.2"; };
+        eno5.link = { kind = "physical"; businfo = "0000:06:00.3"; };
+      } // (mkBondedInterface "enp144s0" "00:02:c9:23:4c:20" "bond")
+      // (mkBondedInterface "enp144s0d1" "00:02:c9:23:4c:21" "bond")
+      //
+      (lib.mkMerge (lib.mapAttrsToList
+        (name: value: {
+          "${value.bridge}" = {
             addresses = lib.mkIf (name == "management") [ "2a01:7700:80b0:7000::2/64" ];
             link = { state = "up"; kind = "bridge"; };
-          }
-          {
-            name = "bond.${builtins.toString value.vlan}";
-            link = { state = "up"; kind = "vlan"; link = "bond"; vlan_id = value.vlan; master = value.bridge; };
-          }
-        ])
+          };
+          "bond.${builtins.toString value.vlan}".link = { state = "up"; kind = "vlan"; link = "bond"; vlan_id = value.vlan; master = value.bridge; };
+        })
         config.dd-ix.nets
       ));
       routing.routes = [{
@@ -79,6 +72,11 @@ in
 
   boot.initrd.network = {
     enable = true;
+
+    ifstate = {
+      enable = true;
+      inherit (config.networking.ifstate) settings;
+    };
 
     ssh = {
       enable = true;

@@ -66,8 +66,7 @@ in
       ifstate = {
         enable = true;
         settings = {
-          interfaces = [{
-            name = "eth0";
+          interfaces.eth0 = {
             addresses = [ "${config.dd-ix.host.networking.addr}/${builtins.toString config.dd-ix.nets.${config.dd-ix.host.networking.net}.cidr}" ]
               ++ (lib.optional (cfg.v4Addr != null) cfg.v4Addr);
             link = {
@@ -75,7 +74,7 @@ in
               kind = "physical";
               address = config.dd-ix.host.networking.mac;
             };
-          }];
+          };
           routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
             ++ (lib.optional (cfg.v4Addr != null) {
             to = "0.0.0.0/0";

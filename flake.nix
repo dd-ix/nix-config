@@ -7,12 +7,6 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    ifstate = {
-      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,7 +78,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ifstate, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, alice-lg, ... }: {
+  outputs = inputs@{ self, nixpkgs, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, alice-lg, ... }: {
 
     nixosModules = {
       common = ./modules/common;
@@ -99,7 +93,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             ./hosts/svc-hv01/configuration.nix
             ./modules/management/bookstack.nix
             ./modules/dd-ix
@@ -114,7 +107,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             ./hosts/ext-mon01
             ./modules/dd-ix
             sops-nix.nixosModules.default
@@ -127,7 +119,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             { nixpkgs.overlays = [ ddix-ansible-ixp.overlays.default ]; }
             ./hosts/svc-adm01
@@ -143,7 +134,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             sops-nix.nixosModules.default
             microvm.nixosModules.microvm
             post.nixosModules.default
@@ -160,7 +150,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             ./hosts/svc-ns01
             sops-nix.nixosModules.default
@@ -175,7 +164,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
@@ -192,7 +180,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-clab01
@@ -207,7 +194,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             ./hosts/svc-fpx01
@@ -222,7 +208,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -237,7 +222,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             authentik.nixosModules.default
@@ -253,7 +237,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -268,7 +251,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -283,7 +265,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -298,7 +279,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -313,7 +293,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             nixos-modules.nixosModule
             sops-nix.nixosModules.default
@@ -328,7 +307,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -344,7 +322,6 @@
             { nixpkgs.overlays = [ alice-lg.overlays.default ]; }
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -359,7 +336,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -374,7 +350,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -389,7 +364,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -404,7 +378,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sflow-exporter.nixosModules.default
             { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
@@ -421,7 +394,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -436,7 +408,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             {
               nixpkgs.overlays = [
                 website.overlays.default
@@ -462,7 +433,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -477,7 +447,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -492,7 +461,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -507,7 +475,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -522,7 +489,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
@@ -537,7 +503,6 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ifstate.nixosModules.default
             microvm.nixosModules.microvm
             sops-nix.nixosModules.default
             nixos-modules.nixosModule
