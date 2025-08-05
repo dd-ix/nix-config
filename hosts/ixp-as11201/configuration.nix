@@ -84,10 +84,10 @@
     };
   };
 
-  systemd.services.ifstate.path = with pkgs; [ util-linux ];
-
-  systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
-  systemd.services.bird.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
+  systemd.services = {
+    knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
+    bird.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
+  };
 
   system.stateVersion = "23.11";
 }
