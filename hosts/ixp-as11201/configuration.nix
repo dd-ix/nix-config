@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   dd-ix = {
     useFpx = true;
@@ -19,7 +21,7 @@
   }];
 
   networking.ifstate.settings.namespaces.ixp-peering = {
-    options.sysctl =
+    sysctl =
       let
         options = {
           ipv6 = {
@@ -51,9 +53,8 @@
         all = options;
         default = options;
       };
-    interfaces = [
-      {
-        name = "any112";
+    interfaces = {
+      any112 = {
         link = {
           state = "up";
           kind = "dummy";
@@ -68,21 +69,22 @@
           "192.31.196.1/24" #  blackhole.as112.arpa (anycast)
           "2001:4:112::1/48" #  blackhole.as112.arpa (anycast)
         ];
-      }
-      {
-        name = "ixp-peering";
+      };
+      ixp-peering = {
         link = {
           state = "up";
           kind = "physical";
-          permaddr = "40:f2:e9:2d:d6:6a";
         };
+        identify.perm_address = "40:f2:e9:2d:d6:6a";
         addresses = [
           "2001:7f8:79::70:1/64"
           "193.201.151.70/26"
         ];
-      }
-    ];
+      };
+    };
   };
+
+  systemd.services.ifstate.path = with pkgs; [ util-linux ];
 
   systemd.services.knot.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";
   systemd.services.bird.serviceConfig.NetworkNamespacePath = "/var/run/netns/ixp-peering";

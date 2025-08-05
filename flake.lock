@@ -147,29 +147,6 @@
         "type": "github"
       }
     },
-    "ifstate": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753857011,
-        "narHash": "sha256-DYhDkEdTiwect9n6AVaHOVUTAlO5GxpZlh/bvHLQcDg=",
-        "ref": "refs/heads/main",
-        "rev": "691ac6f1c99e0cb3f85e5e001cbd0f3fea2d662c",
-        "revCount": 68,
-        "type": "git",
-        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
-      }
-    },
     "ixp-manager": {
       "inputs": {
         "flake-utils": [
@@ -376,7 +353,6 @@
         "authentik": "authentik",
         "ddix-ansible-ixp": "ddix-ansible-ixp",
         "flake-utils": "flake-utils",
-        "ifstate": "ifstate",
         "ixp-manager": "ixp-manager",
         "microvm": "microvm",
         "nixos-modules": "nixos-modules",
