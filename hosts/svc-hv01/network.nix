@@ -75,6 +75,7 @@ in
 
     ifstate = {
       enable = true;
+      allowIfstateToDrasticlyIncreaseInitrdSize = true;
       inherit (config.networking.ifstate) settings;
     };
 
