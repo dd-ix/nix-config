@@ -80,6 +80,7 @@ in
   boot.kernelParams = [
     # allows passing pci devices into microvm's
     "intel_iommu=on"
+    "zfs.zfs_arc_max=${toString (32 /* GB */ * 1024 * 1024 * 1024)}"
   ];
 
   boot.supportedFilesystems = [ "zfs" ];
