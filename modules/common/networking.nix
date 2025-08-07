@@ -23,7 +23,6 @@
   };
 
   # disable networkd if ifstate is enabled
-  systemd.network.enable = !config.networking.ifstate.enable && !config.networking.networkmanager.enable;
-  networking.useNetworkd = !config.networking.ifstate.enable && !config.networking.networkmanager.enable;
-  boot.initrd.systemd.network.enable = !config.boot.initrd.network.ifstate.enable;
+  systemd.network.enable = lib.mkIf (config.networking.ifstate.enable || config.networking.networkmanager.enable) false;
+  boot.initrd.systemd.network.enable = lib.mkIf config.boot.initrd.network.ifstate.enable false;
 }
