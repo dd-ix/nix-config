@@ -12,24 +12,9 @@ in
     enable = true;
 
     settings = {
-      # TODO: probably remove with ifstate v2
-      defaults = [{
-        # list of defaults settings
-        match = [{
-          # regex matching all interfaces
-          ifname = "";
-        }];
-        # remove any ip addresses if an interface has no `addresses:` setting
-        clear_addresses = true;
-        # add some implicit link settings
-        link = {
-          state = "down";
-          ifalias = "";
-        };
-      }];
-
       # ignore vm tap interfaces
-      ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" ];
+      parameters.ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" ];
+
       interfaces = {
         enp0s29u1u1u5.link = { kind = "physical"; businfo = "usb-0000:00:1d.0-1.1.5"; };
         bond.link = {
