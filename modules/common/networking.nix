@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   networking.firewall = {
@@ -16,4 +16,13 @@
     services.NetworkManager-wait-online.enable = false;
     network.wait-online.enable = false;
   };
+
+  boot.initrd.systemd = {
+    services.NetworkManager-wait-online.enable = false;
+    network.wait-online.enable = false;
+  };
+
+  # disable networkd if ifstate is enabled
+  systemd.network.enable = !config.networking.ifstate.enable && !config.networking.networkmanager.enable;
+  boot.initrd.systemd.network.enable = !config.boot.initrd.network.ifstate.enable;
 }

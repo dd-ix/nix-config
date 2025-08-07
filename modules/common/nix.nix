@@ -2,13 +2,10 @@
 
 {
   nix = {
-    package = pkgs.nixVersions.nix_2_28;
+    package = pkgs.nixVersions.nix_2_29;
 
     settings = {
       auto-optimise-store = true;
-
-      # Fallback quickly if substituters are not available.
-      connect-timeout = 5;
 
       # Enable flakes
       experimental-features = [
@@ -55,5 +52,13 @@
   };
 
   programs.command-not-found.enable = false;
+
+  # verify that the nix binary is working after rebuild
+  system.preSwitchChecks.canExecuteNix = lib.mkIf config.nix.enable /* bash */ ''
+    if ! ${lib.getExe config.nix.package} --version >/dev/null; then
+      echo "Cannot execute nix (${lib.getExe config.nix.package}), aborting..."
+      exit 1
+    fi
+  '';
 }
 

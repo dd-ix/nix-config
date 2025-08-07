@@ -18,8 +18,15 @@ let
   );
 in
 {
-
   config = lib.mkIf config.boot.zfs.enabled {
+    assertions = [
+      # https://gitea.c3d2.de/c3d2/nix-defaults/src/commit/51adf1d57b8e87f6fd43c90cc7fcca0e38dcc7a1/flake.nix#L16-L19
+      {
+        assertion = builtins.any (lib.hasPrefix "zfs.zfs_arc_ma") config.boot.kernelParams;
+        message = "boot.kernelParams must set zfs.zfs_arc_ma when zfs is enabled to mitigate runaway RAM usage.";
+      }
+    ];
+
     boot = {
       # Note this might jump back and worth as kernel get added or removed.
       kernelPackages = latestZfsKernelPackage;
