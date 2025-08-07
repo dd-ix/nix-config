@@ -27,19 +27,20 @@
     ifstate = {
       enable = true;
       settings = {
-        interfaces = [{
-          name = "eth0";
-          addresses = [
-            "2a02:f28:1:70::10/64"
-            "91.102.12.190/29"
-          ];
-          link = {
-            state = "up";
-            kind = "physical";
-            address = "bc:24:11:23:9f:fc";
-            #businfo = "0000:00:12.0";
+        interfaces = {
+          eth0 = {
+            addresses = [
+              "2a02:f28:1:70::10/64"
+              "91.102.12.190/29"
+            ];
+            link = {
+              state = "up";
+              kind = "physical";
+              #businfo = "0000:00:12.0";
+            };
+            identify.perm_address = "bc:24:11:23:9f:fc";
           };
-        }];
+        };
         routing.routes = [
           { to = "::/0"; via = "2a02:f28:1:70::1"; }
           { to = "0.0.0.0/0"; via = "91.102.12.185"; }
