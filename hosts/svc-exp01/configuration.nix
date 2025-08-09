@@ -26,8 +26,7 @@
       keys = [
         # arouteserver@svc-adm01
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH0vuZeitSJiVxdACcwB8s1Cj2hi0wXjDMbhLelEJmIv"
-      ];
-      inherit (config.users.users.root.openssh.authorizedKeys) keyFiles;
+      ] ++ config.users.users.root.openssh.authorizedKeys.keys;
     };
   };
 
