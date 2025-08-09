@@ -27,7 +27,7 @@ in
         inherit (config.dd-ix.host.networking) mac;
       }];
 
-      virtiofsd.threadPoolSize = 16;
+      virtiofsd.threadPoolSize = 4;
 
       binScripts.tap-up = lib.mkAfter ''
         ${lib.getExe' pkgs.iproute2 "ip"} link set dev 'vm-${config.networking.hostName}' master '${config.dd-ix.nets.${config.dd-ix.host.networking.net}.bridge}'
