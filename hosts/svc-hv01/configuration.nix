@@ -1,4 +1,4 @@
-{ self, pkgs, lib, ... }:
+{ self, lib, ... }:
 
 let
   addr = "[2a01:7700:80b0:7000::2]";
@@ -8,7 +8,7 @@ let
   # list of all nixos systems in this flake
   allSystems = toList self.nixosConfigurations;
 
-  allMicroVMS = builtins.filter (x: ((builtins.hasAttr "microvm" x.config.dd-ix) && (x.config.dd-ix.microvm.enable == true))) allSystems;
+  allMicroVMS = builtins.filter (x: ((builtins.hasAttr "microvm" x.config.dd-ix) && x.config.dd-ix.microvm.enable)) allSystems;
 
   # turns the hostname into an address
   extractName = host: "${host.config.dd-ix.hostName}";
@@ -20,45 +20,35 @@ in
   imports = [
     ./hardware-configuration.nix
     ./network.nix
-    ./nix-remote-builder.nix
-    #./initrd_network.nix
   ];
 
-  dd-ix =
-    let
-      domains = [
-        "wiki.dd-ix.net"
-      ];
-    in
-    {
-      useFpx = true;
-      hostName = "svc-hv01";
+  dd-ix = {
+    useFpx = true;
+    hostName = "svc-hv01";
 
-      acme = map
-        (domain: {
-          name = domain;
-          group = "nginx";
-        })
-        domains;
+    acme = [{
+      name = "wiki.dd-ix.net";
+      group = "nginx";
+    }];
 
-      restic = {
-        enable = true;
-        name = "svc-hv01";
-      };
-
-      monitoring.enable = true;
-      monitoring.smart = {
-        enable = true;
-        host = addr;
-        port = 9101;
-        devices = [
-          "/dev/sda"
-          "/dev/sdb"
-          "/dev/sdc"
-          "/dev/sdd"
-        ];
-      };
+    restic = {
+      enable = true;
+      name = "svc-hv01";
     };
+
+    monitoring.enable = true;
+    monitoring.smart = {
+      enable = true;
+      host = addr;
+      port = 9101;
+      devices = [
+        "/dev/sda"
+        "/dev/sdb"
+        "/dev/sdc"
+        "/dev/sdd"
+      ];
+    };
+  };
 
   microvm = {
     autostart = listOfNames;
