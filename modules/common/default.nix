@@ -1,19 +1,20 @@
 {
   imports = [
-    ./nix.nix
     ./boot.nix
-    ./networking.nix
-    ./ssh.nix
-    ./sudo.nix
-    ./zfs.nix
-    ./tools.nix
     ./cleanup.nix
-    ./time.nix
+    ./detect-hostname-change.nix
     ./i18n.nix
     ./kernel.nix
-    ./tmux.nix
     ./neovim.nix
-    ./docker.nix
+    ./networking.nix
+    ./nginx.nix
+    ./nix.nix
+    ./ssh.nix
+    ./sudo.nix
+    ./time.nix
+    ./tmux.nix
+    ./tools.nix
+    ./zfs.nix
 
     ./old.nix
   ];

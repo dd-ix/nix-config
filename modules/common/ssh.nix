@@ -1,6 +1,9 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
+  # add authorizedKeys from root user to initrd
+  boot.initrd.network.ssh.authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
+
   services.openssh = {
     settings = {
       X11Forwarding = false;
@@ -16,26 +19,25 @@
     authorizedKeysFiles = lib.mkForce [ "/etc/ssh/authorized_keys.d/%u" ];
   };
 
-  # nixos-modules
-  programs.ssh = { };
+  programs.ssh.knownHosts = {
+    "github.com" = {
+      hostNames = [ "github.com" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+    };
 
-  services.openssh = {
-    fixPermissions = true;
-    regenerateWeakRSAHostKey = true;
-  };
+    "gitlab.com" = {
+      hostNames = [ "gitlab.com" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf";
+    };
 
-  programs.ssh = {
-    addPopularKnownHosts = true;
-    knownHosts = {
-      "codeberg.org" = {
-        hostNames = [ "codeberg.org" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB";
-      };
+    "codeberg.org" = {
+      hostNames = [ "codeberg.org" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB";
+    };
 
-      "gitea.c3d2.de" = {
-        hostNames = [ "gitea.c3d2.de" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8Q7kGF3Hh6HvmlSIgZOjgoIZRpyxKvMBTcPWHlecuh";
-      };
+    "gitea.c3d2.de" = {
+      hostNames = [ "gitea.c3d2.de" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8Q7kGF3Hh6HvmlSIgZOjgoIZRpyxKvMBTcPWHlecuh";
     };
   };
 }

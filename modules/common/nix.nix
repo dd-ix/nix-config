@@ -7,7 +7,6 @@
     settings = {
       auto-optimise-store = true;
 
-      # Enable flakes
       experimental-features = [
         "nix-command"
         "flakes"
@@ -24,13 +23,10 @@
 
       substituters = [ "https://nix-community.cachix.org/?priority=45" "https://hydra.hq.c3d2.de/?priority=50" ];
       trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hydra.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps=" ];
+
+      # sudo users should be able to use nix commands
       trusted-users = [ "@wheel" ];
     };
-
-    # nixos-modules
-    deleteChannels = true;
-    deleteUserProfiles = true;
-    diffSystem = true;
 
     # lower nix-daemon system resources priority
     daemonCPUSchedPolicy = "batch";
@@ -60,5 +56,35 @@
       exit 1
     fi
   '';
+
+  system = {
+    activationScripts = {
+      deleteChannels = /* bash */ ''
+        echo "Deleting all channels..."
+        rm -rfv /root/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /home/*/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /nix/var/nix/profiles/per-user/*/channels* || true
+      '';
+
+      deleteUserProfiles = /* bash */ ''
+        echo "Deleting all user profiles..."
+        rm -rfv /root/{.local/state/nix/profile,.nix-profile} /home/*/{.local/state/nix/profile,.nix-profile} /nix/var/nix/profiles/per-user/*/profile* || true
+      '';
+
+      diff-system = {
+        supportsDryActivation = true;
+        text = /* bash */ ''
+          if [[ -e /run/current-system && -e $systemConfig ]]; then
+            echo
+            echo nix diff new system against /run/current-system
+            (
+              unset PS4
+              set -x
+              ${lib.getExe config.nix.package} --extra-experimental-features nix-command store diff-closures /run/current-system $systemConfig || true
+            )
+            echo
+          fi
+        '';
+      };
+    };
+  };
 }
 

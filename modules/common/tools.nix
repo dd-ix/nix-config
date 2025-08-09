@@ -28,6 +28,5 @@
   programs = {
     git.enable = true;
     htop.enable = true;
-    strace.withColors = true;
   };
 }
