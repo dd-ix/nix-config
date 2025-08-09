@@ -97,12 +97,6 @@
     ssh = {
       enable = true;
       hostKeys = [ /etc/ssh/ssh_host_ed25519_key ];
-      authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
     };
-
-    postCommands = ''
-      zpool import -a
-      echo "zfs load-key -a; killall zfs" >> /root/.profile
-    '';
   };
 }
