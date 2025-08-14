@@ -2,7 +2,7 @@
 
 {
   nix = {
-    package = pkgs.nixVersions.nix_2_29;
+    package = pkgs.nixVersions.nix_2_30;
 
     settings = {
       auto-optimise-store = true;

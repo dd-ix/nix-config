@@ -3,6 +3,7 @@
     ./boot.nix
     ./cleanup.nix
     ./detect-hostname-change.nix
+    ./docker.nix
     ./i18n.nix
     ./kernel.nix
     ./neovim.nix

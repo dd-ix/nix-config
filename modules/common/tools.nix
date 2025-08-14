@@ -23,6 +23,7 @@
     killall
     wireguard-tools
     rsync
+    bat
   ];
 
   programs = {
