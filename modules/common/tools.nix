@@ -12,7 +12,7 @@
     bmon # network monitor
     pciutils # pci debugger
     ethtool
-    p7zip
+    _7zz
     file
     zip
     unzip
