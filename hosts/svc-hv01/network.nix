@@ -1,6 +1,8 @@
 { lib, config, ... }:
 
 {
+  services.lldpd.enable = true;
+
   networking.ifstate = {
     enable = true;
 
