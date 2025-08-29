@@ -14,7 +14,6 @@
     enable = true;
     hostname = "portal.dd-ix.net";
     environmentFile = config.sops.secrets."env_file".path;
-    createDatabaseLocally = false;
     enableMRTG = true;
 
     nginx = {
