@@ -27,5 +27,12 @@
       onlySSL = true;
       useACMEHost = "nms.${config.dd-ix.domain}";
     };
+    phpOptions = {
+      # https://docs.librenms.org/Support/Performance/#for-web-servers-using-mod_php-and-php-fpm
+      "opcache.enable" = 1;
+      "opcache.memory_consumption" = 256;
+    };
+    # https://docs.librenms.org/Support/Performance/#optimise-poller-wrapper
+    pollerThreads = config.microvm.vcpu * 2;
   };
 }
