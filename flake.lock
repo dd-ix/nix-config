@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755186272,
-        "narHash": "sha256-EYBfGKK8Ec4/aq8hORbBU8zBiV+YPC/q4U7InntGOcA=",
+        "lastModified": 1756817398,
+        "narHash": "sha256-HhMoOP0VDgN19r86SRgBFpGXgDbqv9S1OX2iqWNRHZ0=",
         "owner": "MarcelCoding",
         "repo": "alice-lg",
-        "rev": "8fde81e07a7f5098d981969d6546064ea9b35651",
+        "rev": "12bd114ef8604d6a29ddcec050c61a3700bb5aed",
         "type": "github"
       },
       "original": {
@@ -230,11 +230,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756239910,
-        "narHash": "sha256-gA3kJztB7J5z8eu3nEyegLPhbOB6gtlsStHXI8wP970=",
+        "lastModified": 1756739976,
+        "narHash": "sha256-LvQXinSZ1azebqrcQwNqebNjdt5M532jvZnVTFT3s8U=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "1b1d938a5a7059b92a7e4f29d3e1bc2d54546a28",
+        "rev": "0ad11d88e38d3a08abfccab14fe0e938724f79db",
         "type": "github"
       },
       "original": {
@@ -245,11 +245,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1756479303,
-        "narHash": "sha256-seS+JL5LZkTxXJgfHmpjKvGi24R48l8gtUOY6DVSzVk=",
+        "lastModified": 1756817960,
+        "narHash": "sha256-bC+wwEDKBQf4CG9SGmKh51m4VnXFK/1/96vx+HISexo=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "71313dfb7d4895fbe3e44f4eead530bdc5ed519f",
+        "rev": "6c0238ac09675299802002279b9cad7f2315e1e7",
         "type": "github"
       },
       "original": {
