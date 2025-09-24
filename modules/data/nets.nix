@@ -43,5 +43,12 @@
       #gw.hostId = "1";
       bridge = "prj-linklab";
     };
+    ixpect = {
+      netId = "2a01:7700:80b0:f002";
+      cidr = 64;
+      vlan = 602;
+      #gw.hostId = "1";
+      bridge = "prj-ixpect";
+    };
   };
 }
