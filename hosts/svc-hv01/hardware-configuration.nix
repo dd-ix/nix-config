@@ -6,8 +6,8 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = [ "ehci_pci" "ahci" "megaraid_sas" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-    initrd.kernelModules = [ "igb" "mlx4_en" ];
+    initrd.availableKernelModules = [ "ehci_pci" "ahci" "megaraid_sas" "usbhid" "usb_storage" "sd_mod" "sr_mod" "cdc_ether" "igb" "mlx4_en" "mlx4_core" ];
+    initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
