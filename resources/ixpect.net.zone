@@ -1,7 +1,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2025080401  ; Serial
+               202592701  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -23,3 +23,5 @@ $TTL    1h         ; default TTL for zone
          A     217.197.84.141
          AAAA  2a0a:4580:103f:c0de::2
          TXT   "ixpect.IXpect.codeberg.page"
+
+prj-ixpect01 AAAA 2a01:7700:80b0:f002::1
