@@ -1,7 +1,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               202592701  ; Serial
+               2025092901  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
