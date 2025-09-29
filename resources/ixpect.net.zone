@@ -24,4 +24,4 @@ $TTL    1h         ; default TTL for zone
          AAAA  2a0a:4580:103f:c0de::2
          TXT   "ixpect.IXpect.codeberg.page"
 
-prj-ixpect01 AAAA 2a01:7700:80b0:f002::1
+prj-ixpect01 AAAA 2a01:7700:80b0:f002::2
