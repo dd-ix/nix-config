@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   dd-ix = {
     useFpx = true;
