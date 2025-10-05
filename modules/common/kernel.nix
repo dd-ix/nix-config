@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 {
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
 
   # validate initrd kernel modules required for networking
   system.preSwitchChecks = lib.mkIf config.boot.initrd.network.enable {
