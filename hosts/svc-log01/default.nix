@@ -1,6 +1,6 @@
 {
   imports = [
     ./configuration.nix
-    ../../modules/obs/loki.nix
+    ./loki.nix
   ];
 }
