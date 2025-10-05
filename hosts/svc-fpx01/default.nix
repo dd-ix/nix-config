@@ -1,6 +1,6 @@
-{ ... }: {
+{
   imports = [
     ./configuration.nix
-    ../../modules/management/privoxy.nix
+    ./privoxy.nix
   ];
 }

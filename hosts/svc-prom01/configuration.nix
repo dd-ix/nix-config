@@ -1,4 +1,3 @@
-{ ... }:
 {
   dd-ix = {
     useFpx = true;

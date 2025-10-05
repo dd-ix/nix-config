@@ -20,6 +20,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./network.nix
+    ./bookstack.nix
   ];
 
   dd-ix = {

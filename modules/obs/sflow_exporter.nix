@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.sflow-exporter = {
     enable = true;

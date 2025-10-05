@@ -93,8 +93,7 @@
           modules = [
             self.nixosModules.common
             self.nixosModules.data
-            ./hosts/svc-hv01/configuration.nix
-            ./modules/management/bookstack.nix
+            ./hosts/svc-hv01
             ./modules/dd-ix
             sops-nix.nixosModules.default
             microvm.nixosModules.host

@@ -1,4 +1,3 @@
-{ ... }:
 {
   dd-ix = {
     hostName = "svc-fpx01";

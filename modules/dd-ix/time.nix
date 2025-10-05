@@ -1,4 +1,3 @@
-{ ... }:
 {
   networking.timeServers = [
     "ntp1.ibh.net"

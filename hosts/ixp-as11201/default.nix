@@ -1,4 +1,4 @@
-{ ... }: {
+{
   imports = [
     ./configuration.nix
     ./bird.nix

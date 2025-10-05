@@ -1,6 +1,6 @@
-{ ... }: {
+{
   imports = [
     ./configuration.nix
-    ../../modules/management/authentik.nix
+    ./authentik.nix
   ];
 }
