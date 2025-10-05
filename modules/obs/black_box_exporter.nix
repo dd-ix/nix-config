@@ -3,7 +3,19 @@
     enable = true;
     openFirewall = true;
     port = 9115;
-    configFile = ../../resources/blackbox-exporter.yaml;
+    settings.modules.http_2xx = {
+      http = {
+        fail_if_not_ssl = true;
+        ip_protocol_fallback = false;
+        method = "GET";
+        no_follow_redirects = true;
+        preferred_ip_protocol = "ip6";
+        valid_http_versions = [ "HTTP/1.1" "HTTP/2.0" ];
+        valid_status_codes = [ 200 204 ];
+      };
+      prober = "http";
+      timeout = "10s";
+    };
   };
 }
 
