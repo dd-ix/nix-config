@@ -1,9 +1,9 @@
-{ self, config, pkgs, inputs, ... }:
+{ self, config, pkgs, ... }:
 let
   hostname = "auth.${config.dd-ix.domain}";
 
-  customScope = (inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
-    (final: prev: prev.authentikComponents // {
+  customScope = (self.inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
+    (_: prev: prev.authentikComponents // {
       frontend = prev.authentikComponents.frontend.overrideAttrs (_: {
         patches = [ (self + /resouces/authentik-logo.patch) ];
       });

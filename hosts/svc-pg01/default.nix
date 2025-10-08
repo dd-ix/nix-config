@@ -8,8 +8,6 @@
     hostName = "svc-pg01";
 
     microvm = {
-      enable = true;
-
       mem = 1024 * 4;
       vcpu = 4;
     };

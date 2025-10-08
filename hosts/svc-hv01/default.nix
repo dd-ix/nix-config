@@ -8,7 +8,7 @@ let
   # list of all nixos systems in this flake
   allSystems = toList self.nixosConfigurations;
 
-  allMicroVMS = builtins.filter (x: ((builtins.hasAttr "microvm" x.config.dd-ix) && x.config.dd-ix.microvm.enable)) allSystems;
+  allMicroVMS = builtins.filter (x: ((builtins.hasAttr "microvm" x.config.dd-ix) && (x.config.dd-ix ? microvm))) allSystems;
 
   # turns the hostname into an address
   extractName = host: "${host.config.dd-ix.hostName}";
