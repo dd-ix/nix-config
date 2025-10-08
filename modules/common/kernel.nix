@@ -3,6 +3,7 @@
 {
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
 
+  # https://gitea.c3d2.de/c3d2/nix-config/src/branch/master/modules/baremetal.nix#L163-L184
   # validate initrd kernel modules required for networking
   system.preSwitchChecks = lib.mkIf config.boot.initrd.network.enable {
     "checkForNetworkKernelModules" = /* bash */ ''

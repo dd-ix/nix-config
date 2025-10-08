@@ -21,8 +21,8 @@
       # If one connection to a remote builder failed, don't cancel already running builds!
       keep-going = true;
 
-      substituters = [ "https://nix-community.cachix.org/?priority=45" "https://hydra.hq.c3d2.de/?priority=50" ];
-      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hydra.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps=" ];
+      substituters = [ "https://hydra.hq.c3d2.de/?priority=50" ];
+      trusted-public-keys = [ "hydra.hq.c3d2.de:KZRGGnwOYzys6pxgM8jlur36RmkJQ/y8y62e52fj1ps=" ];
 
       # sudo users should be able to use nix commands
       trusted-users = [ "@wheel" ];

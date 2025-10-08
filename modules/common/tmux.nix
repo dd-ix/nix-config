@@ -10,8 +10,10 @@
     escapeTime = 100;
     extraConfigBeforePlugins = ''
       set -g @kanagawa-plugins " "
+      # preserve terminal emulator background color
+      set -g @kanagawa-ignore-window-colors true
     '';
-    plugins = with pkgs.tmuxPlugins ;[
+    plugins = with pkgs.tmuxPlugins; [
       kanagawa
     ];
     extraConfig = ''

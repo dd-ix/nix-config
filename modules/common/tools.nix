@@ -24,6 +24,7 @@
     wireguard-tools
     rsync
     bat
+    sops
   ];
 
   programs = {
