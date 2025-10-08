@@ -20,7 +20,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     microvm = {
       hypervisor = "cloud-hypervisor";
 
