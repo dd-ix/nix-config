@@ -6,6 +6,7 @@ nixosSystem {
 
   modules = [
     self.nixosModules.dd-ix-microvm
+    self.inputs.microvm.nixosModules.microvm
   ] ++ modules;
 }
 
