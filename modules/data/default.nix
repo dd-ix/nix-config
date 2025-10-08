@@ -1,12 +1,6 @@
 { self, lib, config, options, ... }:
 
 let
-  mkMac = seed:
-    let
-      hash = builtins.hashString "md5" seed;
-      c = off: builtins.substring off 2 hash;
-    in
-    "${builtins.substring 0 1 hash}2:${c 2}:${c 4}:${c 6}:${c 8}:${c 10}";
   globalConfig = config;
 in
 {
@@ -58,11 +52,6 @@ in
             fqdn = lib.mkOption {
               type = lib.types.str;
               default = "${name}.dd-ix.net";
-            };
-
-            mac = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              default = mkMac config.networking.fqdn;
             };
 
             net = lib.mkOption {

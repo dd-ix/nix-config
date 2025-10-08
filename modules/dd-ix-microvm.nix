@@ -2,6 +2,13 @@
 
 let
   cfg = config.dd-ix.microvm;
+  mkMac = seed:
+    let
+      hash = builtins.hashString "md5" seed;
+      c = off: builtins.substring off 2 hash;
+    in
+    "${builtins.substring 0 1 hash}2:${c 2}:${c 4}:${c 6}:${c 8}:${c 10}";
+  mac = mkMac config.networking.fqdn;
 in
 {
   options.dd-ix.microvm = {
@@ -24,7 +31,7 @@ in
       interfaces = [{
         type = "tap";
         id = "vm-${config.networking.hostName}";
-        inherit (config.dd-ix.host.networking) mac;
+        inherit mac;
       }];
 
       virtiofsd.threadPoolSize = 4;
@@ -72,8 +79,8 @@ in
             link = {
               state = "up";
               kind = "physical";
-              address = config.dd-ix.host.networking.mac;
             };
+            identify.perm_address = mac;
           };
           routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
             ++ (lib.optional (cfg.v4Addr != null) {
