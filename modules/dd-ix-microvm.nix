@@ -12,8 +12,6 @@ let
 in
 {
   options.dd-ix.microvm = {
-    enable = lib.mkEnableOption "Whether to enable microvm settings.";
-
     inherit (options.microvm) vcpu mem;
 
     v4Addr = lib.mkOption {

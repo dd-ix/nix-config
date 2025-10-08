@@ -6,8 +6,6 @@
     hostName = "svc-auth01";
 
     microvm = {
-      enable = true;
-
       mem = 2048;
       vcpu = 2;
     };

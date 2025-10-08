@@ -4,8 +4,6 @@
     hostName = "svc-clab01";
 
     microvm = {
-      enable = true;
-
       mem = 1024 * 16;
       vcpu = 4;
 

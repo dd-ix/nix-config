@@ -80,434 +80,235 @@
 
   outputs = inputs@{ self, nixpkgs, sops-nix, microvm, website-content-api, website, website-content, ixp-manager, authentik, ddix-ansible-ixp, sflow-exporter, post, nixos-modules, alice-lg, ... }: {
 
-    nixosModules = {
-      common = ./modules/common;
-      data = ./modules/data;
-    };
+    nixosModules = import ./modules;
 
     nixosConfigurations =
+      let
+        libD = import ./lib { inherit self; };
+      in
       {
-        svc-hv01 = nixpkgs.lib.nixosSystem {
+        svc-hv01 = libD.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
             ./hosts/svc-hv01
-            ./modules/dd-ix
-            sops-nix.nixosModules.default
             microvm.nixosModules.host
             nixos-modules.nixosModule
           ];
         };
-        ext-mon01 = nixpkgs.lib.nixosSystem {
+        ext-mon01 = libD.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
             ./hosts/ext-mon01
-            ./modules/dd-ix
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
           ];
         };
-        svc-adm01 = nixpkgs.lib.nixosSystem {
+        svc-adm01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
             { nixpkgs.overlays = [ ddix-ansible-ixp.overlays.default ]; }
             ./hosts/svc-adm01
-            sops-nix.nixosModules.default
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
             nixos-modules.nixosModule
           ];
         };
-        svc-mta01 = nixpkgs.lib.nixosSystem {
+        svc-mta01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            sops-nix.nixosModules.default
-            microvm.nixosModules.microvm
             post.nixosModules.default
             { nixpkgs.overlays = [ post.overlays.default ]; }
             ./hosts/svc-mta01
             nixos-modules.nixosModule
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-ns01 = nixpkgs.lib.nixosSystem {
+        svc-ns01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
             ./hosts/svc-ns01
-            sops-nix.nixosModules.default
-            ./modules/dd-ix
             nixos-modules.nixosModule
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-portal01 = nixpkgs.lib.nixosSystem {
+        svc-portal01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             ixp-manager.nixosModules.default
             { nixpkgs.overlays = [ ixp-manager.overlays.default ]; }
             ./hosts/svc-portal01
-            ./modules/dd-ix
             nixos-modules.nixosModule
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-clab01 = nixpkgs.lib.nixosSystem {
+        svc-clab01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             ./hosts/svc-clab01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
             nixos-modules.nixosModule
           ];
         };
-        svc-fpx01 = nixpkgs.lib.nixosSystem {
+        svc-fpx01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             ./hosts/svc-fpx01
-            ./modules/dd-ix
             nixos-modules.nixosModule
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-rpx01 = nixpkgs.lib.nixosSystem {
+        svc-rpx01 = libD.microvmSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-rpx01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-auth01 = nixpkgs.lib.nixosSystem {
+        svc-auth01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             authentik.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-auth01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-pg01 = nixpkgs.lib.nixosSystem {
+        svc-pg01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-pg01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-mari01 = nixpkgs.lib.nixosSystem {
+        svc-mari01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-mari01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-cloud01 = nixpkgs.lib.nixosSystem {
+        svc-cloud01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-cloud01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-dcim01 = nixpkgs.lib.nixosSystem {
+        svc-dcim01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-dcim01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-lists01 = nixpkgs.lib.nixosSystem {
+        svc-lists01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
             nixos-modules.nixosModule
-            sops-nix.nixosModules.default
             ./hosts/svc-lists01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-vault01 = nixpkgs.lib.nixosSystem {
+        svc-vault01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-vault01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-lg01 = nixpkgs.lib.nixosSystem {
+        svc-lg01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
             { nixpkgs.overlays = [ alice-lg.overlays.default ]; }
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-lg01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        ixp-as11201 = nixpkgs.lib.nixosSystem {
+        ixp-as11201 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/ixp-as11201
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-prom01 = nixpkgs.lib.nixosSystem {
+        svc-prom01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-prom01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-prom02 = nixpkgs.lib.nixosSystem {
+        svc-prom02 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-prom02
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-exp01 = nixpkgs.lib.nixosSystem {
+        svc-exp01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
             sflow-exporter.nixosModules.default
             { nixpkgs.overlays = [ sflow-exporter.overlays.default ]; }
-            sops-nix.nixosModules.default
             ./hosts/svc-exp01
             nixos-modules.nixosModule
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-obs01 = nixpkgs.lib.nixosSystem {
+        svc-obs01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-obs01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-web01 = nixpkgs.lib.nixosSystem {
+        svc-web01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
             {
               nixpkgs.overlays = [
                 website.overlays.default
                 website-content-api.overlays.default
-                (final: prev: {
-                  website-content = website-content;
-                })
+                (_: _: { inherit website-content; })
               ];
             }
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             website.nixosModules.default
             website-content-api.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-web01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-bbe01 = nixpkgs.lib.nixosSystem {
+        svc-bbe01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-bbe01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-crm01 = nixpkgs.lib.nixosSystem {
+        svc-crm01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-crm01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-tix01 = nixpkgs.lib.nixosSystem {
+        svc-tix01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-tix01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-trans01 = nixpkgs.lib.nixosSystem {
+        svc-trans01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-trans01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-nms01 = nixpkgs.lib.nixosSystem {
+        svc-nms01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-nms01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
-        svc-log01 = nixpkgs.lib.nixosSystem {
+        svc-log01 = libD.microvmSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs self; };
           modules = [
-            self.nixosModules.common
-            self.nixosModules.data
-            microvm.nixosModules.microvm
-            sops-nix.nixosModules.default
             nixos-modules.nixosModule
             ./hosts/svc-log01
-            ./modules/dd-ix
-            ./modules/dd-ix-microvm.nix
           ];
         };
       };

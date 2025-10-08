@@ -4,8 +4,6 @@
     useFpx = true;
 
     microvm = {
-      enable = true;
-
       mem = 1024 * 2;
       vcpu = 2;
     };

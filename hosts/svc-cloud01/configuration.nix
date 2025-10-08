@@ -4,8 +4,6 @@
     hostName = "svc-cloud01";
 
     microvm = {
-      enable = true;
-
       mem = 4096;
       vcpu = 4;
 

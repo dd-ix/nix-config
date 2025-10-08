@@ -4,8 +4,6 @@
     hostName = "svc-adm01";
 
     microvm = {
-      enable = true;
-
       mem = 1024 * 2;
       vcpu = 2;
     };
