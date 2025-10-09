@@ -17,7 +17,7 @@
       environmentFile = config.sops.templates."hedgedoc/env".path;
       settings = {
         protocolUseSSL = true;
-        domain = "pad.dd-ix.net";
+        domain = "pad.${config.dd-ix.domain}";
         db = {
           dialect = "postgres";
           username = "hedgedoc";
@@ -30,9 +30,9 @@
           providername = "DD-IX Auth";
           clientID = "kvfIfoiWcWdN5NwarjF43gCdoWuPjM37K5eSnbJM";
           scope = "openid email profile";
-          userProfileURL = "https://auth.dd-ix.net/application/o/userinfo/";
-          tokenURL = "https://auth.dd-ix.net/application/o/token/";
-          authorizationURL = "https://auth.dd-ix.net/application/o/authorize/";
+          userProfileURL = "https://auth.${config.dd-ix.domain}/application/o/userinfo/";
+          tokenURL = "https://auth.${config.dd-ix.domain}/application/o/token/";
+          authorizationURL = "https://auth.${config.dd-ix.domain}/application/o/authorize/";
           userProfileUsernameAttr = "preferred_username";
           userProfileDisplayNameAttr = "name";
           userProfileEmailAttr = "email";
@@ -42,8 +42,6 @@
         defaultPermission = "limited";
         # disallow email login
         email = false;
-        # TODO: remove when upstream sets something like that as default
-        path = "/run/hedgedoc/hedgedoc.sock";
       };
     };
 
@@ -57,10 +55,7 @@
       onlySSL = true;
       useACMEHost = "pad.${config.dd-ix.domain}";
 
-      enableACME = lib.mkForce false;
       forceSSL = lib.mkForce false;
     };
   };
-
-  users.users.nginx.extraGroups = [ "hedgedoc" ];
 }
