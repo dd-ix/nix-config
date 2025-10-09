@@ -13,4 +13,6 @@
     ./monitoring.nix
     ./redis.nix
   ];
+
+  boot.initrd.network.checkKernelModules.enable = false;
 }
