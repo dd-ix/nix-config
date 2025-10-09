@@ -223,4 +223,11 @@
       ./svc-log01
     ];
   };
+  svc-pad01 = libD.microvmSystem {
+    system = "x86_64-linux";
+    modules = [
+      self.inputs.nixos-modules.nixosModule
+      ./svc-pad01
+    ];
+  };
 }

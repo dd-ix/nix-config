@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2025061100  ; Serial
+               2025100900  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -71,6 +71,7 @@ svc-bbe01     AAAA  2a01:7700:80b0:6001::14
 svc-crm01     AAAA  2a01:7700:80b0:6001::15
 svc-tix01     AAAA  2a01:7700:80b0:6001::16
 svc-trans01   AAAA  2a01:7700:80b0:6001::17
+svc-pad01     AAAA  2a01:7700:80b0:6001::18
 
 svc-hv01      AAAA  2a01:7700:80b0:7000::2
               TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
@@ -125,6 +126,7 @@ talks          CNAME  svc-rpx01
 nms            CNAME  svc-rpx01
 opening        CNAME  svc-rpx01
 translate      CNAME  svc-rpx01
+pad            CNAME  svc-rpx01
 status 	       CNAME  ext-mon01
 
 ;; Management
@@ -181,4 +183,5 @@ _acme-challenge.events         CNAME  events.acme-dns
 _acme-challenge.nms            CNAME  nms.acme-dns
 _acme-challenge.opening        CNAME  opening.acme-dns
 _acme-challenge.translate      CNAME  translate.acme-dns
+_acme-challenge.pad            CNAME  pad.acme-dns
 _acme-challenge.svc-log01      CNAME  svc-log01.acme-dns
