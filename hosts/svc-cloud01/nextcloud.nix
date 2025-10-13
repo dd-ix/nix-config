@@ -70,12 +70,14 @@ in
       "cloud.${config.dd-ix.domain}" = {
         listen = [
           {
-            addr = "[::]:443";
+            addr = "[::]";
+            port = 443;
             proxyProtocol = true;
             ssl = true;
           }
           {
-            addr = "[::1]:443";
+            addr = "[::1]";
+            port = 443;
             ssl = true;
           }
         ];
@@ -86,16 +88,19 @@ in
       "office.${config.dd-ix.domain}" = {
         listen = [
           {
-            addr = "[::]:443";
+            addr = "[::]";
+            port = 443;
             proxyProtocol = true;
             ssl = true;
           }
           {
-            addr = "[::1]:443";
+            addr = "[::1]";
+            port = 443;
             ssl = true;
           }
           {
-            addr = "127.0.0.1:443";
+            addr = "127.0.0.1";
+            port = 443;
             ssl = true;
           }
         ];

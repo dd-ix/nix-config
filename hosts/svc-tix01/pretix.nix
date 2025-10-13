@@ -47,7 +47,8 @@ in
       virtualHosts = {
         "${pretix_domain}" = {
           listen = [{
-            addr = "[::]:443";
+            addr = "[::]";
+            port = 443;
             proxyProtocol = true;
             ssl = true;
           }];
@@ -57,7 +58,8 @@ in
         };
         "${storefront_domain}" = {
           listen = [{
-            addr = "[::]:443";
+            addr = "[::]";
+            port = 443;
             proxyProtocol = true;
             ssl = true;
           }];

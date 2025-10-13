@@ -17,7 +17,8 @@
 
       nginx = {
         listen = [{
-          addr = "[::]:443";
+          addr = "[::]";
+          port = 443;
           proxyProtocol = true;
           ssl = true;
         }];

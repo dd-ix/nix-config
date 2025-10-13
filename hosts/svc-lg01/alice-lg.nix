@@ -147,7 +147,8 @@ in
       enable = true;
       virtualHosts."lg.${config.dd-ix.domain}" = {
         listen = [{
-          addr = "[::]:443";
+          addr = "[::]";
+          port = 443;
           proxyProtocol = true;
           ssl = true;
         }];
