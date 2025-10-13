@@ -16,7 +16,10 @@ in
     };
   };
 
-  systemd.services.nextcloud-setup.after = [ "network.target" ];
+  systemd.services = {
+    nextcloud-setup.after = [ "network.target" ];
+    nextcloud-update-db.after = [ "network.target" ];
+  };
 
   services = {
     postgresql = {
@@ -53,13 +56,17 @@ in
         #loglevel = 0;
       };
       phpOptions = {
-        "opcache.jit" = "tracing";
-        "opcache.jit_buffer_size" = "100M";
         # recommended by nextcloud admin overview
-        "opcache.interned_strings_buffer" = "16";
+        "opcache.interned_strings_buffer" = 16; # default 8
+        # https://docs.nextcloud.com/server/24/admin_manual/installation/server_tuning.html#enable-php-opcache
+        "opcache.revalidate_freq" = 60; # default 1
+        # https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#:~:text=opcache.jit%20%3D%201255%20opcache.jit_buffer_size%20%3D%20128m
+        "opcache.jit" = 1255;
+        "opcache.jit_buffer_size" = "128M";
       };
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) groupfolders polls user_oidc richdocuments forms;
+        inherit (config.services.nextcloud.package.packages.apps)
+          groupfolders polls user_oidc richdocuments forms;
       };
       extraAppsEnable = true;
       # NixOS Modules
