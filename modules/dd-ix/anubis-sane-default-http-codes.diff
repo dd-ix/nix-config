@@ -1,0 +1,15 @@
+diff --git a/data/botPolicies.yaml b/data/botPolicies.yaml
+index f62af35..18ebe7d 100644
+--- a/data/botPolicies.yaml
++++ b/data/botPolicies.yaml
+@@ -161,8 +161,8 @@ openGraph:
+ # the most aggressive scraper bots seem to really, really, want an HTTP 200 and
+ # will stop sending requests once they get it.
+ status_codes:
+-  CHALLENGE: 200
+-  DENY: 200
++  CHALLENGE: 401
++  DENY: 403
+ 
+ # Anubis can store temporary data in one of a few backends. See the storage
+ # backends section of the docs for more information:

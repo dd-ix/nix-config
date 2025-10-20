@@ -139,7 +139,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-dcim01
-  - path_regex: secrets/management/(rfc2136/lists.dd-ix.net|lists).yaml
+  - path_regex: (secrets/management/(rfc2136/lists.dd-ix.net|lists)|hosts/svc-lists01/secrets)\.yaml
     key_groups:
       - pgp:
         - *admin_tassilo

@@ -1,5 +1,6 @@
 {
   imports = [
+    ./anubis.nix
     ./base.nix
     ./general-options.nix
     ./dns.nix
