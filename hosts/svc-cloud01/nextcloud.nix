@@ -144,4 +144,18 @@ in
       };
     };
   };
+
+  fonts.packages = with pkgs; [
+    inter
+    vistafonts
+    comic-relief
+    open-sans
+    vt323
+    dm-sans
+    dm-mono
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vista-fonts"
+  ];
 }
