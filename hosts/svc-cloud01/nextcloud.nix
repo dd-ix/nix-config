@@ -139,6 +139,8 @@ in
           enable = false;
           termination = true;
         };
+
+        remote_font_config.url = "https://${config.services.nextcloud.hostName}/apps/richdocuments/settings/fonts.json";
       };
     };
   };
