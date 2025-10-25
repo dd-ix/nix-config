@@ -121,7 +121,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-pg01 
-  - path_regex: secrets/management/(rfc2136/(cloud|office).dd-ix.net|cloud).yaml
+  - path_regex: (secrets/management/(rfc2136/(cloud|office).dd-ix.net)|hosts/svc-cloud01/secrets)\.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
