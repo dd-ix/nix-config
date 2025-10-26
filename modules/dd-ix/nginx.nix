@@ -1,36 +1,6 @@
 { lib, config, ... }:
 
 let
-  blockedNetworks = [
-    # cheapy.host LLC - mailman spam - 2025-04-12
-    "196.251.69.0/24"
-    "196.251.70.0/24"
-    "196.251.71.0/24"
-    "196.251.72.0/24"
-    "196.251.73.0/24"
-    "196.251.80.0/24"
-    "196.251.81.0/24"
-    "196.251.83.0/24"
-    "196.251.84.0/24"
-    "196.251.85.0/24"
-    "196.251.86.0/24"
-    "196.251.87.0/24"
-    "196.251.88.0/24"
-    "196.251.89.0/24"
-    "196.251.90.0/24"
-    "196.251.91.0/24"
-    # Atomic Networks LLC - mailman spam 2025-05-01
-    "23.146.184.0/24"
-    "45.61.170.0/24"
-    "64.49.8.0/24"
-    "64.49.9.0/24"
-    "82.153.134.0/24"
-    "166.1.173.0/24"
-    "204.137.14.0/24"
-    "2602:fc2f:100::/40"
-    "2602:fc2f:f00::/48"
-  ];
-
   enable = config.services.nginx.enable;
   headers = ''
     # Permissions Policy - gps only
@@ -55,8 +25,6 @@ let
     # real ip
     set_real_ip_from 2a01:7700:80b0:6000::443;
     real_ip_header proxy_protocol;
-
-    ${lib.concatStringsSep "\n" (map (network: "deny ${network};") blockedNetworks)}
   '';
 in
 {
