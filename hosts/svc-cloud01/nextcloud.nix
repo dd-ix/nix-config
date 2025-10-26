@@ -170,6 +170,7 @@ in
         "${entrypoint}:/onlyoffice-entrypoint.sh:ro"
         "${pkgs.dm-sans}/share/fonts/truetype:/usr/share/fonts/truetype/DeepMindSans:ro"
         "${pkgs.dm-mono}/share/fonts/truetype:/usr/share/fonts/truetype/DMMono:ro"
+        "${pkgs.quicksand}/share/fonts/quicksand:/usr/share/fonts/truetype/Quicksand:ro"
       ];
     entrypoint = "/bin/bash";
     cmd = [ "/onlyoffice-entrypoint.sh" ];
