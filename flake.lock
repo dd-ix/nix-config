@@ -489,11 +489,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761566822,
-        "narHash": "sha256-0XC/a9jys8Fti0Bfk9E2o9WJQWYtsGvKPG/oivcNPFg=",
+        "lastModified": 1761597313,
+        "narHash": "sha256-Puhm3NqHMIBun8qYT1d87rWfuYzHe+BmMsEUk5qFRCk=",
         "owner": "dd-ix",
         "repo": "website",
-        "rev": "e9849a71d2572196d7d98e3be38bfd31283b3e4d",
+        "rev": "c197ef18940f571337381197e6630aca82f51468",
         "type": "github"
       },
       "original": {
