@@ -6,7 +6,6 @@
     modules = [
       ./svc-hv01
       self.inputs.microvm.nixosModules.host
-      self.inputs.nixos-modules.nixosModule
     ];
   };
   ext-mon01 = libD.nixosSystem {
