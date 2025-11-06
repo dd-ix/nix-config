@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  zfsVersion = "2_2";
+  zfsVersion = "2_3";
   # original source: https://github.com/nix-community/srvos/blob/main/nixos/mixins/latest-zfs-kernel.nix
   zfsCompatibleKernelPackages = lib.filterAttrs
     (
