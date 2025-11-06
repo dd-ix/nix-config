@@ -81,7 +81,6 @@
   svc-pg01 = libD.microvmSystem {
     system = "x86_64-linux";
     modules = [
-      self.inputs.nixos-modules.nixosModule
       ./svc-pg01
     ];
   };
