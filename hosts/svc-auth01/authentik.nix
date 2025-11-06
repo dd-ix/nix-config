@@ -58,6 +58,11 @@ in
           host = "svc-pg01.dd-ix.net";
           name = "authentik";
           user = "authentik";
+          sslmode = "verify-full";
+          sslrootcert = builtins.fetchurl {
+            url = "https://letsencrypt.org/certs/isrgrootx1.pem";
+            sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
+          };
         };
         email = {
           host = "svc-mta01.dd-ix.net";
