@@ -505,11 +505,11 @@
     "website-content": {
       "flake": false,
       "locked": {
-        "lastModified": 1759246803,
-        "narHash": "sha256-eVFjC/8Gf1oFO53NaL6fCsrlogjhkI/k1qt7D+Q9oSk=",
+        "lastModified": 1762518155,
+        "narHash": "sha256-NHOP5z4JMd5TZnImbJXZf4kvXVTN27gSB/WuI3Qky+c=",
         "owner": "dd-ix",
         "repo": "website-content",
-        "rev": "63c9c72f94991b75d9a033d7001dafbed2c1ef41",
+        "rev": "0329fe58b48fa60762e0f0ecfa3cb1fc0d31895e",
         "type": "github"
       },
       "original": {
