@@ -11,7 +11,7 @@
       parameters.ignore.ifname = [ "^vm-.+$" "^vnet\\d+$" ];
 
       interfaces = {
-        # unknown, unused
+        # unknown maybe ipmi stuff, unused
         enp0s29u1u1u5 = {
           link.kind = "physical";
           identify = { parent_dev_name = "usb-0000:00:1d.0-1.1.5"; parent_dev_bus_name = "pci"; };
@@ -40,11 +40,11 @@
         };
 
         # 10G sfp+ interfaces
-        eth4 = {
+        sfp0 = {
           link = { state = "up"; kind = "physical"; master = "bond"; };
           identify.perm_address = "00:02:c9:23:4c:20";
         };
-        eth5 = {
+        sfp1 = {
           link = { state = "up"; kind = "physical"; master = "bond"; };
           identify.perm_address = "00:02:c9:23:4c:21";
         };
@@ -52,6 +52,7 @@
         bond.link = {
           state = "up";
           kind = "bond";
+          address = "a6:64:00:b8:10:4b";
           # 802.3ad
           bond_mode = 4;
           bond_ad_lacp_rate = 1;
@@ -67,7 +68,10 @@
           last // {
             "${current.value.bridge}" = {
               addresses = lib.optional (current.name == "management") "2a01:7700:80b0:7000::2/64";
-              link = { state = "up"; kind = "bridge"; };
+              link = {
+                state = "up";
+                kind = "bridge";
+              } // lib.optionalAttrs (current.name == "management") { address = "2e:e5:ce:b9:ab:93"; };
             };
             "bond.${builtins.toString current.value.vlan}".link = {
               state = "up";
