@@ -4,7 +4,7 @@
 $TTL    1h         ; default TTL for zone
 
 @        SOA   ns.dd-ix.net.  noc.dd-ix.net.  (
-               2025100900  ; Serial
+               2025110900  ; Serial
                7200        ; Refresh
                3600        ; Retry
                1209600     ; Expire
@@ -75,6 +75,7 @@ svc-pad01     AAAA  2a01:7700:80b0:6001::18
 
 svc-hv01      AAAA  2a01:7700:80b0:7000::2
               TXT   "v=spf1 a:svc-mta01.dd-ix.net -all"
+svc-hv01-ipmi AAAA  2a01:7700:80b0:7000::3
 
 svc-clab01    AAAA  2a01:7700:80b0:7001::2
 
