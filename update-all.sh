@@ -7,6 +7,7 @@ sleep 5
 
 microvm -Ru svc-pg01
 microvm -Ru svc-mari01
+sleep 5
 
 for vm in /var/lib/microvms/*; do
   microvm -Ru "$(basename "$vm")"
