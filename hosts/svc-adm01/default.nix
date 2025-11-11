@@ -21,6 +21,41 @@
     isNormalUser = true;
   };
 
+  programs.ssh.knownHosts = {
+    "svc-exp01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHBnoPxmjrJWHWmlToNgGkcJ7CF3PChqoAqF61DhJZOI";
+      extraHostNames = [ "2a01:7700:80b0:4101::3" ];
+    };
+    "ixp-rs01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjPKbIa2hwA+GQiJdYeMyhgMu5qZBz7bUw2ftEtrhsu";
+      extraHostNames = [ "2a01:7700:80b0:4001::2" ];
+    };
+    "ixp-rs02.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHYzxiWCG/wN52qVAtCInWveri6NWKKChNgpEIaszz0g";
+      extraHostNames = [ "2a01:7700:80b0:4002::2" ];
+    };
+    "ixp-c2-sw01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXbqgEwymEUJTpjwrHZb0fIZAfDrxqrmDRw7aRu7pl8";
+      extraHostNames = [ "2a01:7700:80b0:4000::2" ];
+    };
+    "ixp-cc-sw01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJobOPBbwEh35mw/E2rOY/8wNJpMZgBXLI5sPOeXoVt2";
+      extraHostNames = [ "2a01:7700:80b0:4000::1" ];
+    };
+    "svc-web01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOTMSvzHkyiY58yZGu8F0016QhTI0rYdyyLu8HJY0CdT";
+      extraHostNames = [ "2a01:7700:80b0:6001::13" ];
+    };
+    "svc-ns01.dd-ix.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGB4Br/o28AzkE6cPzjQCGs1TE4Ii0lGFVVFY/TWunee";
+      extraHostNames = [ "2a01:7700:80b0:6000::53" ];
+    };
+    "con-ddix-lab.ibh.net" = {
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIONsjsqz+S/G6hzN+yZNTiPdfaj+u7lDJUve88geo/M6";
+      extraHostNames = [ "2a01:7700:8fe0:8::2" ];
+    };
+  };
+
   sops.secrets = {
     arouteserver_config = {
       sopsFile = self + "/secrets/management/adm.yaml";
@@ -30,12 +65,6 @@
       sopsFile = self + "/secrets/management/adm.yaml";
       mode = "0400";
       path = "/home/arouteserver/.ssh/id_ed25519";
-      owner = "arouteserver";
-    };
-    arouteserver_ssh_known_hosts = {
-      sopsFile = self + "/secrets/management/adm.yaml";
-      mode = "0400";
-      path = "/home/arouteserver/.ssh/known_hosts";
       owner = "arouteserver";
     };
   };
