@@ -72,20 +72,26 @@ in
         enable = true;
         settings = {
           interfaces.eth0 = {
-            addresses = [ "${config.dd-ix.host.networking.addr}/${builtins.toString config.dd-ix.nets.${config.dd-ix.host.networking.net}.cidr}" ]
-              ++ (lib.optional (cfg.v4Addr != null) cfg.v4Addr);
+            addresses =
+              [ "${config.dd-ix.host.networking.addr}/${builtins.toString config.dd-ix.nets.${config.dd-ix.host.networking.net}.cidr}" ]
+              ++ (
+                lib.optional
+                  (cfg.v4Addr != null)
+                  cfg.v4Addr
+              );
             link = {
               state = "up";
               kind = "physical";
             };
             identify.perm_address = mac;
           };
-          routing.routes = [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
-            ++ (lib.optional (cfg.v4Addr != null) {
-            to = "0.0.0.0/0";
-            dev = "eth0";
-            via = if config.dd-ix.host.networking.net == "services" then "10.96.1.1" else "212.111.245.177";
-          });
+          routing.routes =
+            [{ to = "::/0"; dev = "eth0"; via = "fe80::1"; }]
+            ++ (
+              lib.optional
+                (cfg.v4Addr != null)
+                { to = "0.0.0.0/0"; dev = "eth0"; via = "fe80::1"; }
+            );
         };
       };
     };
