@@ -178,6 +178,7 @@
       url = "https://content.${config.dd-ix.domain}/";
       prometheusUrl = "https://svc-prom02.${config.dd-ix.domain}/";
       ixpManagerUrl = "https://portal.${config.dd-ix.domain}/";
+      lookingGlassUrl = "https://lg.${config.dd-ix.domain}/";
     };
   };
 }
