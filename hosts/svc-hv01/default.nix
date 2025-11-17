@@ -40,8 +40,6 @@ in
     monitoring.enable = true;
     monitoring.smart = {
       enable = true;
-      host = addr;
-      port = 9101;
       devices = [
         "/dev/sda"
         "/dev/sdb"

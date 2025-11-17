@@ -37,12 +37,12 @@ in
         job_name = "smart_exporter";
         static_configs = [{
           targets =
-            let
+let
               # filters out all the systems where monitoring is turned off
               monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.smart.enable == true) allSystems;
 
               # turns the hostname into an address
-              extractAddress = host: "${host.config.dd-ix.monitoring.smart.host}:${toString host.config.dd-ix.monitoring.smart.port}";
+              extractAddress = host: "${host.config.dd-ix.hostName}.dd-ix.net:9101";
 
               # list of addresses
               listAddress = builtins.map extractAddress monitoredSystems;

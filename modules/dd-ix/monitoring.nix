@@ -16,14 +16,6 @@ in
         type = lib.types.listOf lib.types.str;
         default = [ ];
       };
-      port = lib.mkOption {
-        type = lib.types.port;
-        default = 21953;
-      };
-      host = lib.mkOption {
-        type = lib.types.str;
-        default = "127.0.0.1";
-      };
     };
   };
 
@@ -40,9 +32,10 @@ in
       smartctl = lib.mkIf cfg.smart.enable {
         enable = true;
         maxInterval = "10m";
-        listenAddress = cfg.smart.host;
+        listenAddress = "[::1]";
         openFirewall = true;
-        inherit (cfg.smart) port devices;
+        port = 9101;
+        inherit (cfg.smart) devices;
       };
     };
   };
