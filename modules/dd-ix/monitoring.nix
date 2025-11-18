@@ -32,7 +32,7 @@ in
       smartctl = lib.mkIf cfg.smart.enable {
         enable = true;
         maxInterval = "10m";
-        listenAddress = "[::1]";
+        listenAddress = "[::]";
         openFirewall = true;
         port = 9101;
         inherit (cfg.smart) devices;
