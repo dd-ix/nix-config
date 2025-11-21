@@ -150,7 +150,7 @@
         nixpkgs.overlays = [
           self.inputs.website.overlays.default
           self.inputs.website-content-api.overlays.default
-          (_: _: { inherit (self.inputs) website-content; })
+          (_: _: { ddix-website-content = self.inputs.website-content; })
         ];
       }
       self.inputs.website.nixosModules.default
