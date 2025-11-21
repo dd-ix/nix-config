@@ -1,6 +1,7 @@
 {
   imports = [
     ./nextcloud.nix
+    ./onlyoffice.nix
   ];
 
   dd-ix = {
