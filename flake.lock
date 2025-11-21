@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756819672,
-        "narHash": "sha256-oJujxluoeWcrosWggb1ZlkeOUwcn6zhKxZ/LmpeQwzE=",
+        "lastModified": 1763769186,
+        "narHash": "sha256-p3EBcNgxb/t1TvdDRlxgQNcuSCPc73CMAdz1mZF3Ozc=",
         "owner": "MarcelCoding",
         "repo": "alice-lg",
-        "rev": "4962f90869a56c0715df4e29e4cbadd26e41b92f",
+        "rev": "054ea3fddd9d56941cb4caae56268240dacadc9d",
         "type": "github"
       },
       "original": {
