@@ -7,7 +7,6 @@ in
   networking.firewall.allowedTCPPorts = lib.mkIf cfg.enable [ 80 443 ];
   services = {
     nginx = {
-      recommendedZstdSettings = true;
       recommendedTlsSettings = true;
       recommendedProxySettings = true;
       recommendedOptimisation = true;

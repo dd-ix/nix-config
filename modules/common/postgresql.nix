@@ -22,7 +22,7 @@ in
         "postgresql${lib.optionalString hasPostgresqlSetup "-setup"}".postStart =
           lib.concatMapStrings
             (user: lib.optionalString (user.ensurePasswordFile != null) ''
-              $PSQL -tA <<'EOF'
+              psql -tA <<'EOF'
                 DO $$
                 DECLARE password TEXT;
                 BEGIN

@@ -2,8 +2,7 @@
   description = "dresden internet exchange nixos config";
 
   inputs = {
-    nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-25.05";
-    #nixpkgs-unstable.url = "github:NuschtOS/nuschtpkgs/backports-24.11";
+    nixpkgs.url = "github:NuschtOS/nuschtpkgs/backports-25.11";
 
     flake-utils.url = "github:numtide/flake-utils";
 
