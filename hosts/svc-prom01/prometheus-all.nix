@@ -110,7 +110,7 @@ let
         ];
         static_configs = [{
           targets = [
-            "https://dd-ix.net/en/"
+            "https://dd-ix.net/en"
             "https://cloud.dd-ix.net/status.php"
             "https://dcim.dd-ix.net/login/"
             "https://lg.dd-ix.net"
