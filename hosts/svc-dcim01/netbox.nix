@@ -1,32 +1,23 @@
 { self, config, pkgs, lib, ... }:
 {
-  sops.secrets."dcim_secret_key" = {
-    sopsFile = self + "/secrets/management/dcim.yaml";
-    owner = config.systemd.services.netbox.serviceConfig.User;
+  sops.secrets = {
+    "dcim/secret_key".owner = config.systemd.services.netbox.serviceConfig.User;
+    "dcim/db_pw".owner = config.systemd.services.netbox.serviceConfig.User;
+    "dcim/oidc_secret".owner = config.systemd.services.netbox.serviceConfig.User;
   };
 
-  sops.secrets."dcim_db_pw" = {
-    sopsFile = self + "/secrets/management/dcim.yaml";
-    owner = config.systemd.services.netbox.serviceConfig.User;
-  };
-
-  sops.secrets."dcim_oidc_secret" = {
-    sopsFile = self + "/secrets/management/dcim.yaml";
-    owner = config.systemd.services.netbox.serviceConfig.User;
-  };
-
-  users.users. nginx.extraGroups = [ "netbox" ];
+  users.users.nginx.extraGroups = [ "netbox" ];
 
   services = {
     postgresql.enable = lib.mkForce false;
     netbox = {
       enable = true;
-      package = pkgs.netbox_4_2.overrideAttrs (old: {
+      package = pkgs.netbox_4_4.overrideAttrs (old: {
         installPhase = old.installPhase + ''
           ln -s ${self + "/resources/netbox/pipeline.py"} $out/opt/netbox/netbox/netbox/ddix_pipeline.py
         '';
       });
-      secretKeyFile = "${config.sops.secrets.dcim_secret_key.path}";
+      secretKeyFile = "${config.sops.secrets."dcim/secret_key".path}";
       plugins = python3Packages: with python3Packages; [ python-jose ];
       settings = {
         ALLOWED_HOSTS = [ "dcim.${config.dd-ix.domain}" ];
@@ -46,10 +37,10 @@
         LOGOUT_REDIRECT_URL = "https://auth.dd-ix.net/application/o/dcim/end-session/";
       };
       extraConfig = ''
-        with open('${config.sops.secrets."dcim_db_pw".path}', 'r') as file:
+        with open('${config.sops.secrets."dcim/db_pw".path}', 'r') as file:
           DATABASE['PASSWORD'] = file.read()
 
-        with open('${config.sops.secrets."dcim_oidc_secret".path}', 'r') as file:
+        with open('${config.sops.secrets."dcim/oidc_secret".path}', 'r') as file:
           SOCIAL_AUTH_OIDC_SECRET = file.read()
 
       

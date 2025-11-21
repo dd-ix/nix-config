@@ -130,7 +130,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-cloud01
-  - path_regex: secrets/management/(rfc2136/dcim.dd-ix.net|dcim).yaml
+  - path_regex: (secrets/management/rfc2136/dcim\.dd-ix\.net|hosts/svc-dcim01/secrets)\.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
