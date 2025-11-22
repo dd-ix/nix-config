@@ -45,6 +45,8 @@ let
       noreply@tickets.dd-ix.net      noc@dd-ix.net
       noreply@translate.dd-ix.net    noc@dd-ix.net
     '';
+  sslCert = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
+  sslKey = "${config.security.acme.certs.${domain}.directory}/key.pem";
 in
 {
   networking.firewall.allowedTCPPorts = [ 25 ];
@@ -56,8 +58,6 @@ in
   services.postfix = {
     enable = true;
     hostname = domain;
-    sslCert = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
-    sslKey = "${config.security.acme.certs.${domain}.directory}/key.pem";
     domain = domain;
     origin = domain;
     virtual = virtual_alias_map;
@@ -69,7 +69,12 @@ in
     ];
     config = {
       smtp_helo_name = domain;
+      smtp_tls_cert_file = sslCert;
+      smtp_tls_key_file = sslKey;
       smtp_tls_security_level = "encrypt";
+      smtpd_tls_cert_file = sslCert;
+      smtpd_tls_key_file = sslKey;
+      smtpd_tls_security_level = "encrypt";
       smtpd_recipient_restrictions = [
         "permit_sasl_authenticated"
         "permit_mynetworks"
