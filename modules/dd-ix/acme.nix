@@ -50,7 +50,7 @@ in
 
       systemd.services = lib.listToAttrs (map
         (domain: {
-          name = "acme-${domain.name}";
+          name = "acme-order-renew-${domain.name}";
           value.environment = lib.mkIf config.dd-ix.useFpx {
             http_proxy = config.networking.proxy.httpProxy;
             https_proxy = config.networking.proxy.httpsProxy;
