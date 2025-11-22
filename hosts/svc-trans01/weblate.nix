@@ -1,43 +1,19 @@
-{ self, lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 {
-  #   nixpkgs.overlays = [
-  #     (_: prev: {
-  #       pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-  #         (_: python-prev: {
-  #           pyjwt = python-prev.pyjwt.overridePythonAttrs (_: {
-  #             doCheck = false;
-  #             patches = [
-  #               (pkgs.fetchpatch {
-  #                 url = "https://github.com/jpadilla/pyjwt/commit/0ab0c02735ab42e1f1cc2ac1e5c80a0273f691f0.patch";
-  #                 hash = "sha256-HEFjltt76rcXbPOgkxsSTfY66Oq7no0MQDay2FcoHqY=";
-  #               })
-  #             ];
-  #           });
-  #         })
-  #       ];
-  #     })
-  #   ];
-
   sops.secrets = {
-    "weblate/django_secret_key" = {
-      sopsFile = self + /secrets/management/translate.yaml;
-      owner = config.systemd.services.weblate.serviceConfig.User;
-    };
-    "weblate/db_pass" = {
-      sopsFile = self + /secrets/management/translate.yaml;
-      owner = config.systemd.services.weblate.serviceConfig.User;
-    };
-    "weblate/oidc_client_secret" = {
-      sopsFile = self + /secrets/management/translate.yaml;
-      owner = config.systemd.services.weblate.serviceConfig.User;
-    };
+    "weblate/django_secret_key".owner = config.systemd.services.weblate.serviceConfig.User;
+    "weblate/db_pass".owner = config.systemd.services.weblate.serviceConfig.User;
+    "weblate/oidc_client_secret".owner = config.systemd.services.weblate.serviceConfig.User;
   };
 
-  systemd.services.weblate-postgresql-setup.serviceConfig = {
-    ExecStart = lib.mkForce (lib.getExe' pkgs.coreutils "true");
-    User = lib.mkForce "nobody";
-    Group = lib.mkForce "nobody";
+  # we don't have postgresql locally
+  systemd.services = {
+    weblate-postgresql-setup.enable = false;
+    weblate-migrate = {
+      after = lib.mkForce [ "redis-weblate.service" ];
+      requires = lib.mkForce [ "redis-weblate.service" ];
+    };
   };
 
   services = {
