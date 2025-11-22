@@ -136,7 +136,6 @@ in
       "--no-meminfo"
       "--no-zone-stats"
       "--no-zone-status"
-      "--no-zone-timers"
       "--no-zone-serial"
     ];
   };
