@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 {
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   # https://gitea.c3d2.de/c3d2/nix-config/src/branch/master/modules/baremetal.nix#L163-L184
   # validate initrd kernel modules required for networking
