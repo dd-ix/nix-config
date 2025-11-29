@@ -37,7 +37,7 @@ in
         job_name = "smart_exporter";
         static_configs = [{
           targets =
-let
+            let
               # filters out all the systems where monitoring is turned off
               monitoredSystems = builtins.filter (x: x.config.dd-ix.monitoring.smart.enable == true) allSystems;
 

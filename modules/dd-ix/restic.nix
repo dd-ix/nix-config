@@ -1,37 +1,29 @@
-{ self, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
 let
   cfg = config.dd-ix.restic;
 in
 {
   options.dd-ix.restic = {
     enable = lib.mkEnableOption (lib.mdDoc "dd-ix restic");
-    name = lib.mkOption {
-      type = lib.types.str;
+    paths = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
     };
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets."restic_${cfg.name}/pw" = {
-      sopsFile = self + "/secrets/management/restic/${cfg.name}.yaml";
-      owner = "root";
+    sops.secrets = {
+      "restic/pw".owner = "root";
+      "restic/repo".owner = "root";
     };
 
-    sops.secrets."restic_${cfg.name}/repo" = {
-      sopsFile = self + "/secrets/management/restic/${cfg.name}.yaml";
-      owner = "root";
-    };
-
-    services.restic.backups."${cfg.name}" = {
+    services.restic.backups."data" = {
       initialize = true;
 
-      passwordFile = config.sops.secrets."restic_${cfg.name}/pw".path;
-      repositoryFile = config.sops.secrets."restic_${cfg.name}/repo".path;
+      passwordFile = config.sops.secrets."restic/pw".path;
+      repositoryFile = config.sops.secrets."restic/repo".path;
 
-      paths = [
-        "/etc/ssh"
-        "/etc/nixos"
-        "/var/lib"
-      ];
+      inherit (cfg) paths;
 
       timerConfig = {
         OnCalendar = "00/12:20";
@@ -48,7 +40,7 @@ in
       #];
     };
 
-    systemd.services."restic-backups-${cfg.name}".unitConfig.OnFailure = "notify-backup-failed-${cfg.name}.service";
+    systemd.services."restic-backups-data".unitConfig.OnFailure = "notify-backup-failed.service";
 
     programs.msmtp = {
       enable = true;
@@ -60,16 +52,14 @@ in
       };
     };
 
-    systemd.services."notify-backup-failed-${cfg.name}" = {
+    systemd.services."notify-backup-failed" = {
       enable = true;
-      description = "Notify on failed backup ${cfg.name}";
+      description = "Notify on failed backup ${config.networking.fqdn}";
 
-      serviceConfig = {
-        Type = "oneshot";
-      };
+      serviceConfig.Type = "oneshot";
 
       script = ''
-        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup job ${cfg.name} failed\r\n\r\nBackup job ${cfg.name} failed:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value restic-backups-${cfg.name}`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
+        echo -e "Content-Type: text/plain; charset=UTF-8\r\nSubject: [DD-IX-BACKUP] Backup job ${config.networking.fqdn} failed\r\n\r\nBackup job ${config.networking.fqdn} failed:\n\n$(journalctl _SYSTEMD_INVOCATION_ID=`systemctl show -p InvocationID --value restic-backups-data`)" | ${lib.getExe pkgs.msmtp} noc@dd-ix.net
       '';
     };
   };

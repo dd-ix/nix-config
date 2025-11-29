@@ -18,24 +18,20 @@ in
   imports = [
     ./hardware-configuration.nix
     ./network.nix
-    ./bookstack.nix
   ];
 
   dd-ix = {
     useFpx = true;
     hostName = "svc-hv01";
 
-    acme = [{
-      name = "wiki.dd-ix.net";
-      group = "nginx";
-    }];
-
     restic = {
       enable = true;
-      name = "svc-hv01";
+      paths = [
+        "/etc/ssh"
+        "/etc/nixos"
+        "/var/lib"
+      ];
     };
-
-    mariadb = [ "bookstack" ];
 
     monitoring = {
       enable = true;
@@ -55,6 +51,8 @@ in
     autostart = listOfNames;
     stateDir = "/var/lib/microvms";
   };
+
+  sops.defaultSopsFile = ./secrets.yaml;
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -96,11 +94,6 @@ in
         ZED_NOTIFY_VERBOSE = true;
       };
     };
-  };
-
-  sops = {
-    defaultSopsFile = self + /secrets/management/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   };
 
   virtualisation.libvirtd = {

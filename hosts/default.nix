@@ -200,4 +200,10 @@
       ./svc-pad01
     ];
   };
+  svc-wiki01 = libD.microvmSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./svc-wiki01
+    ];
+  };
 }

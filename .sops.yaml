@@ -30,6 +30,7 @@ keys:
   - &svc-exp01 age12eeaqsw8w5lj8u064tnuq5nat87vr0nnjqjnlart5r8ge8pszg0sp08x3p
   - &svc-log01 age1uq77z3q50c0wyt6j9vh7ay0n4zvsp99kzrgkm0nu8rxtucnr2erqduge7h
   - &svc-pad01 age1wrf6r6rhnx7trravl753h6medgm8tj5fmj2z5hs2zg5n67vuh4rsmlrrku
+  - &svc-wiki01 age1r4jgqffppetuexnrvxpundmt2xve8dk6rl49qw0m7snay0pwwv3qw88yvl
 creation_rules:
   - path_regex: secrets/ixp/as112.yaml
     key_groups:
@@ -40,7 +41,7 @@ creation_rules:
         - *admin_maurice
         age:
         - *ixp-as11201
-  - path_regex: secrets/management/(restic/svc-hv01|secrets).yaml
+  - path_regex: hosts/svc-hv01/secrets\.yaml
     key_groups:
       - pgp:
         - *admin_tassilo
@@ -67,15 +68,6 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-ns01
-  - path_regex: secrets/management/rfc2136/wiki.dd-ix.net.yaml
-    key_groups:
-      - pgp:
-        - *admin_tassilo
-        - *admin_fiasko
-        - *admin_marcel
-        - *admin_maurice
-        age:
-        - *svc-hv01
   - path_regex: secrets/management/rfc2136/portal.dd-ix.net.yaml
     key_groups:
       - pgp:
@@ -283,4 +275,13 @@ creation_rules:
         - *admin_maurice
         age:
         - *svc-pad01
+  - path_regex: (hosts/svc-wiki01/secrets\.yaml|secrets/management/rfc2136/wiki\.dd-ix\.net\.yaml)
+    key_groups:
+      - pgp:
+        - *admin_tassilo
+        - *admin_fiasko
+        - *admin_marcel
+        - *admin_maurice
+        age:
+        - *svc-wiki01
 
