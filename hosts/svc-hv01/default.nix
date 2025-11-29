@@ -1,8 +1,6 @@
 { self, lib, ... }:
 
 let
-  addr = "[2a01:7700:80b0:7000::2]";
-
   toList = attrs: (builtins.map (key: lib.getAttr key attrs) (lib.attrNames attrs));
 
   # list of all nixos systems in this flake
@@ -37,15 +35,19 @@ in
       name = "svc-hv01";
     };
 
-    monitoring.enable = true;
-    monitoring.smart = {
+    mariadb = [ "bookstack" ];
+
+    monitoring = {
       enable = true;
-      devices = [
-        "/dev/sda"
-        "/dev/sdb"
-        "/dev/sdc"
-        "/dev/sdd"
-      ];
+      smart = {
+        enable = true;
+        devices = [
+          "/dev/sda"
+          "/dev/sdb"
+          "/dev/sdc"
+          "/dev/sdd"
+        ];
+      };
     };
   };
 
@@ -64,15 +66,15 @@ in
       efi.canTouchEfiVariables = true;
     };
     zfs.requestEncryptionCredentials = true;
+
+    kernelParams = [
+      # allows passing pci devices into microvm's
+      "intel_iommu=on"
+      "zfs.zfs_arc_max=${toString (32 /* GB */ * 1024 * 1024 * 1024)}"
+    ];
+
+    supportedFilesystems = [ "zfs" ];
   };
-
-  boot.kernelParams = [
-    # allows passing pci devices into microvm's
-    "intel_iommu=on"
-    "zfs.zfs_arc_max=${toString (32 /* GB */ * 1024 * 1024 * 1024)}"
-  ];
-
-  boot.supportedFilesystems = [ "zfs" ];
 
   networking = {
     hostId = "eeb0e9de";
