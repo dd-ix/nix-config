@@ -125,8 +125,8 @@
           owner = "dd-ix";
           repo = "ddix-talks";
           fetchSubmodules = true;
-          rev = "c8535bfffe590007af865391251740bfcadb6809";
-          hash = "sha256-YWrn9pb6CnoyNqIl2czd9Jq9aG7vzfktAlrFsM2Fvpw=";
+          rev = "83a4a4ec758f05c677011f2bf9ed7a7fe35492d6";
+          hash = "sha256-MeZfoU0RvXWZ0B5NheAKibf1PpELUTSBgJ/uynxdKPE=";
         };
 
         locations = {
