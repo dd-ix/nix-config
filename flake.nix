@@ -14,7 +14,6 @@
     microvm = {
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
 
     website = {
