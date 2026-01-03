@@ -25,6 +25,7 @@
     rsync
     bat
     sops
+    strace #strace-with-colors
   ];
 
   programs = {

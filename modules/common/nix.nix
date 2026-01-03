@@ -32,13 +32,16 @@
     daemonCPUSchedPolicy = "batch";
     daemonIOSchedClass = "idle";
     daemonIOSchedPriority = 7;
+
+    nixPath = [
+      # fix nixpkgs path for nix-shell -p 
+      "nixpkgs=${self.inputs.nixpkgs}"
+    ];
   };
 
   environment.variables = {
     # force builds to use nix daemon, also if user is root
     NIX_REMOTE = "daemon";
-    # fix nixpkgs path for nix-shell -p 
-    NIX_PATH = lib.mkForce "nixpkgs=${self.inputs.nixpkgs}";
   };
 
   systemd.services.nix-daemon.serviceConfig = {
