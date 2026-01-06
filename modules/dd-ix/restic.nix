@@ -49,6 +49,7 @@ in
         from = "noreply@svc-hv01.dd-ix.net";
         user = "";
         password = "";
+        tls = true;
       };
     };
 
