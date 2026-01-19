@@ -10,7 +10,7 @@
     hostName = "svc-crm01";
 
     microvm = {
-      mem = 2048;
+      mem = 1 * 1024;
       vcpu = 2;
     };
 

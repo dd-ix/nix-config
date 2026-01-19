@@ -8,7 +8,7 @@
     hostName = "svc-dcim01";
 
     microvm = {
-      mem = 2048;
+      mem = 4 * 1024;
       vcpu = 2;
     };
 

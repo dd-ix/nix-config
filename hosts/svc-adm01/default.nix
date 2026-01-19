@@ -7,7 +7,7 @@
     hostName = "svc-adm01";
 
     microvm = {
-      mem = 1024 * 2;
+      mem = 1024 * 1;
       vcpu = 2;
     };
     monitoring = {

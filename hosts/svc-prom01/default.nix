@@ -9,7 +9,7 @@
     hostName = "svc-prom01";
 
     microvm = {
-      mem = 1024 * 2;
+      mem = 1024 * 4;
       vcpu = 2;
     };
 

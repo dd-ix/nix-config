@@ -8,7 +8,7 @@
     hostName = "svc-portal01";
 
     microvm = {
-      mem = 2048;
+      mem = 1 * 1024;
       vcpu = 2;
 
       v4Addr = "10.96.1.2/24";

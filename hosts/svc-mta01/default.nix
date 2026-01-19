@@ -9,7 +9,7 @@
     useFpx = true;
 
     microvm = {
-      mem = 2048;
+      mem = 1 * 1024;
       vcpu = 2;
 
       v4Addr = "212.111.245.180/29";

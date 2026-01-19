@@ -8,7 +8,7 @@
     useFpx = true;
 
     microvm = {
-      mem = 1024 * 2;
+      mem = 1024 * 1;
       vcpu = 2;
     };
 
