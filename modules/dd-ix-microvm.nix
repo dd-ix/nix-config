@@ -22,7 +22,7 @@ in
 
   config = {
     microvm = {
-      hypervisor = "cloud-hypervisor";
+      hypervisor = "qemu";
 
       inherit (cfg) vcpu mem;
 
