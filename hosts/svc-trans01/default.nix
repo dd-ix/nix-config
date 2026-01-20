@@ -8,7 +8,7 @@
     hostName = "svc-trans01";
 
     microvm = {
-      mem = 1 * 1024;
+      mem = 4 * 1024;
       vcpu = 2;
 
       v4Addr = "10.96.1.17/24";
