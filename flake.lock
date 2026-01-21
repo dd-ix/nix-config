@@ -147,6 +147,29 @@
         "type": "github"
       }
     },
+    "grafana2matrix": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768648293,
+        "narHash": "sha256-xrZbgHt6WWf3A/LVx/CmsgQH6D75UAOb4Tu/0QC0egU=",
+        "owner": "cyanPaperclip",
+        "repo": "grafana2matrix",
+        "rev": "27d8f35aa2c825fc03484ab593c7bf46fa357e02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cyanPaperclip",
+        "repo": "grafana2matrix",
+        "type": "github"
+      }
+    },
     "ixp-manager": {
       "inputs": {
         "flake-utils": [
@@ -350,6 +373,7 @@
         "authentik": "authentik",
         "ddix-ansible-ixp": "ddix-ansible-ixp",
         "flake-utils": "flake-utils",
+        "grafana2matrix": "grafana2matrix",
         "ixp-manager": "ixp-manager",
         "microvm": "microvm",
         "nixos-modules": "nixos-modules",

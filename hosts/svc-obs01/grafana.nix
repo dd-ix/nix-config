@@ -26,6 +26,10 @@ in
       sopsFile = self + "/secrets/management/obs.yaml";
       owner = config.systemd.services.grafana.serviceConfig.User;
     };
+    "matrix2grafana_env" = {
+      sopsFile = self + "/secrets/management/obs.yaml";
+      owner = config.systemd.services.grafana2matrix.serviceConfig.User;
+    };
   };
 
   services = {
@@ -176,6 +180,17 @@ in
     redis.servers.grafana = {
       enable = true;
       port = 6379;
+    };
+
+    grafana2matrix = {
+      enable = true;
+      port = 3000;
+      matrixHomeserverUrl = "https://matrix.tchncs.de";
+      matrixRoomId = "#ddix-ops-alerts:tchncs.de";
+      grafanaUrl = config.services.grafana.settings.server.root_url;
+      summaryScheduleCrit = "08:00,16:00";
+      summaryScheduleWarn = "16:00";
+      environmentFile = config.sops.secrets."matrix2grafana_env".path;
     };
   };
 }
