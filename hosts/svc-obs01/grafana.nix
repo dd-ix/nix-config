@@ -13,23 +13,32 @@ let
   };
 in
 {
-  sops.secrets = {
-    "obs_db_pw" = {
-      sopsFile = self + "/secrets/management/obs.yaml";
-      owner = config.systemd.services.grafana.serviceConfig.User;
+  sops = {
+    secrets = {
+      "obs_db_pw" = {
+        sopsFile = self + "/secrets/management/obs.yaml";
+        owner = config.systemd.services.grafana.serviceConfig.User;
+      };
+      "obs_auth_secret_key" = {
+        sopsFile = self + "/secrets/management/obs.yaml";
+        owner = config.systemd.services.grafana.serviceConfig.User;
+      };
+      "obs_secret_key" = {
+        sopsFile = self + "/secrets/management/obs.yaml";
+        owner = config.systemd.services.grafana.serviceConfig.User;
+      };
+      "grafana2matrix/matrix_token" = {
+        sopsFile = self + "/secrets/management/obs.yaml";
+      };
+      "grafana2matrix/grafana_api_key" = {
+        sopsFile = self + "/secrets/management/obs.yaml";
+      };
     };
-    "obs_auth_secret_key" = {
-      sopsFile = self + "/secrets/management/obs.yaml";
-      owner = config.systemd.services.grafana.serviceConfig.User;
-    };
-    "obs_secret_key" = {
-      sopsFile = self + "/secrets/management/obs.yaml";
-      owner = config.systemd.services.grafana.serviceConfig.User;
-    };
-    "matrix2grafana_env" = {
-      sopsFile = self + "/secrets/management/obs.yaml";
-      owner = config.systemd.services.grafana2matrix.serviceConfig.User;
-    };
+
+    templates."matrix2grafana/env".content = ''
+      MATRIX_ACCESS_TOKEN=${config.sops.placeholder."grafana2matrix/matrix_token"}
+      GRAFANA_API_KEY=${config.sops.placeholder."grafana2matrix/grafana_api_key"}
+    '';
   };
 
   services = {
@@ -190,7 +199,7 @@ in
       grafanaUrl = config.services.grafana.settings.server.root_url;
       summaryScheduleCrit = "08:00,16:00";
       summaryScheduleWarn = "16:00";
-      environmentFile = config.sops.secrets."matrix2grafana_env".path;
+      environmentFile = config.sops.templates."matrix2grafana/env".path;
     };
   };
 }
