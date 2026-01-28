@@ -193,7 +193,7 @@ in
 
     grafana2matrix = {
       enable = true;
-      port = 3000;
+      port = 3001;
       matrixHomeserverUrl = "https://matrix.tchncs.de";
       matrixRoomId = "#ddix-ops-alerts:tchncs.de";
       grafanaUrl = config.services.grafana.settings.server.root_url;
