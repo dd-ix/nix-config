@@ -140,6 +140,7 @@
   svc-obs01 = libD.microvmSystem {
     system = "x86_64-linux";
     modules = [
+      self.inputs.grafana2matrix.nixosModules.default
       ./svc-obs01
     ];
   };
