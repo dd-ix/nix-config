@@ -195,11 +195,16 @@ in
       enable = true;
       port = 3001;
       matrixHomeserverUrl = "https://matrix.tchncs.de";
-      matrixRoomId = "#ddix-ops-alerts:tchncs.de";
+      matrixRoomId = "!VZozEBrxLiFdnmypbf:tchncs.de";
       grafanaUrl = config.services.grafana.settings.server.root_url;
       summaryScheduleCrit = "08:00,16:00";
       summaryScheduleWarn = "16:00";
       environmentFile = config.sops.templates."matrix2grafana/env".path;
     };
+  };
+
+  systemd.services.grafana2matrix.environment = {
+    NODE_USE_ENV_PROXY = "1";
+    HTTPS_PROXY = config.networking.proxy.httpsProxy;
   };
 }
