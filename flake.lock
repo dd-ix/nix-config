@@ -157,11 +157,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769699189,
-        "narHash": "sha256-zUL1sJLQaqmtYEypn90w5aFttfgFs9WSIFfyZBWhSVI=",
+        "lastModified": 1769788932,
+        "narHash": "sha256-l3FNtxDGms5PuL00YrJhQsqAjTUsSk1wo9IjhVBgEeE=",
         "owner": "cyanPaperclip",
         "repo": "grafana2matrix",
-        "rev": "7673b2ad34b61e3645c0f9d9ac3745302b101342",
+        "rev": "0281b3120766cb7e9e776c36ba4eafff466b4789",
         "type": "github"
       },
       "original": {
@@ -201,11 +201,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1768682386,
-        "narHash": "sha256-mKrMf7eG9TM2AM3pTuhIiCGmZ/JwDegCQH3ThVqcTuc=",
+        "lastModified": 1769624238,
+        "narHash": "sha256-qeXiVWfblS5w/gxwklncxfXPrdpyPJ3OGvgXKekXzaM=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "f469c1dfede623bbbf1ac605f6359316fd4002ef",
+        "rev": "43406f57d740f96428a8df14d2fba80f437ca79a",
         "type": "github"
       },
       "original": {
@@ -250,11 +250,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769439175,
-        "narHash": "sha256-8ICAVnKpWy0f5t4n9Sr/95cEHrM8Q1Y2hzN6UAf0Hpg=",
+        "lastModified": 1769643685,
+        "narHash": "sha256-F0Ey/SpMah0BRsz9hWNb89NMS4kvF9Q1Ex2EciWJzzM=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "94e0e5afa124f3a600c9a3130731ee50cc0b2b16",
+        "rev": "4a2307f709f3abab9935dc8c455212fdcbe13795",
         "type": "github"
       },
       "original": {
@@ -265,11 +265,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1769609272,
-        "narHash": "sha256-om41vBRRPRPZaF8yneeNoibD8sNh/omx+nF/BQPg05k=",
+        "lastModified": 1769788553,
+        "narHash": "sha256-eJuKCZ1ozBRiw3siHtWSSL2ugVMJtwfa8AKcgqYsEGI=",
         "owner": "NuschtOS",
         "repo": "nuschtpkgs",
-        "rev": "e916b1daca473319b315d56cc959856c4a3c97ed",
+        "rev": "f997518a0fdc742821b7f930aedd74bc7548088a",
         "type": "github"
       },
       "original": {
@@ -396,11 +396,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765576711,
-        "narHash": "sha256-uxygS/d7djSaovbkIH03VGDIxBuYAcQaQrxpG9FJof0=",
+        "lastModified": 1769700603,
+        "narHash": "sha256-CPMMLaDCCWtZ5VF2W0/9gzCMRKuLX94KJudYEBkPwMs=",
         "owner": "dd-ix",
         "repo": "sflow_exporter",
-        "rev": "c9a4a8dc5f93dd5aa842a4406025398e4ce78bdd",
+        "rev": "9f54c1e0c3154ed57576c2414b28806d29f5b1fe",
         "type": "github"
       },
       "original": {
