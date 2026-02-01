@@ -29,6 +29,8 @@ in
       interfaces = [{
         type = "tap";
         id = "vm-${config.networking.hostName}";
+        # more performance
+        tap.vhost = true;
         inherit mac;
       }];
 
