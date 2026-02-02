@@ -61,6 +61,7 @@
           lmtp_port = "8024";
           smtp_host = "svc-mta01.dd-ix.net";
           smtp_port = "25";
+          smtp_secure_mode = "starttls";
           configuration = "${pkgs.writeText "mailman-postfix.cfg" /* ini */ ''
           [postfix]
           transport_file_type: regex
