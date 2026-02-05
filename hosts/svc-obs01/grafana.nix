@@ -199,6 +199,7 @@ in
       grafanaUrl = config.services.grafana.settings.server.root_url;
       summaryScheduleCrit = "08:00,16:00";
       summaryScheduleWarn = "16:00";
+      summaryScheduleSkipEmpty = true;
       environmentFile = config.sops.templates."matrix2grafana/env".path;
     };
   };
