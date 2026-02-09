@@ -47,6 +47,8 @@ in
       accounts.default = {
         host = "svc-mta01.dd-ix.net";
         from = "noreply@svc-hv01.dd-ix.net";
+        port = "25";
+        tls_starttls = true;
         user = "";
         password = "";
         tls = true;
