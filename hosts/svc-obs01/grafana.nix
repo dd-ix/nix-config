@@ -200,6 +200,7 @@ in
       summaryScheduleCrit = "08:00,16:00";
       summaryScheduleWarn = "16:00";
       summaryScheduleSkipEmpty = true;
+      additionalLabels = "name,import_filter,export_filter,state";
       environmentFile = config.sops.templates."matrix2grafana/env".path;
     };
   };
