@@ -174,11 +174,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771280856,
-        "narHash": "sha256-8gs56yCJNDXmWjDzFCAwliBNkpQoiFwnBKE8R2rqco8=",
+        "lastModified": 1771877207,
+        "narHash": "sha256-R2AMxV7n+atLY3IeJuSV+I7qlW40nheDpkplo1/3kX0=",
         "owner": "cyanPaperclip",
         "repo": "grafana2matrix",
-        "rev": "34738f98a0ead0b092a937d8a814eee8a6d95fc2",
+        "rev": "c2434e5a042357b50c40ac7d9ad116f034a6e738",
         "type": "github"
       },
       "original": {
