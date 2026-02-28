@@ -1,6 +1,8 @@
 { lib, config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   users = {
     users.root.openssh.authorizedKeys.keys = import ../../keys/ssh.nix;
     # https://patorjk.com/software/taag/#p=display&f=Small&t=DD-IX&x=none&v=4&h=4&w=80&we=false
