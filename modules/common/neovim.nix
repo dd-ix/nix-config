@@ -11,7 +11,7 @@
     viAlias = true;
 
     configure = {
-      customRC = ''
+      customRC = /* vim */ ''
         colorscheme kanagawa
       '';
       packages.myVimPackage = with pkgs.vimPlugins; {

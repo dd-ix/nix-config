@@ -1,5 +1,5 @@
 {
-  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   # raise some awareness towards failed services
   environment.interactiveShellInit = /* sh */ ''

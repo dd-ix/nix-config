@@ -10,9 +10,7 @@
       }
     ];
 
-    boot = {
-      zfs.package = pkgs.zfs_2_4;
-    };
+    boot.zfs.package = pkgs.zfs_2_4;
 
     services.zfs = {
       autoSnapshot = {
@@ -24,9 +22,7 @@
         monthly = 1;
       };
 
-      autoScrub = {
-        enable = true;
-      };
+      autoScrub.enable = true;
     };
   };
 }

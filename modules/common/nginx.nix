@@ -10,10 +10,6 @@
     recommendedProxySettings = lib.mkDefault true;
     recommendedTlsSettings = lib.mkDefault true;
 
-    # Nginx sends all the access logs to /var/log/nginx/access.log by default.
-    # instead of going to the journal!
-    commonHttpConfig = "access_log syslog:server=unix:/dev/log;";
-
     sslDhparam = lib.mkIf config.services.nginx.enable config.security.dhparams.params.nginx.path;
   };
 
