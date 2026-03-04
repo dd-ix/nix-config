@@ -18,7 +18,7 @@
         '';
       });
       secretKeyFile = "${config.sops.secrets."dcim/secret_key".path}";
-      plugins = python3Packages: with python3Packages; [ python-jose ];
+      plugins = pp: with pp; [ python-jose ];
       settings = {
         ALLOWED_HOSTS = [ "dcim.${config.dd-ix.domain}" ];
 
