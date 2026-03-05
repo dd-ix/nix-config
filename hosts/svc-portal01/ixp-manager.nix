@@ -118,4 +118,8 @@
       # PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback";
     };
   };
+
+  services.phpfpm.pools.ixp-manager.phpOptions = ''
+    memory_limit = ${builtins.toString (1 * 1024 * 1024 * 1024)}
+  '';
 }
