@@ -72,15 +72,15 @@
     };
   };
 
-  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 9.2.1.1
+  # nix-prefetch-docker --image-name onlyoffice/documentserver --image-tag 9.3.1.2
   virtualisation.oci-containers.containers.onlyoffice = {
-    image = "onlyoffice/documentserver:9.2.1.1";
+    image = "onlyoffice/documentserver:9.3.1.2";
     imageFile = pkgs.dockerTools.pullImage {
       imageName = "onlyoffice/documentserver";
-      imageDigest = "sha256:fd00acbbbde3d8b1ead9b933aafa7c2df77e62c48b1b171886e6bef343c13882";
-      hash = "sha256-xlj9asSFKKD8iCwMYw3AeAOA6mjNKU/f4YX0SCGr4yw=";
+      imageDigest = "sha256:53a06109f1f4029a78f913a061e14f01bff023d109024073a13d4416b54d2195";
+      hash = "sha256-BvBlJZ12YUtI/JaAJa1dhKyzhRjCoQzwZKjqVpSm9Fk=";
       finalImageName = "onlyoffice/documentserver";
-      finalImageTag = "9.2.1.1";
+      finalImageTag = "9.3.1.2";
     };
     environmentFiles = [ config.sops.templates."onlyoffice/env".path ];
     extraOptions = [ "--network=host" ];
