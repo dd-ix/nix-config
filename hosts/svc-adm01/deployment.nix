@@ -67,6 +67,7 @@
       tls_starttls = true;
       user = "";
       password = "";
+      tls = true;
     };
   };
 

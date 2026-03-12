@@ -24,7 +24,7 @@
         SMTP_PORT = 25;
         SMTP_FROM = "noreply@vault.dd-ix.net";
         SMTP_FROM_NAME = "DD-IX Vault";
-        SMTP_SECURITY = "off";
+        SMTP_SECURITY = "starttls";
       };
       environmentFile = config.sops.secrets.vault_env.path;
     };
