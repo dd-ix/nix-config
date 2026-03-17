@@ -76,7 +76,7 @@
     };
 
     grafana2matrix = {
-      url = "github:cyanPaperclip/grafana2matrix";
+      url = "github:amaennel/grafana2matrix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
