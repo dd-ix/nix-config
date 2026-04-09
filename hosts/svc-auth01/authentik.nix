@@ -69,7 +69,7 @@ in
           port = 25;
           username = "";
           use_tls = false;
-          use_ssl = false;
+          use_ssl = true;
           from = "noreply@auth.dd-ix.net";
           template_dir = self + "/resources/authentik";
         };
