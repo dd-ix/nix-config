@@ -1,8 +1,17 @@
-{ self, config, ... }: {
+{ self, config, ... }:
 
+let
+  domain = "vault.${config.dd-ix.domain}";
+in
+{
   sops.secrets."vault_env" = {
     sopsFile = self + "/secrets/management/vault.yaml";
     owner = config.systemd.services.vaultwarden.serviceConfig.User;
+  };
+
+  dd-ix.authentik-proxy = {
+    enable = true;
+    domains = [ domain ];
   };
 
   services = {
@@ -12,7 +21,7 @@
       config = {
         ROCKET_ADDRESS = "::1";
         ROCKET_PORT = 8222;
-        DOMAIN = "https://vault.${config.dd-ix.domain}";
+        DOMAIN = "https://${domain}";
         SIGNUPS_ALLOWED = false;
         WEBSOCKET_ENABLED = true;
         PUSH_ENABLED = false;
@@ -20,9 +29,9 @@
         # update on demand
         ORG_CREATION_USERS = ""; # none
         PASSWORD_HINTS_ALLOWED = false;
-        SMTP_HOST = "svc-mta01.dd-ix.net";
+        SMTP_HOST = "svc-mta01.${config.dd-ix.domain}";
         SMTP_PORT = 25;
-        SMTP_FROM = "noreply@vault.dd-ix.net";
+        SMTP_FROM = "noreply@${domain}";
         SMTP_FROM_NAME = "DD-IX Vault";
         SMTP_SECURITY = "starttls";
       };
@@ -32,16 +41,18 @@
     nginx = {
       enable = true;
 
-      virtualHosts."vault.${config.dd-ix.domain}" = {
-        listen = [{
-          addr = "[::]";
-          port = 443;
-          proxyProtocol = true;
-          ssl = true;
-        }];
+      virtualHosts.${domain} = {
+        listen = [
+          {
+            addr = "[::]";
+            port = 443;
+            proxyProtocol = true;
+            ssl = true;
+          }
+        ];
 
         onlySSL = true;
-        useACMEHost = "vault.${config.dd-ix.domain}";
+        useACMEHost = domain;
 
         locations =
           let

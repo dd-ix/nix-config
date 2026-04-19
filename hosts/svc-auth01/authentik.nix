@@ -1,44 +1,64 @@
-{ self, config, pkgs, ... }:
+{
+  self,
+  config,
+  pkgs,
+  ...
+}:
 let
   hostname = "auth.${config.dd-ix.domain}";
 
-  customScope = (self.inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope
-    (_: prev: prev.authentikComponents // {
+  customScope = (self.inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope (
+    _: prev:
+    prev.authentikComponents
+    // {
       frontend = prev.authentikComponents.frontend.overrideAttrs (_: {
         patches = [ (self + /resouces/authentik-logo.patch) ];
       });
-    });
+    }
+  );
 in
 {
-  sops.secrets."authentik_env" = {
-    sopsFile = self + "/secrets/management/auth.yaml";
+  sops.secrets = {
+    "authentik/env".sopsFile = self + "/secrets/management/auth.yaml";
+    "authentik/radius_env".sopsFile = self + "/secrets/management/auth.yaml";
+    "authentik/proxy_env".sopsFile = self + "/secrets/management/auth.yaml";
   };
 
-  sops.secrets."authentik_radius_env" = {
-    sopsFile = self + "/secrets/management/auth.yaml";
-  };
-
-  systemd.services.authentik-worker.serviceConfig. LoadCredential = [
+  systemd.services.authentik-worker.serviceConfig.LoadCredential = [
     "${hostname}.pem:${config.security.acme.certs."${hostname}".directory}/fullchain.pem"
     "${hostname}.key:${config.security.acme.certs."${hostname}".directory}/key.pem"
   ];
 
   services.nginx = {
     enable = true;
-    virtualHosts."cloud.${config.dd-ix.domain}" = {
-      listen = [{
-        addr = "[::]";
-        port = 443;
-        proxyProtocol = true;
-        ssl = true;
-      }];
+    virtualHosts."auth.${config.dd-ix.domain}" = {
+      listen = [
+        {
+          addr = "[::]";
+          port = 443;
+          proxyProtocol = true;
+          ssl = true;
+        }
+      ];
 
       onlySSL = true;
       useACMEHost = hostname;
 
-      locations."/" = {
-        proxyWebsockets = true;
-        proxyPass = "http://[::1]:9000";
+      locations = {
+        "/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://[::1]:9000";
+        };
+        "/outpost.goauthentik.io" = {
+          recommendedProxySettings = false;
+          extraConfig = /* nginx */ ''
+            proxy_pass http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io;
+            proxy_set_header        Host $host;
+            proxy_set_header        X-Real-IP $remote_addr;
+            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header        X-Forwarded-Proto $scheme;
+          '';
+        };
       };
     };
   };
@@ -49,7 +69,7 @@ in
 
       enable = true;
 
-      environmentFile = config.sops.secrets."authentik_env".path;
+      environmentFile = config.sops.secrets."authentik/env".path;
 
       createDatabase = false;
 
@@ -82,7 +102,11 @@ in
     };
     authentik-radius = {
       enable = true;
-      environmentFile = config.sops.secrets."authentik_radius_env".path;
+      environmentFile = config.sops.secrets."authentik/radius_env".path;
+    };
+    authentik-proxy = {
+      enable = true;
+      environmentFile = config.sops.secrets."authentik/proxy_env".path;
     };
   };
 

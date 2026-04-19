@@ -1,6 +1,7 @@
 {
   imports = [
     ./anubis.nix
+    ./authentik.nix
     ./base.nix
     ./general-options.nix
     ./dns.nix
