@@ -58,7 +58,7 @@ in
       };
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
-          groupfolders polls user_oidc forms;
+          groupfolders polls user_oidc forms guests;
       };
       extraAppsEnable = true;
     };
