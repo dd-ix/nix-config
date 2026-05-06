@@ -1,21 +1,9 @@
-{
-  self,
-  config,
-  pkgs,
-  ...
+{ self
+, config
+, ...
 }:
 let
   hostname = "auth.${config.dd-ix.domain}";
-
-  customScope = (self.inputs.authentik.lib.mkAuthentikScope { inherit pkgs; }).overrideScope (
-    _: prev:
-    prev.authentikComponents
-    // {
-      frontend = prev.authentikComponents.frontend.overrideAttrs (_: {
-        patches = [ (self + /resouces/authentik-logo.patch) ];
-      });
-    }
-  );
 in
 {
   sops.secrets = {
@@ -44,29 +32,40 @@ in
       onlySSL = true;
       useACMEHost = hostname;
 
-      locations = {
-        "/" = {
-          proxyWebsockets = true;
-          proxyPass = "http://[::1]:9000";
+      locations =
+        let
+          web = "http://${config.services.authentik.settings.listen.http}";
+        in
+        {
+          "/".proxyPass = web;
+          "/ws/" = {
+            proxyWebsockets = true;
+            proxyPass = web;
+          };
+          "/static/" = {
+            alias = "${config.services.authentik.authentikComponents.frontend}/";
+            tryFiles = "$uri $uri/ =404";
+            extraConfig = ''
+              expires max;
+              access_log off;
+            '';
+          };
+          "/outpost.goauthentik.io" = {
+            recommendedProxySettings = false;
+            extraConfig = /* nginx */ ''
+              proxy_pass http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io;
+              proxy_set_header        Host $host;
+              proxy_set_header        X-Real-IP $remote_addr;
+              proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header        X-Forwarded-Proto $scheme;
+            '';
+          };
         };
-        "/outpost.goauthentik.io" = {
-          recommendedProxySettings = false;
-          extraConfig = /* nginx */ ''
-            proxy_pass http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io;
-            proxy_set_header        Host $host;
-            proxy_set_header        X-Real-IP $remote_addr;
-            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header        X-Forwarded-Proto $scheme;
-          '';
-        };
-      };
     };
   };
 
   services = {
     authentik = {
-      inherit (customScope) authentikComponents;
-
       enable = true;
 
       environmentFile = config.sops.secrets."authentik/env".path;
@@ -74,6 +73,7 @@ in
       createDatabase = false;
 
       settings = {
+        listen.http = "[::1]:9000";
         postgresql = {
           host = "svc-pg01.dd-ix.net";
           name = "authentik";
