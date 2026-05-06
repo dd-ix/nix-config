@@ -153,7 +153,10 @@ in
               type = "prometheus";
               access = "proxy";
               enable = true;
-              jsonData.timeInterval = "15s";
+              jsonData = {
+                timeInterval = "15s";
+                timeout = "600"; # 10min
+              };
             }
             {
               name = "svc-prom02_1m";
@@ -162,7 +165,11 @@ in
               type = "prometheus";
               access = "proxy";
               enable = true;
-              jsonData.timeInterval = "1m";
+              jsonData = {
+                timeInterval = "1m";
+                timeout = "600"; # 10min
+              };
+
             }
             {
               name = "svc-prom01_1m";
