@@ -151,11 +151,13 @@
         nixpkgs.overlays = [
           self.inputs.website.overlays.default
           self.inputs.website-content-api.overlays.default
+          self.inputs.traffic-savings.overlays.default
           (_: _: { ddix-website-content = self.inputs.website-content; })
         ];
       }
       self.inputs.website.nixosModules.default
       self.inputs.website-content-api.nixosModules.default
+      self.inputs.traffic-savings.nixosModules.default
       ./svc-web01
     ];
   };
