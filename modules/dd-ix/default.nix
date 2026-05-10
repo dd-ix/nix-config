@@ -14,5 +14,6 @@
     ./mariadb.nix
     ./monitoring.nix
     ./redis.nix
+    ./log-modules.nix
   ];
 }
