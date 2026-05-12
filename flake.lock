@@ -296,6 +296,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2605": {
+      "locked": {
+        "lastModified": 1778535217,
+        "narHash": "sha256-FGW08ouyhWzp1PGz7JV8/79wGAiWeagOszwYuDKUMiA=",
+        "owner": "NuschtOS",
+        "repo": "nuschtpkgs",
+        "rev": "e33fd608f1e20935d2017c599b3d75b30bac4fe4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NuschtOS",
+        "ref": "backports-26.05",
+        "repo": "nuschtpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1769909678,
@@ -395,6 +411,7 @@
         "microvm": "microvm",
         "nixos-modules": "nixos-modules",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-2605": "nixpkgs-2605",
         "post": "post",
         "sflow-exporter": "sflow-exporter",
         "sops-nix": "sops-nix",
