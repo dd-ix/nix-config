@@ -68,7 +68,6 @@ svc-obs01     AAAA  2a01:7700:80b0:6001::11
 svc-mari01    AAAA  2a01:7700:80b0:6001::12
 svc-web01     AAAA  2a01:7700:80b0:6001::13
 svc-bbe01     AAAA  2a01:7700:80b0:6001::14
-svc-crm01     AAAA  2a01:7700:80b0:6001::15
 svc-tix01     AAAA  2a01:7700:80b0:6001::16
 svc-trans01   AAAA  2a01:7700:80b0:6001::17
 svc-pad01     AAAA  2a01:7700:80b0:6001::18
@@ -119,7 +118,6 @@ arc_2024_2._domainkey.lists  TXT     ( "v=DKIM1; k=rsa; "
           "LRoM2elQnNuCym8t0YjQY4Bbn/wwdCblJxgKyjxxJPnCZXzhcFsIJ8h6t/5JK23XAQX5Uh9T483TU0Ht+yfE4jp8e0f150pSKNVxgmsVCGIrY+6uk3nG5dB88n4kA2mLSc4eccqwIDAQAB" )
 vault          CNAME  svc-rpx01
 portal         CNAME  svc-rpx01
-crm            CNAME  svc-rpx01
 auth           CNAME  svc-rpx01
 office         CNAME  svc-rpx01
 lg             CNAME  svc-rpx01
@@ -168,7 +166,6 @@ _acme-challenge.dcim           CNAME  dcim.acme-dns
 _acme-challenge.lists          CNAME  lists.acme-dns
 _acme-challenge.vault          CNAME  vault.acme-dns
 _acme-challenge.portal         CNAME  portal.acme-dns
-_acme-challenge.crm            CNAME  crm.acme-dns
 _acme-challenge.auth           CNAME  auth.acme-dns
 _acme-challenge.svc-pg01       CNAME  svc-pg01.acme-dns
 _acme-challenge.office         CNAME  office.acme-dns

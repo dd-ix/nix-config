@@ -165,12 +165,6 @@
       ./svc-bbe01
     ];
   };
-  svc-crm01 = libD.microvmSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./svc-crm01
-    ];
-  };
   svc-tix01 = libD.microvmSystem {
     system = "x86_64-linux";
     modules = [
