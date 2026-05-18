@@ -180,5 +180,19 @@
       ixpManagerUrl = "https://portal.${config.dd-ix.domain}/";
       lookingGlassUrl = "https://lg.${config.dd-ix.domain}/";
     };
+    traffic-savings = {
+      enable = true;
+      api = {
+        host = "127.0.0.1";
+        port = 4023;
+        dataDir = "/var/lib/savings/";
+      };
+
+      frontend = {
+        apiUrl = "/api";
+      };
+
+      domain = "savings.dd-ix.net";
+    };
   };
 }

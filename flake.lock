@@ -415,6 +415,7 @@
         "post": "post",
         "sflow-exporter": "sflow-exporter",
         "sops-nix": "sops-nix",
+        "traffic-savings": "traffic-savings",
         "website": "website",
         "website-content": "website-content",
         "website-content-api": "website-content-api"
@@ -507,6 +508,29 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "traffic-savings": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778412978,
+        "narHash": "sha256-ZjxyIrp2YhQA9KjJD2CQ1fn7orVExD/l1WrdzgaFle8=",
+        "ref": "refs/heads/main",
+        "rev": "e4559c1e721a15fea82ea08cffd1f3d61fd22a2e",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://codeberg.org/dd-ix/traffic-savings"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/dd-ix/traffic-savings"
       }
     },
     "uv2nix": {
