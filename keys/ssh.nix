@@ -17,4 +17,6 @@
   "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPdbSHJnEUPrGpb1zHZ5sTqCk09c9FH97n8Ogr+TZvHcUmvym4u9p2mvPdH7mI81Wcf/T9Nc9l3eJuBPnpAxm0Y= klemens@laptop"
   # tim
   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJPE0u/nBCRZTIZ+387dWHxIf7nDpkFh9TbPxUMN9uOj koop@netzknoten"
+  # jan
+  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBolKhSizCf6fvOrY78u9wYqfGW7KJhd0FAZOtkm/7Y6 jan@rocinante"
 ]
