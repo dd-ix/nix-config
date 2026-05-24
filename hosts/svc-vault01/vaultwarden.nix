@@ -11,7 +11,7 @@ in
 
   dd-ix.authentik-proxy = {
     enable = true;
-    domains = [ domain ];
+    locations = [ { inherit domain; } ];
   };
 
   services = {

@@ -1,4 +1,8 @@
 { self, config, ... }:
+
+let
+  domain = "portal.${config.dd-ix.domain}";
+in
 {
   sops.secrets."admin_password" = {
     owner = config.services.ixp-manager.user;
@@ -10,9 +14,14 @@
     sopsFile = self + "/secrets/management/portal.yaml";
   };
 
+  dd-ix.authentik-proxy = {
+    enable = true;
+    locations = [{ inherit domain; path = "/admin/"; }];
+  };
+
   services.ixp-manager = {
     enable = true;
-    hostname = "portal.dd-ix.net";
+    hostname = domain;
     environmentFile = config.sops.secrets."env_file".path;
     enableMRTG = true;
 
