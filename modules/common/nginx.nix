@@ -9,13 +9,6 @@
     recommendedOptimisation = lib.mkDefault true;
     recommendedProxySettings = lib.mkDefault true;
     recommendedTlsSettings = lib.mkDefault true;
-
-    sslDhparam = lib.mkIf config.services.nginx.enable config.security.dhparams.params.nginx.path;
-  };
-
-  security.dhparams = lib.mkIf config.services.nginx.enable {
-    enable = true;
-    params.nginx = { };
   };
 
   networking.hosts =

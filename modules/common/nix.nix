@@ -2,7 +2,7 @@
 
 {
   nix = {
-    package = pkgs.nixVersions.nix_2_32;
+    package = pkgs.nixVersions.nix_2_34;
 
     settings = {
       auto-optimise-store = true;
@@ -60,33 +60,31 @@
     fi
   '';
 
-  system = {
-    activationScripts = {
-      deleteChannels = /* bash */ ''
-        echo "Deleting all channels..."
-        rm -rfv /root/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /home/*/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /nix/var/nix/profiles/per-user/*/channels* || true
-      '';
+  system.activationScripts = {
+    deleteChannels = /* bash */ ''
+      echo "Deleting all channels..."
+      rm -rfv /root/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /home/*/{.local/state/nix/defexpr,.nix-channels,.nix-defexpr} /nix/var/nix/profiles/per-user/*/channels* || true
+    '';
 
-      deleteUserProfiles = /* bash */ ''
-        echo "Deleting all user profiles..."
-        rm -rfv /root/{.local/state/nix/profile,.nix-profile} /home/*/{.local/state/nix/profile,.nix-profile} /nix/var/nix/profiles/per-user/*/profile* || true
-      '';
+    deleteUserProfiles = /* bash */ ''
+      echo "Deleting all user profiles..."
+      rm -rfv /root/{.local/state/nix/profile,.nix-profile} /home/*/{.local/state/nix/profile,.nix-profile} /nix/var/nix/profiles/per-user/*/profile* || true
+    '';
 
-      diff-system = {
-        supportsDryActivation = true;
-        text = /* bash */ ''
-          if [[ -e /run/current-system && -e $systemConfig ]]; then
-            echo
-            echo nix diff new system against /run/current-system
-            (
-              unset PS4
-              set -x
-              ${lib.getExe config.nix.package} --extra-experimental-features nix-command store diff-closures /run/current-system $systemConfig || true
-            )
-            echo
-          fi
-        '';
-      };
+    diff-system = {
+      supportsDryActivation = true;
+      text = /* bash */ ''
+        if [[ -e /run/current-system && -e $systemConfig ]]; then
+          echo
+          echo nix diff new system against /run/current-system
+          (
+            unset PS4
+            set -x
+            ${lib.getExe pkgs.dix} /run/current-system $systemConfig || true
+          )
+          echo
+        fi
+      '';
     };
   };
 }

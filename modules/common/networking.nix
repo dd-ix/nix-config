@@ -1,13 +1,19 @@
+# https://github.com/nix-community/srvos/blob/main/nixos/common/networking.nix
 { lib, config, ... }:
 
 {
-  networking.firewall = {
-    enable = true;
-    allowPing = true;
+  networking = {
+    # gets turned on with networkmanager...
+    modemmanager.enable = false;
 
-    # Keep dmesg/journalctl -k output readable by NOT logging
-    # each refused connection on the open internet.
-    logRefusedConnections = lib.mkDefault false;
+    firewall = {
+      enable = true;
+      allowPing = true;
+
+      # Keep dmesg/journalctl -k output readable by NOT logging
+      # each refused connection on the open internet.
+      logRefusedConnections = lib.mkDefault false;
+    };
   };
 
   # The notion of "online" is a broken concept

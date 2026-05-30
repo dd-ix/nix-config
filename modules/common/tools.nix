@@ -18,12 +18,10 @@
     unzip
     gnutar
     jq
-    nix-tree
     whois
     killall
     wireguard-tools
     rsync
-    bat
     sops
     strace #strace-with-colors
   ];

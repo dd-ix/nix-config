@@ -1,7 +1,9 @@
+{ lib, ... }:
+
 {
   services.resolved = {
     enable = true;
-    dnssec = "true";
+    settings.Resolve.DNSSEC = lib.mkDefault "true";
   };
 
   # prefer ipv6 nameservers

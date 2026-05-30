@@ -9,15 +9,17 @@
     # fix vim like editors fix
     escapeTime = 100;
     extraConfigBeforePlugins = ''
-      set -g @kanagawa-plugins " "
+      set -g @ukiyo-theme "kanagawa/wave"
+      set -g @ukiyo-plugins " "
       # preserve terminal emulator background color
-      set -g @kanagawa-ignore-window-colors true
+      set -g @ukiyo-ignore-window-colors true
     '';
     plugins = with pkgs.tmuxPlugins; [
-      kanagawa
+      ukiyo
     ];
     extraConfig = ''
       set -ga terminal-overrides ",xterm-256color:Tc"
+      set-window-option -g mode-keys vi
     '';
   };
 }

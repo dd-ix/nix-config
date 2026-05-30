@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 {
-  config = lib.mkIf config.boot.zfs.enabled {
+  config = lib.mkIf (!(config ? sdImage) && config.boot.zfs.enabled) {
     assertions = [
       # https://gitea.c3d2.de/c3d2/nix-defaults/src/commit/51adf1d57b8e87f6fd43c90cc7fcca0e38dcc7a1/flake.nix#L16-L19
       {
@@ -10,7 +10,11 @@
       }
     ];
 
-    boot.zfs.package = pkgs.zfs_2_4;
+    boot.zfs = {
+      package = pkgs.zfs_2_4;
+      # use zpool import -f
+      forceImportRoot = true;
+    };
 
     services.zfs = {
       autoSnapshot = {
