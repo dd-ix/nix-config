@@ -1,5 +1,3 @@
-{ self, ... }:
-
 {
   imports = [
     ./weblate.nix
@@ -28,12 +26,6 @@
   };
 
   sops.defaultSopsFile = ./secrets.yaml;
-
-  nixpkgs.overlays = [
-    (_: _: {
-      weblate = self.inputs.nixpkgs-2605.legacyPackages.x86_64-linux.weblate;
-    })
-  ];
 
   system.stateVersion = "23.11";
 }
