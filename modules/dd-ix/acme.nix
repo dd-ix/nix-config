@@ -43,7 +43,7 @@ in
           value = {
             dnsProvider = "rfc2136";
             group = domain.group;
-            credentialsFile = config.sops.secrets."rfc2136_${domain.name}".path;
+            environmentFile = config.sops.secrets."rfc2136_${domain.name}".path;
           };
         })
         cfg);

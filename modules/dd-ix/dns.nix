@@ -8,10 +8,10 @@
 
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    llmnr = "false";
-    extraConfig = ''
-      FallbackDNS=
-    '';
+    settings.Resolve = {
+      DNSSEC = "true";
+      LLMNR = "false";
+      FallbackDNS = null;
+    };
   };
 }

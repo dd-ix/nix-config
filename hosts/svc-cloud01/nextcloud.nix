@@ -18,7 +18,7 @@ in
     postgresql.enable = lib.mkForce false;
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud32;
+      package = pkgs.nextcloud33;
       hostName = domain;
       https = true;
       config = {

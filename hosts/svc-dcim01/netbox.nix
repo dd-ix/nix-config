@@ -1,33 +1,41 @@
 { self, config, pkgs, lib, ... }:
 {
   sops.secrets = {
-    "dcim/secret_key".owner = config.systemd.services.netbox.serviceConfig.User;
-    "dcim/db_pw".owner = config.systemd.services.netbox.serviceConfig.User;
-    "dcim/oidc_secret".owner = config.systemd.services.netbox.serviceConfig.User;
+    "netbox/secret_key".owner = config.systemd.services.netbox.serviceConfig.User;
+    "netbox/api_token_pepper".owner = config.systemd.services.netbox.serviceConfig.User;
+    "netbox/db_pw".owner = config.systemd.services.netbox.serviceConfig.User;
+    "netbox/oidc_secret".owner = config.systemd.services.netbox.serviceConfig.User;
   };
 
-  users.users.nginx.extraGroups = [ "netbox" ];
+  #users.users.nginx.extraGroups = [ "netbox" ];
+
+  # for http unix socket
+  systemd.services.netbox.serviceConfig.RuntimeDirectory = "netbox";
 
   services = {
     postgresql.enable = lib.mkForce false;
     netbox = {
       enable = true;
-      package = pkgs.netbox_4_4.overrideAttrs (old: {
+      package = pkgs.netbox_4_5.overrideAttrs (old: {
         installPhase = old.installPhase + ''
           ln -s ${self + "/resources/netbox/pipeline.py"} $out/opt/netbox/netbox/netbox/ddix_pipeline.py
         '';
       });
-      secretKeyFile = "${config.sops.secrets."dcim/secret_key".path}";
+      secretKeyFile = config.sops.secrets."netbox/secret_key".path;
+      apiTokenPeppersFile = config.sops.secrets."netbox/api_token_pepper".path;
       plugins = pp: with pp; [ python-jose ];
+      unixSocket = "/run/netbox/netbox.sock";
       settings = {
         ALLOWED_HOSTS = [ "dcim.${config.dd-ix.domain}" ];
 
-        DATABASE = {
-          NAME = "netbox";
-          USER = "netbox";
-          HOST = lib.mkForce "svc-pg01.dd-ix.net";
-          PORT = 5432;
-          PASSWORD = "";
+        DATABASES = {
+          "default" = {
+            NAME = "netbox";
+            USER = "netbox";
+            HOST = lib.mkForce "svc-pg01.dd-ix.net";
+            PORT = 5432;
+            PASSWORD = "";
+          };
         };
 
         REMOTE_AUTH_ENABLED = true;
@@ -36,14 +44,13 @@
         SOCIAL_AUTH_OIDC_KEY = "ooCkcwLzdXcCMVJFGzZY0g0H2Y1gLmXHI2ZcPbva";
         LOGOUT_REDIRECT_URL = "https://auth.dd-ix.net/application/o/dcim/end-session/";
       };
-      extraConfig = ''
-        with open('${config.sops.secrets."dcim/db_pw".path}', 'r') as file:
-          DATABASE['PASSWORD'] = file.read()
+      extraConfig = /* python */ ''
+        with open('${config.sops.secrets."netbox/db_pw".path}', 'r') as file:
+          DATABASES['default']['PASSWORD'] = file.read()
 
-        with open('${config.sops.secrets."dcim/oidc_secret".path}', 'r') as file:
+        with open('${config.sops.secrets."netbox/oidc_secret".path}', 'r') as file:
           SOCIAL_AUTH_OIDC_SECRET = file.read()
 
-      
         SOCIAL_AUTH_PIPELINE = (
           ###################
           # Default pipelines
@@ -118,8 +125,8 @@
         useACMEHost = "dcim.${config.dd-ix.domain}";
 
         locations = {
+          "/".proxyPass = "http://unix:${config.services.netbox.unixSocket}";
           "/static/".alias = "${config.services.netbox.dataDir}/static/";
-          "/".proxyPass = "http://${config.services.netbox.listenAddress}:${toString config.services.netbox.port}";
         };
       };
     };
