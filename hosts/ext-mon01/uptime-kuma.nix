@@ -1,8 +1,5 @@
 { config, ... }:
 
-let
-  kuma_domain = "status.${config.dd-ix.domain}";
-in
 {
   services = {
     uptime-kuma = {
@@ -17,12 +14,22 @@ in
     nginx = {
       enable = true;
       virtualHosts = {
-        "${kuma_domain}" = {
+        "status.${config.dd-ix.domain}" = {
           locations = {
             "/" = {
               proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
             };
             "= /".return = "301 /status/dd-ix";
+          };
+          forceSSL = true;
+          enableACME = true;
+        };
+        "status.elbforge.org" = {
+          locations = {
+            "/" = {
+              proxyPass = "http://${config.services.uptime-kuma.settings.HOST}:${config.services.uptime-kuma.settings.PORT}";
+            };
+            "= /".return = "301 /status/elbforge";
           };
           forceSSL = true;
           enableACME = true;
