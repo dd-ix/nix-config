@@ -120,13 +120,12 @@
         onlySSL = true;
         useACMEHost = "talks.${config.dd-ix.domain}";
 
-        root = pkgs.fetchFromGitea {
-          domain = "codeberg.org";
+        root = pkgs.fetchFromCodeberg {
           owner = "dd-ix";
           repo = "ddix-talks";
           fetchSubmodules = true;
-          rev = "83a4a4ec758f05c677011f2bf9ed7a7fe35492d6";
-          hash = "sha256-MeZfoU0RvXWZ0B5NheAKibf1PpELUTSBgJ/uynxdKPE=";
+          rev = "a11ca4d235c3d8ff472cc03200d27973848133d7";
+          hash = "sha256-HWAxmQoy6qyMuZno/CBzfIilWViASnJjNKKqx0Tgdbs=";
         };
 
         locations = {
