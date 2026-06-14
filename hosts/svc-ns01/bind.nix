@@ -61,6 +61,7 @@ in
   services.bind = {
     enable = true;
 
+    checkConfig = false;
     extraConfig = lib.strings.concatStringsSep "\n" (map
       (domain:
         "include \"${config.sops.secrets."rfc2136_${domain}".path}\";"
