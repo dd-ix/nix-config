@@ -86,6 +86,7 @@
       webSettings = {
         EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend";
         EMAIL_HOST = "svc-mta01.dd-ix.net";
+        EMAIL_USE_TLS = true;
         EMAIL_PORT = 25;
         DEFAULT_FROM_EMAIL = "noreply@lists.dd-ix.net";
         SERVER_EMAIL = "noreply@lists.dd-ix.net";
