@@ -80,6 +80,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    traffic-savings = {
+      url = "git+https://codeberg.org/dd-ix/traffic-savings";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = { self, ... }: {
