@@ -10,6 +10,9 @@
     initrd.kernelModules = [ ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
+
+    # disable nested kvm
+    extraModprobeConfig = "options kvm_intel nested=0";
   };
 
   fileSystems = {
