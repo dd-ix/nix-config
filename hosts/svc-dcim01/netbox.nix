@@ -131,4 +131,7 @@
       };
     };
   };
+
+  # otherwise nginx is ssing execute on /var/lib/netbox
+  users.users.nginx.extraGroups = [ "netbox" ];
 }
