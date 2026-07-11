@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, config, lib, ... }: # lib used for mkBefore
 
 let
   domain = "vault.${config.dd-ix.domain}";
@@ -66,7 +66,14 @@ in
               proxyPass = upstream;
               proxyWebsockets = true;
             };
-            "/".proxyPass = upstream;
+            "/" = {
+              proxyPass = upstream;
+              extraConfig = lib.mkBefore ''
+                satisfy any;
+                allow 2a01:7700:80b0:e000::/64;
+                deny all;
+              '';
+            };
           };
       };
     };

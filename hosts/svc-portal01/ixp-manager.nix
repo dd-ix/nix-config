@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, config, lib, ... }:
 
 let
   domain = "portal.${config.dd-ix.domain}";
@@ -18,6 +18,12 @@ in
     enable = true;
     locations = [{ inherit domain; path = "/admin/"; }];
   };
+
+  services.nginx.virtualHosts.${domain}.locations."/admin/".extraConfig = lib.mkBefore ''
+    satisfy any;
+    allow 2a01:7700:80b0:e000::/64;
+    deny all;
+  '';
 
   services.ixp-manager = {
     enable = true;
