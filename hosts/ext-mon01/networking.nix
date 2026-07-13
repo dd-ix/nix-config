@@ -23,6 +23,8 @@
       "time.fu-berlin.de"
       "ntp.nic.cz"
     ];
+    
+    tempAddresses = "disabled";
 
     ifstate = {
       enable = true;
